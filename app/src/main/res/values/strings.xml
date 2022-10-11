@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OurRecipes</string>
     <string name="landing_page">Landing Page</string>
+    <string name="Landing_Page">Landing Page</string>
 </resources>

@@ -7,15 +7,13 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="720dp"
-        android:contentDescription="@string/landing_page"
-        android:scaleType="fitCenter"
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/Landing_Page"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/landing_page___example2" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
