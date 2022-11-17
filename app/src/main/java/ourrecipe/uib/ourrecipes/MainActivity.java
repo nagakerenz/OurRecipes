@@ -15,6 +15,12 @@ public class MainActivity extends AppCompatActivity {
         hideNavigationBar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideNavigationBar();
+    }
+
     private void hideNavigationBar(){
         this.getWindow().getDecorView()
                 .setSystemUiVisibility(
