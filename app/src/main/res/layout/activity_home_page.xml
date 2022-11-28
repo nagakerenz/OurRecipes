@@ -170,5 +170,20 @@
                     android:src="@drawable/breakfast"/>
             </LinearLayout>
         </HorizontalScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/bottom_nav_menu" />
+
+        <fragment
+            android:id="@+id/nav_host_fragment_activity_bottom_navigation_bar"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:navGraph="@navigation/mobile_navigation" />
+
     </LinearLayout>
 </ScrollView>
