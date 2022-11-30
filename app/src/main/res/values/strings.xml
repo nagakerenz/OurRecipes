@@ -13,7 +13,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_bottom_navigation_bar">BottomNavigationBar</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Reels</string>
+    <string name="title_search">Search</string>
+    <string name="title_reels">Reels</string>
     <string name="title_profile">Profile</string>
-    <string name="title_notifications">Notifications</string>
 </resources>
