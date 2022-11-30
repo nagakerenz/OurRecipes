@@ -59,27 +59,9 @@
                 android:layout_gravity="center">
 
                 <ImageButton
-                    android:id="@+id/dinner"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/dinner" />
-
-                <ImageButton
-                    android:id="@+id/drink"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="70dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/drink" />
-
-                <ImageButton
                     android:id="@+id/breakfast"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginLeft="140dp"
                     android:backgroundTint="@color/teal_700"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/breakfast" />
@@ -88,10 +70,28 @@
                     android:id="@+id/lunch"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginLeft="210dp"
+                    android:layout_marginLeft="70dp"
                     android:backgroundTint="@color/teal_700"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/lunch" />
+
+                <ImageButton
+                    android:id="@+id/dinner"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="140dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/dinner" />
+
+                <ImageButton
+                    android:id="@+id/drink"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="210dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/drink" />
 
                 <ImageButton
                     android:id="@+id/fiber"
