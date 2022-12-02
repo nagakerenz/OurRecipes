@@ -6,56 +6,74 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 public class HomePage extends AppCompatActivity {
+    ImageButton breakfast;
+    ImageButton lunch;
+    ImageButton dinner;
+    ImageButton fiber;
+    ImageButton drink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        ImageButton dinner = (ImageButton) findViewById(R.id.dinner);
-        ImageButton breakfast = (ImageButton) findViewById(R.id.breakfast);
-        ImageButton lunch = (ImageButton) findViewById(R.id.lunch);
-        ImageButton fiber = (ImageButton) findViewById(R.id.fiber);
-        ImageButton drink = (ImageButton) findViewById(R.id.drink);
 
-        dinner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent dinner=new Intent(HomePage.this, DinnerPage.class);
-                startActivity(dinner);
-            }
-        });
+        breakfast = (ImageButton) findViewById(R.id.breakfast);
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent breakfast=new Intent(HomePage.this, BreakfastPage.class);
-                startActivity(breakfast);
-            }
-        });
+                openBreakfastPage;
+
+        lunch = (ImageButton) findViewById(R.id.lunch);
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent lunch=new Intent(HomePage.this, LunchPage.class);
-                startActivity(lunch);
-            }
-        });
+                openLunchPage;
+
+        dinner = (ImageButton) findViewById(R.id.dinner);
+        dinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDinnnerPage;
+
+        fiber = (ImageButton) findViewById(R.id.fiber);
         fiber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent fiber=new Intent(HomePage.this, FiberPage.class);
-                startActivity(fiber);
-            }
-        });
+                openFiberPage;
+
+        drink = (ImageButton) findViewById(R.id.drink);
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent drink=new Intent(HomePage.this, DrinkPage.class);
-                startActivity(drink);
+                openDrinkPage;
             }
         });
+    }
+
+    public void openBreakfastPage() {
+        Intent breakfast = new Intent(this, BreakfastPage.class);
+        startActivity(breakfast);
+
+    public void openLunchPage() {
+        Intent lunch = new Intent(this, LunchPage.class);
+        startActivity(lunch);
+
+    public void openDinnerPage() {
+        Intent dinner = new Intent(this, DinnerPage.class);
+        startActivity(dinner);
+
+    public void openFiberPage() {
+        Intent fiber = new Intent(this, FiberPage.class);
+        startActivity(fiber);
+
+    public void openDrinkPage() {
+        Intent drink = new Intent(this, DrinkPage.class);
+        startActivity(drink);
     }
 }
