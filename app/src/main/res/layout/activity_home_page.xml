@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <HorizontalScrollView
-                android:layout_width="350dp"
+                android:layout_width="337dp"
                 android:layout_height="175dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
@@ -30,17 +30,17 @@
                 <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/slide1"
+                    android:src="@drawable/slide_learntocook"
                     android:background="@null"/>
                 <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/slide2"
+                    android:src="@drawable/slide_areyouondiet"
                     android:background="@null"/>
                 <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/slide3"
+                    android:src="@drawable/slide_carvingforsteak"
                     android:background="@null"/>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -69,8 +69,7 @@
                     android:layout_height="70dp"
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/circle"
-                    app:srcCompat="@drawable/breakfast" />
+                    app:srcCompat="@drawable/icon_breakfast" />
 
                 <ImageButton
                     android:id="@+id/lunch"
@@ -79,7 +78,7 @@
                     android:layout_marginLeft="70dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/lunch" />
+                    app:srcCompat="@drawable/icon_lunch" />
 
                 <ImageButton
                     android:id="@+id/dinner"
@@ -88,7 +87,7 @@
                     android:layout_marginLeft="140dp"
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/dinner"
+                    app:srcCompat="@drawable/icon_dinner"
                     />
 
                 <ImageButton
@@ -98,7 +97,7 @@
                     android:layout_marginLeft="210dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/drink" />
+                    app:srcCompat="@drawable/icon_drink" />
 
                 <ImageButton
                     android:id="@+id/fiber"
@@ -107,7 +106,7 @@
                     android:layout_marginLeft="280dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/fiber" />
+                    app:srcCompat="@drawable/icon_fiber" />
             </androidx.cardview.widget.CardView>
 
             <HorizontalScrollView
@@ -161,17 +160,30 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/breakfast"/>
+                        android:src="@drawable/icon_breakfast"/>
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/breakfast"/>
+                        android:src="@drawable/icon_breakfast"/>
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/breakfast"/>
+                        android:src="@drawable/icon_breakfast"/>
                 </LinearLayout>
             </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watching K-Drama?"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+
         </LinearLayout>
     </ScrollView>
     <RelativeLayout

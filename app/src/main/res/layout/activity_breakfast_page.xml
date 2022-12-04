@@ -7,119 +7,163 @@
     tools:context=".BreakfastPage"
     android:orientation="vertical">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="@null"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="11dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="arial"
+            android:textColor="@color/black"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#33F9E5A1"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/breakfast"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#05F9E5A1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_breakfast" />
+
+        <ImageButton
+            android:id="@+id/lunch"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="70dp"
+            android:backgroundTint="#05F8D5A7"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_lunch" />
+
+        <ImageButton
+            android:id="@+id/dinner"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="140dp"
+            android:backgroundTint="#05F9E5A1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_dinner" />
+
+        <ImageButton
+            android:id="@+id/drink"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="210dp"
+            android:backgroundTint="#05F8D5A7"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_drink" />
+
+        <ImageButton
+            android:id="@+id/fiber"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="280dp"
+            android:backgroundTint="#05F8D5A7"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_fiber" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BREAKFAST"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="arial"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:fadeScrollbars="false">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:fillViewport="true">
+
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageButton
-                    android:id="@+id/back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_arrow_back_24"
-                    android:background="@null"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Back"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginTop="14dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:fontFamily="arial"
-                    android:textColor="@color/black"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/teal_700"
-                android:layout_gravity="center">
-
-                <ImageButton
-                    android:id="@+id/breakfast"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/breakfast" />
-
-                <ImageButton
-                    android:id="@+id/lunch"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="70dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/lunch" />
-
-                <ImageButton
-                    android:id="@+id/dinner"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="140dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/dinner" />
-
-                <ImageButton
-                    android:id="@+id/drink"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="210dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/drink" />
-
-                <ImageButton
-                    android:id="@+id/fiber"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="280dp"
-                    android:backgroundTint="@color/teal_700"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/fiber"/>
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BREAKFAST"
-                android:layout_marginTop="20dp"
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:fontFamily="arial"/>
-
-            <LinearLayout
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageButton
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/breakfast"/>
-                <ImageButton
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/breakfast"/>
+                app:layout_column="0"
+                app:layout_row="0"
+                app:srcCompat="@drawable/icon_breakfast" />
 
-            </LinearLayout>
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                app:layout_column="1"
+                app:layout_row="0"
+                app:srcCompat="@drawable/icon_breakfast" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                app:layout_column="0"
+                app:layout_row="1"
+                app:srcCompat="@drawable/icon_breakfast" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                app:layout_column="1"
+                app:layout_row="1"
+                app:srcCompat="@drawable/icon_breakfast" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                app:layout_column="1"
+                app:layout_row="2"
+                app:srcCompat="@drawable/icon_breakfast" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                app:layout_column="0"
+                app:layout_row="2"
+                app:srcCompat="@drawable/icon_breakfast" />
+        </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
 
     <RelativeLayout
@@ -138,8 +182,10 @@
             android:id="@+id/nav_host_fragment_activity_bottom_navigation_bar"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             app:navGraph="@navigation/mobile_navigation" />
+
     </RelativeLayout>
 </LinearLayout>
 

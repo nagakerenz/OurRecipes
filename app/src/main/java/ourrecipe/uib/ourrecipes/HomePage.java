@@ -27,31 +27,36 @@ public class HomePage extends AppCompatActivity {
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openBreakfastPage;
+                openBreakfastPage();
+            }
+        });
 
         lunch = (ImageButton) findViewById(R.id.lunch);
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLunchPage;
-
+                openLunchPage();
+            }
+        });
         dinner = (ImageButton) findViewById(R.id.dinner);
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDinnnerPage;
-
+                openDinnnerPage();
+            }
+        });
         fiber = (ImageButton) findViewById(R.id.fiber);
         fiber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFiberPage;
-
+                openFiberPage();
+            }
+        });
         drink = (ImageButton) findViewById(R.id.drink);
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDrinkPage;
+                openDrinkPage();
             }
         });
     }
@@ -59,18 +64,22 @@ public class HomePage extends AppCompatActivity {
     public void openBreakfastPage() {
         Intent breakfast = new Intent(this, BreakfastPage.class);
         startActivity(breakfast);
+    }
 
-    public void openLunchPage() {
+    public void openLunchPage(){
         Intent lunch = new Intent(this, LunchPage.class);
         startActivity(lunch);
+    }
 
-    public void openDinnerPage() {
+    public void openDinnnerPage(){
         Intent dinner = new Intent(this, DinnerPage.class);
         startActivity(dinner);
+    }
 
-    public void openFiberPage() {
+    public void openFiberPage(){
         Intent fiber = new Intent(this, FiberPage.class);
         startActivity(fiber);
+    }
 
     public void openDrinkPage() {
         Intent drink = new Intent(this, DrinkPage.class);

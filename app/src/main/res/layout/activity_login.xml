@@ -19,7 +19,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/logo3" />
+        app:srcCompat="@drawable/logo_ourrecipes3" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
