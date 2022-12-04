@@ -157,10 +157,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
+
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/icon_breakfast"/>
+                        android:src="@drawable/icon_breakfast" />
+
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -183,19 +185,70 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"/>
 
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_column="0"
+                    app:layout_row="0"
+                    app:srcCompat="@drawable/icon_breakfast" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_column="1"
+                    app:layout_row="0"
+                    app:srcCompat="@drawable/icon_breakfast" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_column="0"
+                    app:layout_row="1"
+                    app:srcCompat="@drawable/icon_breakfast" />
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_column="1"
+                    app:layout_row="1"
+                    app:srcCompat="@drawable/icon_breakfast" />
+
+
+            </androidx.gridlayout.widget.GridLayout>
+
 
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:paddingTop="?attr/actionBarSize">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/bottom_nav_menu" />
 
         <fragment
@@ -203,8 +256,10 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nav_view"
             app:navGraph="@navigation/mobile_navigation" />
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 
 
