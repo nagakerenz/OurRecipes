@@ -192,8 +192,8 @@
 
                 <ImageButton
                     android:id="@+id/imageButton"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
                     app:layout_column="0"
@@ -202,43 +202,16 @@
 
                 <ImageButton
                     android:id="@+id/imageButton2"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
                     app:layout_column="1"
                     app:layout_row="0"
                     app:srcCompat="@drawable/icon_breakfast" />
-
-                <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    app:layout_column="0"
-                    app:layout_row="1"
-                    app:srcCompat="@drawable/icon_breakfast" />
-
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    app:layout_column="1"
-                    app:layout_row="1"
-                    app:srcCompat="@drawable/icon_breakfast" />
             </GridLayout>
-
-
         </LinearLayout>
     </ScrollView>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="?attr/actionBarSize">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
@@ -258,7 +231,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nav_view"
             app:navGraph="@navigation/mobile_navigation" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
 
 
