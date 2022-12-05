@@ -10,7 +10,7 @@ public class ReelsViewModel extends ViewModel {
 
     public ReelsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is reels fragment");
     }
 
     public LiveData<String> getText() {
