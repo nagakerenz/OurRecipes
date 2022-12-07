@@ -190,7 +190,8 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2">
+                android:columnCount="2"
+                android:layout_marginBottom="30dp">
 
                 <ImageButton
                     android:id="@+id/imageButton"
@@ -224,7 +225,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@null"
                     android:scaleType="centerCrop"
-                    app:layout_column="0"
+                    app:layout_column="1"
                     app:layout_row="0"
                     app:srcCompat="@drawable/food_eggtoast" />
 
@@ -240,6 +241,54 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/food_love" />
 
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@null"
+                    android:scaleType="centerCrop"
+                    app:layout_column="0"
+                    app:layout_row="1"
+                    app:srcCompat="@drawable/food_eggtoast" />
+
+                <ImageButton
+                    android:id="@+id/food_loveWhite1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_marginLeft="159dp"
+                    android:layout_marginTop="23dp"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/food_lovewhite" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@null"
+                    android:scaleType="centerCrop"
+                    app:layout_column="1"
+                    app:layout_row="1"
+                    app:srcCompat="@drawable/food_eggtoast" />
+
+                <ImageButton
+                    android:id="@+id/food_love1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_marginLeft="159dp"
+                    android:layout_marginTop="23dp"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/food_love" />
             </GridLayout>
         </LinearLayout>
     </ScrollView>
