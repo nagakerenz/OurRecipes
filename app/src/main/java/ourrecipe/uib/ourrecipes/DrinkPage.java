@@ -1,11 +1,13 @@
 package ourrecipe.uib.ourrecipes;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
+import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
 
 public class DrinkPage extends AppCompatActivity {
     ImageButton back;
@@ -19,7 +21,6 @@ public class DrinkPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink_page);
-
         back = (ImageButton) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +48,7 @@ public class DrinkPage extends AppCompatActivity {
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDinnnerPage();
+                openDinnerPage();
             }
         });
         fiber = (ImageButton) findViewById(R.id.fiber);
@@ -67,7 +68,7 @@ public class DrinkPage extends AppCompatActivity {
     }
 
     public void backToHomepage(){
-        Intent back = new Intent(this, HomePage.class);
+        Intent back = new Intent(this, HomeFragment.class);
         startActivity(back);
     }
 
@@ -81,7 +82,7 @@ public class DrinkPage extends AppCompatActivity {
         startActivity(lunch);
     }
 
-    public void openDinnnerPage(){
+    public void openDinnerPage(){
         Intent dinner = new Intent(this, DinnerPage.class);
         startActivity(dinner);
     }

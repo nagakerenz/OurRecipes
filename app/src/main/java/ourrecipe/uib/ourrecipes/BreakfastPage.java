@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
+
 public class BreakfastPage extends AppCompatActivity {
     ImageButton back;
     ImageButton breakfast;
@@ -51,7 +53,7 @@ public class BreakfastPage extends AppCompatActivity {
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDinnnerPage();
+                openDinnerPage();
             }
         });
         fiber = (ImageButton) findViewById(R.id.fiber);
@@ -71,7 +73,7 @@ public class BreakfastPage extends AppCompatActivity {
     }
 
     public void backToHomepage(){
-        Intent back = new Intent(this, HomePage.class);
+        Intent back = new Intent(this, HomeFragment.class);
         startActivity(back);
     }
 
@@ -85,7 +87,7 @@ public class BreakfastPage extends AppCompatActivity {
         startActivity(lunch);
     }
 
-    public void openDinnnerPage(){
+    public void openDinnerPage(){
         Intent dinner = new Intent(this, DinnerPage.class);
         startActivity(dinner);
     }

@@ -111,45 +111,50 @@
                     app:srcCompat="@drawable/icon_fiber" />
             </androidx.cardview.widget.CardView>
 
-            <HorizontalScrollView
-                android:id="@+id/hsv"
-                android:layout_width="fill_parent"
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:measureAllChildren="false"
-                android:scrollbars="none">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/but1"
+                android:layout_gravity="center">
+                <HorizontalScrollView
+                    android:id="@+id/hsv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:measureAllChildren="false"
+                    android:scrollbars="none">
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="10dp"
-                        android:text="Recommended"/>
-                    <Button
-                        android:id="@+id/but2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="10dp"
-                        android:text="Asian"/>
-                    <Button
-                        android:id="@+id/but3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="10dp"
-                        android:text="Thai"/>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="10dp"
-                        android:text="Korean"/>
-                </LinearLayout>
-            </HorizontalScrollView>
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/but1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="10dp"
+                            android:text="Recommended"/>
+                        <Button
+                            android:id="@+id/but2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="10dp"
+                            android:text="Asian"/>
+                        <Button
+                            android:id="@+id/but3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="10dp"
+                            android:text="Thai"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="10dp"
+                            android:text="Korean"/>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </androidx.cardview.widget.CardView>
 
             <HorizontalScrollView
                 android:layout_width="fill_parent"
@@ -191,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="50dp">
 
                 <ImageButton
                     android:id="@+id/imageButton"

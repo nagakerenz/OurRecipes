@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import kotlin.jvm.internal.Ref;
 import ourrecipe.uib.ourrecipes.BreakfastPage;
 import ourrecipe.uib.ourrecipes.DinnerPage;
 import ourrecipe.uib.ourrecipes.DrinkPage;
@@ -63,7 +61,7 @@ public class HomeFragment extends Fragment {
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDinnnerPage();
+                openDinnerPage();
             }
         });
         fiber = (ImageButton) root.findViewById(R.id.fiber);
@@ -93,7 +91,7 @@ public class HomeFragment extends Fragment {
         startActivity(lunch);
     }
 
-    public void openDinnnerPage(){
+    public void openDinnerPage(){
         Intent dinner = new Intent(HomeFragment.this.getActivity(), DinnerPage.class);
         startActivity(dinner);
     }
