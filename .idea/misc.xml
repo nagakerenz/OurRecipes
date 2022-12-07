@@ -3,8 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_bottom_navigation_bar.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_breakfast_page.xml" value="0.3596014492753623" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_favorite_page.xml" value="0.3596014492753623" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_fiber_page.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_home_page.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_search_page.xml" value="0.3596014492753623" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/fragment_favorite.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/fragment_favoritesprofile.xml" value="0.3596014492753623" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/fragment_profile.xml" value="0.3596014492753623" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/fragment_search.xml" value="0.3596014492753623" />
         <entry key="..\:/Users/jesi/AndroidStudioProjects/OurRecipes/app/src/main/res/drawable/Landing_Page_background.xml" value="0.3625" />
         <entry key="..\:/Users/jesi/AndroidStudioProjects/OurRecipes/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.23560910307898258" />
         <entry key="..\:/Users/jesi/AndroidStudioProjects/OurRecipes/app/src/main/res/layout-w936dp/activity_login.xml" value="0.27049180327868855" />
