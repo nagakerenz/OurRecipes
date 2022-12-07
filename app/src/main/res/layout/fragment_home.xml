@@ -1,22 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_home"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:fillViewport="true"
+        android:fadeScrollbars="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="337dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/slide_learntocook"
+                        android:background="@null"/>
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/slide_areyouondiet"
+                        android:background="@null"/>
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/slide_carvingforsteak"
+                        android:background="@null"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/text_Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommendation"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#33F9E5A1"
+                android:layout_gravity="center">
+
+
+                <ImageButton
+                    android:id="@+id/breakfast"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="#05F9E5A1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/icon_breakfast" />
+
+                <ImageButton
+                    android:id="@+id/lunch"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="70dp"
+                    android:backgroundTint="#05F8D5A7"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/icon_lunch" />
+
+                <ImageButton
+                    android:id="@+id/dinner"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="140dp"
+                    android:backgroundTint="#05F9E5A1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/icon_dinner"
+                    />
+
+                <ImageButton
+                    android:id="@+id/drink"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="210dp"
+                    android:backgroundTint="#05F8D5A7"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/icon_drink" />
+
+                <ImageButton
+                    android:id="@+id/fiber"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="280dp"
+                    android:backgroundTint="#05F8D5A7"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/icon_fiber" />
+            </androidx.cardview.widget.CardView>
+
+            <HorizontalScrollView
+                android:id="@+id/hsv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:measureAllChildren="false"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/but1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="10dp"
+                        android:text="Recommended"/>
+                    <Button
+                        android:id="@+id/but2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="10dp"
+                        android:text="Asian"/>
+                    <Button
+                        android:id="@+id/but3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="10dp"
+                        android:text="Thai"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="10dp"
+                        android:text="Korean"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_breakfast" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_breakfast"/>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_breakfast"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watching K-Drama?"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@null"
+                    android:scaleType="centerCrop"
+                    app:layout_column="0"
+                    app:layout_row="0"
+                    app:srcCompat="@drawable/food_eggtoast" />
+
+                <ImageButton
+                    android:id="@+id/food_loveWhite"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_marginLeft="159dp"
+                    android:layout_marginTop="23dp"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/food_lovewhite" />
+
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@null"
+                    android:scaleType="centerCrop"
+                    app:layout_column="0"
+                    app:layout_row="0"
+                    app:srcCompat="@drawable/food_eggtoast" />
+
+                <ImageButton
+                    android:id="@+id/food_love"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_marginLeft="159dp"
+                    android:layout_marginTop="23dp"
+                    android:background="@null"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/food_love" />
+
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
