@@ -66,8 +66,8 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:selectAllOnFocus="true" />
-        <TextView
-            android:id="@+id/fpbut"
+        <Button
+            android:id="@+id/forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forget Password?"
@@ -94,8 +94,8 @@
             android:layout_height="wrap_content"
             android:text="New here?"
             android:layout_gravity="center"/>
-        <TextView
-            android:id="@+id/sgbut"
+        <Button
+            android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign Up"
