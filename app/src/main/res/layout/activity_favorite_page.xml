@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity=""
-    tools:context=".FavoritePage">
+    tools:context=".FavoritePage"
+    android:padding="10dp">
 
     <ImageButton
         android:id="@+id/back"
@@ -189,7 +189,5 @@
                 app:srcCompat="@drawable/food_love" />
 
         </GridLayout>
-
     </ScrollView>
-
 </LinearLayout>
