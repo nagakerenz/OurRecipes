@@ -73,7 +73,8 @@ public class BreakfastPage extends AppCompatActivity {
     }
 
     public void backToHomepage(){
-        Intent back = new Intent(this, HomeFragment.class);
+        Intent back = new Intent(BreakfastPage.this, HomeFragment.class);
+        back.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(back);
     }
 
