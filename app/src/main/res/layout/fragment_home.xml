@@ -124,7 +124,8 @@
                     android:scrollbars="none">
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
                         <Button
                             android:id="@+id/but1"
                             android:layout_width="wrap_content"
@@ -208,7 +209,7 @@
                     android:scaleType="centerCrop"
                     app:layout_column="0"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/food_eggtoast" />
+                    app:srcCompat="@drawable/food_eggcereal" />
 
                 <ImageButton
                     android:id="@+id/food_loveWhite"
@@ -257,7 +258,7 @@
                     android:scaleType="centerCrop"
                     app:layout_column="0"
                     app:layout_row="1"
-                    app:srcCompat="@drawable/food_eggtoast" />
+                    app:srcCompat="@drawable/food_eggcereal" />
 
                 <ImageButton
                     android:id="@+id/food_loveWhite1"
