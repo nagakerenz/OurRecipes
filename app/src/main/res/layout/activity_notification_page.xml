@@ -46,12 +46,22 @@
             android:fontFamily="arial"
             android:textColor="@color/black"/>
 
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:textAlignment=""
+            android:text="Switch" />
         <Button
             android:id="@+id/favorites"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
             android:backgroundTint="@color/white"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:text="Favorites"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
@@ -75,5 +85,7 @@
             android:text="Account"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
+
+
     </androidx.cardview.widget.CardView>
 </LinearLayout>
