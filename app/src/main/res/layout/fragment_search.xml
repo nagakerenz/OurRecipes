@@ -54,7 +54,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="170dp"
             android:layout_gravity="center_horizontal"
-            android:queryHint="Search"
+            android:queryHint="Search For Food"
             android:iconifiedByDefault="false"/>
     </androidx.cardview.widget.CardView>
 
