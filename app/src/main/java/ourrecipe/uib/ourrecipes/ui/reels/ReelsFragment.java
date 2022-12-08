@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import ourrecipe.uib.ourrecipes.databinding.FragmentReelsBinding;
 
 public class ReelsFragment extends Fragment {
+
 
     private FragmentReelsBinding binding;
 
@@ -24,8 +26,6 @@ public class ReelsFragment extends Fragment {
         binding = FragmentReelsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textReels;
-        reelsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

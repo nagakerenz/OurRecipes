@@ -15,23 +15,6 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#FBF4D1">
 
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:background="@null" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:layout_marginLeft="38dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="arial"
-            android:textColor="@color/black"/>
-
         <TextView
             android:id="@+id/text_profile"
             android:layout_width="match_parent"
@@ -101,7 +84,7 @@
             android:id="@+id/notification"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="43dp"
+            android:layout_marginTop="50dp"
             android:backgroundTint="@color/white"
             android:text="Notification"
             android:textAlignment="textStart"
@@ -111,7 +94,7 @@
             android:id="@+id/account"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="86dp"
+            android:layout_marginTop="99dp"
             android:backgroundTint="@color/white"
             android:text="Account"
             android:textAlignment="textStart"
