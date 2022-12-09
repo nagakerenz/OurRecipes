@@ -251,17 +251,17 @@
                     app:layout_row="0"
                     app:srcCompat="@drawable/food_eggcereal" />
 
-                <ImageButton
-                    android:id="@+id/food_loveWhite"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                <CheckBox
+                    android:id="@+id/loveButton"
+                    android:layout_width="23dp"
+                    android:layout_height="20dp"
                     android:layout_row="0"
                     android:layout_column="0"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@null"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/food_lovewhite" />
+                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginTop="4dp"
+                    android:button="@drawable/selector_wishlist_item"
+                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <ImageButton
                     android:id="@+id/imageButton1"
@@ -273,18 +273,17 @@
                     app:layout_row="0"
                     app:srcCompat="@drawable/food_eggtoast" />
 
-                <ImageButton
-                    android:id="@+id/food_love"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                <CheckBox
+                    android:id="@+id/loveButton1"
+                    android:layout_width="23dp"
+                    android:layout_height="20dp"
                     android:layout_row="0"
                     android:layout_column="1"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@null"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/food_love" />
-
+                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginTop="4dp"
+                    android:button="@drawable/selector_wishlist_item"
+                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageButton
                     android:id="@+id/imageButton2"
@@ -297,17 +296,17 @@
                     app:layout_row="1"
                     app:srcCompat="@drawable/food_eggcereal" />
 
-                <ImageButton
-                    android:id="@+id/food_loveWhite1"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                <CheckBox
+                    android:id="@+id/loveButton2"
+                    android:layout_width="23dp"
+                    android:layout_height="20dp"
                     android:layout_row="1"
                     android:layout_column="0"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@null"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/food_lovewhite" />
+                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginTop="14dp"
+                    android:button="@drawable/selector_wishlist_item"
+                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageButton
                     android:id="@+id/imageButton3"
@@ -320,17 +319,17 @@
                     app:layout_row="1"
                     app:srcCompat="@drawable/food_eggtoast" />
 
-                <ImageButton
-                    android:id="@+id/food_love1"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                <CheckBox
+                    android:id="@+id/loveButton3"
+                    android:layout_width="23dp"
+                    android:layout_height="20dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@null"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/food_love" />
+                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginTop="14dp"
+                    android:button="@drawable/selector_wishlist_item"
+                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </GridLayout>
         </LinearLayout>
     </ScrollView>
