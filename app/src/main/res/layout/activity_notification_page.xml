@@ -54,7 +54,6 @@
             android:background="@color/white"
             android:layout_marginTop="20dp"
             android:textSize="14sp"
-            android:textAlignment=""
             android:text="Switch" />
         <Button
             android:id="@+id/favorites"

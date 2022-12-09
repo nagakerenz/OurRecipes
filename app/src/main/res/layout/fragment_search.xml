@@ -49,13 +49,13 @@
             android:fontFamily="arial"
             android:textColor="@color/black"/>
 
-        <SearchView
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="170dp"
-            android:layout_gravity="center_horizontal"
-            android:queryHint="Search For Food"
-            android:iconifiedByDefault="false"/>
+<!--        <SearchView-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginTop="170dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:queryHint="Search For Food"-->
+<!--            android:iconifiedByDefault="false"/>-->
 
     </androidx.cardview.widget.CardView>
 
