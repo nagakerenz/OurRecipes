@@ -13,6 +13,13 @@
         android:theme="@style/Theme.OurRecipes"
         tools:targetApi="31">
         <activity
+            android:name=".ui.reels.EachVideo"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MenuResult"
             android:exported="false">
             <meta-data

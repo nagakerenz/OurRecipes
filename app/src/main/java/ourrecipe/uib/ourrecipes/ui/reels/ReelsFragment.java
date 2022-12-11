@@ -6,15 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentReelsBinding;
 
 public class ReelsFragment extends Fragment {
-
+    private ViewPager2 viewPager2;
+    private List<Video> videoList;
+    private VideoAdapter adapter;
 
     private FragmentReelsBinding binding;
 
@@ -26,8 +34,20 @@ public class ReelsFragment extends Fragment {
         binding = FragmentReelsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        videoList = new ArrayList<>();
+        viewPager2 = root.findViewById(R.id.viewPager2);
+
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "New Title", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "New Title", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "New Title", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "New Title", "lorem ipsum dolor sit amet."));
+
+        adapter = new VideoAdapter(videoList);
+        viewPager2.setAdapter(adapter);
+
         return root;
     }
+
 
     @Override
     public void onDestroyView() {

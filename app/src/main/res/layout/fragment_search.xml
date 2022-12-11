@@ -105,7 +105,7 @@
                         android:layout_marginTop="23dp"
                         android:background="@null"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/food_lovewhite" />
+                        app:srcCompat="@drawable/ic_outline_favorite_border_24" />
 
                     <ImageButton
                         android:layout_width="wrap_content"
