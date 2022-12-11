@@ -7,72 +7,132 @@
     android:layout_height="match_parent"
     tools:context=".MenuResult"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:layout_marginBottom="60dp">
 
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/food_menu" />
-    <ImageButton
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@color/white" />
+        android:fadeScrollbars="false"
+        android:scrollbars="none"
+        android:fillViewport="true">
 
-    <CheckBox
-        android:id="@+id/loveButton"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="right"
-        android:button="@drawable/selector_wishlist_item"
-        app:layout_constraintBottom_toTopOf="@+id/sendButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Snacks"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:background="#FDF8E3"/>
-    </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Korean Spicy Chicken"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/food_menu" />
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/white" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:src="@drawable/food_details" />
+            <CheckBox
+                android:id="@+id/loveButton"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
+                android:button="@drawable/selector_wishlist_item"
+                app:layout_constraintBottom_toTopOf="@+id/sendButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/white"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Korean Spicy Chicken"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snacks"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:background="#FDF8E3"/>
+            </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Korean Spicy Chicken"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/food_details" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is a snack that is easy to prepare. Also the best companion for this snack is beer."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="INGREDIENTS"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="STEPS"/>
+            </androidx.cardview.widget.CardView>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:columnCount="3">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="bottom"
+                    app:layout_column="0"
+                    app:layout_row="0"
+                    android:src="@drawable/food_chicken" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="bottom"
+
+                    app:layout_column="1"
+                    app:layout_row="0"
+                    android:src="@drawable/food_oil" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="bottom"
+                    app:layout_column="2"
+                    app:layout_row="0"
+                    android:src="@drawable/food_onion" />
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

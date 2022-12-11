@@ -50,41 +50,68 @@
         <Switch
             android:id="@+id/switch1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@color/white"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textSize="14sp"
-            android:text="Switch" />
+            android:text="Show Notification" />
+
+
         <Button
-            android:id="@+id/favorites"
+            android:id="@+id/sound"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_marginTop="82dp"
             android:backgroundTint="@color/white"
-            android:layout_marginTop="40dp"
-            android:text="Favorites"
+            android:text="Sound"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/notification"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/white"
-            android:text="Notification"
-            android:textAlignment="textStart"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/account"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="99dp"
-            android:backgroundTint="@color/white"
-            android:text="Account"
-            android:textAlignment="textStart"
-            android:textColor="@color/black" />
-
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#FBF4D1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reels Notification"
+            android:textSize="18sp"
+            android:fontFamily="arial"
+            android:textColor="@color/black"/>
+
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/white"
+            android:layout_marginTop="30dp"
+            android:textSize="14sp"
+            android:text="Show Notification" />
+
+        <Button
+            android:id="@+id/sound1"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="82dp"
+            android:backgroundTint="@color/white"
+            android:text="Sound"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
+        android:text="Reset Notification Settings"
+        android:textAlignment="textStart"
+        android:textColor="#EC565D" />
 </LinearLayout>
