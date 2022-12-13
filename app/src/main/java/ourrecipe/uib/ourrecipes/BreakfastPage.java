@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
 
 public class BreakfastPage extends AppCompatActivity {
-    ImageButton back;
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -25,14 +24,6 @@ public class BreakfastPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breakfast_page);
-
-        back = (ImageButton) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backToHomepage();
-            }
-        });
 
         breakfast = (ImageButton) findViewById(R.id.breakfast);
         breakfast.setOnClickListener(new View.OnClickListener() {
@@ -70,12 +61,6 @@ public class BreakfastPage extends AppCompatActivity {
                 openDrinkPage();
             }
         });
-    }
-
-    public void backToHomepage(){
-        Intent back = new Intent(BreakfastPage.this, HomeFragment.class);
-        back.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(back);
     }
 
     public void openBreakfastPage() {

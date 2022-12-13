@@ -42,28 +42,32 @@
         </activity>
         <activity
             android:name=".DrinkPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".FiberPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".DinnerPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".LunchPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -77,7 +81,8 @@
         </activity>
         <activity
             android:name=".BreakfastPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
 
 public class DinnerPage extends AppCompatActivity {
-    ImageButton back;
+
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -22,13 +22,7 @@ public class DinnerPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dinner_page);
 
-        back = (ImageButton) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backToHomepage();
-            }
-        });
+
 
         breakfast = (ImageButton) findViewById(R.id.breakfast);
         breakfast.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +62,6 @@ public class DinnerPage extends AppCompatActivity {
         });
     }
 
-    public void backToHomepage(){
-        Intent back = new Intent(this, HomeFragment.class);
-        startActivity(back);
-    }
 
     public void openBreakfastPage() {
         Intent breakfast = new Intent(this, BreakfastPage.class);

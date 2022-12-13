@@ -6,39 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DinnerPage"
-    android:orientation="vertical">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:background="@null"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="11dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="arial"
-            android:textColor="@color/black"/>
-    </androidx.cardview.widget.CardView>
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#33F9E5A1"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
 
         <ImageButton
             android:id="@+id/breakfast"
