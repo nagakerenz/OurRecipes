@@ -68,20 +68,22 @@
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="300dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="130dp"
+                android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
                 android:selectAllOnFocus="true" />
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="300dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="115dp"
+                android:drawableLeft="@drawable/car_ui_icon_lock"
                 android:hint="@string/prompt_password"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
@@ -103,11 +105,13 @@
 
             <Button
                 android:id="@+id/login"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="250dp"
                 android:layout_marginBottom="64dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:enabled="true"
                 android:text="@string/action_sign_in_short" />
 
