@@ -3,6 +3,8 @@ package  ourrecipe.uib.ourrecipes.ui.login;
 import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -18,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ourrecipe.uib.ourrecipes.BottomNavigationBar;
+import ourrecipe.uib.ourrecipes.BreakfastPage;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.ui.login.LoginViewModel;
 import ourrecipe.uib.ourrecipes.ui.login.LoginViewModelFactory;
@@ -118,7 +122,11 @@ private ActivityLoginBinding binding;
                         passwordEditText.getText().toString());
             }
         });
+
+        getSupportActionBar().hide();
     }
+
+
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
