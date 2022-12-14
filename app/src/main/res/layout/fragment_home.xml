@@ -157,18 +157,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:background="@null"
                             android:text="Recommended"
                             android:textSize="10dp"
-                            android:background="@null"/>
+                            app:useMaterialThemeColors="false"
+                            android:backgroundTint="#FDD79A"/>
 
                         <Button
                             android:id="@+id/but2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:background="@null"
+                            android:backgroundTint="#FDD79A"
                             android:text="Asian"
                             android:textSize="10dp"
-                            android:background="@null"/>
+                            app:useMaterialThemeColors="false" />
 
                         <Button
                             android:id="@+id/but3"
@@ -177,7 +181,9 @@
                             android:layout_marginLeft="5dp"
                             android:text="Thai"
                             android:textSize="10dp"
-                            android:background="@null"/>
+                            android:background="@null"
+                            app:useMaterialThemeColors="false"
+                            android:backgroundTint="#FDD79A"/>
 
                         <Button
                             android:id="@+id/but4"
@@ -186,7 +192,9 @@
                             android:layout_marginLeft="5dp"
                             android:text="Korea"
                             android:textSize="10dp"
-                            android:background="@null"/>
+                            android:background="@null"
+                            app:useMaterialThemeColors="false"
+                            android:backgroundTint="#FDD79A"/>
                     </LinearLayout>
                 </HorizontalScrollView>
             </androidx.cardview.widget.CardView>
@@ -253,15 +261,15 @@
 
                 <CheckBox
                     android:id="@+id/loveButton"
-                    android:layout_width="23dp"
-                    android:layout_height="20dp"
+                    android:layout_width="20dp"
+                    android:layout_height="17dp"
                     android:layout_row="0"
                     android:layout_column="0"
-                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="4dp"
                     android:button="@drawable/selector_wishlist_item"
-                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:useMaterialThemeColors="false"/>
 
                 <ImageButton
                     android:id="@+id/imageButton1"
@@ -275,15 +283,15 @@
 
                 <CheckBox
                     android:id="@+id/loveButton1"
-                    android:layout_width="23dp"
-                    android:layout_height="20dp"
+                    android:layout_width="20dp"
+                    android:layout_height="17dp"
                     android:layout_row="0"
                     android:layout_column="1"
-                    android:layout_marginLeft="117.5dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="119dp"
+                    android:layout_marginTop="7dp"
                     android:button="@drawable/selector_wishlist_item"
-                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:useMaterialThemeColors="false"/>
 
                 <ImageButton
                     android:id="@+id/imageButton2"
@@ -305,7 +313,6 @@
                     android:layout_marginLeft="117.5dp"
                     android:layout_marginTop="14dp"
                     android:button="@drawable/selector_wishlist_item"
-                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageButton
