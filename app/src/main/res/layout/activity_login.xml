@@ -23,7 +23,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:layout_editor_absoluteY="286dp"
         android:layout_marginTop="30dp">
 
@@ -49,7 +49,7 @@
             android:id="@+id/username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="90dp"
+            android:layout_marginBottom="130dp"
             android:layout_gravity="center"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
@@ -59,8 +59,8 @@
             android:id="@+id/password"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="115dp"
+            android:layout_gravity="center_horizontal"
             android:hint="@string/prompt_password"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
@@ -68,15 +68,15 @@
             android:selectAllOnFocus="true" />
         <Button
             android:id="@+id/forget_password"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="Forget Password?"
             android:backgroundTint="@color/white"
             android:textColor="@color/teal_700"
-            android:layout_marginTop="187dp"
+            android:layout_marginTop="167dp"
             android:layout_marginRight="27dp"
-            android:textSize="12sp"
-            android:textAlignment="textEnd"/>
+            android:textSize="12sp"/>
         <Button
             android:id="@+id/login"
             android:layout_width="wrap_content"
@@ -86,24 +86,24 @@
             android:layout_marginBottom="64dp"
             android:enabled="true"
             android:text="@string/action_sign_in_short"/>
-    </androidx.cardview.widget.CardView>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New here?"
-            android:layout_gravity="center"/>
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="60dp"
+            android:gravity="center_horizontal"/>
         <Button
             android:id="@+id/signup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Up"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/white"
             android:textSize="15sp"
             android:textColor="@color/teal_700"/>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
