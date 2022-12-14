@@ -74,11 +74,20 @@
         </activity>
         <activity
             android:name=".FavoritePage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value=""/>
         </activity>
+<!--        <activity-->
+<!--            android:name="com.android.nfcinfo2.EvtTransactionActivity"-->
+<!--            android:label="@string/title_activity_evt_transaction"-->
+<!--            android:parentActivityName="com.android.nfcinfo2.FragmentCeSupport" >// is this the activity you want to go to. i guess this is a fragment-->
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value="com.android.nfcinfo2.FragmentCeSupport" />-->
+<!--        </activity>-->
         <activity
             android:name=".BreakfastPage"
             android:exported="false"
@@ -87,6 +96,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".BottomNavigationBar"
             android:exported="false"
