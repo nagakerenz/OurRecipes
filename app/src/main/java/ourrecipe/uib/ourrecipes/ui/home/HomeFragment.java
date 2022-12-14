@@ -13,8 +13,13 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ourrecipe.uib.ourrecipes.BreakfastPage;
 import ourrecipe.uib.ourrecipes.DinnerPage;
@@ -23,6 +28,10 @@ import ourrecipe.uib.ourrecipes.FiberPage;
 import ourrecipe.uib.ourrecipes.LunchPage;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentHomeBinding;
+import ourrecipe.uib.ourrecipes.ui.reels.EachVideo;
+import ourrecipe.uib.ourrecipes.ui.reels.ReelsFragment;
+import ourrecipe.uib.ourrecipes.ui.reels.Video;
+import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class HomeFragment extends Fragment {
     ImageButton breakfast;
@@ -30,6 +39,10 @@ public class HomeFragment extends Fragment {
     ImageButton dinner;
     ImageButton fiber;
     ImageButton drink;
+    ImageButton reels1;
+    private ViewPager2 viewPager2;
+    private List<Video> videoList;
+    private VideoAdapter adapter;
 
     private FragmentHomeBinding binding;
 
@@ -77,6 +90,26 @@ public class HomeFragment extends Fragment {
                 openDrinkPage();
             }
         });
+        reels1 = (ImageButton) root.findViewById(R.id.cardView);
+        reels1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openReelsPage();
+            }
+        });
+
+
+
+        videoList = new ArrayList<>();
+        viewPager2 = root.findViewById(R.id.viewPager2);
+
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "New Title", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "New Title", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "New Title", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "New Title", "lorem ipsum dolor sit amet."));
+
+        adapter = new VideoAdapter(videoList);
+        viewPager2.setAdapter(adapter);
         return root;
     }
 
@@ -103,6 +136,10 @@ public class HomeFragment extends Fragment {
     public void openDrinkPage() {
         Intent drink = new Intent(HomeFragment.this.getActivity(), DrinkPage.class);
         startActivity(drink);
+    }
+    public void openReelsPage() {
+        Intent reels = new Intent(HomeFragment.this.getActivity(), EachVideo.class);
+        startActivity(reels);
     }
 
     @Override
