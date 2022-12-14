@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_account_page.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_bottom_navigation_bar.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_breakfast_page.xml" value="0.3596014492753623" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_dinner_page.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_drink_page.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_favorite_page.xml" value="0.3596014492753623" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_fiber_page.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/A208/AndroidStudioProjects/OurRecipes/app/src/main/res/layout/activity_home_page.xml" value="0.18802083333333333" />
