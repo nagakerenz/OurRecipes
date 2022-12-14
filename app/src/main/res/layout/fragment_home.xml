@@ -261,8 +261,8 @@
 
                 <CheckBox
                     android:id="@+id/loveButton"
-                    android:layout_width="20dp"
-                    android:layout_height="17dp"
+                    android:layout_width="21dp"
+                    android:layout_height="18dp"
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_marginLeft="118.5dp"
