@@ -71,9 +71,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forget Password?"
+            android:background=""
             android:textColor="@color/teal_700"
-            android:layout_marginTop="210dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginTop="187dp"
+            android:layout_marginRight="27dp"
+            android:textSize="12sp"
             android:layout_gravity="right"/>
         <Button
             android:id="@+id/login"
@@ -82,7 +84,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="250dp"
             android:layout_marginBottom="64dp"
-            android:enabled="false"
+            android:enabled="true"
             android:text="@string/action_sign_in_short"/>
     </androidx.cardview.widget.CardView>
     <LinearLayout
@@ -100,6 +102,8 @@
             android:layout_height="wrap_content"
             android:text="Sign Up"
             android:layout_gravity="center"
+            android:background=""
+            android:textSize="15sp"
             android:textColor="@color/teal_700"/>
     </LinearLayout>
 </LinearLayout>
