@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="115dp"
-                android:drawableLeft="@drawable/car_ui_icon_lock"
+                android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:hint="@string/prompt_password"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
