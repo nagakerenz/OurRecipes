@@ -54,7 +54,8 @@
             android:background="@color/white"
             android:layout_marginTop="30dp"
             android:textSize="14sp"
-            android:text="Show Notification" />
+            android:text="Show Notification"
+            android:paddingLeft="15dp"/>
 
 
         <Button
@@ -91,7 +92,8 @@
             android:background="@color/white"
             android:layout_marginTop="30dp"
             android:textSize="14sp"
-            android:text="Show Notification" />
+            android:text="Show Notification"
+            android:paddingLeft="15dp"/>
 
         <Button
             android:id="@+id/sound1"
