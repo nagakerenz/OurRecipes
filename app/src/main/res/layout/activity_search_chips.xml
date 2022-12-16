@@ -8,125 +8,22 @@
     android:background="#FCF4CA">
 
     <RelativeLayout
-        android:id="@+id/textGreeting"
-        android:layout_width="wrap_content"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/greeting"
-            android:layout_width="wrap_content"
+        <SearchView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello, @username"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:background="#FAEDB9"
+            android:queryHint="Search For Food" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/greeting"
-            android:layout_marginTop="8dp"
-            android:text="Choose 5 or more categories to get start"
-            android:textColor="@color/black" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/nation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_below="@+id/textGreeting"
-        app:layout_constraintTop_toBottomOf="@+id/textGreeting">
-
-        <TextView
-            android:id="@+id/textNation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nation"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textNation"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇮🇩 Indonesia"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip2"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇮🇳 India"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip3"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇯🇵 Japan"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip4"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇨🇳 Chinese"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip5"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇰🇷 Korea"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip6"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇹🇷 Turkish"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip7"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇲🇾 Malaysia"
-                app:checkedIconEnabled="false"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip8"
-                style="@style/customChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🇹🇭 Thailand"
-                app:checkedIconEnabled="false"/>
-
-        </com.google.android.material.chip.ChipGroup>
     </RelativeLayout>
 
     <RelativeLayout
@@ -136,19 +33,19 @@
         android:layout_marginTop="18dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_below="@+id/nation"
-        app:layout_constraintTop_toBottomOf="@+id/nation">
+        android:layout_below="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
         <TextView
             android:id="@+id/textIngredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingredient"
+            android:text="Vegetables"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"/>
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group_ingredient"
+            android:id="@+id/chip_group_vegetable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textIngredient"
@@ -160,7 +57,7 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🍚 Rice"
+            android:text="🥦 Broccoli"
             app:checkedIconEnabled="false"/>
 
         <com.google.android.material.chip.Chip
@@ -168,7 +65,7 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🥩 Steak"
+            android:text="🫒 Olive"
             app:checkedIconEnabled="false"/>
 
         <com.google.android.material.chip.Chip
@@ -176,7 +73,7 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🥬 Vegetables"
+            android:text="🍅 Tomato"
             app:checkedIconEnabled="false"/>
 
         <com.google.android.material.chip.Chip
@@ -184,7 +81,7 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🍜 Noodle"
+            android:text="🌽 Corn"
             app:checkedIconEnabled="false"/>
 
         <com.google.android.material.chip.Chip
@@ -192,7 +89,7 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🧀 Cheese"
+            android:text="🥕 Carrot"
             app:checkedIconEnabled="false"/>
 
         <com.google.android.material.chip.Chip
@@ -200,7 +97,7 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🍞 Bread"
+            android:text="🍆 Eggplant"
             app:checkedIconEnabled="false"/>
 
         <com.google.android.material.chip.Chip
@@ -208,38 +105,221 @@
             style="@style/customChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🥞 Pancake"
+            android:text="🫑 Paprika"
             app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip16"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥔 Potato"
+                app:checkedIconEnabled="false"/>
 
         </com.google.android.material.chip.ChipGroup>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/meat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/doneButton"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@+id/ingredient"
+        app:layout_constraintTop_toBottomOf="@+id/ingredient">
+        <TextView
+            android:id="@+id/textMeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FFCD05"
-            android:text="Done"
+            android:text="Meat"
             android:textColor="@color/black"
-            android:stateListAnimator="@null"/>
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/skipButton"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_meat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Skip >"
-            android:layout_below="@id/doneButton"
-            android:backgroundTint="#00000000"
-            android:stateListAnimator="@null"
-            android:textColor="@color/darkGray"/>
+            android:layout_below="@+id/textMeat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip17"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐑 Lamb"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip18"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐓 Chicken"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip19"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐖 Pork"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip20"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐟 Fish"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip21"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐇 Rabbit"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip22"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🦆 Duck"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip23"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐄 Cow"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip24"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🦃 Turkey"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip25"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐸 Frog"
+                app:checkedIconEnabled="false"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/grain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@+id/meat"
+        app:layout_constraintTop_toBottomOf="@+id/meat">
+
+        <TextView
+            android:id="@+id/textGrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grain and Salty Snack"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_grain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textGrain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip26"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍞 Bread"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip27"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥞 Pancake"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip28"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🧇 Waffle"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip29"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍙 Onigiri"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip30"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐇 Rabbit"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip31"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌭 Hotdog"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip32"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍔 Burger"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip33"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥖 Baguette"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip34"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥣 Porridge"
+                app:checkedIconEnabled="false"/>
+
+        </com.google.android.material.chip.ChipGroup>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
