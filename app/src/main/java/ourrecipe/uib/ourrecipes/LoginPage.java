@@ -19,14 +19,14 @@ public class LoginPage extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openHomePage();
+                openPreference();
             }
         });
         getSupportActionBar().hide();
     }
-    public void openHomePage() {
-        Intent homepage = new Intent(this, BottomNavigationBar.class);
-        startActivity(homepage);
+    public void openPreference() {
+        Intent preference = new Intent(LoginPage.this, preferencePage.class);
+        startActivity(preference);
     }
 
 }
