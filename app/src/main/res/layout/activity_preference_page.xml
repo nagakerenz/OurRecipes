@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".preferencePage"
+    android:background="#FCF4CA">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00000000"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="My Preference"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/greeting_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+>
+
+        <TextView
+            android:id="@+id/greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello, @username"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/greeting"
+            android:layout_marginTop="8dp"
+            android:text="Choose 5 or more categories to get start"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/nation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@+id/greeting_group"
+        app:layout_constraintTop_toBottomOf="@+id/greeting_group">
+
+        <TextView
+            android:id="@+id/textNation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nation"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_nation_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textNation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇮🇩 Indonesia"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip2"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇮🇳 India"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip3"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇯🇵 Japan"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇨🇳 Chinese"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip5"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇰🇷 Korea"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip6"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇹🇷 Turkish"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip7"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇲🇾 Malaysia"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip8"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🇹🇭 Thailand"
+                app:checkedIconEnabled="false"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ingredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@+id/nation"
+        app:layout_constraintTop_toBottomOf="@+id/nation">
+        <TextView
+            android:id="@+id/textIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vegetables"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_ingredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textIngredient"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip9"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍚 Rice"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip10"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥩 Steak"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip11"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥬 Vegetables"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip12"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍜 Noodle"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip13"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🧀 Cheese"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip14"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍞 Bread"
+                app:checkedIconEnabled="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip15"
+                style="@style/customChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥞 Pancake"
+                app:checkedIconEnabled="false"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFCD05"
+            android:text="Done"
+            android:textColor="@color/black"
+            android:stateListAnimator="@null"/>
+
+        <Button
+            android:id="@+id/skipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip >"
+            android:layout_below="@id/doneButton"
+            android:backgroundTint="#00000000"
+            android:stateListAnimator="@null"
+            android:textColor="@color/darkGray"/>
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
