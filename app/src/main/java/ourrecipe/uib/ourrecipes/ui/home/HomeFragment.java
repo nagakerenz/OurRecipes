@@ -17,6 +17,10 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ourrecipe.uib.ourrecipes.BreakfastPage;
 import ourrecipe.uib.ourrecipes.DinnerPage;
@@ -25,6 +29,8 @@ import ourrecipe.uib.ourrecipes.FiberPage;
 import ourrecipe.uib.ourrecipes.LunchPage;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentHomeBinding;
+import ourrecipe.uib.ourrecipes.ui.reels.Video;
+import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class HomeFragment extends Fragment {
     ImageButton breakfast;
@@ -32,6 +38,9 @@ public class HomeFragment extends Fragment {
     ImageButton dinner;
     ImageButton fiber;
     ImageButton drink;
+    private ViewPager2 viewPager2;
+    private List<Video> videoList;
+    private VideoAdapter adapter;
 
     private FragmentHomeBinding binding;
 
@@ -79,6 +88,17 @@ public class HomeFragment extends Fragment {
                 openDrinkPage();
             }
         });
+        videoList = new ArrayList<>();
+        viewPager2 = root.findViewById(R.id.viewPager2);
+
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "Steak", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "Cooking", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Octopus", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.meat, "Meat", "lorem ipsum dolor sit amet."));
+
+        adapter = new VideoAdapter(videoList);
+        viewPager2.setAdapter(adapter);
 
 //        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
 //            @Override

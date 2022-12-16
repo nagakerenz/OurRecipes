@@ -7,19 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class NotificationPage extends AppCompatActivity {
-    Button reset;
+public class ChangeEmail extends AppCompatActivity {
+    Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification_page);
+        setContentView(R.layout.activity_change_email);
 
-
-        reset = (Button) findViewById(R.id.reset);
-        reset.setOnClickListener(new View.OnClickListener() {
+        save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(NotificationPage.this, "Setting Reset!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChangeEmail.this, "Saved Changes!", Toast.LENGTH_SHORT).show();
             }
         });
     }

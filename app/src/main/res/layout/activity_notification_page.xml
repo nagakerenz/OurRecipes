@@ -58,15 +58,15 @@
             android:paddingLeft="15dp"/>
 
 
-        <Button
-            android:id="@+id/sound"
+        <Switch
+            android:id="@+id/switch2"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:background="@color/white"
             android:layout_marginTop="82dp"
-            android:backgroundTint="@color/white"
+            android:textSize="14sp"
             android:text="Sound"
-            android:textAlignment="textStart"
-            android:textColor="@color/black" />
+            android:paddingLeft="15dp"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -86,7 +86,7 @@
 
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/switch3"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@color/white"
@@ -95,16 +95,15 @@
             android:text="Show Notification"
             android:paddingLeft="15dp"/>
 
-        <Button
-            android:id="@+id/sound1"
+        <Switch
+            android:id="@+id/switch4"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:background="@color/white"
             android:layout_marginTop="82dp"
-            android:backgroundTint="@color/white"
+            android:textSize="14sp"
             android:text="Sound"
-            android:textAlignment="textStart"
-            android:textColor="@color/black" />
-
+            android:paddingLeft="15dp"/>
     </androidx.cardview.widget.CardView>
 
     <Button
