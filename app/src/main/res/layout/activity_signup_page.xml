@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupPage"
+    tools:context=".SignUpPage"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/logo3"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/logo_ourrecipes3" />
@@ -35,13 +35,13 @@
         android:id="@+id/signupCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-155dp"
+        android:layout_marginTop="-200dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="379dp"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp"
             tools:layout_editor_absoluteY="286dp">
@@ -56,7 +56,6 @@
                 android:visibility="gone"
                 android:backgroundTint="@color/white"/>
             <TextView
-                android:id="@+id/signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -143,7 +142,7 @@
                 android:layout_below="@id/fillForm"
                 android:layout_marginTop="30dp">
                 <Button
-                    android:id="@+id/signUP"
+                    android:id="@+id/signUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -153,7 +152,7 @@
                     android:layout_marginBottom="50dp"
                     android:backgroundTint="#1C68F6"
                     android:enabled="true"
-                    android:text="@string/action_sign_in_short"
+                    android:text="Sign Up"
                     app:useMaterialThemeColors="false" />
             </RelativeLayout>
 
@@ -172,7 +171,7 @@
                     android:text="Have an account?" />
 
                 <Button
-                    android:id="@+id/signup"
+                    android:id="@+id/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/signuptext"

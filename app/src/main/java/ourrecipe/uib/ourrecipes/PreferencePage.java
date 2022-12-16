@@ -37,5 +37,4 @@ public class PreferencePage extends AppCompatActivity {
         startActivity(homepage);
     }
 
-
 }

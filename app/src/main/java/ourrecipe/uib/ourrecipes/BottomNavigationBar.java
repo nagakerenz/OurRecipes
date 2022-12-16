@@ -1,6 +1,10 @@
 package ourrecipe.uib.ourrecipes;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -13,8 +17,8 @@ import androidx.navigation.ui.NavigationUI;
 import ourrecipe.uib.ourrecipes.databinding.ActivityBottomNavigationBarBinding;
 
 public class BottomNavigationBar extends AppCompatActivity {
-
     private ActivityBottomNavigationBarBinding binding;
+    private boolean isBackPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,4 +41,24 @@ public class BottomNavigationBar extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        if (isBackPressedOnce){
+            finishAffinity();
+            finish();
+            return;
+        }
+
+        Toast.makeText(BottomNavigationBar.this, "Press Again To Exit Apps!", Toast.LENGTH_SHORT).show();
+        isBackPressedOnce = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        },2000);
+
+
+    }
 }

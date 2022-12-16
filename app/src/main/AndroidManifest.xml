@@ -13,7 +13,14 @@
         android:theme="@style/Theme.OurRecipes"
         tools:targetApi="31">
         <activity
-            android:name=".SignupPage"
+            android:name=".SignUpPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ForgotPasswordPage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -136,15 +143,6 @@
             android:name=".BottomNavigationBar"
             android:exported="false"
             android:label="@string/title_activity_bottom_navigation_bar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".LoginPage"
-            android:exported="false"
-            android:label="@string/title_activity_bottom_navigation_bar"
-            tools:ignore="DuplicateActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
