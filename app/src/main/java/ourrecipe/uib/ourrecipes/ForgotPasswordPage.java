@@ -22,5 +22,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
                 Toast.makeText(ForgotPasswordPage.this, "Email Sent!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        getSupportActionBar().hide();
     }
 }

@@ -106,7 +106,7 @@
                         android:layout_marginTop="15dp"
                         android:background="@null"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/food_eggtoast" />
+                        app:srcCompat="@drawable/breakfast_eggtoast" />
 
                         <CheckBox
                             android:id="@+id/loveButton2"

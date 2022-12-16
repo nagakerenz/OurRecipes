@@ -30,7 +30,7 @@ public class PreferencePage extends AppCompatActivity {
                 openHomePage();
             }
         });
-
+        getSupportActionBar().hide();
     }
     public void openHomePage(){
         Intent homepage = new Intent(PreferencePage.this, BottomNavigationBar.class);

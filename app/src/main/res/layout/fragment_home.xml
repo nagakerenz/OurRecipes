@@ -132,72 +132,72 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@null"
-                android:layout_gravity="center_horizontal">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="320dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:backgroundTint="@null"-->
+<!--                android:layout_gravity="center_horizontal">-->
 
-                <HorizontalScrollView
-                    android:id="@+id/hsv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true"
-                    android:measureAllChildren="false"
-                    android:scrollbars="none"
-                    android:background="@null"
-                    android:layout_marginTop="5dp">
+<!--                <HorizontalScrollView-->
+<!--                    android:id="@+id/hsv"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fillViewport="true"-->
+<!--                    android:measureAllChildren="false"-->
+<!--                    android:scrollbars="none"-->
+<!--                    android:background="@null"-->
+<!--                    android:layout_marginTop="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content">-->
 
-                        <Button
-                            android:id="@+id/but1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:background="@null"
-                            android:text="Recommended"
-                            android:textSize="10dp"
-                            app:useMaterialThemeColors="false"
-                            android:backgroundTint="#FDD79A"/>
+<!--                        <Button-->
+<!--                            android:id="@+id/but1"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:background="@null"-->
+<!--                            android:text="Recommended"-->
+<!--                            android:textSize="10dp"-->
+<!--                            app:useMaterialThemeColors="false"-->
+<!--                            android:backgroundTint="#FDD79A"/>-->
 
-                        <Button
-                            android:id="@+id/but2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:background="@null"
-                            android:backgroundTint="#FDD79A"
-                            android:text="Asian"
-                            android:textSize="10dp"
-                            app:useMaterialThemeColors="false" />
+<!--                        <Button-->
+<!--                            android:id="@+id/but2"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:background="@null"-->
+<!--                            android:backgroundTint="#FDD79A"-->
+<!--                            android:text="Asian"-->
+<!--                            android:textSize="10dp"-->
+<!--                            app:useMaterialThemeColors="false" />-->
 
-                        <Button
-                            android:id="@+id/but3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Thai"
-                            android:textSize="10dp"
-                            android:background="@null"
-                            app:useMaterialThemeColors="false"
-                            android:backgroundTint="#FDD79A"/>
+<!--                        <Button-->
+<!--                            android:id="@+id/but3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:text="Thai"-->
+<!--                            android:textSize="10dp"-->
+<!--                            android:background="@null"-->
+<!--                            app:useMaterialThemeColors="false"-->
+<!--                            android:backgroundTint="#FDD79A"/>-->
 
-                        <Button
-                            android:id="@+id/but4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Korea"
-                            android:textSize="10dp"
-                            android:background="@null"
-                            app:useMaterialThemeColors="false"
-                            android:backgroundTint="#FDD79A"/>
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </androidx.cardview.widget.CardView>
+<!--                        <Button-->
+<!--                            android:id="@+id/but4"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:text="Korea"-->
+<!--                            android:textSize="10dp"-->
+<!--                            android:background="@null"-->
+<!--                            app:useMaterialThemeColors="false"-->
+<!--                            android:backgroundTint="#FDD79A"/>-->
+<!--                    </LinearLayout>-->
+<!--                </HorizontalScrollView>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
             <HorizontalScrollView
                 android:layout_width="320dp"
@@ -210,23 +210,37 @@
                     android:layout_height="wrap_content"
                     android:background="@null">
 
-                    <ImageButton
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_breakfast"
-                        android:background="@null"/>
+                        android:layout_height="wrap_content">
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPager2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/icon_breakfast"
                         android:background="@null"/>
+                    </androidx.cardview.widget.CardView>
+<!--                    <ImageButton-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/icon_breakfast"-->
+<!--                        android:background="@null"/>-->
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_breakfast"
-                        android:background="@null"/>
+<!--                    <ImageButton-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/icon_breakfast"-->
+<!--                        android:background="@null"/>-->
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -257,12 +271,12 @@
                     android:scaleType="fitCenter"
                     app:layout_column="0"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/food_eggcereal" />
+                    app:srcCompat="@drawable/breakfast_eggcereal" />
 
                 <CheckBox
                     android:id="@+id/loveButton"
                     android:layout_width="21dp"
-                    android:layout_height="15dp"
+                    android:layout_height="21dp"
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_marginLeft="118.5dp"
@@ -279,16 +293,16 @@
                     android:scaleType="fitCenter"
                     app:layout_column="1"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/food_eggtoast" />
+                    app:srcCompat="@drawable/breakfast_eggtoast" />
 
                 <CheckBox
                     android:id="@+id/loveButton1"
-                    android:layout_width="20dp"
-                    android:layout_height="17dp"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
                     android:layout_row="0"
                     android:layout_column="1"
-                    android:layout_marginLeft="119dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="118.5dp"
+                    android:layout_marginTop="4dp"
                     android:button="@drawable/selector_wishlist_item"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:useMaterialThemeColors="false"/>
@@ -302,18 +316,19 @@
                     android:layout_marginTop="10dp"
                     app:layout_column="0"
                     app:layout_row="1"
-                    app:srcCompat="@drawable/food_eggcereal" />
+                    app:srcCompat="@drawable/dinner_spicyramen" />
 
                 <CheckBox
                     android:id="@+id/loveButton2"
-                    android:layout_width="23dp"
-                    android:layout_height="20dp"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
                     android:layout_row="1"
                     android:layout_column="0"
-                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="14dp"
                     android:button="@drawable/selector_wishlist_item"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:useMaterialThemeColors="false"/>
 
                 <ImageButton
                     android:id="@+id/imageButton3"
@@ -324,19 +339,20 @@
                     android:layout_marginTop="10dp"
                     app:layout_column="1"
                     app:layout_row="1"
-                    app:srcCompat="@drawable/food_eggtoast" />
+                    app:srcCompat="@drawable/dinner_tteokbokki" />
 
                 <CheckBox
                     android:id="@+id/loveButton3"
-                    android:layout_width="23dp"
-                    android:layout_height="20dp"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:layout_marginLeft="117.5dp"
+                    android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="14dp"
                     android:button="@drawable/selector_wishlist_item"
                     app:layout_constraintBottom_toTopOf="@+id/sendButton"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:useMaterialThemeColors="false"/>
             </GridLayout>
         </LinearLayout>
     </ScrollView>

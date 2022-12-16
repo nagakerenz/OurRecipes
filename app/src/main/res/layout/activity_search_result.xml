@@ -80,7 +80,7 @@
                 android:scaleType="centerCrop"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/food_eggtoast" />
+                app:srcCompat="@drawable/breakfast_eggtoast" />
 
             <ImageButton
                 android:id="@+id/food_loveWhite"
@@ -106,7 +106,7 @@
                 android:scaleType="centerCrop"
                 app:layout_row="0"
                 app:layout_column="1"
-                app:srcCompat="@drawable/food_eggcereal" />
+                app:srcCompat="@drawable/breakfast_eggcereal" />
 
             <ImageButton
                 android:id="@+id/food_love"
@@ -130,7 +130,7 @@
                 android:scaleType="centerCrop"
                 app:layout_row="1"
                 app:layout_column="0"
-                app:srcCompat="@drawable/food_eggtoast" />
+                app:srcCompat="@drawable/breakfast_eggtoast" />
 
             <ImageButton
                 android:id="@+id/food_loveWhite1"
@@ -154,7 +154,7 @@
                 android:scaleType="centerCrop"
                 app:layout_row="1"
                 app:layout_column="0"
-                app:srcCompat="@drawable/food_eggtoast" />
+                app:srcCompat="@drawable/breakfast_eggtoast" />
 
             <ImageButton
                 android:id="@+id/food_loveWhite2"
