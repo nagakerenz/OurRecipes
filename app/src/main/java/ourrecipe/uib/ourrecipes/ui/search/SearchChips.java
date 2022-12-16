@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import ourrecipe.uib.ourrecipes.R;
 
-public class searchResult extends AppCompatActivity {
+public class SearchChips extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_result);
+        setContentView(R.layout.activity_search_chips);
     }
 }

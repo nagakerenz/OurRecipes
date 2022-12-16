@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class preferencePage extends AppCompatActivity {
+public class PreferencePage extends AppCompatActivity {
     Button buttondone;
     Button buttonskip;
 
@@ -33,7 +33,7 @@ public class preferencePage extends AppCompatActivity {
 
     }
     public void openHomePage(){
-        Intent homepage = new Intent(preferencePage.this, BottomNavigationBar.class);
+        Intent homepage = new Intent(PreferencePage.this, BottomNavigationBar.class);
         startActivity(homepage);
     }
 

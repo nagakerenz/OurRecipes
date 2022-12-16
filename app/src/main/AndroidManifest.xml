@@ -20,28 +20,28 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".searchResult"
+            android:name=".ui.search.SearchResult"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".preferencePage"
+            android:name=".PreferencePage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".search_chips"
+            android:name=".ui.search.SearchChips"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".searchPage"
+            android:name=".ui.search.SearchFragment"
             android:exported="false"
             android:label="@string/title_activity_search_page"
             android:theme="@style/Theme.OurRecipes.NoActionBar">
@@ -123,14 +123,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- <activity -->
-        <!-- android:name="com.android.nfcinfo2.EvtTransactionActivity" -->
-        <!-- android:label="@string/title_activity_evt_transaction" -->
-        <!-- android:parentActivityName="com.android.nfcinfo2.FragmentCeSupport" >// is this the activity you want to go to. i guess this is a fragment -->
-        <!-- <meta-data -->
-        <!-- android:name="android.support.PARENT_ACTIVITY" -->
-        <!-- android:value="com.android.nfcinfo2.FragmentCeSupport" /> -->
-        <!-- </activity> -->
+        </activity>
         <activity
             android:name=".BreakfastPage"
             android:exported="false"
@@ -148,9 +141,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".LoginPage"
             android:exported="false"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_bottom_navigation_bar"
+            tools:ignore="DuplicateActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -161,5 +159,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
