@@ -1,6 +1,7 @@
 package ourrecipe.uib.ourrecipes.ui.reels;
 
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             title.setText(video.getTitle());
             desc.setText(video.getDesc());
             videoView.setVideoPath(video.getVideoUrl());
+            Log.d("Title", video.getTitle());
 
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override

@@ -20,8 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="424dp"
             android:layout_gravity="center"
-            android:layout_marginTop="-50dp"
-            app:srcCompat="@drawable/rectangle1" />
+            android:layout_marginTop="-45dp"
+            app:srcCompat="@drawable/rectangle1"
+            android:alpha="100"/>
 
         <ImageView
             android:id="@+id/logo3"
@@ -36,7 +37,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-150dp"
+        android:layout_marginTop="-155dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
@@ -54,7 +55,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="64dp"
                 android:layout_marginBottom="64dp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:backgroundTint="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -68,9 +70,11 @@
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="250dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginBottom="130dp"
                 android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
                 android:hint="@string/prompt_email"
@@ -79,9 +83,12 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="64dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="115dp"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:hint="@string/prompt_password"
@@ -113,28 +120,36 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:enabled="true"
-                android:text="@string/action_sign_in_short" />
+                android:text="@string/action_sign_in_short"
+                app:useMaterialThemeColors="false"
+                android:backgroundTint="#1C68F6"/>
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="60dp"
-                android:gravity="center_horizontal"
-                android:text="New here?" />
+                android:gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/signup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/white"
-                android:gravity="center_horizontal"
-                android:stateListAnimator="@null"
-                android:text="Sign Up"
-                android:textColor="#1C68F6"
-                android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/signuptext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New here?"
+                        android:padding="14dp" />
+
+                    <Button
+                        android:id="@+id/signup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/signuptext"
+                        android:backgroundTint="@color/white"
+                        android:stateListAnimator="@null"
+                        android:text="Sign Up"
+                        android:textColor="#1C68F6"
+                        android:textSize="15sp" />
+
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </LinearLayout>
