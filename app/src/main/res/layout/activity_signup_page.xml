@@ -168,8 +168,8 @@
                     android:id="@+id/signuptext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New here?"
-                    android:padding="14dp" />
+                    android:padding="14dp"
+                    android:text="Have an account?" />
 
                 <Button
                     android:id="@+id/signup"
@@ -178,7 +178,7 @@
                     android:layout_toEndOf="@+id/signuptext"
                     android:backgroundTint="@color/white"
                     android:stateListAnimator="@null"
-                    android:text="Sign Up"
+                    android:text="Sign In"
                     android:textColor="#1C68F6"
                     android:textSize="15sp" />
 
