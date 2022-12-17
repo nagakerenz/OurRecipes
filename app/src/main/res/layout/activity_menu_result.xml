@@ -82,52 +82,25 @@
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"/>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="INGREDIENTS"/>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="STEPS"/>
-            </androidx.cardview.widget.CardView>
-
-            <GridLayout
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </com.google.android.material.tabs.TabLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:columnCount="3">
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="0"
-                    app:layout_row="0"
-                    android:src="@drawable/food_chicken" />
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-
-                    app:layout_column="1"
-                    app:layout_row="0"
-                    android:src="@drawable/food_oil" />
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="2"
-                    app:layout_row="0"
-                    android:src="@drawable/food_onion" />
-            </GridLayout>
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent=".7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </androidx.viewpager.widget.ViewPager>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
