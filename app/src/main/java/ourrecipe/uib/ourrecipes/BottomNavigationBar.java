@@ -9,12 +9,14 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import ourrecipe.uib.ourrecipes.databinding.ActivityBottomNavigationBarBinding;
+import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
 
 public class BottomNavigationBar extends AppCompatActivity {
     private ActivityBottomNavigationBarBinding binding;
@@ -36,6 +38,7 @@ public class BottomNavigationBar extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_bottom_navigation_bar);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
 
         getSupportActionBar().hide();
     }

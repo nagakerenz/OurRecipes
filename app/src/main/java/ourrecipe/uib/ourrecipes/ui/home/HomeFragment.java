@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,8 +17,11 @@ import android.widget.ToggleButton;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,20 +31,33 @@ import ourrecipe.uib.ourrecipes.DinnerPage;
 import ourrecipe.uib.ourrecipes.DrinkPage;
 import ourrecipe.uib.ourrecipes.FiberPage;
 import ourrecipe.uib.ourrecipes.LunchPage;
+import ourrecipe.uib.ourrecipes.MenuResult;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentHomeBinding;
+import ourrecipe.uib.ourrecipes.ui.reels.ReelsFragment;
 import ourrecipe.uib.ourrecipes.ui.reels.Video;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
+import ourrecipe.uib.ourrecipes.ui.search.SearchFragment;
 
 public class HomeFragment extends Fragment {
+//    MaterialButton reels;
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
     ImageButton fiber;
     ImageButton drink;
+    ImageButton menu;
+    ImageButton menu1;
+    ImageButton menu2;
+    ImageButton menu3;
+    Button reels;
     private ViewPager2 viewPager2;
+    private ViewPager2 viewPager3;
     private List<Video> videoList;
     private VideoAdapter adapter;
+    public HomeFragment(){
+
+    }
 
     private FragmentHomeBinding binding;
 
@@ -88,26 +105,80 @@ public class HomeFragment extends Fragment {
                 openDrinkPage();
             }
         });
+
+//        reels = (Button) root.findViewById(R.id.reels);
+//        reels.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Fragment homeFragment = new SearchFragment();
+//                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+//                fm.replace(R.id.container, homeFragment).commit();
+//            }
+//        });
+
+//        return binding.getRoot();
+//        binding.reels.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                HomeFragment homeFragment = new HomeFragment();
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.,homeFragment);
+//                transaction.commit();
+//            }
+//        });
+//        reels = myView.findViewById(R.id.goReels);
+//        reels.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ReelsFragment reelsFragment = new ReelsFragment();
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, reelsFragment).commit();
+//            }
+//        });
+
         videoList = new ArrayList<>();
         viewPager2 = root.findViewById(R.id.viewPager2);
 
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "Steak", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "Cooking", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Octopus", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.meat, "Meat", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
 
         adapter = new VideoAdapter(videoList);
         viewPager2.setAdapter(adapter);
 
-//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-//            @Override
-//            public void handleOnBackPressed() {
-//                // Handle the back button even
-//                Log.d("BACKBUTTON", "Back button clicks");
-//            }
-//        };
-//        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        videoList = new ArrayList<>();
+        viewPager3 = root.findViewById(R.id.viewPager3);
+
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Eating", "Seafood is the best."));
+
+        adapter = new VideoAdapter(videoList);
+        viewPager3.setAdapter(adapter);
+
+        menu = (ImageButton) root.findViewById(R.id.imageButton);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
+        menu1 = (ImageButton) root.findViewById(R.id.imageButton1);
+        menu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
+        menu2 = (ImageButton) root.findViewById(R.id.imageButton2);
+        menu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
+        menu3 = (ImageButton) root.findViewById(R.id.imageButton3);
+        menu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
 
         return root;
     }
@@ -135,6 +206,12 @@ public class HomeFragment extends Fragment {
     public void openDrinkPage() {
         Intent drink = new Intent(HomeFragment.this.getActivity(), DrinkPage.class);
         startActivity(drink);
+    }
+
+
+    public void openMenuPage() {
+        Intent menu = new Intent(HomeFragment.this.getActivity(), MenuResult.class);
+        startActivity(menu);
     }
 
     @Override

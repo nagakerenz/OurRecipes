@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:id="@+id/homeFragment">
+    android:id="@+id/container">
 
     <ScrollView
         android:layout_width="match_parent"
