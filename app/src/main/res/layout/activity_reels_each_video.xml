@@ -23,7 +23,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_weight="1"
-        android:button="@drawable/selector_wishlist_item"
+        android:button="@drawable/favorite_red_to_white"
         app:useMaterialThemeColors="false"
         app:layout_constraintBottom_toTopOf="@+id/sendButton"
         app:layout_constraintEnd_toEndOf="parent" />

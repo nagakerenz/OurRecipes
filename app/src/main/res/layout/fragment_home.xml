@@ -212,12 +212,11 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content">
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/viewPager2"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="160dp"
+                        android:layout_height="230dp"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -225,11 +224,63 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <Button
+                        android:id="@+id/reels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="30dp"
+                        android:background="@null"
+                        android:text="Go To Reels"
+                        android:textSize="10dp"
+                        app:useMaterialThemeColors="false"
+                        android:backgroundTint="#FDD79A"/>
+<!--                        <com.google.android.material.button.MaterialButton-->
+<!--                            android:id="@+id/goReels"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                            android:text="Go To Reels"-->
+<!--                            android:layout_gravity="center_horizontal"/>-->
+
 <!--                    <ImageButton-->
 <!--                        android:layout_width="wrap_content"-->
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:src="@drawable/icon_breakfast"-->
 <!--                        android:background="@null"/>-->
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPager3"
+                        android:layout_width="160dp"
+                        android:layout_height="230dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPager4"
+                            android:layout_width="160dp"
+                            android:layout_height="230dp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     </androidx.cardview.widget.CardView>
 <!--                    <ImageButton-->
 <!--                        android:layout_width="wrap_content"-->
@@ -282,7 +333,7 @@
                     android:layout_column="0"
                     android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="4dp"
-                    android:button="@drawable/selector_wishlist_item"
+                    android:button="@drawable/favorite_red_to_white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:useMaterialThemeColors="false" />
 
@@ -304,7 +355,7 @@
                     android:layout_column="1"
                     android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="4dp"
-                    android:button="@drawable/selector_wishlist_item"
+                    android:button="@drawable/favorite_red_to_white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:useMaterialThemeColors="false"/>
 
@@ -327,7 +378,7 @@
                     android:layout_column="0"
                     android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="14dp"
-                    android:button="@drawable/selector_wishlist_item"
+                    android:button="@drawable/favorite_red_to_white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:useMaterialThemeColors="false"/>
 
@@ -350,7 +401,7 @@
                     android:layout_column="1"
                     android:layout_marginLeft="118.5dp"
                     android:layout_marginTop="14dp"
-                    android:button="@drawable/selector_wishlist_item"
+                    android:button="@drawable/favorite_red_to_white"
                     app:layout_constraintBottom_toTopOf="@+id/sendButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:useMaterialThemeColors="false"/>

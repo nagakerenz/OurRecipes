@@ -37,11 +37,12 @@ public class ReelsFragment extends Fragment {
         videoList = new ArrayList<>();
         viewPager2 = root.findViewById(R.id.viewPager2);
 
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "Steak", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "Cooking", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Octopus", "lorem ipsum dolor sit amet."));
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.meat, "Meat", "lorem ipsum dolor sit amet."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.meat, "Meat", "GRILL All you can eat."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "Steak", "Medium Rare."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "Cooking", "Spicy."));
+        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Octopus", "Seafood is the best."));
+
 
         adapter = new VideoAdapter(videoList);
         viewPager2.setAdapter(adapter);

@@ -86,21 +86,24 @@
         </activity>
         <activity
             android:name=".MenuResult"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".NotificationPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".AccountPage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".BottomNavigationBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
