@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -110,9 +111,28 @@ public class HomeFragment extends Fragment {
 //        reels.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Fragment homeFragment = new SearchFragment();
-//                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-//                fm.replace(R.id.container, homeFragment).commit();
+//
+//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.reelsFrame, new ReelsFragment());
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//                getActivity().getFragmentManager().beginTransaction().replace(R.id.container, HomeFragment()).commit();
+
+//                FragmentTransaction fragmentTransaction = .beginTransaction();
+//                fragmentTransaction.replace(R.id.container, new ReelsFragment());
+//                fragmentTransaction.commit();
+//
+//                Fragment fragment = new ReelsFragment();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.reels, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//
+//                Fragment homeFragment = new ReelsFragment();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.container, homeFragment);
+//                transaction.commit();
 //            }
 //        });
 

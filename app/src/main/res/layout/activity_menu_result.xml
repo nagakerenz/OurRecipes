@@ -82,25 +82,84 @@
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"/>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
+            <TextView
+                android:id="@+id/ingredientsss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            </com.google.android.material.tabs.TabLayout>
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Ingredients"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent=".7"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            </androidx.viewpager.widget.ViewPager>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="bottom"
+                    app:layout_column="0"
+                    app:layout_row="0"
+                    android:src="@drawable/food_chicken" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="bottom"
+
+                    app:layout_column="1"
+                    app:layout_row="0"
+                    android:src="@drawable/food_oil" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="bottom"
+                    app:layout_column="2"
+                    app:layout_row="0"
+                    android:src="@drawable/food_onion" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+
+                <TextView
+                    android:id="@+id/steps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Steps"
+                    android:textColor="@color/black"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/noone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. Wash the chicken, cut according to taste, dry with oil-absorbing tissue or clean cloth. Then marinate the chicken, season with salt and pepper. Refrigerate 20 minutes."
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+
+                <TextView
+                    android:id="@+id/notwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. Dress the marinated chicken in a mixture of flour and cornstarch, stir well until all the chicken is coated in flour."
+                    android:layout_below="@id/noone"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
