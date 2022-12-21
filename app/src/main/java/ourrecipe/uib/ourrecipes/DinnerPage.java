@@ -16,6 +16,10 @@ public class DinnerPage extends AppCompatActivity {
     ImageButton dinner;
     ImageButton fiber;
     ImageButton drink;
+    ImageButton menu;
+    ImageButton menu1;
+    ImageButton menu2;
+    ImageButton menu3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,34 @@ public class DinnerPage extends AppCompatActivity {
                 openDrinkPage();
             }
         });
+        menu = (ImageButton) findViewById(R.id.imageButton);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
+        menu1 = (ImageButton) findViewById(R.id.imageButton1);
+        menu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
+        menu2 = (ImageButton) findViewById(R.id.imageButton2);
+        menu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
+        menu3 = (ImageButton) findViewById(R.id.imageButton3);
+        menu3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMenuPage();
+            }
+        });
     }
 
 
@@ -86,5 +118,9 @@ public class DinnerPage extends AppCompatActivity {
     public void openDrinkPage() {
         Intent drink = new Intent(this, DrinkPage.class);
         startActivity(drink);
+    }
+    public void openMenuPage() {
+        Intent menu = new Intent(DinnerPage.this, MenuResult.class);
+        startActivity(menu);
     }
 }

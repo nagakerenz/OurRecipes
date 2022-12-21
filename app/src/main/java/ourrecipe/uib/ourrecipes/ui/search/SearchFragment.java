@@ -92,7 +92,7 @@ public class SearchFragment extends Fragment {
     }
 //    dan ini
     public void openResult(){
-        Intent result = new Intent(SearchFragment.this.getActivity(), searchResult.class);
+        Intent result = new Intent(SearchFragment.this.getActivity(), SearchResult.class);
         startActivity(result);
     }
 //    sampai sini
