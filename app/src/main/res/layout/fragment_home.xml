@@ -40,7 +40,9 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/slide_learntocook" />
+                        android:src="@drawable/slide_learntocook"
+                        android:contentDescription="Learn to cook"
+                        />
 
                     <ImageButton
                         android:layout_width="320dp"
@@ -83,7 +85,9 @@
                     android:layout_height="64dp"
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_breakfast" />
+                    app:srcCompat="@drawable/icon_breakfast"
+                    android:contentDescription="Breakfast"
+                    />
 
                 <ImageButton
                     android:id="@+id/lunch"
@@ -92,7 +96,8 @@
                     android:layout_marginLeft="64dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_lunch" />
+                    app:srcCompat="@drawable/icon_lunch"
+                    android:contentDescription="Lunch"/>
 
                 <ImageButton
                     android:id="@+id/dinner"
@@ -101,7 +106,8 @@
                     android:layout_marginLeft="128dp"
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_dinner" />
+                    app:srcCompat="@drawable/icon_dinner"
+                    android:contentDescription="Dinner"/>
 
                 <ImageButton
                     android:id="@+id/drink"
@@ -110,7 +116,9 @@
                     android:layout_marginLeft="192dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_drink" />
+                    app:srcCompat="@drawable/icon_drink"
+                    android:contentDescription="Drink"
+                    />
 
                 <ImageButton
                     android:id="@+id/fiber"
@@ -119,7 +127,8 @@
                     android:layout_marginLeft="256dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_fiber" />
+                    app:srcCompat="@drawable/icon_fiber"
+                    android:contentDescription="Fiber"/>
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -256,8 +265,6 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-
                     </androidx.cardview.widget.CardView>
 
 <!--                    <ImageButton-->
@@ -301,7 +308,9 @@
                     android:scaleType="fitCenter"
                     app:layout_column="0"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/breakfast_eggcereal" />
+                    app:srcCompat="@drawable/breakfast_eggcereal"
+                    android:contentDescription="breakfast eggcereal"
+                    />
 
                 <CheckBox
                     android:id="@+id/loveButton"
@@ -313,7 +322,8 @@
                     android:layout_marginTop="4dp"
                     android:button="@drawable/favorite_red_to_white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:useMaterialThemeColors="false" />
+                    app:useMaterialThemeColors="false"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ImageButton
                     android:id="@+id/imageButton1"
@@ -323,7 +333,9 @@
                     android:scaleType="fitCenter"
                     app:layout_column="1"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/breakfast_eggtoast" />
+                    app:srcCompat="@drawable/breakfast_eggtoast"
+                    android:contentDescription="Breakfast Eggtoast"
+                    />
 
                 <CheckBox
                     android:id="@+id/loveButton1"
@@ -335,7 +347,8 @@
                     android:layout_marginTop="4dp"
                     android:button="@drawable/favorite_red_to_white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:useMaterialThemeColors="false"/>
+                    app:useMaterialThemeColors="false"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ImageButton
                     android:id="@+id/imageButton2"
