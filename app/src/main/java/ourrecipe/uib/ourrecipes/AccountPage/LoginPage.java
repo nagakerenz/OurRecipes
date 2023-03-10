@@ -44,34 +44,34 @@ public class LoginPage extends AppCompatActivity {
     private boolean isBackPressedOnce = false;
 
 
-//  if i turn it on, dia kalau misalnya lagi sign up terus tekan signup dia langsung otomatis ke Home page,
-//  sedangkan aku maunya kalau setelah sign up itu ke login page dlu
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            Intent intent = new Intent(getApplicationContext(), BottomNavigationBar.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accountpage_login_page);
 
         mAuth = FirebaseAuth.getInstance();
+        loginID = findViewById(R.id.login);
+        logInEmail = findViewById(R.id.username);
+        logInPassword = findViewById(R.id.password);
+        logInGoogle = findViewById(R.id.googleIcon);
+        signup = (Button) findViewById(R.id.signup);
+        forget = (Button) findViewById(R.id.forget_password);
+
+
+        //if sign up directly go to home page
+        //        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null){
+//            Intent intent = new Intent(getApplicationContext(), BottomNavigationBar.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         client = GoogleSignIn.getClient(LoginPage.this, options);
-        logInGoogle = findViewById(R.id.googleIcon);
+
         logInGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,9 +80,7 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        logInEmail = findViewById(R.id.username);
-        logInPassword = findViewById(R.id.password);
-        loginID = findViewById(R.id.login);
+
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,7 +115,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        signup = (Button) findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,28 +122,12 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        forget = (Button) findViewById(R.id.forget_password);
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openForgetPassword();
             }
         });
-//       ini buat kalau misalnya udah pernah sign up  ataupun baru login baru pertama kalinya pergi ke preference page
-//        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
-//        boolean isNewUser = prefs.getBoolean("isNewUser", false);
-//
-//        if (isNewUser) {
-//            SharedPreferences.Editor editor = prefs.edit();
-//            editor.putBoolean("isNewUser", false);
-//            editor.apply();
-//            Intent intent = new Intent(LoginPage.this, PreferencePage.class);
-//            startActivity(intent);
-//        } else {
-//            Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
-//            startActivity(intent);
-//        }
-
 
         getSupportActionBar().hide();
     }
@@ -179,16 +160,6 @@ public class LoginPage extends AppCompatActivity {
             }
         }
     }
-//Sama kek diatas
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if(user!= null) {
-//            Intent intent = new Intent(this, PreferencePage.class);
-//            startActivity(intent);
-//        }
-//    }
 
     public void openSignUp() {
         Intent signup = new Intent(LoginPage.this, SignUpPage.class);
