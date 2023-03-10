@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginPage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".AccountPage.LoginPage">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,15 +19,15 @@
             android:layout_height="424dp"
             android:layout_gravity="center"
             android:layout_marginTop="-45dp"
-            app:srcCompat="@drawable/rectangle1"
-            android:alpha="100"/>
+            android:alpha="100"
+            app:srcCompat="@drawable/rectangle1" />
 
         <ImageView
             android:id="@+id/logo3"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             app:srcCompat="@drawable/logo_ourrecipes3" />
     </RelativeLayout>
 
@@ -54,8 +53,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="64dp"
                 android:layout_marginBottom="64dp"
-                android:visibility="gone"
-                android:backgroundTint="@color/white"/>
+                android:backgroundTint="@color/white"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,33 +71,33 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="60dp">
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="true" />
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="270dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:selectAllOnFocus="true" />
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/ic_baseline_lock_24"
-                android:hint="@string/prompt_password"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:selectAllOnFocus="true"
-                android:layout_below="@id/username"/>
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/username"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="50dp"
+                    android:drawableLeft="@drawable/ic_baseline_lock_24"
+                    android:hint="@string/prompt_password"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:selectAllOnFocus="true" />
             </RelativeLayout>
 
             <Button
@@ -119,39 +118,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="250dp"
-                android:layout_marginBottom="64dp"
                 android:layout_marginLeft="50dp"
+                android:layout_marginTop="250dp"
                 android:layout_marginRight="50dp"
+                android:layout_marginBottom="64dp"
+                android:backgroundTint="#1C68F6"
                 android:enabled="true"
                 android:text="@string/action_sign_in_short"
-                app:useMaterialThemeColors="false"
-                android:backgroundTint="#1C68F6"/>
+                app:useMaterialThemeColors="false" />
+
+            <ImageButton
+                android:id="@+id/googleIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="110dp"
+                android:background="@null"
+                android:src="@drawable/icon_google"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/signuptext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="New here?"
-                        android:padding="14dp" />
+                <TextView
+                    android:id="@+id/signuptext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="14dp"
+                    android:text="New here?" />
 
-                    <Button
-                        android:id="@+id/signup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/signuptext"
-                        android:backgroundTint="@color/white"
-                        android:stateListAnimator="@null"
-                        android:text="Sign Up"
-                        android:textColor="#1C68F6"
-                        android:textSize="15sp" />
+                <Button
+                    android:id="@+id/signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/signuptext"
+                    android:backgroundTint="@color/white"
+                    android:stateListAnimator="@null"
+                    android:text="Sign Up"
+                    android:textColor="#1C68F6"
+                    android:textSize="15sp" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

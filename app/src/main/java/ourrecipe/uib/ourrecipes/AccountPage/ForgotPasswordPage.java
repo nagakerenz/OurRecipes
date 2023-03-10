@@ -1,11 +1,12 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.AccountPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.Toast;
+
+import ourrecipe.uib.ourrecipes.R;
 
 public class ForgotPasswordPage extends AppCompatActivity {
     Button send;
@@ -13,7 +14,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password_page);
+        setContentView(R.layout.activity_accountpage_forgot_password_page);
 
         send = (Button) findViewById(R.id.send);
         send.setOnClickListener(new View.OnClickListener() {

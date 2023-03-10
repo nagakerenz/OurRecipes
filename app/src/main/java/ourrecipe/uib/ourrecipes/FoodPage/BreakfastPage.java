@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.FoodPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
+import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.R;
 
-public class DinnerPage extends AppCompatActivity {
-
+public class BreakfastPage extends AppCompatActivity {
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -24,9 +24,7 @@ public class DinnerPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dinner_page);
-
-
+        setContentView(R.layout.activity_foodpage_breakfast_page);
 
         breakfast = (ImageButton) findViewById(R.id.breakfast);
         breakfast.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +92,6 @@ public class DinnerPage extends AppCompatActivity {
         });
     }
 
-
     public void openBreakfastPage() {
         Intent breakfast = new Intent(this, BreakfastPage.class);
         startActivity(breakfast);
@@ -120,7 +117,7 @@ public class DinnerPage extends AppCompatActivity {
         startActivity(drink);
     }
     public void openMenuPage() {
-        Intent menu = new Intent(DinnerPage.this, MenuResult.class);
+        Intent menu = new Intent(BreakfastPage.this, MenuResult.class);
         startActivity(menu);
     }
 }

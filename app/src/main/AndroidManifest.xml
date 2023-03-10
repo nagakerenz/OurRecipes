@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -13,28 +14,28 @@
         android:theme="@style/Theme.OurRecipes"
         tools:targetApi="31">
         <activity
-            android:name=".ChangeEmail"
+            android:name=".AccountPage.ChangeEmail"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChangePassword"
+            android:name=".AccountPage.ChangePassword"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignUpPage"
+            android:name=".AccountPage.SignUpPage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ForgotPasswordPage"
+            android:name=".AccountPage.ForgotPasswordPage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -71,7 +72,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginPage"
+            android:name=".AccountPage.LoginPage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -101,7 +102,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AccountPage"
+            android:name=".AccountPage.AccountPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -109,7 +110,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DrinkPage"
+            android:name=".FoodPage.DrinkPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -117,7 +118,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FiberPage"
+            android:name=".FoodPage.FiberPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -125,7 +126,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DinnerPage"
+            android:name=".FoodPage.DinnerPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -133,7 +134,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LunchPage"
+            android:name=".FoodPage.LunchPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -149,7 +150,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".BreakfastPage"
+            android:name=".FoodPage.BreakfastPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data

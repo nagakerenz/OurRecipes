@@ -3,42 +3,30 @@ package ourrecipe.uib.ourrecipes.ui.home;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
-
-import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.BreakfastPage;
-import ourrecipe.uib.ourrecipes.DinnerPage;
-import ourrecipe.uib.ourrecipes.DrinkPage;
-import ourrecipe.uib.ourrecipes.FiberPage;
-import ourrecipe.uib.ourrecipes.LunchPage;
+import ourrecipe.uib.ourrecipes.FoodPage.BreakfastPage;
+import ourrecipe.uib.ourrecipes.FoodPage.DinnerPage;
+import ourrecipe.uib.ourrecipes.FoodPage.DrinkPage;
+import ourrecipe.uib.ourrecipes.FoodPage.FiberPage;
+import ourrecipe.uib.ourrecipes.FoodPage.LunchPage;
 import ourrecipe.uib.ourrecipes.MenuResult;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentHomeBinding;
-import ourrecipe.uib.ourrecipes.ui.reels.ReelsFragment;
 import ourrecipe.uib.ourrecipes.ui.reels.Video;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
-import ourrecipe.uib.ourrecipes.ui.search.SearchFragment;
 
 public class HomeFragment extends Fragment {
 //    MaterialButton reels;

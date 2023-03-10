@@ -8,10 +8,12 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
-import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
+import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

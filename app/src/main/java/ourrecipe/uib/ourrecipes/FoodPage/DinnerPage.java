@@ -1,19 +1,17 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.FoodPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
+import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.R;
 
-public class BreakfastPage extends AppCompatActivity {
+public class DinnerPage extends AppCompatActivity {
+
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -27,7 +25,9 @@ public class BreakfastPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_breakfast_page);
+        setContentView(R.layout.activity_foodpage_dinner_page);
+
+
 
         breakfast = (ImageButton) findViewById(R.id.breakfast);
         breakfast.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +95,7 @@ public class BreakfastPage extends AppCompatActivity {
         });
     }
 
+
     public void openBreakfastPage() {
         Intent breakfast = new Intent(this, BreakfastPage.class);
         startActivity(breakfast);
@@ -120,7 +121,7 @@ public class BreakfastPage extends AppCompatActivity {
         startActivity(drink);
     }
     public void openMenuPage() {
-        Intent menu = new Intent(BreakfastPage.this, MenuResult.class);
+        Intent menu = new Intent(DinnerPage.this, MenuResult.class);
         startActivity(menu);
     }
 }

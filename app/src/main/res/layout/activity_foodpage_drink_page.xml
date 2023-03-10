@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DinnerPage"
+    tools:context=".FoodPage.DrinkPage"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -64,7 +64,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DINNER"
+        android:text="DRINK"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
@@ -91,7 +91,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/dinner_spicyramen" />
+                app:srcCompat="@drawable/drinks_strawberrymojito" />
 
             <CheckBox
                 android:id="@+id/loveButton"
@@ -113,7 +113,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="0"
-                app:srcCompat="@drawable/dinner_shinramyun" />
+                app:srcCompat="@drawable/drinks_blueocean" />
 
             <CheckBox
                 android:id="@+id/loveButton1"
@@ -135,7 +135,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/dinner_bimbimbap" />
+                app:srcCompat="@drawable/drinks_meantea" />
 
             <CheckBox
                 android:id="@+id/loveButton2"
@@ -157,7 +157,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="1"
-                app:srcCompat="@drawable/dinner_tteokbokki" />
+                app:srcCompat="@drawable/drinks_honeylemon" />
 
             <CheckBox
                 android:id="@+id/loveButton3"
@@ -174,3 +174,7 @@
         </GridLayout>
     </ScrollView>
 </LinearLayout>
+
+
+
+

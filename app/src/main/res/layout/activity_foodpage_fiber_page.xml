@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".BreakfastPage"
+    android:layout_height="match_parent"
+    tools:context=".FoodPage.FiberPage"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -63,7 +64,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BREAKFAST"
+        android:text="FIBER"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
@@ -90,7 +91,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_eggcereal" />
+                app:srcCompat="@drawable/fiber_oatmeal" />
 
             <CheckBox
                 android:id="@+id/loveButton"
@@ -112,7 +113,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_eggtoast" />
+                app:srcCompat="@drawable/fiber_peanutoats" />
 
             <CheckBox
                 android:id="@+id/loveButton1"
@@ -134,7 +135,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_burito" />
+                app:srcCompat="@drawable/fiber_fruitsalad" />
 
             <CheckBox
                 android:id="@+id/loveButton2"
@@ -156,7 +157,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="1"
-                app:srcCompat="@drawable/breakfast_waffle" />
+                app:srcCompat="@drawable/fiber_freshsalad" />
 
             <CheckBox
                 android:id="@+id/loveButton3"
