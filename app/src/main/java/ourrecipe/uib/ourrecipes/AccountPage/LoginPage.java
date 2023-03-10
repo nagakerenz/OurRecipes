@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +41,8 @@ public class LoginPage extends AppCompatActivity {
     Button forget;
     GoogleSignInClient client;
     ImageButton logInGoogle;
+    private boolean isBackPressedOnce = false;
+
 
 //  if i turn it on, dia kalau misalnya lagi sign up terus tekan signup dia langsung otomatis ke Home page,
 //  sedangkan aku maunya kalau setelah sign up itu ke login page dlu
@@ -129,20 +132,20 @@ public class LoginPage extends AppCompatActivity {
                 openForgetPassword();
             }
         });
-
-        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
-        boolean isNewUser = prefs.getBoolean("isNewUser", false);
-
-        if (isNewUser) {
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("isNewUser", false);
-            editor.apply();
-            Intent intent = new Intent(LoginPage.this, PreferencePage.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
-            startActivity(intent);
-        }
+//       ini buat kalau misalnya udah pernah sign up  ataupun baru login baru pertama kalinya pergi ke preference page
+//        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
+//        boolean isNewUser = prefs.getBoolean("isNewUser", false);
+//
+//        if (isNewUser) {
+//            SharedPreferences.Editor editor = prefs.edit();
+//            editor.putBoolean("isNewUser", false);
+//            editor.apply();
+//            Intent intent = new Intent(LoginPage.this, PreferencePage.class);
+//            startActivity(intent);
+//        } else {
+//            Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
+//            startActivity(intent);
+//        }
 
 
         getSupportActionBar().hide();
@@ -194,5 +197,26 @@ public class LoginPage extends AppCompatActivity {
     public void openForgetPassword() {
         Intent forget = new Intent(LoginPage.this, ForgotPasswordPage.class);
         startActivity(forget);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isBackPressedOnce){
+            finishAffinity();
+            finish();
+            return;
+        }
+
+        Toast.makeText(LoginPage.this, "Press Again To Exit Apps!", Toast.LENGTH_SHORT).show();
+        isBackPressedOnce = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        },2000);
+
+
     }
 }

@@ -95,10 +95,11 @@ public class SignUpPage extends AppCompatActivity {
             }
         });
 
-        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean("isNewUser", true);
-        editor.apply();
+        //ini buat kalau  misalnya usernya dh pernah sign up gk perlu nunjukin preference page
+//        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putBoolean("isNewUser", true);
+//        editor.apply();
 
         getSupportActionBar().hide();
     }
