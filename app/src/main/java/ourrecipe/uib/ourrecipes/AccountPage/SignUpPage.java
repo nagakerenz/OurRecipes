@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -93,6 +94,12 @@ public class SignUpPage extends AppCompatActivity {
                 openLogin();
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("isNewUser", true);
+        editor.apply();
+
         getSupportActionBar().hide();
     }
 

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -128,6 +129,22 @@ public class LoginPage extends AppCompatActivity {
                 openForgetPassword();
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences("Preference", MODE_PRIVATE);
+        boolean isNewUser = prefs.getBoolean("isNewUser", false);
+
+        if (isNewUser) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isNewUser", false);
+            editor.apply();
+            Intent intent = new Intent(LoginPage.this, PreferencePage.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
+            startActivity(intent);
+        }
+
+
         getSupportActionBar().hide();
     }
 
