@@ -33,15 +33,11 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        displayedName = (TextView) root.findViewById(R.id.displayName);
         favorites = (Button) root.findViewById(R.id.favorites);
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
 
-        String name = getActivity().getIntent().getStringExtra("inputText");
-        if (name != null) {
-            displayedName.setText(name);
-        }
+
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
