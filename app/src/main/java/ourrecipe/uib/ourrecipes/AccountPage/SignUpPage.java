@@ -17,8 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
 import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.ui.profile.ProfileFragment;
 
 public class SignUpPage extends AppCompatActivity {
 
@@ -43,7 +45,8 @@ public class SignUpPage extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email, password, confirmPassword;
+                String name, email, password, confirmPassword;
+                name = String.valueOf(signUpName.getText().toString());
                 email = String.valueOf(signUpEmail.getText().toString());
                 password = String.valueOf(signUpPassword.getText().toString());
                 confirmPassword = String.valueOf(signUpConfirmPassword.getText().toString());
@@ -75,6 +78,8 @@ public class SignUpPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUpPage.this, "SignUp Successful.",
                                     Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpPage.this, BottomNavigationBar.class);
+                            intent.putExtra("inputText", name);
                             // After successful sign up, go back to login page
                             startActivity(new Intent(SignUpPage.this, LoginPage.class));
                             finish(); // prevent the user from returning to the sign up activity via the back button

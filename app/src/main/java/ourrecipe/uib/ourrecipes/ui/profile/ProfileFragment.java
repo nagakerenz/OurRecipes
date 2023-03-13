@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,7 +22,7 @@ public class ProfileFragment extends Fragment {
     Button favorites;
     Button notification;
     Button account;
-
+    TextView displayedName;
     private FragmentProfileBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,7 +33,15 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        displayedName = (TextView) root.findViewById(R.id.displayName);
         favorites = (Button) root.findViewById(R.id.favorites);
+        notification = (Button) root.findViewById(R.id.notification);
+        account = (Button) root.findViewById(R.id.account);
+
+        String name = getActivity().getIntent().getStringExtra("inputText");
+        if (name != null) {
+            displayedName.setText(name);
+        }
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +49,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        notification = (Button) root.findViewById(R.id.notification);
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +56,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        account = (Button) root.findViewById(R.id.account);
         account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
