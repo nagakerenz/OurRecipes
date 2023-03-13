@@ -60,7 +60,6 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -74,7 +73,6 @@ public class LoginPage extends AppCompatActivity {
                 startActivityForResult(i, 1234);
             }
         });
-
 
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,11 +98,11 @@ public class LoginPage extends AppCompatActivity {
                             // After successful login, check if this is the user's first time logging in
                             FirebaseUser currentUser = mAuth.getCurrentUser();
                             SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                            boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin", true);
+                            boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
                             if (isFirstTimeLogin) {
                                 // User is logging in for the first time, go to sign up page
                                 startActivity(new Intent(LoginPage.this, PreferencePage.class));
-                                preferences.edit().putBoolean("isFirstTimeLogin", false).apply();
+                                preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
                             } else {
                                 // User is not logging in for the first time, go to main activity
                                 startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
@@ -116,7 +114,6 @@ public class LoginPage extends AppCompatActivity {
                         }
                     }
                 });
-
             }
         });
 
