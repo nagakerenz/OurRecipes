@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import ourrecipe.uib.ourrecipes.PreferencePage;
 import ourrecipe.uib.ourrecipes.R;
 
 public class SignUpPage extends AppCompatActivity {
@@ -32,13 +33,13 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_accountpage_signup_page);
 
         mAuth = FirebaseAuth.getInstance();
-
         signUpName = findViewById(R.id.name);
         signUpEmail = findViewById(R.id.email);
         signUpPassword = findViewById(R.id.password);
         signUpConfirmPassword = findViewById(R.id.confirmPassword);
-
         signUp = findViewById(R.id.signUp);
+
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,22 +69,22 @@ public class SignUpPage extends AppCompatActivity {
                 }
 
                 mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(SignUpPage.this, "SignUp Successful.",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpPage.this, "SignUp Successful.",
+                                    Toast.LENGTH_SHORT).show();
+                            // After successful sign up, go back to login page
+                            startActivity(new Intent(SignUpPage.this, LoginPage.class));
+                            finish(); // prevent the user from returning to the sign up activity via the back button
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+                });
             }
         });
 

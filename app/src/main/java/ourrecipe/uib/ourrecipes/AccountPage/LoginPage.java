@@ -28,6 +28,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
+
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
 import ourrecipe.uib.ourrecipes.R;
@@ -44,6 +46,7 @@ public class LoginPage extends AppCompatActivity {
     private boolean isBackPressedOnce = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +60,6 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-
-        //if sign up directly go to home page
-        //        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            Intent intent = new Intent(getApplicationContext(), BottomNavigationBar.class);
-//            startActivity(intent);
-//            finish();
-//        }
 
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -97,20 +92,30 @@ public class LoginPage extends AppCompatActivity {
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(LoginPage.this, "Login failed. " + task.getException().getMessage(),
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            // After successful login, check if this is the user's first time logging in
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin", true);
+                            if (isFirstTimeLogin) {
+                                // User is logging in for the first time, go to sign up page
+                                startActivity(new Intent(LoginPage.this, PreferencePage.class));
+                                preferences.edit().putBoolean("isFirstTimeLogin", false).apply();
+                            } else {
+                                // User is not logging in for the first time, go to main activity
+                                startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
                             }
-                        });
+                            finish(); // prevent the user from returning to the login activity via the back button
+                        } else {
+                            Toast.makeText(LoginPage.this, "Login failed. " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
             }
         });
@@ -132,6 +137,7 @@ public class LoginPage extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    //THIS IS FOR HANDLING GOOGLE SIGN IN
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
