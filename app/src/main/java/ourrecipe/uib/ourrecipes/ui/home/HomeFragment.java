@@ -59,35 +59,35 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         breakfast = (ImageButton) root.findViewById(R.id.breakfast);
+        lunch = (ImageButton) root.findViewById(R.id.lunch);
+        dinner = (ImageButton) root.findViewById(R.id.dinner);
+        fiber = (ImageButton) root.findViewById(R.id.fiber);
+        drink = (ImageButton) root.findViewById(R.id.drink);
+
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openBreakfastPage();
             }
         });
-
-        lunch = (ImageButton) root.findViewById(R.id.lunch);
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openLunchPage();
             }
         });
-        dinner = (ImageButton) root.findViewById(R.id.dinner);
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDinnerPage();
             }
         });
-        fiber = (ImageButton) root.findViewById(R.id.fiber);
         fiber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFiberPage();
             }
         });
-        drink = (ImageButton) root.findViewById(R.id.drink);
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

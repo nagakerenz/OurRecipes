@@ -67,7 +67,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Recommendation"
+                android:text="Categories"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -142,73 +142,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:layout_width="320dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:backgroundTint="@null"-->
-<!--                android:layout_gravity="center_horizontal">-->
-
-<!--                <HorizontalScrollView-->
-<!--                    android:id="@+id/hsv"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fillViewport="true"-->
-<!--                    android:measureAllChildren="false"-->
-<!--                    android:scrollbars="none"-->
-<!--                    android:background="@null"-->
-<!--                    android:layout_marginTop="5dp">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content">-->
-
-<!--                        <Button-->
-<!--                            android:id="@+id/but1"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:background="@null"-->
-<!--                            android:text="Recommended"-->
-<!--                            android:textSize="10dp"-->
-<!--                            app:useMaterialThemeColors="false"-->
-<!--                            android:backgroundTint="#FDD79A"/>-->
-
-<!--                        <Button-->
-<!--                            android:id="@+id/but2"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:background="@null"-->
-<!--                            android:backgroundTint="#FDD79A"-->
-<!--                            android:text="Asian"-->
-<!--                            android:textSize="10dp"-->
-<!--                            app:useMaterialThemeColors="false" />-->
-
-<!--                        <Button-->
-<!--                            android:id="@+id/but3"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:text="Thai"-->
-<!--                            android:textSize="10dp"-->
-<!--                            android:background="@null"-->
-<!--                            app:useMaterialThemeColors="false"-->
-<!--                            android:backgroundTint="#FDD79A"/>-->
-
-<!--                        <Button-->
-<!--                            android:id="@+id/but4"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:text="Korea"-->
-<!--                            android:textSize="10dp"-->
-<!--                            android:background="@null"-->
-<!--                            app:useMaterialThemeColors="false"-->
-<!--                            android:backgroundTint="#FDD79A"/>-->
-<!--                    </LinearLayout>-->
-<!--                </HorizontalScrollView>-->
-<!--            </androidx.cardview.widget.CardView>-->
-
             <HorizontalScrollView
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
@@ -234,21 +167,6 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-
-<!--                        <com.google.android.material.button.MaterialButton-->
-<!--                            android:id="@+id/goReels"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                            android:text="Go To Reels"-->
-<!--                            android:layout_gravity="center_horizontal"/>-->
-
-<!--                    <ImageButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/icon_breakfast"-->
-<!--                        android:background="@null"/>-->
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -266,18 +184,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                     </androidx.cardview.widget.CardView>
-
-<!--                    <ImageButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/icon_breakfast"-->
-<!--                        android:background="@null"/>-->
-
-<!--                    <ImageButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/icon_breakfast"-->
-<!--                        android:background="@null"/>-->
                 </LinearLayout>
             </HorizontalScrollView>
 

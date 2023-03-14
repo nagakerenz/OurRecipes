@@ -78,8 +78,6 @@ public class SignUpPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUpPage.this, "SignUp Successful.",
                                     Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpPage.this, BottomNavigationBar.class);
-                            intent.putExtra("inputText", name);
                             // After successful sign up, go back to login page
                             startActivity(new Intent(SignUpPage.this, LoginPage.class));
                             finish(); // prevent the user from returning to the sign up activity via the back button

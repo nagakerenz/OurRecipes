@@ -27,55 +27,56 @@ public class FavoritePage extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_page);
 
         menu = (ImageButton) findViewById(R.id.imageButton);
+        menu1 = (ImageButton) findViewById(R.id.imageButton1);
+        menu2 = (ImageButton) findViewById(R.id.imageButton2);
+        menu3 = (ImageButton) findViewById(R.id.imageButton3);
+        menu4 = (ImageButton) findViewById(R.id.imageButton4);
+        menu5 = (ImageButton) findViewById(R.id.imageButton5);
+        menu6 = (ImageButton) findViewById(R.id.imageButton6);
+        menu7 = (ImageButton) findViewById(R.id.imageButton7);
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu1 = (ImageButton) findViewById(R.id.imageButton1);
         menu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu2 = (ImageButton) findViewById(R.id.imageButton2);
         menu2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu3 = (ImageButton) findViewById(R.id.imageButton3);
         menu3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu4 = (ImageButton) findViewById(R.id.imageButton4);
         menu4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu5 = (ImageButton) findViewById(R.id.imageButton5);
         menu5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu6 = (ImageButton) findViewById(R.id.imageButton6);
         menu6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu7 = (ImageButton) findViewById(R.id.imageButton7);
         menu7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -65,7 +65,6 @@ public class LoginPage extends AppCompatActivity {
                 .requestEmail()
                 .build();
         client = GoogleSignIn.getClient(LoginPage.this, options);
-
         logInGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,18 +148,37 @@ public class LoginPage extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
-                                    Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
-                                    startActivity(intent);
+                                    Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    // After successful login, check if this is the user's first time logging in
+                                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                                    SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                    boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
+                                    if (isFirstTimeLogin) {
+                                        // User is logging in for the first time, go to sign up page
+                                        startActivity(new Intent(LoginPage.this, PreferencePage.class));
+                                        preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
+                                    } else {
+                                        // User is not logging in for the first time, go to main activity
+                                        startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
+                                    }
+                                    finish(); // prevent the user from returning to the login activity via the back button
                                 } else {
                                     Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
-
             } catch (ApiException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
         }
     }
 
