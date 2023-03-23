@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
@@ -51,6 +53,11 @@ public class SignUpPage extends AppCompatActivity {
                 password = String.valueOf(signUpPassword.getText().toString());
                 confirmPassword = String.valueOf(signUpConfirmPassword.getText().toString());
 
+                if(TextUtils.isEmpty(name)) {
+                    Toast.makeText(SignUpPage.this, "Enter Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(TextUtils.isEmpty(email)) {
                     Toast.makeText(SignUpPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     return;
@@ -76,6 +83,9 @@ public class SignUpPage extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                            usersRef.child(userId).child("name").setValue(name);
                             Toast.makeText(SignUpPage.this, "SignUp Successful.",
                                     Toast.LENGTH_SHORT).show();
                             // After successful sign up, go back to login page

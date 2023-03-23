@@ -1,6 +1,5 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.Profile;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
+import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.R;
 
 public class FavoritePage extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class FavoritePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite_page);
+        setContentView(R.layout.activity_profile_favorite_page);
 
         menu = (ImageButton) findViewById(R.id.imageButton);
         menu1 = (ImageButton) findViewById(R.id.imageButton1);

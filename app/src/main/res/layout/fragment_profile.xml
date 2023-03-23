@@ -38,7 +38,7 @@
             android:id="@+id/displayName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chris Tan"
+            android:text="YOUR NAME :)"
             android:gravity="center_horizontal"
             android:layout_marginTop="130dp"
             android:textSize="24sp"
@@ -100,6 +100,17 @@
             android:text="Account"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
+
+<!--        <Switch-->
+<!--            android:id="@+id/theme"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:background="@color/white"-->
+<!--            android:layout_marginTop="148dp"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:text="Switch Theme?"-->
+<!--            android:paddingLeft="15dp"/>-->
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

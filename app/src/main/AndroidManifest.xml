@@ -96,7 +96,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".NotificationPage"
+            android:name=".Profile.NotificationPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -104,7 +104,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AccountPage.AccountPage"
+            android:name=".Profile.AccountPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -144,7 +144,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FavoritePage"
+            android:name=".Profile.FavoritePage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data

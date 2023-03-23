@@ -178,8 +178,11 @@ public class LoginPage extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
+            // User is already logged in, so finish the login activity and go to the main activity
+            finish();
             startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
         }
+        // If the user is not already logged in, do nothing (the user will be directed to the login page)
     }
 
     public void openSignUp() {
