@@ -150,8 +150,18 @@ public class LoginPage extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
-                                Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
-                                startActivity(intent);
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
+                                if (isFirstTimeLogin) {
+                                    // User is logging in for the first time, go to sign up page
+                                    startActivity(new Intent(LoginPage.this, PreferencePage.class));
+                                    preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
+                                } else {
+                                    // User is not logging in for the first time, go to main activity
+                                    startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
+                                }
+                                finish(); // prevent the user from returning to the login activity via the back button
                             } else {
                                 Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
