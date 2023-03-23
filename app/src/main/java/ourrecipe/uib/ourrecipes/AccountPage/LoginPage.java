@@ -41,6 +41,7 @@ public class LoginPage extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button signup;
     Button forget;
+    GoogleSignInOptions options;
     GoogleSignInClient client;
     ImageButton logInGoogle;
     private boolean isBackPressedOnce = false;
@@ -60,7 +61,7 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
@@ -145,19 +146,17 @@ public class LoginPage extends AppCompatActivity {
 
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
                 FirebaseAuth.getInstance().signInWithCredential(credential)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()) {
-                                    Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        });
-
-
+                        }
+                    });
             } catch (ApiException e) {
                 e.printStackTrace();
             }
