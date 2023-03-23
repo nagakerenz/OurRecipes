@@ -41,6 +41,7 @@ public class LoginPage extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button signup;
     Button forget;
+    GoogleSignInOptions options;
     GoogleSignInClient client;
     ImageButton logInGoogle;
     private boolean isBackPressedOnce = false;
@@ -60,11 +61,12 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         client = GoogleSignIn.getClient(LoginPage.this, options);
+
         logInGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,45 +146,31 @@ public class LoginPage extends AppCompatActivity {
 
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
                 FirebaseAuth.getInstance().signInWithCredential(credential)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()) {
-                                    Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    // After successful login, check if this is the user's first time logging in
-                                    FirebaseUser currentUser = mAuth.getCurrentUser();
-                                    SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                    boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
-                                    if (isFirstTimeLogin) {
-                                        // User is logging in for the first time, go to sign up page
-                                        startActivity(new Intent(LoginPage.this, PreferencePage.class));
-                                        preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
-                                    } else {
-                                        // User is not logging in for the first time, go to main activity
-                                        startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
-                                    }
-                                    finish(); // prevent the user from returning to the login activity via the back button
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
+                                if (isFirstTimeLogin) {
+                                    // User is logging in for the first time, go to sign up page
+                                    startActivity(new Intent(LoginPage.this, PreferencePage.class));
+                                    preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
                                 } else {
-                                    Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    // User is not logging in for the first time, go to main activity
+                                    startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
                                 }
+                                finish(); // prevent the user from returning to the login activity via the back button
+                            } else {
+                                Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        });
+                        }
+                    });
             } catch (ApiException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null){
-            // User is already logged in, so finish the login activity and go to the main activity
-            finish();
-            startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
-        }
-        // If the user is not already logged in, do nothing (the user will be directed to the login page)
     }
 
     public void openSignUp() {
