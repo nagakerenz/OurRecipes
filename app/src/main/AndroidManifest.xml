@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -94,7 +96,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".NotificationPage"
+            android:name=".Profile.NotificationPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -102,7 +104,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AccountPage.AccountPage"
+            android:name=".Profile.AccountPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -142,7 +144,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FavoritePage"
+            android:name=".Profile.FavoritePage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data

@@ -12,9 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import ourrecipe.uib.ourrecipes.AccountPage.AccountPage;
-import ourrecipe.uib.ourrecipes.FavoritePage;
-import ourrecipe.uib.ourrecipes.NotificationPage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import ourrecipe.uib.ourrecipes.Profile.AccountPage;
+import ourrecipe.uib.ourrecipes.Profile.FavoritePage;
+import ourrecipe.uib.ourrecipes.Profile.NotificationPage;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentProfileBinding;
 
@@ -33,15 +40,28 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        displayedName = (TextView) root.findViewById(R.id.displayName);
         favorites = (Button) root.findViewById(R.id.favorites);
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
+        displayedName = (TextView) root.findViewById(R.id.displayName);
 
-        String name = getActivity().getIntent().getStringExtra("inputText");
-        if (name != null) {
-            displayedName.setText(name);
-        }
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+
+        usersRef.child(userId).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.getValue(String.class);
+                displayedName.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle error
+            }
+        });
+
+
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,4 +105,6 @@ public class ProfileFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }

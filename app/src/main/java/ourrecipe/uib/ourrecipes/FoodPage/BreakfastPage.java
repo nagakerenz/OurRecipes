@@ -11,6 +11,7 @@ import ourrecipe.uib.ourrecipes.MenuResult;
 import ourrecipe.uib.ourrecipes.R;
 
 public class BreakfastPage extends AppCompatActivity {
+
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -20,6 +21,7 @@ public class BreakfastPage extends AppCompatActivity {
     ImageButton menu1;
     ImageButton menu2;
     ImageButton menu3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class BreakfastPage extends AppCompatActivity {
             }
         });
     }
+
 
     public void openBreakfastPage() {
         Intent breakfast = new Intent(this, BreakfastPage.class);

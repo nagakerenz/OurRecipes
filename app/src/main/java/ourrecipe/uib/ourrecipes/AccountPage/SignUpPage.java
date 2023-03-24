@@ -3,6 +3,7 @@ package ourrecipe.uib.ourrecipes.AccountPage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
@@ -28,6 +32,8 @@ public class SignUpPage extends AppCompatActivity {
     Button signUp;
     Button login;
     FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,11 @@ public class SignUpPage extends AppCompatActivity {
                 email = String.valueOf(signUpEmail.getText().toString());
                 password = String.valueOf(signUpPassword.getText().toString());
                 confirmPassword = String.valueOf(signUpConfirmPassword.getText().toString());
+
+                if(TextUtils.isEmpty(name)) {
+                    Toast.makeText(SignUpPage.this, "Enter Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(TextUtils.isEmpty(email)) {
                     Toast.makeText(SignUpPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
@@ -76,10 +87,11 @@ public class SignUpPage extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+//                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+//                            usersRef.child(userId).child("name").setValue(name);
                             Toast.makeText(SignUpPage.this, "SignUp Successful.",
                                     Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignUpPage.this, BottomNavigationBar.class);
-                            intent.putExtra("inputText", name);
                             // After successful sign up, go back to login page
                             startActivity(new Intent(SignUpPage.this, LoginPage.class));
                             finish(); // prevent the user from returning to the sign up activity via the back button
