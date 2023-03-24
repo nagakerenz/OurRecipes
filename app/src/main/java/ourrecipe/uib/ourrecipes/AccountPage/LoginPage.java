@@ -61,20 +61,8 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        client = GoogleSignIn.getClient(LoginPage.this, options);
 
-        logInGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = client.getSignInIntent();
-                startActivityForResult(i, 1234);
-            }
-        });
-
+        //THIS IS FOR HANDLING CASUAL LOG IN
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +106,21 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
+        //THIS IS FOR HANDLING GOOGLE LOG IN
+        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        client = GoogleSignIn.getClient(LoginPage.this, options);
+        logInGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = client.getSignInIntent();
+                startActivityForResult(i, 1234);
+            }
+        });
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,6 +137,9 @@ public class LoginPage extends AppCompatActivity {
 
         getSupportActionBar().hide();
     }
+
+    //THIS IS FOR HANDLING FACEBOOK SIGN IN
+
 
     //THIS IS FOR HANDLING GOOGLE SIGN IN
     @Override

@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.AccountPage;
+package ourrecipe.uib.ourrecipes.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ourrecipe.uib.ourrecipes.AccountPage.ChangeEmail;
+import ourrecipe.uib.ourrecipes.AccountPage.ChangePassword;
+import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.R;
 
 public class AccountPage extends AppCompatActivity {
@@ -29,7 +32,7 @@ public class AccountPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accountpage_account_page);
+        setContentView(R.layout.activity_profile_account_page);
 
         mAuth = FirebaseAuth.getInstance();
         options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
