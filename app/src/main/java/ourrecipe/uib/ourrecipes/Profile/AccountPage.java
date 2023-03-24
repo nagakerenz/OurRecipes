@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.Profile;
+package ourrecipe.uib.ourrecipes.AccountPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,13 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import ourrecipe.uib.ourrecipes.AccountPage.ChangeEmail;
-import ourrecipe.uib.ourrecipes.AccountPage.ChangePassword;
-import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.R;
 
 public class AccountPage extends AppCompatActivity {
@@ -23,14 +22,21 @@ public class AccountPage extends AppCompatActivity {
     Button logout;
     Button delete;
     FirebaseAuth mAuth;
-    GoogleSignInClient mGoogleSignInClient;
     FirebaseUser user;
+    GoogleSignInClient client;
+    GoogleSignInOptions options;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_account_page);
+        setContentView(R.layout.activity_accountpage_account_page);
 
         mAuth = FirebaseAuth.getInstance();
+        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        client = GoogleSignIn.getClient(this, options);
         email = (Button) findViewById(R.id.changeEmail);
         password = (Button) findViewById(R.id.changePassword);
         logout = (Button) findViewById(R.id.logOut);
@@ -56,7 +62,7 @@ public class AccountPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth.getInstance().signOut();
-                mGoogleSignInClient.signOut();
+                client.signOut();
                 Toast.makeText(AccountPage.this, "Account Logout!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AccountPage.this, LoginPage.class));
                 finish(); // prevent the user from returning to the main activity via the back button
