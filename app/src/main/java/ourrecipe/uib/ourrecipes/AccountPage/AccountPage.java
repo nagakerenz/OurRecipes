@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -20,12 +23,20 @@ public class AccountPage extends AppCompatActivity {
     Button delete;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    GoogleSignInClient client;
+    GoogleSignInOptions options;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accountpage_account_page);
 
         mAuth = FirebaseAuth.getInstance();
+        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        client = GoogleSignIn.getClient(this, options);
         email = (Button) findViewById(R.id.changeEmail);
         password = (Button) findViewById(R.id.changePassword);
         logout = (Button) findViewById(R.id.logOut);
@@ -50,7 +61,8 @@ public class AccountPage extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
+                mAuth.getInstance().signOut();
+                client.signOut();
                 Toast.makeText(AccountPage.this, "Account Logout!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AccountPage.this, LoginPage.class));
                 finish(); // prevent the user from returning to the main activity via the back button
