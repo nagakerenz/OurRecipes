@@ -128,6 +128,17 @@
                 app:useMaterialThemeColors="false" />
 
             <ImageButton
+                android:id="@+id/facebookIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="110dp"
+                android:background="@null"
+                android:src="@drawable/icon_google"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
                 android:id="@+id/googleIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
