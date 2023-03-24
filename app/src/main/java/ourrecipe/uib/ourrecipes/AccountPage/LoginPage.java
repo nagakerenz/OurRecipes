@@ -41,8 +41,8 @@ public class LoginPage extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button signup;
     Button forget;
-    GoogleSignInOptions options;
-    GoogleSignInClient client;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
     ImageButton logInGoogle;
     private boolean isBackPressedOnce = false;
 
@@ -107,15 +107,15 @@ public class LoginPage extends AppCompatActivity {
         });
 
         //THIS IS FOR HANDLING GOOGLE LOG IN
-        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        client = GoogleSignIn.getClient(LoginPage.this, options);
+        gsc = GoogleSignIn.getClient(LoginPage.this, gso);
         logInGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = client.getSignInIntent();
+                Intent i = gsc.getSignInIntent();
                 startActivityForResult(i, 1234);
             }
         });

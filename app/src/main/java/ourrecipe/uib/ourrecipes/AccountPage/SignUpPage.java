@@ -3,6 +3,7 @@ package ourrecipe.uib.ourrecipes.AccountPage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +32,8 @@ public class SignUpPage extends AppCompatActivity {
     Button signUp;
     Button login;
     FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +87,9 @@ public class SignUpPage extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-                            usersRef.child(userId).child("name").setValue(name);
+//                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+//                            usersRef.child(userId).child("name").setValue(name);
                             Toast.makeText(SignUpPage.this, "SignUp Successful.",
                                     Toast.LENGTH_SHORT).show();
                             // After successful sign up, go back to login page
