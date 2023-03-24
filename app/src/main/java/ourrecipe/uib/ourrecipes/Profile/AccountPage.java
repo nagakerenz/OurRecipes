@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,6 +23,7 @@ public class AccountPage extends AppCompatActivity {
     Button logout;
     Button delete;
     FirebaseAuth mAuth;
+    GoogleSignInClient mGoogleSignInClient;
     FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class AccountPage extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
+                mAuth.getInstance().signOut();
+                mGoogleSignInClient.signOut();
                 Toast.makeText(AccountPage.this, "Account Logout!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AccountPage.this, LoginPage.class));
                 finish(); // prevent the user from returning to the main activity via the back button
