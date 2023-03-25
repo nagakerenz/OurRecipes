@@ -87,6 +87,11 @@ public class SignUpPage extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                            usersRef.child(userId).child("name").setValue(name);
+
 //                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 //                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 //                            usersRef.child(userId).child("name").setValue(name);
