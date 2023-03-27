@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -20,10 +21,8 @@ import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.R;
 
 public class AccountPage extends AppCompatActivity {
-    Button email;
-    Button password;
-    Button logout;
-    Button delete;
+    ImageButton email, password;
+    Button logout, delete;
     FirebaseAuth mAuth;
     FirebaseUser user;
     GoogleSignInClient gsc;
@@ -40,8 +39,8 @@ public class AccountPage extends AppCompatActivity {
                 .requestEmail()
                 .build();
         gsc = GoogleSignIn.getClient(this, gso);
-        email = (Button) findViewById(R.id.changeEmail);
-        password = (Button) findViewById(R.id.changePassword);
+        email = (ImageButton) findViewById(R.id.editEmail);
+        password = (ImageButton) findViewById(R.id.editPass);
         logout = (Button) findViewById(R.id.logOut);
         delete = (Button) findViewById(R.id.deleteAccount);
 

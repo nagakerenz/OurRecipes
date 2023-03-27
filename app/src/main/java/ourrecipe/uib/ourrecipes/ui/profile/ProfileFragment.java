@@ -131,22 +131,22 @@ public class ProfileFragment extends Fragment {
                 }
             }
         );
+//
+//        uploadImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent photoPicker = new Intent(Intent.ACTION_PICK);
+//                photoPicker.setType("image/*");
+//                activityResultLauncher.launch(photoPicker);
+//            }
+//        });
 
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
-            }
-        });
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData();
-            }
-        });
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                saveData();
+//            }
+//        });
 
         //THIS IS FOR HANDLING USER DISPLAYED NAME
 //        user = FirebaseAuth.getInstance().getCurrentUser();
