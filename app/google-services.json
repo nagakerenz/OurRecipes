@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "22973524954",
+    "project_id": "ourrecipes-c601d",
+    "storage_bucket": "ourrecipes-c601d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22973524954:android:a0d5b6328e72b003772ee3",
+        "android_client_info": {
+          "package_name": "ourrecipe.uib.ourrecipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22973524954-skl3p1jrlecanooft1t35o32bvs64ruf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ourrecipe.uib.ourrecipes",
+            "certificate_hash": "4fb2a6e7d9bebfec413d500f385486be7c83efdd"
+          }
+        },
+        {
+          "client_id": "22973524954-b84q4v40h7o7ni7g2cbdg237csva3fe0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzPnSlHn7Ny5Pud1x2Gk6itCp5AJJCauQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22973524954-b84q4v40h7o7ni7g2cbdg237csva3fe0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
