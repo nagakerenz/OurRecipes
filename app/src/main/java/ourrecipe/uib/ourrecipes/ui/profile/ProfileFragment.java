@@ -41,6 +41,7 @@ import java.net.URI;
 
 import ourrecipe.uib.ourrecipes.AccountPage.DataClass;
 import ourrecipe.uib.ourrecipes.AccountPage.SignUpPage;
+import ourrecipe.uib.ourrecipes.AccountPage.User;
 import ourrecipe.uib.ourrecipes.Profile.AccountPage;
 import ourrecipe.uib.ourrecipes.Profile.FavoritePage;
 import ourrecipe.uib.ourrecipes.Profile.NotificationPage;
@@ -54,7 +55,8 @@ public class ProfileFragment extends Fragment {
     ImageButton uploadImage;
     Uri uri;
     String imageURL;
-
+    DatabaseReference databaseReference;
+    ValueEventListener eventListener;
 
     private FragmentProfileBinding binding;
 
@@ -73,6 +75,30 @@ public class ProfileFragment extends Fragment {
         displayedName = (TextView) root.findViewById(R.id.displayName);
         userPicture = (ImageView) root.findViewById(R.id.displayPicture);
         uploadImage = (ImageButton) root.findViewById(R.id.editProfilePicture);
+
+        //This is for handling Displayed UserName
+        databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Loop through all children under the "User Profile" node
+                for (DataSnapshot itemSnapShot: snapshot.getChildren()) {
+                    // Get the User object
+                    User user = itemSnapShot.getValue(User.class);
+                    // Get the user's name
+                    String name = user.getName();
+                    // Set the name in a TextView
+                    displayedName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        databaseReference.addValueEventListener(eventListener);
 
         //THIS IS FOR HANDLING THE UPLOAD IMAGE TO FIREBASE DATA
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -202,6 +228,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        // Remove the ValueEventListener
+//        databaseReference.removeEventListener(eventListener);
         binding = null;
     }
 

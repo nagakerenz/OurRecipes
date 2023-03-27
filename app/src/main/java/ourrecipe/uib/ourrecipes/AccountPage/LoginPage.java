@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +62,6 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-
         //THIS IS FOR HANDLING CASUAL LOG IN
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +72,19 @@ public class LoginPage extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(email)) {
                     Toast.makeText(LoginPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    logInEmail.requestFocus();
                     return;
-                } else if(TextUtils.isEmpty(password)) {
+                }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    logInEmail.setError("Please Provide A Valid Email");
+                    logInEmail.requestFocus();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(password)) {
                     Toast.makeText(LoginPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    logInPassword.requestFocus();
                     return;
                 }
 
