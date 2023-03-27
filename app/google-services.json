@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "22973524954",
+    "firebase_url": "https://ourrecipes-c601d-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "ourrecipes-c601d",
     "storage_bucket": "ourrecipes-c601d.appspot.com"
   },
@@ -14,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "22973524954-skl3p1jrlecanooft1t35o32bvs64ruf.apps.googleusercontent.com",
+          "client_id": "22973524954-6o522hrq9efu1mck0j4sg6rj6j7gp5pu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "ourrecipe.uib.ourrecipes",
-            "certificate_hash": "4fb2a6e7d9bebfec413d500f385486be7c83efdd"
+            "certificate_hash": "66d771ef64bfcf405175634973ff75e04b7f8123"
+          }
+        },
+        {
+          "client_id": "22973524954-rco1lo3lfadcotheqb467snvuav6mu2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ourrecipe.uib.ourrecipes",
+            "certificate_hash": "8300d3d60278d3ba875a0968dbcf2494d0a39db6"
           }
         },
         {

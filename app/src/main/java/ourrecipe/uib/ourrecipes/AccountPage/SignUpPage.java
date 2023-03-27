@@ -1,11 +1,18 @@
 package ourrecipe.uib.ourrecipes.AccountPage;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -50,6 +57,17 @@ public class SignUpPage extends AppCompatActivity {
         signUpConfirmPassword = findViewById(R.id.confirmPassword);
         signUp = findViewById(R.id.signUp);
         progressBar = findViewById(R.id.loading);
+
+
+
+
+        //THIS IS STILL FOR HANDLING SAVE BUTTON TO SAVE TO FIREBASE DATA
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                  saveData();
+//            }
+//        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,48 +116,46 @@ public class SignUpPage extends AppCompatActivity {
                     return;
                 }
 
-                progressBar.setVisibility(view.VISIBLE);
+                //                progressBar.setVisibility(view.VISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpPage.this);
+                builder.setCancelable(false);
+                builder.setView(R.layout.progress_layout);
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-//                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-//                            usersRef.child(userId).child("name").setValue(name);
-
-//                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-//                            usersRef.child(userId).child("name").setValue(name);
-
+                            dialog.dismiss();
                             User user = new User(name, age, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            FirebaseDatabase.getInstance().getReference("User Profile").child(name)
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-
-                                                progressBar.setVisibility(View.GONE);
-                                                Toast.makeText(SignUpPage.this, "SignUp Successful.",
-                                                        Toast.LENGTH_SHORT).show();
-                                                // After successful sign up, go back to login page
-                                                startActivity(new Intent(SignUpPage.this, LoginPage.class));
-                                                finish(); // prevent the user from returning to the sign up activity via the back button
-                                            } else {
-                                                // If sign in fails, display a message to the user.
-                                                Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
-                                                        Toast.LENGTH_SHORT).show();
-                                                progressBar.setVisibility(View.GONE);
-                                            }
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            dialog.dismiss();
+    //                                                progressBar.setVisibility(View.GONE);
+                                            Toast.makeText(SignUpPage.this, "SignUp Successful.",
+                                                    Toast.LENGTH_SHORT).show();
+                                            // After successful sign up, go back to login page
+                                            startActivity(new Intent(SignUpPage.this, LoginPage.class));
+                                            finish(); // prevent the user from returning to the sign up activity via the back button
+                                        } else {
+                                            dialog.dismiss();
+                                            // If sign in fails, display a message to the user.
+                                            Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
+                                                    Toast.LENGTH_SHORT).show();
+    //                                                progressBar.setVisibility(View.GONE);
                                         }
-                                    });
+                                    }
+                            });
                         } else {
+                            dialog.dismiss();
                             Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+//                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });

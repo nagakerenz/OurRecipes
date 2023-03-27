@@ -26,13 +26,29 @@
             android:fontFamily="arial"
             android:textColor="@color/black"/>
 
-        <ImageView
-            android:id="@+id/displayPicture"
-            android:layout_width="101dp"
-            android:layout_height="92dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/profile_picture" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/displayPicture"
+                android:layout_width="101dp"
+                android:layout_height="92dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/profile_picture"/>
+
+            <ImageButton
+                android:id="@+id/editProfilePicture"
+                android:layout_width="33dp"
+                android:layout_height="32dp"
+                android:layout_alignBottom="@id/displayPicture"
+                android:layout_alignEnd="@id/displayPicture"
+                android:background="@null"
+                android:src="@drawable/edit_default_profile_picture"/>
+
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -51,14 +67,14 @@
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/edit" />
+                app:layout_constraintEnd_toStartOf="@+id/editProfile" />
 
             <ImageButton
-                android:id="@+id/edit"
+                android:id="@+id/editProfile"
                 android:layout_width="33dp"
                 android:layout_height="32dp"
                 android:background="@null"
-                android:src="@drawable/ic_baseline_edit_24"
+                android:src="@drawable/edit_default_profile_picture"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,6 +125,16 @@
             android:layout_marginTop="99dp"
             android:backgroundTint="@color/white"
             android:text="Account"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="148dp"
+            android:backgroundTint="@color/white"
+            android:text="Save"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
 

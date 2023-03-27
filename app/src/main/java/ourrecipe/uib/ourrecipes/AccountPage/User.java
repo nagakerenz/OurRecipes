@@ -4,8 +4,16 @@ public class User {
 
     public String name, age, email;
 
-    public User() {
+    public String getName() {
+        return name;
+    }
 
+    public String getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public User(String name, String age, String email) {
@@ -13,4 +21,9 @@ public class User {
         this.age = age;
         this.email = email;
     }
+
+    public User() {
+
+    }
+
 }
