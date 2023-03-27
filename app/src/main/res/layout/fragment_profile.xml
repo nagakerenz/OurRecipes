@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment"
-    android:padding="10dp"
+    android:padding="16dp"
+    android:orientation="vertical"
     android:background="#FBF4D1"
-    android:orientation="vertical">
+    tools:context=".ui.profile.ProfileFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,45 +26,73 @@
             android:fontFamily="arial"
             android:textColor="@color/black"/>
 
-        <ImageView
-            android:id="@+id/displayPicture"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/profile_picture" />
-
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chris Tan"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="130dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="arial"
-            android:textColor="@color/black"/>
+            android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="135dp"
-            android:layout_marginLeft="70dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_baseline_edit_24"
-            android:background="@null"/>
+            <ImageView
+                android:id="@+id/displayPicture"
+                android:layout_width="101dp"
+                android:layout_height="92dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/profile_picture"/>
 
-        <TextView
+            <ImageButton
+                android:id="@+id/editProfilePicture"
+                android:layout_width="33dp"
+                android:layout_height="32dp"
+                android:layout_alignBottom="@id/displayPicture"
+                android:layout_alignEnd="@id/displayPicture"
+                android:background="@null"
+                android:src="@drawable/edit_default_profile_picture"/>
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Indonesia"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="160dp"
-            android:textSize="16sp"
-            android:fontFamily="arial"
-            android:textColor="@color/black"/>
+            android:padding="16dp"
+            android:layout_marginTop="140dp">
+
+            <TextView
+                android:id="@+id/displayName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YOUR NAME :)"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="arial"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/editProfile" />
+
+            <ImageButton
+                android:id="@+id/editProfile"
+                android:layout_width="33dp"
+                android:layout_height="32dp"
+                android:background="@null"
+                android:src="@drawable/edit_default_profile_picture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/country"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Indonesia"
+                android:textSize="16sp"
+                android:fontFamily="arial"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/displayName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,6 +127,27 @@
             android:text="Account"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="148dp"
+            android:backgroundTint="@color/white"
+            android:text="Save"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+<!--        <Switch-->
+<!--            android:id="@+id/theme"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:background="@color/white"-->
+<!--            android:layout_marginTop="148dp"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:text="Switch Theme?"-->
+<!--            android:paddingLeft="15dp"/>-->
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

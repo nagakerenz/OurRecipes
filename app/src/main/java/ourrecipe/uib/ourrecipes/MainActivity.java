@@ -8,29 +8,41 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
 
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        hideNavigationBar();
-
+        mAuth = FirebaseAuth.getInstance();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, LoginPage.class));
-                finish();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if (currentUser == null) {
+                    // User is not logged in, go to login page
+                    startActivity(new Intent(MainActivity.this, LoginPage.class));
+                    finish(); // prevent the user from returning to the main activity via the back button
+                } else {
+                    // User is already logged in, go to main activity
+                    startActivity(new Intent(MainActivity.this, BottomNavigationBar.class));
+                    finish(); // prevent the user from returning to the login activity via the back button
+                }
             }
         },2000);
+
+        hideNavigationBar();
     }
 
     @Override

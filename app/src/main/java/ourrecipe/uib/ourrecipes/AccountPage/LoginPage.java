@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
+
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
 import ourrecipe.uib.ourrecipes.R;
@@ -37,23 +41,12 @@ public class LoginPage extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button signup;
     Button forget;
-    GoogleSignInClient client;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
     ImageButton logInGoogle;
+    private boolean isBackPressedOnce = false;
 
-//  if i turn it on, dia kalau misalnya lagi sign up terus tekan signup dia langsung otomatis ke Home page,
-//  sedangkan aku maunya kalau setelah sign up itu ke login page dlu
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            Intent intent = new Intent(getApplicationContext(), BottomNavigationBar.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +54,15 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_accountpage_login_page);
 
         mAuth = FirebaseAuth.getInstance();
-
-        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        client = GoogleSignIn.getClient(LoginPage.this, options);
-        logInGoogle = findViewById(R.id.googleIcon);
-        logInGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = client.getSignInIntent();
-                startActivityForResult(i, 1234);
-            }
-        });
-
+        loginID = findViewById(R.id.login);
         logInEmail = findViewById(R.id.username);
         logInPassword = findViewById(R.id.password);
-        loginID = findViewById(R.id.login);
+        logInGoogle = findViewById(R.id.googleIcon);
+        signup = (Button) findViewById(R.id.signup);
+        forget = (Button) findViewById(R.id.forget_password);
+
+
+        //THIS IS FOR HANDLING CASUAL LOG IN
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,25 +79,48 @@ public class LoginPage extends AppCompatActivity {
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(LoginPage.this, "Login failed. " + task.getException().getMessage(),
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            // After successful login, check if this is the user's first time logging in
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
+                            if (isFirstTimeLogin) {
+                                // User is logging in for the first time, go to sign up page
+                                startActivity(new Intent(LoginPage.this, PreferencePage.class));
+                                preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
+                            } else {
+                                // User is not logging in for the first time, go to main activity
+                                startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
                             }
-                        });
-
+                            finish(); // prevent the user from returning to the login activity via the back button
+                        } else {
+                            Toast.makeText(LoginPage.this, "Login failed. " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
-        signup = (Button) findViewById(R.id.signup);
+        //THIS IS FOR HANDLING GOOGLE LOG IN
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        gsc = GoogleSignIn.getClient(LoginPage.this, gso);
+        logInGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = gsc.getSignInIntent();
+                startActivityForResult(i, 1234);
+            }
+        });
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,16 +128,20 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        forget = (Button) findViewById(R.id.forget_password);
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openForgetPassword();
             }
         });
+
         getSupportActionBar().hide();
     }
 
+    //THIS IS FOR HANDLING FACEBOOK SIGN IN
+
+
+    //THIS IS FOR HANDLING GOOGLE SIGN IN
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -141,34 +152,32 @@ public class LoginPage extends AppCompatActivity {
 
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
                 FirebaseAuth.getInstance().signInWithCredential(credential)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()) {
-                                    Intent intent = new Intent(getApplicationContext(), PreferencePage.class);
-                                    startActivity(intent);
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
+                                if (isFirstTimeLogin) {
+                                    // User is logging in for the first time, go to sign up page
+                                    startActivity(new Intent(LoginPage.this, PreferencePage.class));
+                                    preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
                                 } else {
-                                    Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    // User is not logging in for the first time, go to main activity
+                                    startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
                                 }
+                                finish(); // prevent the user from returning to the login activity via the back button
+                            } else {
+                                Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        });
-
-
+                        }
+                    });
             } catch (ApiException e) {
                 e.printStackTrace();
             }
         }
     }
-//Sama kek diatas
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if(user!= null) {
-//            Intent intent = new Intent(this, PreferencePage.class);
-//            startActivity(intent);
-//        }
-//    }
 
     public void openSignUp() {
         Intent signup = new Intent(LoginPage.this, SignUpPage.class);
@@ -177,5 +186,26 @@ public class LoginPage extends AppCompatActivity {
     public void openForgetPassword() {
         Intent forget = new Intent(LoginPage.this, ForgotPasswordPage.class);
         startActivity(forget);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isBackPressedOnce){
+            finishAffinity();
+            finish();
+            return;
+        }
+
+        Toast.makeText(LoginPage.this, "Press Again To Exit Apps!", Toast.LENGTH_SHORT).show();
+        isBackPressedOnce = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        },2000);
+
+
     }
 }

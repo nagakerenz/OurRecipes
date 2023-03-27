@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.AccountPage;
+package ourrecipe.uib.ourrecipes.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ourrecipe.uib.ourrecipes.AccountPage.ChangeEmail;
+import ourrecipe.uib.ourrecipes.AccountPage.ChangePassword;
+import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.R;
 
 public class AccountPage extends AppCompatActivity {
@@ -18,24 +24,28 @@ public class AccountPage extends AppCompatActivity {
     Button password;
     Button logout;
     Button delete;
-    FirebaseAuth auth;
+    FirebaseAuth mAuth;
     FirebaseUser user;
+    GoogleSignInClient gsc;
+    GoogleSignInOptions gso;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accountpage_account_page);
+        setContentView(R.layout.activity_profile_account_page);
 
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        if (user == null) {
-            Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-            startActivity(intent);
-            finish();
-        } else {
-
-        }
-
+        mAuth = FirebaseAuth.getInstance();
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        gsc = GoogleSignIn.getClient(this, gso);
         email = (Button) findViewById(R.id.changeEmail);
+        password = (Button) findViewById(R.id.changePassword);
+        logout = (Button) findViewById(R.id.logOut);
+        delete = (Button) findViewById(R.id.deleteAccount);
+
+
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +53,6 @@ public class AccountPage extends AppCompatActivity {
             }
         });
 
-        password = (Button) findViewById(R.id.changePassword);
         password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,19 +60,18 @@ public class AccountPage extends AppCompatActivity {
             }
         });
 
-        logout = (Button) findViewById(R.id.logOut);
+        user = mAuth.getCurrentUser();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
+                mAuth.getInstance().signOut();
+                gsc.signOut();
                 Toast.makeText(AccountPage.this, "Account Logout!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-                startActivity(intent);
-                finish();
+                startActivity(new Intent(AccountPage.this, LoginPage.class));
+                finish(); // prevent the user from returning to the main activity via the back button
             }
         });
 
-        delete = (Button) findViewById(R.id.deleteAccount);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

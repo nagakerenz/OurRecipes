@@ -13,6 +13,7 @@
     <color name="colorPrimaryDark">#FF3700B3</color>
     <color name="colorAccent">#FF03DAC5</color>
     <color name="mediumGray">#FFD1D1D1</color>
+    <color name="grey">#aaa</color>
     <color name="darkGray">#FF858585</color>
 
 </resources>

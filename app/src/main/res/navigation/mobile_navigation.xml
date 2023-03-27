@@ -40,4 +40,10 @@
         android:name="ourrecipe.uib.ourrecipes.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <action
+        android:id="@+id/action_HomeFragment_to_ReelsFragment"
+        app:destination="@id/navigation_reels"
+        app:popUpTo="@id/navigation_home"
+        app:popUpToInclusive="true"/>
 </navigation>

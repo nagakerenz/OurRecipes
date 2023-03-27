@@ -10,8 +10,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
@@ -59,35 +61,39 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         breakfast = (ImageButton) root.findViewById(R.id.breakfast);
+        lunch = (ImageButton) root.findViewById(R.id.lunch);
+        dinner = (ImageButton) root.findViewById(R.id.dinner);
+        fiber = (ImageButton) root.findViewById(R.id.fiber);
+        drink = (ImageButton) root.findViewById(R.id.drink);
+        menu = (ImageButton) root.findViewById(R.id.imageButton);
+        menu1 = (ImageButton) root.findViewById(R.id.imageButton1);
+        menu2 = (ImageButton) root.findViewById(R.id.imageButton2);
+        menu3 = (ImageButton) root.findViewById(R.id.imageButton3);
+
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openBreakfastPage();
             }
         });
-
-        lunch = (ImageButton) root.findViewById(R.id.lunch);
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openLunchPage();
             }
         });
-        dinner = (ImageButton) root.findViewById(R.id.dinner);
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDinnerPage();
             }
         });
-        fiber = (ImageButton) root.findViewById(R.id.fiber);
         fiber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFiberPage();
             }
         });
-        drink = (ImageButton) root.findViewById(R.id.drink);
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,28 +165,33 @@ public class HomeFragment extends Fragment {
         adapter = new VideoAdapter(videoList);
         viewPager3.setAdapter(adapter);
 
-        menu = (ImageButton) root.findViewById(R.id.imageButton);
+        CardView reelsCardView = root.findViewById(R.id.reelsCardView);
+        reelsCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_HomeFragment_to_ReelsFragment);
+            }
+        });
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu1 = (ImageButton) root.findViewById(R.id.imageButton1);
         menu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu2 = (ImageButton) root.findViewById(R.id.imageButton2);
+
         menu2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMenuPage();
             }
         });
-        menu3 = (ImageButton) root.findViewById(R.id.imageButton3);
         menu3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
