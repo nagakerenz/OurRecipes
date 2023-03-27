@@ -1,8 +1,11 @@
 package ourrecipe.uib.ourrecipes.AccountPage;
 
 public class User {
+    public String userId, name, age, email;
 
-    public String name, age, email;
+    public String getUserId() {
+        return userId;
+    }
 
     public String getName() {
         return name;
@@ -16,7 +19,8 @@ public class User {
         return email;
     }
 
-    public User(String name, String age, String email) {
+    public User(String userId, String name, String age, String email) {
+        this.userId = userId;
         this.name = name;
         this.age = age;
         this.email = email;
@@ -25,5 +29,4 @@ public class User {
     public User() {
 
     }
-
 }

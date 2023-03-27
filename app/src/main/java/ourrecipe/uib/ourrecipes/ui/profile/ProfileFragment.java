@@ -2,9 +2,12 @@ package ourrecipe.uib.ourrecipes.ui.profile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,28 +80,40 @@ public class ProfileFragment extends Fragment {
         uploadImage = (ImageButton) root.findViewById(R.id.editProfilePicture);
 
         //This is for handling Displayed UserName
-        databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Loop through all children under the "User Profile" node
-                for (DataSnapshot itemSnapShot: snapshot.getChildren()) {
-                    // Get the User object
-                    User user = itemSnapShot.getValue(User.class);
-                    // Get the user's name
-                    String name = user.getName();
-                    // Set the name in a TextView
-                    displayedName.setText(name);
+        SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userName = prefs.getString("name", "");
+        if (!TextUtils.isEmpty(userName)) {
+            displayedName.setText(userName);
+        } else {
+            // User name is not available locally, retrieve it from Firebase
+            databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
+            eventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        String userId = user.getUid();
+                        String name = "";
+                        for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
+                            User userProfile = itemSnapShot.getValue(User.class);
+                            if (userProfile.getUserId().equals(userId)) {
+                                name = userProfile.getName();
+                                break;
+                            }
+                        }
+                        displayedName.setText(name);
+
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
-            }
-        };
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(ProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
+                }
+            };
 
-        databaseReference.addValueEventListener(eventListener);
+            databaseReference.addValueEventListener(eventListener);
+        }
 
         //THIS IS FOR HANDLING THE UPLOAD IMAGE TO FIREBASE DATA
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -229,7 +244,7 @@ public class ProfileFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         // Remove the ValueEventListener
-//        databaseReference.removeEventListener(eventListener);
+        databaseReference.removeEventListener(eventListener);
         binding = null;
     }
 

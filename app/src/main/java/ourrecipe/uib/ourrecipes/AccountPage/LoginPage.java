@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -88,11 +89,18 @@ public class LoginPage extends AppCompatActivity {
                     return;
                 }
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+                builder.setCancelable(false);
+                builder.setView(R.layout.progress_layout);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
                 mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            dialog.dismiss();
                             Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             // After successful login, check if this is the user's first time logging in
                             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -108,6 +116,7 @@ public class LoginPage extends AppCompatActivity {
                             }
                             finish(); // prevent the user from returning to the login activity via the back button
                         } else {
+                            dialog.dismiss();
                             Toast.makeText(LoginPage.this, "Login failed. " + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -156,6 +165,13 @@ public class LoginPage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1234) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+            builder.setCancelable(false);
+            builder.setView(R.layout.progress_layout);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -166,6 +182,7 @@ public class LoginPage extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
+                                dialog.dismiss();
                                 FirebaseUser currentUser = mAuth.getCurrentUser();
                                 SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
                                 boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
