@@ -36,9 +36,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
 
@@ -52,12 +49,9 @@ import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-    Button favorites, notification, account, saveButton;
-    TextView displayedName;
     ImageView userPicture;
-    ImageButton uploadImage;
-    Uri uri;
-    String imageURL;
+    TextView displayedName;
+    Button favorites, notification, account;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
 
@@ -71,13 +65,12 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        userPicture = (ImageView) root.findViewById(R.id.displayPicture);
+        displayedName = (TextView) root.findViewById(R.id.displayName);
         favorites = (Button) root.findViewById(R.id.favorites);
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
-        saveButton = (Button) root.findViewById(R.id.save);
-        displayedName = (TextView) root.findViewById(R.id.displayName);
-        userPicture = (ImageView) root.findViewById(R.id.displayPicture);
-        uploadImage = (ImageButton) root.findViewById(R.id.editProfilePicture);
+
 
         //This is for handling Displayed UserName
         SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -105,71 +98,13 @@ public class ProfileFragment extends Fragment {
 
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(ProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
                 }
             };
-
             databaseReference.addValueEventListener(eventListener);
         }
-
-        //THIS IS FOR HANDLING THE UPLOAD IMAGE TO FIREBASE DATA
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        uri = data.getData();
-                        userPicture.setImageURI(uri);
-                    } else {
-                        Toast.makeText(ProfileFragment.this.getActivity(), "No Image Selected", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        );
-//
-//        uploadImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-//                photoPicker.setType("image/*");
-//                activityResultLauncher.launch(photoPicker);
-//            }
-//        });
-
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                saveData();
-//            }
-//        });
-
-        //THIS IS FOR HANDLING USER DISPLAYED NAME
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        displayedName.setText(user.getDisplayName());
-//        Glide.with(ProfileFragment.this).load(user.getPhotoUrl()).into(userPicture);
-
-//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-//
-//        usersRef.child(userId).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String name = snapshot.getValue(String.class);
-//                displayedName.setText(name);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                // Handle error
-//            }
-//        });
-
 
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,37 +128,6 @@ public class ProfileFragment extends Fragment {
         });
         return root;
     }
-
-    public void saveData() {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("User Profile Picture")
-                .child(uri.getLastPathSegment());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(ProfileFragment.this.getActivity());
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage = uriTask.getResult();
-                imageURL = urlImage.toString();
-                Toast.makeText(ProfileFragment.this.getActivity(), "Saved", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ProfileFragment.this.getActivity(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-    }
-
 
     public void openFavoritesPage() {
         Intent favorites = new Intent(ProfileFragment.this.getActivity(), FavoritePage.class);

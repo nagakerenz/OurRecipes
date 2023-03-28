@@ -183,6 +183,7 @@ public class LoginPage extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
                                 dialog.dismiss();
+
                                 FirebaseUser currentUser = mAuth.getCurrentUser();
                                 SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
                                 boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);

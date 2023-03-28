@@ -42,7 +42,6 @@ public class SignUpPage extends AppCompatActivity {
     Button signUp;
     Button login;
     FirebaseAuth mAuth;
-    ProgressBar progressBar;
 
 
     @Override
@@ -57,18 +56,6 @@ public class SignUpPage extends AppCompatActivity {
         signUpPassword = findViewById(R.id.password);
         signUpConfirmPassword = findViewById(R.id.confirmPassword);
         signUp = findViewById(R.id.signUp);
-        progressBar = findViewById(R.id.loading);
-
-
-
-
-        //THIS IS STILL FOR HANDLING SAVE BUTTON TO SAVE TO FIREBASE DATA
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                  saveData();
-//            }
-//        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +121,8 @@ public class SignUpPage extends AppCompatActivity {
                             SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString("name", "");
+                            editor.putString("email", "");
+                            editor.putString("age", "");
                             editor.apply();
 
                             // Save user data into firebase database
