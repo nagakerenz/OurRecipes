@@ -120,19 +120,11 @@ public class SignUpPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             dialog.dismiss();
 
-                            // Store user data in SharedPreferences
-                            SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("name", "");
-                            editor.putString("email", "");
-                            editor.putString("age", "");
-                            editor.apply();
-
                             // Save user data into firebase database
                             String userId = mAuth.getCurrentUser().getUid();
                             User user = new User(userId, name, age, email);
                             FirebaseDatabase.getInstance().getReference("User Profile").child(userId)
-                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
@@ -150,6 +142,15 @@ public class SignUpPage extends AppCompatActivity {
                                     }
                                 }
                             });
+
+                            // Store user data in SharedPreferences
+                            SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("name", "");
+                            editor.putString("email", "");
+                            editor.putString("age", "");
+                            editor.apply();
+
                         } else {
                             dialog.dismiss();
                             Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),

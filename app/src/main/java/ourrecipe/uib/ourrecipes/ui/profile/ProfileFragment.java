@@ -71,7 +71,6 @@ public class ProfileFragment extends Fragment {
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
 
-
         //This is for handling Displayed UserName
         SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String userName = prefs.getString("name", "");
@@ -94,8 +93,9 @@ public class ProfileFragment extends Fragment {
                                 break;
                             }
                         }
+                        // Cache the user name locally
+                        prefs.edit().putString("name", name).apply();
                         displayName.setText(name);
-
                     }
                 }
                 @Override
@@ -103,8 +103,9 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(ProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
                 }
             };
-            databaseReference.addValueEventListener(eventListener);
+            databaseReference.addListenerForSingleValueEvent(eventListener);
         }
+
 
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
