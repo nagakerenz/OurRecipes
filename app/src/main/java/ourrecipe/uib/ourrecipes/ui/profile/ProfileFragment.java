@@ -49,8 +49,8 @@ import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-    ImageView userPicture;
-    TextView displayedName;
+    ImageView displayPicture;
+    TextView displayName;
     Button favorites, notification, account;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
@@ -65,8 +65,8 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        userPicture = (ImageView) root.findViewById(R.id.displayPicture);
-        displayedName = (TextView) root.findViewById(R.id.displayName);
+        displayPicture = (ImageView) root.findViewById(R.id.displayPicture);
+        displayName = (TextView) root.findViewById(R.id.displayName);
         favorites = (Button) root.findViewById(R.id.favorites);
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
         SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String userName = prefs.getString("name", "");
         if (!TextUtils.isEmpty(userName)) {
-            displayedName.setText(userName);
+            displayName.setText(userName);
         } else {
             // User name is not available locally, retrieve it from Firebase
             databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
@@ -94,7 +94,7 @@ public class ProfileFragment extends Fragment {
                                 break;
                             }
                         }
-                        displayedName.setText(name);
+                        displayName.setText(name);
 
                     }
                 }

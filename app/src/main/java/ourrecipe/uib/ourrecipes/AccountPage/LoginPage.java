@@ -10,6 +10,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
+import android.view.MotionEvent;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +67,7 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
+
         //THIS IS FOR HANDLING CASUAL LOG IN
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +90,6 @@ public class LoginPage extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(password)) {
                     Toast.makeText(LoginPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
-                    logInPassword.requestFocus();
                     return;
                 }
 
@@ -123,6 +127,24 @@ public class LoginPage extends AppCompatActivity {
                     }
                 });
             }
+        });
+
+        logInPassword.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (logInPassword.getRight() - logInPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (logInPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
+                        logInPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                    } else {
+                        logInPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                    }
+                    logInPassword.setSelection(logInPassword.getText().length());
+                    return true;
+                }
+            }
+            return false;
         });
 
         //THIS IS FOR HANDLING GOOGLE LOG IN

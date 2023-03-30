@@ -16,7 +16,10 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -155,6 +158,42 @@ public class SignUpPage extends AppCompatActivity {
                     }
                 });
             }
+        });
+
+        signUpPassword.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (signUpPassword.getRight() - signUpPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (signUpPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
+                        signUpPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        signUpPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                    } else {
+                        signUpPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        signUpPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                    }
+                    signUpPassword.setSelection(signUpPassword.getText().length());
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        signUpConfirmPassword.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (signUpConfirmPassword.getRight() - signUpConfirmPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (signUpConfirmPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
+                        signUpConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        signUpConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                    } else {
+                        signUpConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        signUpConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                    }
+                    signUpConfirmPassword.setSelection(signUpConfirmPassword.getText().length());
+                    return true;
+                }
+            }
+            return false;
         });
 
         login = (Button) findViewById(R.id.login);
