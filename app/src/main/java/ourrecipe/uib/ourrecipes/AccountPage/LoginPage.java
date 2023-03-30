@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +66,6 @@ public class LoginPage extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
         forget = (Button) findViewById(R.id.forget_password);
 
-
         //THIS IS FOR HANDLING CASUAL LOG IN
         loginID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +76,34 @@ public class LoginPage extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(email)) {
                     Toast.makeText(LoginPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
-                    return;
-                } else if(TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    logInEmail.requestFocus();
                     return;
                 }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    logInEmail.setError("Please Provide A Valid Email");
+                    logInEmail.requestFocus();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(password)) {
+                    Toast.makeText(LoginPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    logInPassword.requestFocus();
+                    return;
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+                builder.setCancelable(false);
+                builder.setView(R.layout.progress_layout);
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
                 mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            dialog.dismiss();
                             Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             // After successful login, check if this is the user's first time logging in
                             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -98,12 +119,31 @@ public class LoginPage extends AppCompatActivity {
                             }
                             finish(); // prevent the user from returning to the login activity via the back button
                         } else {
+                            dialog.dismiss();
                             Toast.makeText(LoginPage.this, "Login failed. " + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
+        });
+
+        logInPassword.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (logInPassword.getRight() - logInPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (logInPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
+                        logInPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                    } else {
+                        logInPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                    }
+                    logInPassword.setSelection(logInPassword.getText().length());
+                    return true;
+                }
+            }
+            return false;
         });
 
         //THIS IS FOR HANDLING GOOGLE LOG IN
@@ -146,6 +186,13 @@ public class LoginPage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1234) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+            builder.setCancelable(false);
+            builder.setView(R.layout.progress_layout);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -156,6 +203,8 @@ public class LoginPage extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
+                                dialog.dismiss();
+
                                 FirebaseUser currentUser = mAuth.getCurrentUser();
                                 SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
                                 boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);

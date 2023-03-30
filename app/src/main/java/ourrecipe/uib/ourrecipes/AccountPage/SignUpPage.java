@@ -1,14 +1,25 @@
 package ourrecipe.uib.ourrecipes.AccountPage;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +45,6 @@ public class SignUpPage extends AppCompatActivity {
     Button signUp;
     Button login;
     FirebaseAuth mAuth;
-    ProgressBar progressBar;
 
 
     @Override
@@ -49,7 +59,6 @@ public class SignUpPage extends AppCompatActivity {
         signUpPassword = findViewById(R.id.password);
         signUpConfirmPassword = findViewById(R.id.confirmPassword);
         signUp = findViewById(R.id.signUp);
-        progressBar = findViewById(R.id.loading);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,52 +107,93 @@ public class SignUpPage extends AppCompatActivity {
                     return;
                 }
 
-                progressBar.setVisibility(view.VISIBLE);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpPage.this);
+                builder.setCancelable(false);
+                builder.setView(R.layout.progress_layout);
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            dialog.dismiss();
 
-//                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-//                            usersRef.child(userId).child("name").setValue(name);
+                            // Store user data in SharedPreferences
+                            SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("name", "");
+                            editor.putString("email", "");
+                            editor.putString("age", "");
+                            editor.apply();
 
-//                            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-//                            usersRef.child(userId).child("name").setValue(name);
-
-                            User user = new User(name, age, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-
-                                                progressBar.setVisibility(View.GONE);
-                                                Toast.makeText(SignUpPage.this, "SignUp Successful.",
-                                                        Toast.LENGTH_SHORT).show();
-                                                // After successful sign up, go back to login page
-                                                startActivity(new Intent(SignUpPage.this, LoginPage.class));
-                                                finish(); // prevent the user from returning to the sign up activity via the back button
-                                            } else {
-                                                // If sign in fails, display a message to the user.
-                                                Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
-                                                        Toast.LENGTH_SHORT).show();
-                                                progressBar.setVisibility(View.GONE);
-                                            }
-                                        }
-                                    });
+                            // Save user data into firebase database
+                            String userId = mAuth.getCurrentUser().getUid();
+                            User user = new User(userId, name, age, email);
+                            FirebaseDatabase.getInstance().getReference("User Profile").child(userId)
+                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        dialog.dismiss();
+                                        Toast.makeText(SignUpPage.this, "SignUp Successful.",
+                                                Toast.LENGTH_SHORT).show();
+                                        // After successful sign up, go back to login page
+                                        startActivity(new Intent(SignUpPage.this, LoginPage.class));
+                                        finish(); // prevent the user from returning to the sign up activity via the back button
+                                    } else {
+                                        dialog.dismiss();
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         } else {
+                            dialog.dismiss();
                             Toast.makeText(SignUpPage.this, "SignUp Failed. " + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
             }
+        });
+
+        signUpPassword.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (signUpPassword.getRight() - signUpPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (signUpPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
+                        signUpPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        signUpPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                    } else {
+                        signUpPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        signUpPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                    }
+                    signUpPassword.setSelection(signUpPassword.getText().length());
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        signUpConfirmPassword.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (signUpConfirmPassword.getRight() - signUpConfirmPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (signUpConfirmPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
+                        signUpConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        signUpConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                    } else {
+                        signUpConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        signUpConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                    }
+                    signUpConfirmPassword.setSelection(signUpConfirmPassword.getText().length());
+                    return true;
+                }
+            }
+            return false;
         });
 
         login = (Button) findViewById(R.id.login);
