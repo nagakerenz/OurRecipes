@@ -64,11 +64,11 @@ public class SignUpPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name, age, email, password, confirmPassword;
-                name = String.valueOf(signUpName.getText().toString());
-                age = String.valueOf(signUpAge.getText().toString());
-                email = String.valueOf(signUpEmail.getText().toString());
-                password = String.valueOf(signUpPassword.getText().toString());
-                confirmPassword = String.valueOf(signUpConfirmPassword.getText().toString());
+                name = String.valueOf(signUpName.getText().toString().trim());
+                age = String.valueOf(signUpAge.getText().toString().trim());
+                email = String.valueOf(signUpEmail.getText().toString().trim());
+                password = String.valueOf(signUpPassword.getText().toString().trim());
+                confirmPassword = String.valueOf(signUpConfirmPassword.getText().toString().trim());
 
                 if(TextUtils.isEmpty(name)) {
                     Toast.makeText(SignUpPage.this, "Enter Name", Toast.LENGTH_SHORT).show();
