@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,6 +55,7 @@ public class LoginPage extends AppCompatActivity {
 
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,10 +137,11 @@ public class LoginPage extends AppCompatActivity {
                 if (event.getRawX() >= (logInPassword.getRight() - logInPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                     if (logInPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
                         logInPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
+                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_lock_24, 0, R.drawable.ic_baseline_visibility_24, 0);
                     } else {
                         logInPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+                        logInPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_lock_24, 0, R.drawable.ic_baseline_visibility_off_24, 0);
+
                     }
                     logInPassword.setSelection(logInPassword.getText().length());
                     return true;
