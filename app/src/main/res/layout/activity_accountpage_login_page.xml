@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="SIGN IN"
+                android:text="Sign In"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="28sp"

@@ -58,7 +58,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Create Account"
-                    android:textColor="#1C68F6"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
