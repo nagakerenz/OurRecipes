@@ -31,6 +31,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +53,8 @@ public class ProfileFragment extends Fragment {
     ImageView displayPicture;
     TextView displayName;
     Button favorites, notification, account;
+    FirebaseAuth mAuth;
+
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
 
@@ -73,7 +76,9 @@ public class ProfileFragment extends Fragment {
 
         //This is for handling Displayed UserName
         SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String userName = prefs.getString("name", "");
+        String userId = mAuth.getInstance().getCurrentUser().getUid();
+        String userName = prefs.getString(userId, "");
+
         if (!TextUtils.isEmpty(userName)) {
             displayName.setText(userName);
         } else {
@@ -86,15 +91,31 @@ public class ProfileFragment extends Fragment {
                     if (user != null) {
                         String userId = user.getUid();
                         String name = "";
-                        for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
-                            User userProfile = itemSnapShot.getValue(User.class);
-                            if (userProfile.getUserId().equals(userId)) {
-                                name = userProfile.getName();
+                        boolean isFacebookUser = false;
+                        boolean isGoogleUser = false;
+                        for (UserInfo userInfo : user.getProviderData()) {
+                            if (userInfo.getProviderId().equals("facebook.com")) {
+                                isFacebookUser = true;
+                                name = user.getDisplayName();
+                                break;
+                            } else if (userInfo.getProviderId().equals("google.com")) {
+                                isGoogleUser = true;
+                                name = user.getDisplayName();
                                 break;
                             }
                         }
-                        // Cache the user name locally
-                        prefs.edit().putString("name", name).apply();
+                        if (!isFacebookUser && !isGoogleUser) {
+                            for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
+                                User userProfile = itemSnapShot.getValue(User.class);
+                                if (userProfile.getUserId().equals(userId)) {
+                                    name = userProfile.getName();
+                                    break;
+                                }
+                            }
+                        } else {
+                            // Replace locally cached name with Facebook or Google name
+                            prefs.edit().putString(userId, name).apply();
+                        }
                         displayName.setText(name);
                     }
                 }

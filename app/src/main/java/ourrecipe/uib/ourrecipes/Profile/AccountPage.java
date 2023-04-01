@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -179,8 +181,17 @@ public class AccountPage extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Firebase logout
                 mAuth.getInstance().signOut();
+
+                // Facebook logout
+                if (AccessToken.getCurrentAccessToken() != null) {
+                    LoginManager.getInstance().logOut();
+                }
+
+                // Google logout
                 gsc.signOut();
+
                 Toast.makeText(AccountPage.this, "Account Logout!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AccountPage.this, LoginPage.class));
                 finish(); // prevent the user from returning to the main activity via the back button

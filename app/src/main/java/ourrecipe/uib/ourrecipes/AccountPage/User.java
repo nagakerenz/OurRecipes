@@ -3,6 +3,13 @@ package ourrecipe.uib.ourrecipes.AccountPage;
 public class User {
     public String userId, name, age, email;
 
+    public User(String userId, String name, String age, String email) {
+        this.userId = userId;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -19,10 +26,11 @@ public class User {
         return email;
     }
 
-    public User(String userId, String name, String age, String email) {
-        this.userId = userId;
+    public void setName(String name) {
         this.name = name;
-        this.age = age;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 

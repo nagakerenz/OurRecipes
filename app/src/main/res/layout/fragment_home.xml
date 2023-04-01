@@ -21,42 +21,47 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Featured Topics"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
 
             <HorizontalScrollView
-                android:layout_width="320dp"
-                android:layout_height="175dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@null">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <ImageButton
                         android:layout_width="320dp"
-                        android:layout_height="match_parent"
-                        android:background="@null"
+                        android:layout_height="175dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/slide_learntocook"
-                        android:contentDescription="Learn to cook"
-                        />
+                        android:background="@drawable/slide_learntocook"
+                        android:contentDescription="Learn to cook"/>
 
                     <ImageButton
                         android:layout_width="320dp"
-                        android:layout_height="match_parent"
-                        android:background="@null"
+                        android:layout_height="175dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/slide_areyouondiet" />
+                        android:background="@drawable/slide_areyouondiet"/>
 
                     <ImageButton
                         android:layout_width="320dp"
-                        android:layout_height="match_parent"
-                        android:background="@null"
+                        android:layout_height="175dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/slide_carvingforsteak" />
+                        android:background="@drawable/slide_carvingforsteak"/>
+
                 </LinearLayout>
             </HorizontalScrollView>
 
