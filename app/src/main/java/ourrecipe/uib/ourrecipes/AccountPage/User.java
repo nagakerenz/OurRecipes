@@ -13,8 +13,8 @@ public class User {
         this.userId = userId;
         this.name = name;
         this.email = email;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        this.birthDate = format.format(birthDate.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        this.birthDate = birthDate != null ? format.format(birthDate.getTime()) : null;
         this.selectedDate = selectedDate != null ? selectedDate : "";
 
     }
@@ -40,7 +40,7 @@ public class User {
     }
 
     public void setBirthDateAsDate(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         try {
             String dateString = format.format(date);
             this.birthDate = dateString;
@@ -71,7 +71,7 @@ public class User {
     }
 
     public Date getBirthDateAsDate() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         try {
             return format.parse(birthDate);
         } catch (ParseException e) {

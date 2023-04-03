@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
@@ -78,9 +79,13 @@ public class SignUpPage extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         // Set the selected date in the Calendar instance
-                        selectedDate.set(Calendar.YEAR, year);
-                        selectedDate.set(Calendar.MONTH, month);
-                        selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        if (selectedDate != null) {
+                            selectedDate.set(Calendar.HOUR_OF_DAY, 0);
+                            selectedDate.set(Calendar.MINUTE, 0);
+                            selectedDate.set(Calendar.SECOND, 0);
+                            selectedDate.set(Calendar.MILLISECOND, 0);
+                        }
+
                         // Format the date as a string and set it in the EditText
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
                         signUpAge.setText(sdf.format(selectedDate.getTime()));
@@ -164,8 +169,13 @@ public class SignUpPage extends AppCompatActivity {
                                 signUpAge.requestFocus();
                                 return;
                             }
-
                             String birthDateString = user.getBirthDate(); // Get the birth date as a string for storage in Firebase
+
+//                            HashMap<String, String> userData = new HashMap<>();
+//                            userData.put("name", name);
+//                            userData.put("email", email);
+//                            userData.put("birthDate", age);
+
                             FirebaseDatabase.getInstance().getReference("User Profile").child("User").child(userId)
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

@@ -287,7 +287,7 @@ public class LoginPage extends AppCompatActivity {
                                 googleUser.setBirthDate(birthdateCalendar);
 
                                 // set the selected date on the user object
-                                String selectedDate = "2002-05-02"; // Replace with your desired date format and value
+                                String selectedDate = "dd/MM/yyyy"; // Replace with your desired date format and value
                                 googleUser.setSelectedDate(selectedDate);
 
                                 // save the Google user's information under the "GoogleUser" node in the Realtime Database
