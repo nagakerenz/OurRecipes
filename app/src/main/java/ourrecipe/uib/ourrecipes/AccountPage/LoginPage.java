@@ -52,6 +52,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
@@ -271,11 +273,25 @@ public class LoginPage extends AppCompatActivity {
 
                                 // create a new User object to store the Google user's name and email
                                 User googleUser = new User();
+                                googleUser.setUserId(user.getUid());
                                 googleUser.setName(user.getDisplayName());
                                 googleUser.setEmail(user.getEmail());
 
+                                // get the birthdate from the user's Google account
+                                String birthdate = String.valueOf(user.getMetadata().getCreationTimestamp());
+                                // create a Calendar object for the birthdate
+                                Calendar birthdateCalendar = Calendar.getInstance();
+                                birthdateCalendar.setTimeInMillis(Long.parseLong(birthdate));
+
+                                // set the birthdate on the user object
+                                googleUser.setBirthDate(birthdateCalendar);
+
+                                // set the selected date on the user object
+                                String selectedDate = "2002-05-02"; // Replace with your desired date format and value
+                                googleUser.setSelectedDate(selectedDate);
+
                                 // save the Google user's information under the "GoogleUser" node in the Realtime Database
-                                database.getReference().child("GoogleUser").child(user.getUid()).setValue(googleUser);
+                                database.getReference().child("User Profile").child("GoogleUser").child(user.getUid()).setValue(googleUser);
 
                                 // After successful login, check if this is the user's first time logging in
                                 SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -333,7 +349,7 @@ public class LoginPage extends AppCompatActivity {
                             facebookUser.setEmail(user.getEmail());
 
                             // save the Facebook user's information under the "FacebookUser" node in the Realtime Database
-                            database.getReference().child("FacebookUser").child(user.getUid()).setValue(facebookUser);
+                            database.getReference().child("User Profile").child("FacebookUser").child(user.getUid()).setValue(facebookUser);
 
                             // After successful login, check if this is the user's first time logging in
                             FirebaseUser currentUser = mAuth.getCurrentUser();

@@ -116,7 +116,7 @@ public class AccountPage extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String userName = prefs.getString("name", "");
         String userEmail = prefs.getString("email", "");
-        String userAge = prefs.getString("age", "");
+        String userAge = prefs.getString("birthDate", "");
         if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userAge)) {
             displayedName.setText(userName);
             displayedEmail.setText(userEmail);
@@ -132,19 +132,19 @@ public class AccountPage extends AppCompatActivity {
                         String userId = user.getUid();
                         String name = "";
                         String email = "";
-                        String age = "";
+                        String birthDate = "";
                         for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
                             User userProfile = itemSnapShot.getValue(User.class);
                             if (userProfile.getUserId().equals(userId)) {
                                 name = userProfile.getName();
                                 email = userProfile.getEmail();
-                                age = userProfile.getAge();
+                                birthDate = userProfile.getBirthDate();
                                 break;
                             }
                         }
                         displayedName.setText(name);
                         displayedEmail.setText(email);
-                        displayedAge.setText(age);
+                        displayedAge.setText(birthDate);
                     }
                 }
                 @Override

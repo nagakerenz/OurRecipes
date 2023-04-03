@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -33,6 +35,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
@@ -46,6 +52,9 @@ public class SignUpPage extends AppCompatActivity {
     Button login;
     FirebaseAuth mAuth;
 
+    private Calendar selectedDate = Calendar.getInstance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +63,33 @@ public class SignUpPage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         signUpName = findViewById(R.id.name);
-        signUpAge = findViewById(R.id.age);
+        signUpAge = findViewById(R.id.birthDate);
         signUpEmail = findViewById(R.id.email);
         signUpPassword = findViewById(R.id.password);
         signUpConfirmPassword = findViewById(R.id.confirmPassword);
         signUp = findViewById(R.id.signUp);
+        signUpAge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a Calendar instance to hold the selected date
+                final Calendar selectedDate = Calendar.getInstance();
+                // Create a DatePickerDialog to allow the user to select their date of birth
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpPage.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Set the selected date in the Calendar instance
+                        selectedDate.set(Calendar.YEAR, year);
+                        selectedDate.set(Calendar.MONTH, month);
+                        selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        // Format the date as a string and set it in the EditText
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+                        signUpAge.setText(sdf.format(selectedDate.getTime()));
+                    }
+                }, selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
+
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,8 +153,20 @@ public class SignUpPage extends AppCompatActivity {
 
                             // Save user data into firebase database
                             String userId = mAuth.getCurrentUser().getUid();
-                            User user = new User(userId, name, age, email);
-                            FirebaseDatabase.getInstance().getReference("User Profile").child(userId)
+                            User user = new User(userId, name, email, null, null);
+
+                            if(selectedDate != null) {
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(selectedDate.getTime());
+                                user.setBirthDateAsDate(cal.getTime()); // Set the birth date as a Date object
+                            } else {
+                                Toast.makeText(SignUpPage.this, "Enter Your Birth Date", Toast.LENGTH_SHORT).show();
+                                signUpAge.requestFocus();
+                                return;
+                            }
+
+                            String birthDateString = user.getBirthDate(); // Get the birth date as a string for storage in Firebase
+                            FirebaseDatabase.getInstance().getReference("User Profile").child("User").child(userId)
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -148,7 +191,7 @@ public class SignUpPage extends AppCompatActivity {
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString("name", "");
                             editor.putString("email", "");
-                            editor.putString("age", "");
+                            editor.putString("birthDate", "");
                             editor.apply();
 
                         } else {
