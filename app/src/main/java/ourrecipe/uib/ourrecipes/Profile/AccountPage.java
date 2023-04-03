@@ -46,8 +46,8 @@ import ourrecipe.uib.ourrecipes.ui.profile.ProfileFragment;
 public class AccountPage extends AppCompatActivity {
     ImageView userPicture;
     TextView displayedName, displayedEmail, displayedPassword, displayedAge;
-    ImageButton uploadImage, nameEdit, emailEdit, passwordEdit, ageEdit ;
-    Button logout, delete;
+    ImageButton uploadImage, emailEdit, passwordEdit ;
+    Button changePassword, changeEmail, logout, delete;
     FirebaseAuth mAuth;
     FirebaseUser user;
     GoogleSignInClient gsc;
@@ -64,17 +64,19 @@ public class AccountPage extends AppCompatActivity {
         setContentView(R.layout.activity_profile_account_page);
 
         userPicture = findViewById(R.id.displayPicture);
-        displayedName = findViewById(R.id.displayName);
-        displayedEmail = findViewById(R.id.displayEmail);
-        displayedPassword = findViewById(R.id.displayPass);
-        displayedAge = findViewById(R.id.displayBirth);
+//        displayedName = findViewById(R.id.displayName);
+//        displayedEmail = findViewById(R.id.displayEmail);
+//        displayedPassword = findViewById(R.id.displayPass);
+//        displayedAge = findViewById(R.id.displayBirth);
+//
+//        uploadImage = findViewById(R.id.editProfilePicture);
+//        nameEdit = findViewById(R.id.editName);
+//        emailEdit = findViewById(R.id.editEmail);
+//        passwordEdit = findViewById(R.id.editPass);
+//        ageEdit = findViewById(R.id.editBirth);
 
-        uploadImage = findViewById(R.id.editProfilePicture);
-        nameEdit = findViewById(R.id.editName);
-        emailEdit = findViewById(R.id.editEmail);
-        passwordEdit = findViewById(R.id.editPass);
-        ageEdit = findViewById(R.id.editBirth);
-
+        changeEmail = findViewById(R.id.changeEmail);
+        changePassword = findViewById(R.id.changePassword);
         logout = findViewById(R.id.logOut);
         delete = findViewById(R.id.deleteAccount);
 
