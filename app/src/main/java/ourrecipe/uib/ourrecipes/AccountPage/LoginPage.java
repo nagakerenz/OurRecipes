@@ -51,9 +51,12 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
@@ -263,45 +266,29 @@ public class LoginPage extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()) {
+                            if (task.isSuccessful()) {
                                 dialog.dismiss();
 
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithCredential:success");
-                                user = mAuth.getCurrentUser();
-                                assert user != null;
+                                // Get user information
+                                String userId, name, email;
+                                userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                name = account.getDisplayName();
+                                email = account.getEmail();
 
-                                // create a new User object to store the Google user's name and email
-                                User googleUser = new User();
-                                googleUser.setUserId(user.getUid());
-                                googleUser.setName(user.getDisplayName());
-                                googleUser.setEmail(user.getEmail());
+                                User googleUser = new User(userId, name, email, null);
 
-                                // get the birthdate from the user's Google account
-                                String birthdate = String.valueOf(user.getMetadata().getCreationTimestamp());
-                                // create a Calendar object for the birthdate
-                                Calendar birthdateCalendar = Calendar.getInstance();
-                                birthdateCalendar.setTimeInMillis(Long.parseLong(birthdate));
-
-                                // set the birthdate on the user object
-                                googleUser.setBirthDate(birthdateCalendar);
-
-                                // set the selected date on the user object
-                                String selectedDate = "dd/MM/yyyy"; // Replace with your desired date format and value
-                                googleUser.setSelectedDate(selectedDate);
-
-                                // save the Google user's information under the "GoogleUser" node in the Realtime Database
-                                database.getReference().child("User Profile").child("GoogleUser").child(user.getUid()).setValue(googleUser);
+                                //save the Google user's information under the "GoogleUser" node in the Realtime Database
+                                databaseReference = FirebaseDatabase.getInstance().getReference();
+                                databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
 
                                 // After successful login, check if this is the user's first time logging in
                                 SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + user.getUid(), true);
+                                boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + userId, true);
                                 if (isFirstTimeLogin) {
                                     // User is logging in for the first time, go to sign up page
                                     Intent intent = new Intent(LoginPage.this, PreferencePage.class);
-                                    intent.putExtra("name", Objects.requireNonNull(user.getDisplayName()).toString());
                                     startActivity(intent);
-                                    preferences.edit().putBoolean("isFirstTimeLogin_" + user.getUid(), false).apply();
+                                    preferences.edit().putBoolean("isFirstTimeLogin_" + userId, false).apply();
                                 } else {
                                     // User is not logging in for the first time, go to main activity
                                     startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));

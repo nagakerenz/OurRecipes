@@ -6,17 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class User {
-    public String userId, name, email, birthDate, selectedDate;
+    public String userId, name, email, birthDate;
 
-
-    public User(String userId, String name, String email, Calendar birthDate, String selectedDate) {
+    public User(String userId, String name, String email, String birthDate) {
         this.userId = userId;
         this.name = name;
+        this.birthDate = birthDate;
         this.email = email;
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        this.birthDate = birthDate != null ? format.format(birthDate.getTime()) : null;
-        this.selectedDate = selectedDate != null ? selectedDate : "";
-
     }
 
     public String getUserId() {
@@ -27,26 +23,12 @@ public class User {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public String getBirthDate() {
         return birthDate;
     }
 
-    public String getSelectedDate() {
-        return selectedDate;
-    }
-
-    public void setBirthDateAsDate(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            String dateString = format.format(date);
-            this.birthDate = dateString;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public String getEmail() {
+        return email;
     }
 
     public void setUserId(String userId) {
@@ -61,23 +43,8 @@ public class User {
         this.email = email;
     }
 
-    public void setBirthDate(Calendar birthDate) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        this.birthDate = format.format(birthDate.getTime());
-    }
-
-    public void setSelectedDate(String selectedDate) {
-        this.selectedDate = selectedDate;
-    }
-
-    public Date getBirthDateAsDate() {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return format.parse(birthDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public User() {

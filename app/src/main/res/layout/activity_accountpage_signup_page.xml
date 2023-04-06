@@ -86,7 +86,9 @@
                     android:drawableRight="@drawable/baseline_calendar_month_24"
                     android:inputType="date"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp" />
+                    android:paddingEnd="16dp"
+                    android:focusable="false"
+                    android:clickable="true" />
 
                 <EditText
                     android:id="@+id/email"

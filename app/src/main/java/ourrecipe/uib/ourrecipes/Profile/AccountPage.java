@@ -112,48 +112,48 @@ public class AccountPage extends AppCompatActivity {
             }
         });
 
-        //This is for handling Displayed UserName
-        SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String userName = prefs.getString("name", "");
-        String userEmail = prefs.getString("email", "");
-        String userAge = prefs.getString("birthDate", "");
-        if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userAge)) {
-            displayedName.setText(userName);
-            displayedEmail.setText(userEmail);
-            displayedAge.setText(userAge);
-        } else {
-            // User name is not available locally, retrieve it from Firebase
-            databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
-            eventListener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
-                        String userId = user.getUid();
-                        String name = "";
-                        String email = "";
-                        String birthDate = "";
-                        for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
-                            User userProfile = itemSnapShot.getValue(User.class);
-                            if (userProfile.getUserId().equals(userId)) {
-                                name = userProfile.getName();
-                                email = userProfile.getEmail();
-                                birthDate = userProfile.getBirthDate();
-                                break;
-                            }
-                        }
-                        displayedName.setText(name);
-                        displayedEmail.setText(email);
-                        displayedAge.setText(birthDate);
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(AccountPage.this, "Failed to read value.", Toast.LENGTH_SHORT).show();
-                }
-            };
-            databaseReference.addValueEventListener(eventListener);
-        }
+//        //This is for handling Displayed UserName
+//        SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+//        String userName = prefs.getString("name", "");
+//        String userEmail = prefs.getString("email", "");
+//        String userAge = prefs.getString("birthDate", "");
+//        if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userAge)) {
+//            displayedName.setText(userName);
+//            displayedEmail.setText(userEmail);
+//            displayedAge.setText(userAge);
+//        } else {
+//            // User name is not available locally, retrieve it from Firebase
+//            databaseReference = FirebaseDatabase.getInstance().getReference("User Profile");
+//            eventListener = new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                    if (user != null) {
+//                        String userId = user.getUid();
+//                        String name = "";
+//                        String email = "";
+//                        String birthDate = "";
+//                        for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
+//                            User userProfile = itemSnapShot.getValue(User.class);
+//                            if (userProfile.getUserId().equals(userId)) {
+//                                name = userProfile.getName();
+//                                email = userProfile.getEmail();
+//                                birthDate = userProfile.getBirthDate();
+//                                break;
+//                            }
+//                        }
+//                        displayedName.setText(name);
+//                        displayedEmail.setText(email);
+//                        displayedAge.setText(birthDate);
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                    Toast.makeText(AccountPage.this, "Failed to read value.", Toast.LENGTH_SHORT).show();
+//                }
+//            };
+//            databaseReference.addValueEventListener(eventListener);
+//        }
 
         //This uses a button to save it into the firebase, currently im working on something else with this problem
 //        saveProfileImage.setOnClickListener(new View.OnClickListener() {

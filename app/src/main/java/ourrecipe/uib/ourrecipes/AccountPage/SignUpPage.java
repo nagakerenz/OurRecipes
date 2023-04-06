@@ -36,8 +36,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -52,8 +54,9 @@ public class SignUpPage extends AppCompatActivity {
     Button signUp;
     Button login;
     FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
 
-    private Calendar selectedDate = Calendar.getInstance();
+    private Calendar selectedDate;
 
 
 
@@ -69,32 +72,13 @@ public class SignUpPage extends AppCompatActivity {
         signUpPassword = findViewById(R.id.password);
         signUpConfirmPassword = findViewById(R.id.confirmPassword);
         signUp = findViewById(R.id.signUp);
+
         signUpAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create a Calendar instance to hold the selected date
-                final Calendar selectedDate = Calendar.getInstance();
-                // Create a DatePickerDialog to allow the user to select their date of birth
-                DatePickerDialog datePickerDialog = new DatePickerDialog(SignUpPage.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Set the selected date in the Calendar instance
-                        if (selectedDate != null) {
-                            selectedDate.set(Calendar.HOUR_OF_DAY, 0);
-                            selectedDate.set(Calendar.MINUTE, 0);
-                            selectedDate.set(Calendar.SECOND, 0);
-                            selectedDate.set(Calendar.MILLISECOND, 0);
-                        }
-
-                        // Format the date as a string and set it in the EditText
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-                        signUpAge.setText(sdf.format(selectedDate.getTime()));
-                    }
-                }, selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.show();
+                showDatePickerDialog();
             }
         });
-
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +92,12 @@ public class SignUpPage extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(name)) {
                     Toast.makeText(SignUpPage.this, "Enter Name", Toast.LENGTH_SHORT).show();
+                    signUpName.requestFocus();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(age)) {
+                    Toast.makeText(SignUpPage.this, "Enter Your BirthDate", Toast.LENGTH_SHORT).show();
                     signUpName.requestFocus();
                     return;
                 }
@@ -156,25 +146,20 @@ public class SignUpPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             dialog.dismiss();
 
-                            // Save user data into firebase database
                             String userId = mAuth.getCurrentUser().getUid();
-                            User user = new User(userId, name, email, null, null);
+                            User user = new User(userId, name, email, null);
 
-                            if(selectedDate != null) {
-                                Calendar cal = Calendar.getInstance();
-                                cal.setTime(selectedDate.getTime());
-                                user.setBirthDateAsDate(cal.getTime()); // Set the birth date as a Date object
+                            // Check if a date has been selected
+                            if (selectedDate != null) {
+                                // Convert birth date to string for storage in Firebase
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                String birthDateString = sdf.format(selectedDate.getTime());
+                                user.setBirthDate(birthDateString);
                             } else {
                                 Toast.makeText(SignUpPage.this, "Enter Your Birth Date", Toast.LENGTH_SHORT).show();
                                 signUpAge.requestFocus();
                                 return;
                             }
-                            String birthDateString = user.getBirthDate(); // Get the birth date as a string for storage in Firebase
-
-//                            HashMap<String, String> userData = new HashMap<>();
-//                            userData.put("name", name);
-//                            userData.put("email", email);
-//                            userData.put("birthDate", age);
 
                             FirebaseDatabase.getInstance().getReference("User Profile").child("User").child(userId)
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -196,12 +181,10 @@ public class SignUpPage extends AppCompatActivity {
                                 }
                             });
 
-                            // Store user data in SharedPreferences
+                            // Store user name in SharedPreferences
                             SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("name", "");
-                            editor.putString("email", "");
-                            editor.putString("birthDate", "");
+                            editor.putString("name", name);
                             editor.apply();
 
                         } else {
@@ -259,6 +242,46 @@ public class SignUpPage extends AppCompatActivity {
         });
         getSupportActionBar().hide();
     }
+
+    private void showDatePickerDialog() {
+        // Get the current date
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Create a new DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        // Store the selected date
+                        selectedDate = Calendar.getInstance();
+                        selectedDate.set(year, monthOfYear, dayOfMonth);
+
+                        // Set the selected date to the EditText
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        String formattedDate = sdf.format(selectedDate.getTime());
+                        signUpAge.setText(formattedDate);
+                    }
+                },
+                year, month, day
+        );
+
+        // Set the maximum date to today's date
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+        // Show the DatePickerDialog
+        datePickerDialog.show();
+
+        // If a date has already been selected, set the DatePickerDialog to that date
+        if (selectedDate != null) {
+            datePickerDialog.updateDate(selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
+        }
+    }
+
+
 
     public void openLogin() {
         Intent login = new Intent(SignUpPage.this, LoginPage.class);
