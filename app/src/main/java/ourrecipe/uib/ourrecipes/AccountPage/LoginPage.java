@@ -293,7 +293,16 @@ public class LoginPage extends AppCompatActivity {
                                     // User is not logging in for the first time, go to main activity
                                     startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
                                 }
+
+                                // Save user's display name to SharedPreferences
+                                SharedPreferences displayNamePreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = displayNamePreferences.edit();
+                                editor.putString(userId, name); // use the user's ID as the key
+                                editor.apply();
+
                                 finish(); // prevent the user from returning to the login activity via the back button
+
+
                             } else {
                                 dialog.dismiss();
                                 Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -332,6 +341,7 @@ public class LoginPage extends AppCompatActivity {
 
                             // create a new User object to store the Facebook user's name and email
                             User facebookUser = new User();
+                            facebookUser.setUserId(user.getUid());
                             facebookUser.setName(user.getDisplayName());
                             facebookUser.setEmail(user.getEmail());
 
@@ -352,6 +362,11 @@ public class LoginPage extends AppCompatActivity {
                                 // User is not logging in for the first time, go to main activity
                                 startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
                             }
+
+                            // Save the display name in shared preferences
+                            SharedPreferences displayNamePreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            displayNamePreferences.edit().putString(user.getUid(), user.getDisplayName()).apply(); // Store display name with user ID as the key
+
                             finish(); // prevent the user from returning to the login activity via the back button
                         } else {
                             dialog.dismiss();

@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         account = (Button) root.findViewById(R.id.account);
 
         //This is for handling Displayed UserName
-        SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         String userId = mAuth.getInstance().getCurrentUser().getUid();
         String userName = prefs.getString(userId, "");
 
@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
                         if (!isFacebookUser && !isGoogleUser) {
                             for (DataSnapshot itemSnapShot : snapshot.getChildren()) {
                                 User userProfile = itemSnapShot.getValue(User.class);
-                                if (userProfile.getUserId().equals(userId)) {
+                                if (userProfile != null && userProfile.getUserId() != null && userProfile.getUserId().equals(userId)) {
                                     name = userProfile.getName();
                                     break;
                                 }

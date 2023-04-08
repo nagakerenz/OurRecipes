@@ -146,7 +146,7 @@ public class SignUpPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             dialog.dismiss();
 
-                            String userId = mAuth.getCurrentUser().getUid();
+                            String userId = mAuth.getInstance().getCurrentUser().getUid();
                             User user = new User(userId, name, email, null);
 
                             // Check if a date has been selected
@@ -181,10 +181,10 @@ public class SignUpPage extends AppCompatActivity {
                                 }
                             });
 
-                            // Store user name in SharedPreferences
-                            SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("name", name);
+                            // Save user's display name to SharedPreferences
+                            SharedPreferences displayNamePreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = displayNamePreferences.edit();
+                            editor.putString(userId, name); // use the user's ID as the key
                             editor.apply();
 
                         } else {
