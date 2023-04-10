@@ -65,7 +65,7 @@ public class AccountPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_account_page);
 
-        userPicture = findViewById(R.id.displayPicture);
+//        userPicture = findViewById(R.id.displayPicture);
 //        displayedName = findViewById(R.id.displayName);
 //        displayedEmail = findViewById(R.id.displayEmail);
 //        displayedPassword = findViewById(R.id.displayPass);
@@ -89,30 +89,30 @@ public class AccountPage extends AppCompatActivity {
                 .build();
         gsc = GoogleSignIn.getClient(this, gso);
 
-        //THIS IS FOR HANDLING THE UPLOAD IMAGE TO FIREBASE DATA
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        uri = data.getData();
-                        userPicture.setImageURI(uri);
-                    } else {
-                        Toast.makeText(AccountPage.this, "No Image Selected", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        );
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
-            }
-        });
+//        //THIS IS FOR HANDLING THE UPLOAD IMAGE TO FIREBASE DATA
+//        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if(result.getResultCode() == Activity.RESULT_OK){
+//                        Intent data = result.getData();
+//                        uri = data.getData();
+//                        userPicture.setImageURI(uri);
+//                    } else {
+//                        Toast.makeText(AccountPage.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        );
+//        uploadImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent photoPicker = new Intent(Intent.ACTION_PICK);
+//                photoPicker.setType("image/*");
+//                activityResultLauncher.launch(photoPicker);
+//            }
+//        });
 
 //        //This is for handling Displayed UserName
 //        SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -165,14 +165,14 @@ public class AccountPage extends AppCompatActivity {
 //            }
 //        });
 
-        emailEdit.setOnClickListener(new View.OnClickListener() {
+        changeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openEmailPage();
             }
         });
 
-        passwordEdit.setOnClickListener(new View.OnClickListener() {
+        changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openPasswordPage();

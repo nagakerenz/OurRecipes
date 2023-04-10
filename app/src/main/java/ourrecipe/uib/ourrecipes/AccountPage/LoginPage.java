@@ -11,7 +11,9 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -27,6 +29,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -41,6 +46,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -48,9 +54,16 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -179,6 +192,20 @@ public class LoginPage extends AppCompatActivity {
             return false;
         });
 
+        //THIS IS FOR HANDLING GOOGLE LOG IN
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        gsc = GoogleSignIn.getClient(LoginPage.this, gso);
+        logInGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = gsc.getSignInIntent();
+                startActivityForResult(i, 1234);
+            }
+        });
+
         //THIS IS FOR HANDLING FACEBOOK LOG IN
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
@@ -205,21 +232,6 @@ public class LoginPage extends AppCompatActivity {
                 });
             }
         });
-
-        //THIS IS FOR HANDLING GOOGLE LOG IN
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        gsc = GoogleSignIn.getClient(LoginPage.this, gso);
-        logInGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = gsc.getSignInIntent();
-                startActivityForResult(i, 1234);
-            }
-        });
-
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,6 +280,7 @@ public class LoginPage extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 dialog.dismiss();
+                                Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
                                 // Get user information
                                 String userId, name, email;
@@ -275,24 +288,97 @@ public class LoginPage extends AppCompatActivity {
                                 name = account.getDisplayName();
                                 email = account.getEmail();
 
-                                User googleUser = new User(userId, name, email, null);
+                                // Retrieve the user's profile picture URL
+                                String photoUrl = null;
+                                if (account.getPhotoUrl() != null) {
+                                    photoUrl = account.getPhotoUrl().toString();
+                                }
 
-                                //save the Google user's information under the "GoogleUser" node in the Realtime Database
-                                databaseReference = FirebaseDatabase.getInstance().getReference();
-                                databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
+                                // Upload the profile picture to Firebase Storage
+                                if (photoUrl != null) {
+                                    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                                    StorageReference profilePicRef = storageRef.child("User Profile Pictures").child(userId + ".jpg");
+
+                                    // Create a byte array stream from the URL of the profile picture
+                                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                    Glide.with(LoginPage.this)
+                                            .asBitmap()
+                                            .load(photoUrl)
+                                            .into(new SimpleTarget<Bitmap>() {
+                                                @Override
+                                                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                                    resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                                                    byte[] data = baos.toByteArray();
+
+                                                    // Upload the byte array to Firebase Storage
+                                                    UploadTask uploadTask = profilePicRef.putBytes(data);
+                                                    uploadTask.addOnCompleteListener(task -> {
+                                                        if (task.isSuccessful()) {
+                                                            // Get the download URL of the uploaded profile picture
+                                                            profilePicRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                                                String profilePicUrl = uri.toString();
+
+                                                                User googleUser = new User(userId, name, email, null, profilePicUrl); // Update User object with profile picture URL
+
+                                                                // Save the Google user's information under the "GoogleUser" node in the Realtime Database
+                                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                                                databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
+
+                                                                // Rest of your code here
+                                                                // ...
+                                                            }).addOnFailureListener(e -> {
+                                                                // Handle failure to get download URL
+                                                                dialog.dismiss();
+                                                                Toast.makeText(LoginPage.this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
+                                                            });
+                                                        } else {
+                                                            // Handle failure to upload profile picture
+                                                            dialog.dismiss();
+                                                            Toast.makeText(LoginPage.this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                } else {
+                                    // If profile picture URL is null, save User object without profile picture URL
+                                    User googleUser = new User(userId, name, email, null, null); // Update User object without profile picture URL
+
+                                    // Save the Google user's information under the "GoogleUser" node in the Realtime Database
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                    databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
+                                }
 
                                 // After successful login, check if this is the user's first time logging in
-                                SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                                boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + userId, true);
-                                if (isFirstTimeLogin) {
-                                    // User is logging in for the first time, go to sign up page
-                                    Intent intent = new Intent(LoginPage.this, PreferencePage.class);
-                                    startActivity(intent);
-                                    preferences.edit().putBoolean("isFirstTimeLogin_" + userId, false).apply();
-                                } else {
-                                    // User is not logging in for the first time, go to main activity
-                                    startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
-                                }
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                DatabaseReference usersRef = databaseReference.child("User Profile").child("GoogleUser").child(userId);
+                                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            // User data exists in Firebase Realtime Database
+                                            // Check if it's the first time the user is logging in
+                                            Boolean isFirstTimeLogin = dataSnapshot.child("isFirstTimeLogin").getValue(Boolean.class);
+                                            if (isFirstTimeLogin != null && isFirstTimeLogin) {
+                                                // Redirect to preference activity
+                                                Intent intent = new Intent(LoginPage.this, PreferencePage.class);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                // Redirect to bottom navigation bar pages
+                                                Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        } else {
+                                            // User data does not exist in Firebase Realtime Database
+                                            Toast.makeText(LoginPage.this, "User data not found", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        Toast.makeText(LoginPage.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
                                 // Save user's display name to SharedPreferences
                                 SharedPreferences displayNamePreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -333,6 +419,7 @@ public class LoginPage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             dialog.dismiss();
+                            Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
@@ -407,7 +494,5 @@ public class LoginPage extends AppCompatActivity {
                 isBackPressedOnce = false;
             }
         },2000);
-
-
     }
 }

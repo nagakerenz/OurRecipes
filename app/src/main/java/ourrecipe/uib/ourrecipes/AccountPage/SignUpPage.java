@@ -147,7 +147,7 @@ public class SignUpPage extends AppCompatActivity {
                             dialog.dismiss();
 
                             String userId = mAuth.getInstance().getCurrentUser().getUid();
-                            User user = new User(userId, name, email, null);
+                            User user = new User(userId, name, email, null, null);
 
                             // Check if a date has been selected
                             if (selectedDate != null) {

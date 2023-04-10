@@ -41,11 +41,14 @@ public class BottomNavigationBar extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-//        inputTextName = getIntent().getStringExtra("inputText");
-//        navView.setOnNavigationItemSelectedListener(navListener);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                new HomeFragment()).commit();
-
+//      This is for handling the logic, to go directly to fragment HOme
+//        String fragmentToShow = getIntent().getStringExtra("FRAGMENT_TO_SHOW");
+//        if (fragmentToShow != null && fragmentToShow.equals("HOME")) {
+//            // Show the home fragment
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.container, new HomeFragment());
+//            transaction.commit();
+//        }
 
         getSupportActionBar().hide();
     }

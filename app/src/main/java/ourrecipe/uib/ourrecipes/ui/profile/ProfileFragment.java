@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,6 +44,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.net.URI;
 
 import ourrecipe.uib.ourrecipes.AccountPage.DataClass;
+import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.AccountPage.SignUpPage;
 import ourrecipe.uib.ourrecipes.AccountPage.User;
 import ourrecipe.uib.ourrecipes.Profile.AccountPage;
@@ -50,7 +54,7 @@ import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-    ImageView displayPicture;
+    ImageView profilePicture;
     TextView displayName;
     Button favorites, notification, account;
     FirebaseAuth mAuth;
@@ -68,15 +72,46 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        displayPicture = (ImageView) root.findViewById(R.id.displayPicture);
+        profilePicture = (ImageView) root.findViewById(R.id.displayPicture);
         displayName = (TextView) root.findViewById(R.id.displayName);
         favorites = (Button) root.findViewById(R.id.favorites);
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
 
+        // This is for handling Display Picture
+        // Retrieve the user's profile picture URL from Realtime Database
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User Profile").child("GoogleUser").child(userId);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    User user = snapshot.getValue(User.class);
+                    String profilePicUrl = user.getProfilePictureUrl();
+
+                    // Load the profile picture using Glide
+                    if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+                        Glide.with(ProfileFragment.this.getActivity())
+                                .load(profilePicUrl)
+                                .placeholder(R.drawable.lunch_kebab) // Placeholder image while loading
+                                .error(R.drawable.lunch_chickenkatsu) // Error image if loading fails
+                                .into(profilePicture); // ImageView where you want to load the profile picture
+                    } else {
+                        Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture Cause There are no data in the database", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture Because Database Error" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //This is for handling Displayed UserName
         SharedPreferences prefs = getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        String userId = mAuth.getInstance().getCurrentUser().getUid();
         String userName = prefs.getString(userId, "");
 
         if (!TextUtils.isEmpty(userName)) {
@@ -169,8 +204,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Remove the ValueEventListener
-        databaseReference.removeEventListener(eventListener);
+        // Check if databaseReference is not null and eventListener has been added
+        if (databaseReference != null && eventListener != null) {
+            // Remove the ValueEventListener
+            databaseReference.removeEventListener(eventListener);
+        }
         binding = null;
     }
 

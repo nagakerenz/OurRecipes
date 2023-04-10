@@ -5,10 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 
 public class PreferencePage extends AppCompatActivity {
+
+    private boolean isBackPressedOnce = false;
     Button buttondone;
     Button buttonskip;
 
@@ -38,6 +44,25 @@ public class PreferencePage extends AppCompatActivity {
     public void openHomePage(){
         Intent homepage = new Intent(PreferencePage.this, BottomNavigationBar.class);
         startActivity(homepage);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isBackPressedOnce){
+            finishAffinity();
+            finish();
+            return;
+        }
+
+        Toast.makeText(PreferencePage.this, "Press Again To Exit Apps!", Toast.LENGTH_SHORT).show();
+        isBackPressedOnce = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        },2000);
     }
 
 }

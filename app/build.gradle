@@ -43,13 +43,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation 'com.android.car.ui:car-ui-lib:2.3.0'
+    implementation 'com.android.car.ui:car-ui-lib:2.4.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.google.firebase:firebase-auth:21.2.0'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     implementation 'com.facebook.android:facebook-login:[version]'
-    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-storage:20.1.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
@@ -61,4 +61,6 @@ dependencies {
     implementation ('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0') {
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
     }
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
