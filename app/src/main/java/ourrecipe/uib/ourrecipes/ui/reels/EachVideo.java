@@ -15,7 +15,7 @@ public class EachVideo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reels_each_video);
+        setContentView(R.layout.fragment_reels_each_video);
 
         cbLove= (CheckBox) findViewById(R.id.cbLove);
         cbLove.setOnClickListener(new View.OnClickListener() {

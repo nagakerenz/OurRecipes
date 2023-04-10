@@ -23,8 +23,22 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_weight="1"
+        android:layout_marginEnd="16dp"
         android:button="@drawable/favorite_red_to_white"
         app:useMaterialThemeColors="false"
+        app:layout_constraintBottom_toTopOf="@+id/comment"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/comment"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:src="@drawable/reels_comment"
+        app:tint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/sendButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -33,6 +47,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_weight="1"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:rotation="-30"
         android:src="@drawable/ic_baseline_send_24"
@@ -46,6 +61,7 @@
         android:layout_height="64dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:src="@drawable/ic_baseline_more_horiz_24"
         app:tint="#FFFFFF"
