@@ -75,6 +75,7 @@ import java.util.Objects;
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
 import ourrecipe.uib.ourrecipes.PreferencePage;
 import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -265,7 +266,6 @@ public class LoginPage extends AppCompatActivity {
         //THIS IS FOR HANDLING FACEBOOK SIGN IN
         // Pass the activity result back to the Facebook SDK
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        dialog.dismiss();
 
         //THIS IS FOR HANDLING GOOGLE SIGN IN
         if (requestCode == 1234) {
@@ -297,7 +297,7 @@ public class LoginPage extends AppCompatActivity {
                                 // Upload the profile picture to Firebase Storage
                                 if (photoUrl != null) {
                                     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-                                    StorageReference profilePicRef = storageRef.child("User Profile Pictures").child(userId + ".jpg");
+                                    StorageReference profilePicRef = storageRef.child("User Profile Pictures").child("GoogleUser").child(userId + ".jpg");
 
                                     // Create a byte array stream from the URL of the profile picture
                                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -323,9 +323,6 @@ public class LoginPage extends AppCompatActivity {
                                                                 // Save the Google user's information under the "GoogleUser" node in the Realtime Database
                                                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                                                                 databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
-
-                                                                // Rest of your code here
-                                                                // ...
                                                             }).addOnFailureListener(e -> {
                                                                 // Handle failure to get download URL
                                                                 dialog.dismiss();
@@ -347,38 +344,17 @@ public class LoginPage extends AppCompatActivity {
                                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                                     databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
                                 }
-
                                 // After successful login, check if this is the user's first time logging in
-                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                DatabaseReference usersRef = databaseReference.child("User Profile").child("GoogleUser").child(userId);
-                                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.exists()) {
-                                            // User data exists in Firebase Realtime Database
-                                            // Check if it's the first time the user is logging in
-                                            Boolean isFirstTimeLogin = dataSnapshot.child("isFirstTimeLogin").getValue(Boolean.class);
-                                            if (isFirstTimeLogin != null && isFirstTimeLogin) {
-                                                // Redirect to preference activity
-                                                Intent intent = new Intent(LoginPage.this, PreferencePage.class);
-                                                startActivity(intent);
-                                                finish();
-                                            } else {
-                                                // Redirect to bottom navigation bar pages
-                                                Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        } else {
-                                            // User data does not exist in Firebase Realtime Database
-                                            Toast.makeText(LoginPage.this, "User data not found", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Toast.makeText(LoginPage.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+                                if (isNewUser) {
+                                    // Redirect to Home Page if new user
+                                    Intent intent = new Intent(LoginPage.this, PreferencePage.class);
+                                    startActivity(intent);
+                                } else {
+                                    // Redirect to Preference Page if existing user
+                                    Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
+                                    startActivity(intent);
+                                }
 
                                 // Save user's display name to SharedPreferences
                                 SharedPreferences displayNamePreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
@@ -387,8 +363,6 @@ public class LoginPage extends AppCompatActivity {
                                 editor.apply();
 
                                 finish(); // prevent the user from returning to the login activity via the back button
-
-
                             } else {
                                 dialog.dismiss();
                                 Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

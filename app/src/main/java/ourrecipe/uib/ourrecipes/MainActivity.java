@@ -1,10 +1,12 @@
 package ourrecipe.uib.ourrecipes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,31 +19,32 @@ import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 public class MainActivity extends AppCompatActivity {
     Button button;
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
+        // Delay for 2 seconds
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                if (currentUser == null) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    // User is logged in, go to bottom navigation bar
+                    startActivity(new Intent(MainActivity.this, BottomNavigationBar.class));
+                } else {
                     // User is not logged in, go to login page
                     startActivity(new Intent(MainActivity.this, LoginPage.class));
-                    finish(); // prevent the user from returning to the main activity via the back button
-                } else {
-                    // User is already logged in, go to main activity
-                    startActivity(new Intent(MainActivity.this, BottomNavigationBar.class));
-                    finish(); // prevent the user from returning to the login activity via the back button
                 }
+                finish();
             }
-        },2000);
+        }, 2000);
 
         hideNavigationBar();
     }
