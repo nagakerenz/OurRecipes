@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.facebook.FacebookSdk;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -19,23 +18,20 @@ import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 public class MainActivity extends AppCompatActivity {
     Button button;
 
-    private FirebaseAuth firebaseAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
         // Delay for 2 seconds
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
+                if (user != null) {
                     // User is logged in, go to bottom navigation bar
                     startActivity(new Intent(MainActivity.this, BottomNavigationBar.class));
                 } else {
