@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,9 +28,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.facebook.AccessToken;
@@ -344,6 +348,7 @@ public class LoginPage extends AppCompatActivity {
                                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                                     databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
                                 }
+
                                 // After successful login, check if this is the user's first time logging in
                                 boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
                                 if (isNewUser) {
@@ -406,27 +411,74 @@ public class LoginPage extends AppCompatActivity {
                             facebookUser.setName(user.getDisplayName());
                             facebookUser.setEmail(user.getEmail());
 
-                            // save the Facebook user's information under the "FacebookUser" node in the Realtime Database
+//                            // Load user's Facebook profile picture using Glide
+//                            String profilePictureUrl = "https://graph.facebook.com/" + user.getUid() + "/picture?height=500";
+//                            RequestOptions requestOptions = new RequestOptions()
+//                                    .placeholder(R.drawable.breakfast_burito) // Placeholder image while loading
+//                                    .error(R.drawable.breakfast_eggtoast); // Error image if unable to load
+//
+//                            Glide.with(LoginPage.this)
+//                                    .load(profilePictureUrl)
+//                                    .transition(DrawableTransitionOptions.withCrossFade())
+//                                    .apply(requestOptions)
+//                                    .into(new SimpleTarget<Drawable>() {
+//                                        @Override
+//                                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                                            // Convert Drawable to Bitmap
+//                                            Bitmap bitmap = ((BitmapDrawable) resource).getBitmap();
+//
+//                                            // Convert Bitmap to byte array
+//                                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                                            byte[] data = baos.toByteArray();
+//
+//                                            // Upload byte array to Firebase Storage
+//                                            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+//                                            StorageReference profilePictureRef = storageRef.child("User Profile Pictures").child("FacebookUser").child(user.getUid() + ".jpg");
+//                                            UploadTask uploadTask = profilePictureRef.putBytes(data);
+//                                            uploadTask.addOnCompleteListener(LoginPage.this, new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                                                @Override
+//                                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                                                    if (task.isSuccessful()) {
+//                                                        // Get the download URL of the uploaded profile picture
+//                                                        profilePictureRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                                            @Override
+//                                                            public void onSuccess(Uri uri) {
+//                                                                String profilePictureDownloadUrl = uri.toString();
+//
+//                                                                facebookUser.setProfilePictureUrl(profilePictureDownloadUrl);
+//                                                            }
+//                                                        });
+//                                                    } else {
+//                                                        // Handle error uploading profile picture
+//                                                        Toast.makeText(LoginPage.this, "Failed to upload profile picture.", Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                }
+//                                            });
+//                                        }
+//                                    });
+
+                            // Save the Facebook user's information to Realtime Database
                             database.getReference().child("User Profile").child("FacebookUser").child(user.getUid()).setValue(facebookUser);
 
                             // After successful login, check if this is the user's first time logging in
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
-                            SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                            boolean isFirstTimeLogin = preferences.getBoolean("isFirstTimeLogin_" + currentUser.getUid(), true);
-                            if (isFirstTimeLogin) {
-                                // User is logging in for the first time, go to sign up page
+                            boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+                            if (isNewUser) {
+                                // Redirect to Home Page if new user
                                 Intent intent = new Intent(LoginPage.this, PreferencePage.class);
-                                intent.putExtra("name", Objects.requireNonNull(user.getDisplayName()).toString());
                                 startActivity(intent);
-                                preferences.edit().putBoolean("isFirstTimeLogin_" + currentUser.getUid(), false).apply();
                             } else {
-                                // User is not logging in for the first time, go to main activity
-                                startActivity(new Intent(LoginPage.this, BottomNavigationBar.class));
+                                // Redirect to Preference Page if existing user
+                                Intent intent = new Intent(LoginPage.this, BottomNavigationBar.class);
+                                startActivity(intent);
                             }
 
-                            // Save the display name in shared preferences
+                            // Save user's display name to SharedPreferences
                             SharedPreferences displayNamePreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-                            displayNamePreferences.edit().putString(user.getUid(), user.getDisplayName()).apply(); // Store display name with user ID as the key
+                            SharedPreferences.Editor editor = displayNamePreferences.edit();
+                            editor.putString(user.getUid(), user.getDisplayName()); // use the user's ID as the key
+//                            editor.putString(user.getUid() + "_profile_picture", profilePictureUrl); // save profile picture URL
+                            editor.apply();
 
                             finish(); // prevent the user from returning to the login activity via the back button
                         } else {
