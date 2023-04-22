@@ -3,13 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:id="@+id/container">
+    android:padding="16dp"
+    tools:context=".ui.home.HomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,18 +23,23 @@
             android:orientation="vertical"
             android:layout_gravity="center">
 
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager2Image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Featured Topics"
                 android:textSize="20sp"
                 android:textColor="#000000"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -48,19 +52,26 @@
                         android:layout_height="175dp"
                         android:scaleType="fitCenter"
                         android:background="@drawable/slide_learntocook"
-                        android:contentDescription="Learn to cook"/>
+                        android:contentDescription="Learn to cook"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        />
 
                     <ImageButton
                         android:layout_width="320dp"
                         android:layout_height="175dp"
                         android:scaleType="fitCenter"
-                        android:background="@drawable/slide_areyouondiet"/>
+                        android:background="@drawable/slide_areyouondiet"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        />
 
                     <ImageButton
                         android:layout_width="320dp"
                         android:layout_height="175dp"
                         android:scaleType="fitCenter"
-                        android:background="@drawable/slide_carvingforsteak"/>
+                        android:background="@drawable/slide_carvingforsteak"
+                        />
 
                 </LinearLayout>
             </HorizontalScrollView>

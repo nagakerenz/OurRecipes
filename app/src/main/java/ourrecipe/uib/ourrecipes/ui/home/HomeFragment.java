@@ -70,6 +70,11 @@ public class HomeFragment extends Fragment {
         menu2 = (ImageButton) root.findViewById(R.id.imageButton2);
         menu3 = (ImageButton) root.findViewById(R.id.imageButton3);
 
+        ViewPager2 viewPager2 = getView().findViewById(R.id.viewPager2Image);
+        int[] imageResources = { R.drawable.slide_learntocook, R.drawable.slide_areyouondiet, R.drawable.slide_carvingforsteak };
+        ImagePagerAdapter adapter = new ImagePagerAdapter(imageResources);
+        viewPager2.setAdapter(adapter);
+
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
