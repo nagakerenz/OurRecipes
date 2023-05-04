@@ -1,6 +1,7 @@
 package ourrecipe.uib.ourrecipes.ui.home;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -19,12 +20,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.FoodPage.BreakfastPage;
-import ourrecipe.uib.ourrecipes.FoodPage.DinnerPage;
-import ourrecipe.uib.ourrecipes.FoodPage.DrinkPage;
-import ourrecipe.uib.ourrecipes.FoodPage.FiberPage;
-import ourrecipe.uib.ourrecipes.FoodPage.LunchPage;
-import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.BreakfastPage;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.DinnerPage;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.DrinkPage;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.FiberPage;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.LunchPage;
+import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentHomeBinding;
 import ourrecipe.uib.ourrecipes.ui.reels.Video;
@@ -32,6 +33,7 @@ import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class HomeFragment extends Fragment {
 //    MaterialButton reels;
+    CardView cardView;
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -42,8 +44,8 @@ public class HomeFragment extends Fragment {
     ImageButton menu2;
     ImageButton menu3;
     Button reels;
-    private ViewPager2 viewPager2;
-    private ViewPager2 viewPager3;
+    private ViewPager2 viewPagerImage, viewPagerReels;
+    ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
     private List<Video> videoList;
     private VideoAdapter adapter;
     public HomeFragment(){
@@ -60,6 +62,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        cardView = root.findViewById(R.id.cardViewImageSlider);
         breakfast = (ImageButton) root.findViewById(R.id.breakfast);
         lunch = (ImageButton) root.findViewById(R.id.lunch);
         dinner = (ImageButton) root.findViewById(R.id.dinner);
@@ -69,11 +72,33 @@ public class HomeFragment extends Fragment {
         menu1 = (ImageButton) root.findViewById(R.id.imageButton1);
         menu2 = (ImageButton) root.findViewById(R.id.imageButton2);
         menu3 = (ImageButton) root.findViewById(R.id.imageButton3);
+        viewPagerImage = root.findViewById(R.id.viewPager2Image);
 
-        ViewPager2 viewPager2 = getView().findViewById(R.id.viewPager2Image);
-        int[] imageResources = { R.drawable.slide_learntocook, R.drawable.slide_areyouondiet, R.drawable.slide_carvingforsteak };
-        ImagePagerAdapter adapter = new ImagePagerAdapter(imageResources);
-        viewPager2.setAdapter(adapter);
+        cardView.setCardBackgroundColor(Color.TRANSPARENT);
+
+        //THIS IS FOR HANDLING SLIDER ON FEATURED DISH
+        int[] images = { R.drawable.slide_learntocook, R.drawable.slide_areyouondiet, R.drawable.slide_carvingforsteak };
+        //TO Implement Strings
+//        String[] heading = {"Breakfast, Lunch, Dinner, Dessert, Drinks"};
+//        String[] desc = {
+//                getString(R.string.YOURSTING)
+//        };
+
+        viewPagerImageSliderArrayList = new ArrayList<>();
+
+        for (int i = 0; i < images.length ; i++) {
+
+            ViewPagerImageSlider viewPagerImageSlider = new ViewPagerImageSlider(images[i]); //, heading[i], desc[i]
+            viewPagerImageSliderArrayList.add(viewPagerImageSlider);
+        }
+
+        ViewPagerImageSliderAdapter viewPagerImageSliderAdapter = new ViewPagerImageSliderAdapter(viewPagerImageSliderArrayList);
+
+        viewPagerImage.setAdapter(viewPagerImageSliderAdapter);
+        viewPagerImage.setClipToPadding(false);
+        viewPagerImage.setClipChildren(false);
+        viewPagerImage.setOffscreenPageLimit(2);
+        viewPagerImage.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +136,7 @@ public class HomeFragment extends Fragment {
 //            @Override
 //            public void onClick(View view) {
 //
-//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                FragmentTransaction fragmentTransaction = getView().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.reelsFrame, new ReelsFragment());
 //                fragmentTransaction.addToBackStack(null);
 //                fragmentTransaction.commit();
@@ -155,20 +180,20 @@ public class HomeFragment extends Fragment {
 //        });
 
         videoList = new ArrayList<>();
-        viewPager2 = root.findViewById(R.id.viewPager2);
+        viewPagerReels = root.findViewById(R.id.viewPagerReels);
 
         videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
 
         adapter = new VideoAdapter(videoList);
-        viewPager2.setAdapter(adapter);
+        viewPagerReels.setAdapter(adapter);
 
         videoList = new ArrayList<>();
-        viewPager3 = root.findViewById(R.id.viewPager3);
+        viewPagerReels = root.findViewById(R.id.viewPagerReels1);
 
         videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Eating", "Seafood is the best."));
 
         adapter = new VideoAdapter(videoList);
-        viewPager3.setAdapter(adapter);
+        viewPagerReels.setAdapter(adapter);
 
         CardView reelsCardView = root.findViewById(R.id.reelsCardView);
         reelsCardView.setOnClickListener(new View.OnClickListener() {
@@ -234,7 +259,7 @@ public class HomeFragment extends Fragment {
 
 
     public void openMenuPage() {
-        Intent menu = new Intent(HomeFragment.this.getActivity(), MenuResult.class);
+        Intent menu = new Intent(HomeFragment.this.getActivity(), FoodRecipes.class);
         startActivity(menu);
     }
 

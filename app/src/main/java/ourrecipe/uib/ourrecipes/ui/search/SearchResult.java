@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
 public class SearchResult extends AppCompatActivity {
@@ -69,7 +69,7 @@ public class SearchResult extends AppCompatActivity {
     }
 
     public void openMenuPage() {
-        Intent menu = new Intent(SearchResult.this, MenuResult.class);
+        Intent menu = new Intent(SearchResult.this, FoodRecipes.class);
         startActivity(menu);
     }
 }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
 public class FavoritePage extends AppCompatActivity {
@@ -86,7 +86,7 @@ public class FavoritePage extends AppCompatActivity {
     }
 
     public void openMenuPage() {
-        Intent menu = new Intent(FavoritePage.this, MenuResult.class);
+        Intent menu = new Intent(FavoritePage.this, FoodRecipes.class);
         startActivity(menu);
     }
 }

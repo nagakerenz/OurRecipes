@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.FoodPage;
+package ourrecipe.uib.ourrecipes.ui.home.Categories;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
-public class FiberPage extends AppCompatActivity {
+public class LunchPage extends AppCompatActivity {
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
@@ -24,7 +24,8 @@ public class FiberPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_foodpage_fiber_page);
+        setContentView(R.layout.activity_foodpage_lunch_page);
+
 
 
         breakfast = (ImageButton) findViewById(R.id.breakfast);
@@ -120,7 +121,7 @@ public class FiberPage extends AppCompatActivity {
         startActivity(drink);
     }
     public void openMenuPage() {
-        Intent menu = new Intent(FiberPage.this, MenuResult.class);
+        Intent menu = new Intent(LunchPage.this, FoodRecipes.class);
         startActivity(menu);
     }
 }

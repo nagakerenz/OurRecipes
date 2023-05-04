@@ -12,10 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import ourrecipe.uib.ourrecipes.MenuResult;
+import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
-import ourrecipe.uib.ourrecipes.databinding.FragmentSearchBinding;
-import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
 
 public class SearchFragment extends Fragment {
 //    kalo crash hapus ini
@@ -98,7 +96,7 @@ public class SearchFragment extends Fragment {
 //    sampai sini
 
     public void openMenuPage() {
-        Intent menu = new Intent(SearchFragment.this.getActivity(), MenuResult.class);
+        Intent menu = new Intent(SearchFragment.this.getActivity(), FoodRecipes.class);
         startActivity(menu);
     }
 

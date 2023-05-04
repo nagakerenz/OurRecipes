@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OurRecipes"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.home.Categories.Categories"
+            android:exported="false" />
         <activity
             android:name=".AccountPage.ChangeEmail"
             android:exported="false">
@@ -89,7 +92,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenuResult"
+            android:name=".FoodRecipes"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -113,7 +116,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FoodPage.DrinkPage"
+            android:name=".ui.home.Categories.DrinkPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -121,7 +124,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FoodPage.FiberPage"
+            android:name=".ui.home.Categories.FiberPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -129,7 +132,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FoodPage.DinnerPage"
+            android:name=".ui.home.Categories.DinnerPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -137,7 +140,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FoodPage.LunchPage"
+            android:name=".ui.home.Categories.LunchPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -153,7 +156,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FoodPage.BreakfastPage"
+            android:name=".ui.home.Categories.BreakfastPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -176,26 +179,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        This is for handling facebook Meta data-->
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+        </activity> <!-- This is for handling facebook Meta data -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

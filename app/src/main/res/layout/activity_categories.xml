@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.Categories.Categories">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="#33F9E5A1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064">
+
+        <ImageButton
+            android:id="@+id/drink"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="210dp"
+            android:backgroundTint="#05F8D5A7"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_drink" />
+
+        <ImageButton
+            android:id="@+id/breakfast"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#05F9E5A1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_breakfast" />
+
+        <ImageButton
+            android:id="@+id/lunch"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="70dp"
+            android:backgroundTint="#05F8D5A7"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_lunch" />
+
+        <ImageButton
+            android:id="@+id/dinner"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="140dp"
+            android:backgroundTint="#05F9E5A1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_dinner" />
+
+        <ImageButton
+            android:id="@+id/fiber"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="280dp"
+            android:backgroundTint="#05F8D5A7"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/icon_fiber" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2Food"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:background="@android:color/transparent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
