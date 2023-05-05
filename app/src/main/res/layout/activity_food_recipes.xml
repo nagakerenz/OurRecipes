@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".FoodRecipes"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:layout_marginBottom="60dp">
+    android:background="#FBF4D1"
+    android:padding="16dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,38 +24,44 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@color/card_background">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="330dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/food_menu" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/food_menu" />
 
                 <CheckBox
-                android:id="@+id/loveButton"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="right"
-                android:button="@drawable/favorite_red_to_white"
-                app:layout_constraintBottom_toTopOf="@+id/sendButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/white"/>
+                    android:id="@+id/loveButton"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="right"
+                    android:button="@drawable/favorite_red_to_white"
+                    android:background="@color/white"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Snacks"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="35dp"
-                android:layout_marginLeft="15dp"
-                android:background="#FDF8E3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Snacks"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#FDF8E3"/>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/cardview_background">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,13 +72,13 @@
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"/>
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/food_details" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/food_details"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +92,7 @@
                 android:id="@+id/ingredientsss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="Ingredients"
                 android:textColor="@color/black"
@@ -98,32 +104,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
-
+                android:gravity="center">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="0"
-                    app:layout_row="0"
-                    android:src="@drawable/food_chicken" />
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:src="@drawable/food_chicken"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"/>
 
-                    app:layout_column="1"
-                    app:layout_row="0"
-                    android:src="@drawable/food_oil" />
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="2"
-                    app:layout_row="0"
-                    android:src="@drawable/food_onion" />
+                    android:layout_weight="1"
+                    android:src="@drawable/food_oil"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/food_onion"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"/>
+
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
