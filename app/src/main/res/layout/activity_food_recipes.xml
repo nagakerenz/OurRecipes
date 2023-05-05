@@ -26,12 +26,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/foodImage"
-                android:layout_width="match_parent"
-                android:layout_height="330dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/food_menu" />
+                <ImageView
+                    android:id="@+id/foodImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/food_menu" />
 
                 <CheckBox
                 android:id="@+id/loveButton"
