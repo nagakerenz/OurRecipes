@@ -74,7 +74,7 @@
                     android:layout_height="64dp"
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_breakfast"
+                    app:srcCompat="@drawable/food_categories_breakfast"
                     android:contentDescription="Breakfast"
                     />
 
@@ -85,7 +85,7 @@
                     android:layout_marginLeft="64dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_lunch"
+                    app:srcCompat="@drawable/food_categories_lunch"
                     android:contentDescription="Lunch"/>
 
                 <ImageButton
@@ -95,7 +95,7 @@
                     android:layout_marginLeft="128dp"
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_dinner"
+                    app:srcCompat="@drawable/food_categories_dinner"
                     android:contentDescription="Dinner"/>
 
                 <ImageButton
@@ -105,7 +105,7 @@
                     android:layout_marginLeft="192dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_drink"
+                    app:srcCompat="@drawable/food_categories_drink"
                     android:contentDescription="Drink"
                     />
 
@@ -116,7 +116,7 @@
                     android:layout_marginLeft="256dp"
                     android:backgroundTint="#05F8D5A7"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_fiber"
+                    app:srcCompat="@drawable/food_categories_fiber"
                     android:contentDescription="Fiber"/>
             </androidx.cardview.widget.CardView>
 
@@ -205,7 +205,7 @@
                     android:scaleType="fitCenter"
                     app:layout_column="0"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/breakfast_eggcereal"
+                    app:srcCompat="@drawable/food_icon_breakfast_eggcereal"
                     android:contentDescription="breakfast eggcereal"
                     />
 
@@ -230,7 +230,7 @@
                     android:scaleType="fitCenter"
                     app:layout_column="1"
                     app:layout_row="0"
-                    app:srcCompat="@drawable/breakfast_eggtoast"
+                    app:srcCompat="@drawable/food_icon_breakfast_eggtoast"
                     android:contentDescription="Breakfast Eggtoast"
                     />
 
@@ -256,7 +256,7 @@
                     android:layout_marginTop="10dp"
                     app:layout_column="0"
                     app:layout_row="1"
-                    app:srcCompat="@drawable/dinner_spicyramen" />
+                    app:srcCompat="@drawable/food_icon_dinner_spicyramen" />
 
                 <CheckBox
                     android:id="@+id/loveButton2"
@@ -279,7 +279,7 @@
                     android:layout_marginTop="10dp"
                     app:layout_column="1"
                     app:layout_row="1"
-                    app:srcCompat="@drawable/dinner_tteokbokki" />
+                    app:srcCompat="@drawable/food_icon_dinner_tteokbokki" />
 
                 <CheckBox
                     android:id="@+id/loveButton3"

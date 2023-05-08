@@ -1,13 +1,13 @@
 package ourrecipe.uib.ourrecipes.AccountPage;
 
-public class DataClass {
+public class UserDataClass {
 
     private String dataName;
     private String dataAge;
     private String dataEmail;
     private String dataImage;
 
-    public DataClass(String dataName, String dataAge, String dataEmail, String dataImage) {
+    public UserDataClass(String dataName, String dataAge, String dataEmail, String dataImage) {
         this.dataName = dataName;
         this.dataAge = dataAge;
         this.dataEmail = dataEmail;

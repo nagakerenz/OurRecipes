@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
 //    kalo crash hapus ini

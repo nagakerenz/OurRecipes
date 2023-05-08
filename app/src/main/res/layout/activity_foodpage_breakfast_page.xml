@@ -21,7 +21,7 @@
             android:layout_height="70dp"
             android:backgroundTint="#05F9E5A1"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icon_breakfast" />
+            app:srcCompat="@drawable/food_categories_breakfast" />
 
         <ImageButton
             android:id="@+id/lunch"
@@ -30,7 +30,7 @@
             android:layout_marginLeft="70dp"
             android:backgroundTint="#05F8D5A7"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icon_lunch" />
+            app:srcCompat="@drawable/food_categories_lunch" />
 
         <ImageButton
             android:id="@+id/dinner"
@@ -39,7 +39,7 @@
             android:layout_marginLeft="140dp"
             android:backgroundTint="#05F9E5A1"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icon_dinner" />
+            app:srcCompat="@drawable/food_categories_dinner" />
 
         <ImageButton
             android:id="@+id/drink"
@@ -48,7 +48,7 @@
             android:layout_marginLeft="210dp"
             android:backgroundTint="#05F8D5A7"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icon_drink" />
+            app:srcCompat="@drawable/food_categories_drink" />
 
         <ImageButton
             android:id="@+id/fiber"
@@ -57,7 +57,7 @@
             android:layout_marginLeft="280dp"
             android:backgroundTint="#05F8D5A7"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icon_fiber" />
+            app:srcCompat="@drawable/food_categories_fiber" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -90,7 +90,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_eggcereal" />
+                app:srcCompat="@drawable/food_icon_breakfast_eggcereal" />
 
             <CheckBox
                 android:id="@+id/loveButton"
@@ -112,7 +112,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_eggtoast" />
+                app:srcCompat="@drawable/food_icon_breakfast_eggtoast" />
 
             <CheckBox
                 android:id="@+id/loveButton1"
@@ -137,7 +137,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_burito" />
+                app:srcCompat="@drawable/food_icon_breakfast_burito" />
 
             <CheckBox
                 android:id="@+id/loveButton2"
@@ -160,7 +160,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="1"
-                app:srcCompat="@drawable/breakfast_waffle" />
+                app:srcCompat="@drawable/food_icon_breakfast_waffle" />
 
             <CheckBox
                 android:id="@+id/loveButton3"

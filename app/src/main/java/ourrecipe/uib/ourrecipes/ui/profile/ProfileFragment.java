@@ -1,37 +1,23 @@
 package ourrecipe.uib.ourrecipes.ui.profile;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -41,11 +27,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.net.URI;
-
-import ourrecipe.uib.ourrecipes.AccountPage.DataClass;
-import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
-import ourrecipe.uib.ourrecipes.AccountPage.SignUpPage;
 import ourrecipe.uib.ourrecipes.AccountPage.User;
 import ourrecipe.uib.ourrecipes.Profile.AccountPage;
 import ourrecipe.uib.ourrecipes.Profile.FavoritePage;
@@ -61,6 +42,9 @@ public class ProfileFragment extends Fragment {
 
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
+
+
+    private boolean hasShownToast = false;
 
     private FragmentProfileBinding binding;
 
@@ -78,6 +62,7 @@ public class ProfileFragment extends Fragment {
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
 
+
         // This is for handling Display Picture
         // Retrieve the user's profile picture URL from Realtime Database
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -93,14 +78,16 @@ public class ProfileFragment extends Fragment {
                     if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
                         Glide.with(ProfileFragment.this.getActivity())
                                 .load(profilePicUrl)
-                                .placeholder(R.drawable.lunch_kebab) // Placeholder image while loading
-                                .error(R.drawable.lunch_chickenkatsu) // Error image if loading fails
+                                .placeholder(R.drawable.profile_picture) // Placeholder image while loading
+                                .error(R.drawable.profile_picture) // Error image if loading fails
                                 .into(profilePicture); // ImageView where you want to load the profile picture
                     } else {
                         Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture", Toast.LENGTH_SHORT).show();
+                        hasShownToast = true;
                     }
                 } else {
                     Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture Cause There are no data in the database", Toast.LENGTH_SHORT).show();
+                    hasShownToast = true;
                 }
             }
 

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.ui.home.Categories.BreakfastPage;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.Categories;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.DinnerPage;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.DrinkPage;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.FiberPage;
@@ -233,7 +234,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void openBreakfastPage() {
-        Intent breakfast = new Intent(HomeFragment.this.getActivity(), BreakfastPage.class);
+        Intent breakfast = new Intent(HomeFragment.this.getActivity(), Categories.class);
         startActivity(breakfast);
     }
 

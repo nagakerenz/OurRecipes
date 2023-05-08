@@ -48,7 +48,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_eggcereal" />
+                app:srcCompat="@drawable/food_icon_breakfast_eggcereal" />
 
             <CheckBox
                 android:id="@+id/loveButton"
@@ -70,7 +70,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="0"
-                app:srcCompat="@drawable/breakfast_eggtoast" />
+                app:srcCompat="@drawable/food_icon_breakfast_eggtoast" />
 
             <CheckBox
                 android:id="@+id/loveButton1"
@@ -93,7 +93,7 @@
                 app:layout_column="0"
                 app:layout_row="0"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/breakfast_burito" />
+                app:srcCompat="@drawable/food_icon_breakfast_burito" />
 
             <CheckBox
                 android:id="@+id/loveButton2"
@@ -116,7 +116,7 @@
                 app:layout_column="1"
                 app:layout_row="1"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/breakfast_waffle" />
+                app:srcCompat="@drawable/food_icon_breakfast_waffle" />
 
             <CheckBox
                 android:id="@+id/loveButton3"
@@ -140,7 +140,7 @@
                 android:layout_row="2"
                 android:layout_marginTop="10dp"
 
-                app:srcCompat="@drawable/dinner_spicyramen" />
+                app:srcCompat="@drawable/food_icon_dinner_spicyramen" />
 
             <CheckBox
                 android:id="@+id/loveButton4"
@@ -164,7 +164,7 @@
                 android:layout_row="2"
                 android:layout_marginTop="10dp"
 
-                app:srcCompat="@drawable/dinner_shinramyun" />
+                app:srcCompat="@drawable/food_icon_dinner_shinramyun" />
 
             <CheckBox
                 android:id="@+id/loveButton5"
@@ -188,7 +188,7 @@
                 android:layout_row="3"
                 android:layout_marginTop="10dp"
 
-                app:srcCompat="@drawable/dinner_bimbimbap" />
+                app:srcCompat="@drawable/food_icon_dinner_bimbimbap" />
 
             <CheckBox
                 android:id="@+id/loveButton6"
@@ -212,7 +212,7 @@
                 app:layout_row="3"
                 android:layout_marginTop="10dp"
 
-                app:srcCompat="@drawable/dinner_tteokbokki" />
+                app:srcCompat="@drawable/food_icon_dinner_tteokbokki" />
 
             <CheckBox
                 android:id="@+id/loveButton7"

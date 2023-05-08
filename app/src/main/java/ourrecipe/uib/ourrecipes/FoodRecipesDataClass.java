@@ -1,6 +1,6 @@
 package ourrecipe.uib.ourrecipes;
 
-public class FoodItem {
+public class FoodRecipesDataClass {
 
     private String id;
     private String name;
