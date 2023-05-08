@@ -110,7 +110,7 @@
                             android:layout_height="21dp"
                             android:layout_marginLeft="118.5dp"
                             android:layout_marginTop="4dp"
-                            android:button="@drawable/favorite_red_to_white"
+                            android:button="@drawable/food_icon_favorite_red_to_white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:useMaterialThemeColors="false" />
                     </RelativeLayout>
@@ -130,7 +130,7 @@
                             android:layout_height="21dp"
                             android:layout_marginLeft="118.5dp"
                             android:layout_marginTop="4dp"
-                            android:button="@drawable/favorite_red_to_white"
+                            android:button="@drawable/food_icon_favorite_red_to_white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:useMaterialThemeColors="false" />
                     </RelativeLayout>
@@ -150,7 +150,7 @@
                             android:layout_height="21dp"
                             android:layout_marginLeft="118.5dp"
                             android:layout_marginTop="4dp"
-                            android:button="@drawable/favorite_red_to_white"
+                            android:button="@drawable/food_icon_favorite_red_to_white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:useMaterialThemeColors="false" />
                     </RelativeLayout>
@@ -191,7 +191,7 @@
                             android:layout_height="21dp"
                             android:layout_marginLeft="118.5dp"
                             android:layout_marginTop="4dp"
-                            android:button="@drawable/favorite_red_to_white"
+                            android:button="@drawable/food_icon_favorite_red_to_white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:useMaterialThemeColors="false" />
                     </RelativeLayout>
@@ -211,7 +211,7 @@
                             android:layout_height="21dp"
                             android:layout_marginLeft="118.5dp"
                             android:layout_marginTop="4dp"
-                            android:button="@drawable/favorite_red_to_white"
+                            android:button="@drawable/food_icon_favorite_red_to_white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:useMaterialThemeColors="false" />
                     </RelativeLayout>
@@ -231,7 +231,7 @@
                             android:layout_height="21dp"
                             android:layout_marginLeft="118.5dp"
                             android:layout_marginTop="4dp"
-                            android:button="@drawable/favorite_red_to_white"
+                            android:button="@drawable/food_icon_favorite_red_to_white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:useMaterialThemeColors="false" />
                     </RelativeLayout>

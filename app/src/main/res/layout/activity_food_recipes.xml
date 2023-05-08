@@ -40,7 +40,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="25dp"
                 android:layout_gravity="right"
-                android:button="@drawable/favorite_red_to_white"
+                android:button="@drawable/food_icon_favorite_red_to_white"
                 app:layout_constraintBottom_toTopOf="@+id/sendButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@color/white"/>

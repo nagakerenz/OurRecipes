@@ -1,10 +1,10 @@
 package ourrecipe.uib.ourrecipes.ui.home.Categories;
 
-public class FoodIconDataClass {
+public class CategoriesFoodIconDataClass {
 
     private String imageIconURL, rating, liked, foodName, time;
 
-    public FoodIconDataClass() {
+    public CategoriesFoodIconDataClass() {
 
     }
 
@@ -48,7 +48,7 @@ public class FoodIconDataClass {
         this.time = time;
     }
 
-    public FoodIconDataClass(String imageIconURL, String rating, String liked, String foodName, String time) {
+    public CategoriesFoodIconDataClass(String imageIconURL, String rating, String liked, String foodName, String time) {
         this.imageIconURL = imageIconURL;
         this.rating = rating;
         this.liked = liked;

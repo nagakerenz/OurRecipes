@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (user != null) {
+                if (user == null) {
                     // User is logged in, go to bottom navigation bar
-                    startActivity(new Intent(MainActivity.this, BottomNavigationBar.class));
+                    startActivity(new Intent(MainActivity.this, LoginPage.class));
                 } else {
                     // User is not logged in, go to login page
-                    startActivity(new Intent(MainActivity.this, LoginPage.class));
+                    startActivity(new Intent(MainActivity.this, BottomNavigationBar.class));
                 }
                 finish();
             }

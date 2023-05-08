@@ -16,11 +16,11 @@ import ourrecipe.uib.ourrecipes.R;
 
 public class FoodIconAdapter  extends BaseAdapter {
 
-    private ArrayList<FoodIconDataClass> dataList;
+    private ArrayList<CategoriesFoodIconDataClass> dataList;
     private Context context;
     LayoutInflater layoutInflater;
 
-    public FoodIconAdapter(ArrayList<FoodIconDataClass> dataList, Context context) {
+    public FoodIconAdapter(ArrayList<CategoriesFoodIconDataClass> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
     }
@@ -48,11 +48,12 @@ public class FoodIconAdapter  extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.activity_food_recipes_icon, null);
         }
-            ImageView gridImage = convertView.findViewById(R.id.gridImage);
-            TextView gridLiked = convertView.findViewById(R.id.liked);
-            TextView gridFoodName = convertView.findViewById(R.id.foodName);
-            TextView gridRating = convertView.findViewById(R.id.rating);
-            TextView gridTime = convertView.findViewById(R.id.time);
+
+        ImageView gridImage = convertView.findViewById(R.id.gridImage);
+        TextView gridLiked = convertView.findViewById(R.id.liked);
+        TextView gridFoodName = convertView.findViewById(R.id.foodName);
+        TextView gridRating = convertView.findViewById(R.id.rating);
+        TextView gridTime = convertView.findViewById(R.id.time);
 
         Glide.with(context).load(dataList.get(i).getImageIconURL()).into(gridImage);
         gridLiked.setText(dataList.get(i).getLiked());
@@ -60,6 +61,6 @@ public class FoodIconAdapter  extends BaseAdapter {
         gridRating.setText(dataList.get(i).getRating());
         gridTime.setText(dataList.get(i).getTime());
 
-        return null;
+        return convertView;
     }
 }
