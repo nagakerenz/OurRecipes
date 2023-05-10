@@ -67,10 +67,18 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2Food"
+        android:id="@+id/viewPager2FoodCategories"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="130dp"
         android:background="@android:color/transparent"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutFoodCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
