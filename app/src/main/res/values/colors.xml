@@ -16,5 +16,8 @@
     <color name="grey">#aaa</color>
     <color name="darkGray">#FF858585</color>
     <color name="highlightColor">#CBAA80</color>
+    <color name="backgroundPage">#FBF4D1</color>
+    <color name="colorDivider">#ECECEC</color>
+
 
 </resources>
