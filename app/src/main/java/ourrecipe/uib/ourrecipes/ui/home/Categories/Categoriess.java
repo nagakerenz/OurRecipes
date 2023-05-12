@@ -12,7 +12,7 @@ import java.util.List;
 
 import ourrecipe.uib.ourrecipes.R;
 
-public class Categories extends AppCompatActivity {
+public class Categoriess extends AppCompatActivity {
 
     private ViewPager2 viewPager2;
     private TabLayout tabLayout;
@@ -23,7 +23,7 @@ public class Categories extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categories);
+        setContentView(R.layout.activity_categoriess);
 
         viewPager2 = findViewById(R.id.viewPager2FoodCategories);
         tabLayout = findViewById(R.id.tabLayoutFoodCategories);
