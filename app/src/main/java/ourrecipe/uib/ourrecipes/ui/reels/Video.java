@@ -1,13 +1,14 @@
 package ourrecipe.uib.ourrecipes.ui.reels;
 
 public class Video {
-    private String videoUrl , title , desc;
+    private String videoUrl;
+    private String title;
+    private String description;
 
-    public Video(String videoUrl, String title, String desc) {
+    public Video(String videoUrl, String title, String description) {
         this.videoUrl = videoUrl;
         this.title = title;
-        this.desc = desc;
-
+        this.description = description;
     }
 
     public String getVideoUrl() {
@@ -18,7 +19,7 @@ public class Video {
         return title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 }

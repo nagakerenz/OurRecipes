@@ -55,7 +55,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
         public void setVideoData(Video video){
             title.setText(video.getTitle());
-            desc.setText(video.getDesc());
+            desc.setText(video.getDescription());
             videoView.setVideoPath(video.getVideoUrl());
             Log.d("Title", video.getTitle());
 
