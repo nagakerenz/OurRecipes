@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +17,13 @@ import java.util.List;
 
 import ourrecipe.uib.ourrecipes.R;
 
-public class ViewPagerFoodCategoriesAdapter extends RecyclerView.Adapter<ViewPagerFoodCategoriesAdapter.ViewHolder> {
+public class ViewPagerCategoriesNavigationAdapter extends RecyclerView.Adapter<ViewPagerCategoriesNavigationAdapter.ViewHolder> {
 
     private List<String> categoryTitles;
-    ArrayList<ViewPagerFoodCategories> categoriesList;
+    ArrayList<ViewPagerCategoriesNavigation> categoriesList;
     TabLayout tabLayout;
 
-    public ViewPagerFoodCategoriesAdapter(List<String> categoryTitles, ArrayList<ViewPagerFoodCategories> categoriesList, TabLayout tabLayout) {
+    public ViewPagerCategoriesNavigationAdapter(List<String> categoryTitles, ArrayList<ViewPagerCategoriesNavigation> categoriesList, TabLayout tabLayout) {
         this.categoryTitles = categoryTitles;
         this.categoriesList = categoriesList;
         this.tabLayout = tabLayout;
@@ -39,7 +38,7 @@ public class ViewPagerFoodCategoriesAdapter extends RecyclerView.Adapter<ViewPag
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ViewPagerFoodCategories categories = categoriesList.get(position);
+        ViewPagerCategoriesNavigation categories = categoriesList.get(position);
         holder.textView.setText(categories.getTitle());
 
         GridViewItemAdapter gridViewItemAdapter = new GridViewItemAdapter(categories.getItems());

@@ -20,9 +20,6 @@
             android:name=".ui.home.Categories.CategoriesFoodIcon"
             android:exported="false" />
         <activity
-            android:name=".ui.home.Categories.Categoriess"
-            android:exported="false" />
-        <activity
             android:name=".AccountPage.ChangeEmail"
             android:exported="false">
             <meta-data

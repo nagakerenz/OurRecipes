@@ -1,14 +1,14 @@
-package ourrecipe.uib.ourrecipes.ui.notifications;
+package ourrecipe.uib.ourrecipes.ui.home.Categories.lunch;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class LunchViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public LunchViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }

@@ -20,7 +20,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.ui.home.Categories.Categoriess;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.DinnerPage;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.DrinkPage;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.FiberPage;

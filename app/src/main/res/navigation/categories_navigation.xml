@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="ourrecipe.uib.ourrecipes.ui.notifications.NotificationsFragment"
+        android:name="ourrecipe.uib.ourrecipes.ui.home.Categories.lunch.LunchFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_categories_lunch" />
 </navigation>
