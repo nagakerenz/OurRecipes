@@ -33,9 +33,9 @@ public class CategoriesNavigationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tabTitles.put("Breakfast", R.drawable.categories_breakfast);
-        tabTitles.put("Lunch", R.drawable.categories_lunch);
-        tabTitles.put("Dinner", R.drawable.categories_dinner);
+        tabTitles.put("Breakfast", R.drawable.d_categories_breakfast);
+        tabTitles.put("Lunch", R.drawable.d_categories_lunch);
+        tabTitles.put("Dinner", R.drawable.d_categories_dinner);
     }
 
     private void setUpTabLayoutWithViewPager() {

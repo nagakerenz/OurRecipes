@@ -14,13 +14,13 @@
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/logo_ourrecipes" />
+        app:srcCompat="@drawable/a_logo_ourrecipes" />
 
     <ImageView
         android:id="@+id/logo2"
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/logo_ourrecipes2" />
+        app:srcCompat="@drawable/a_logo_ourrecipes2" />
 
 </LinearLayout>

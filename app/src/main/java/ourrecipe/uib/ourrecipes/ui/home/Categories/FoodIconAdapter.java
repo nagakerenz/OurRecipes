@@ -46,7 +46,7 @@ public class FoodIconAdapter  extends BaseAdapter {
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.activity_food_recipes_icon, null);
+            convertView = layoutInflater.inflate(R.layout.f_activity_food_recipes_icon, null);
         }
 
         ImageView gridImage = convertView.findViewById(R.id.gridImage);

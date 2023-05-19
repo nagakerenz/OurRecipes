@@ -11,6 +11,6 @@ public class SearchChips extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_chips);
+        setContentView(R.layout.s_activity_search_chips);
     }
 }

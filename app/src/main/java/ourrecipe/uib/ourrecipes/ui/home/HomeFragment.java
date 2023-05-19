@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-        View myView = inflater.inflate(R.layout.fragment_home, container, false);
+        View myView = inflater.inflate(R.layout.c_fragment_home, container, false);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         cardView.setCardBackgroundColor(Color.TRANSPARENT);
 
         //THIS IS FOR HANDLING SLIDER ON FEATURED DISH
-        int[] images = { R.drawable.slide_learntocook, R.drawable.slide_areyouondiet, R.drawable.slide_carvingforsteak };
+        int[] images = { R.drawable.c_slide_learntocook, R.drawable.c_slide_areyouondiet, R.drawable.c_slide_carvingforsteak};
         //TO Implement Strings
 //        String[] heading = {"Breakfast, Lunch, Dinner, Dessert, Drinks"};
 //        String[] desc = {

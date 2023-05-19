@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import ourrecipe.uib.ourrecipes.R;
 
-public class ForgotPasswordPage extends AppCompatActivity {
+public class ForgotPassword extends AppCompatActivity {
 
     EditText forgetEmail;
     Button send;
@@ -27,7 +27,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accountpage_forgot_password_page);
+        setContentView(R.layout.b_activity_accountpage_forgot_password);
 
         forgetEmail = (EditText) findViewById(R.id.forgetEmail);
         send = (Button) findViewById(R.id.send);
@@ -47,7 +47,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
         String email = forgetEmail.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)) {
-            Toast.makeText(ForgotPasswordPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ForgotPassword.this, "Enter Email", Toast.LENGTH_SHORT).show();
             forgetEmail.requestFocus();
             return;
         }
@@ -58,7 +58,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
             return;
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPasswordPage.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPassword.this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
@@ -68,10 +68,10 @@ public class ForgotPasswordPage extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(ForgotPasswordPage.this, "Check your email to reset your password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPassword.this, "Check your email to reset your password!", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 } else {
-                    Toast.makeText(ForgotPasswordPage.this, "Failed! "  + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPassword.this, "Failed! "  + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
             }

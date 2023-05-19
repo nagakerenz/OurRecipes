@@ -11,7 +11,7 @@
         android:id="@+id/navigation_home"
         android:name="ourrecipe.uib.ourrecipes.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/c_fragment_home" >
 
         <action
             android:id="@+id/action_navigation_home_to_navigation_search"
@@ -34,7 +34,7 @@
         android:id="@+id/navigation_search"
         android:name="ourrecipe.uib.ourrecipes.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/c_fragment_search" >
         <action
             android:id="@+id/action_navigation_search_to_navigation_reels"
             app:destination="@id/navigation_reels" />
@@ -44,7 +44,7 @@
         android:id="@+id/navigation_reels"
         android:name="ourrecipe.uib.ourrecipes.ui.reels.ReelsFragment"
         android:label="@string/title_reels"
-        tools:layout="@layout/fragment_reels" >
+        tools:layout="@layout/c_fragment_reels" >
         <action
             android:id="@+id/action_navigation_reels_to_navigation_profile"
             app:destination="@id/navigation_profile" />
@@ -54,7 +54,7 @@
         android:id="@+id/navigation_profile"
         android:name="ourrecipe.uib.ourrecipes.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/c_fragment_profile" />
 
     <action
         android:id="@+id/action_HomeFragment_to_ReelsFragment"

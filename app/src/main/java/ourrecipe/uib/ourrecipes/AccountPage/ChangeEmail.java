@@ -20,7 +20,7 @@ public class ChangeEmail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accountpage_change_email);
+        setContentView(R.layout.p_activity_accountpage_change_email);
 
 
         save = (Button) findViewById(R.id.save);

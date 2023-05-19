@@ -22,7 +22,7 @@ public class SearchResult extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_result);
+        setContentView(R.layout.s_activity_search_result);
 
         menu = (ImageButton) findViewById(R.id.imageButton);
         menu.setOnClickListener(new View.OnClickListener() {

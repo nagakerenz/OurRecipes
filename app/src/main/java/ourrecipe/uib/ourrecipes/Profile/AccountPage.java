@@ -1,20 +1,10 @@
 package ourrecipe.uib.ourrecipes.Profile;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,23 +17,15 @@ import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import ourrecipe.uib.ourrecipes.AccountPage.ChangeEmail;
 import ourrecipe.uib.ourrecipes.AccountPage.ChangePassword;
 import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
-import ourrecipe.uib.ourrecipes.AccountPage.User;
 import ourrecipe.uib.ourrecipes.R;
-import ourrecipe.uib.ourrecipes.ui.profile.ProfileFragment;
 
 public class AccountPage extends AppCompatActivity {
     ImageView userPicture;
@@ -63,7 +45,7 @@ public class AccountPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_account_page);
+        setContentView(R.layout.p_activity_profile_account_page);
 
 //        userPicture = findViewById(R.id.displayPicture);
 //        displayedName = findViewById(R.id.displayName);

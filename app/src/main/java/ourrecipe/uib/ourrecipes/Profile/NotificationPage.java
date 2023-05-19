@@ -14,7 +14,7 @@ public class NotificationPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_notification_page);
+        setContentView(R.layout.p_activity_profile_notification_page);
 
         reset = (Button) findViewById(R.id.reset);
 

@@ -3,14 +3,11 @@ package ourrecipe.uib.ourrecipes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 
 public class PreferencePage extends AppCompatActivity {
 
@@ -21,7 +18,7 @@ public class PreferencePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preference_page);
+        setContentView(R.layout.c_activity_preference_page);
 
         buttondone = (Button) findViewById(R.id.doneButton);
         buttonskip = (Button) findViewById(R.id.skipButton);

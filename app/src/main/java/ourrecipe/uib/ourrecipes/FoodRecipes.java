@@ -24,7 +24,7 @@ public class FoodRecipes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_recipes);
+        setContentView(R.layout.f_activity_food_recipes);
 
         // Initialize views
         categoriesTextView = findViewById(R.id.foodCategories);

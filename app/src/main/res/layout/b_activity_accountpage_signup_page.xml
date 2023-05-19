@@ -27,7 +27,7 @@
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/logo_ourrecipes3" />
+            app:srcCompat="@drawable/a_logo_ourrecipes3" />
 
     </RelativeLayout>
 

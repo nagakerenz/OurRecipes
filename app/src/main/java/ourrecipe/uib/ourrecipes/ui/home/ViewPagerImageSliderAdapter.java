@@ -26,7 +26,7 @@ public class ViewPagerImageSliderAdapter extends RecyclerView.Adapter<ViewPagerI
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_home_image_slider_viewpager2,parent,false);
+                .inflate(R.layout.c_fragment_home_image_slider_viewpager2,parent,false);
 
         return new ViewHolder(view);
     }

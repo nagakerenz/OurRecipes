@@ -2,11 +2,6 @@ package ourrecipe.uib.ourrecipes.ui.home.Categories;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import ourrecipe.uib.ourrecipes.ui.home.Categories.breakfast.BreakfastFragment;
-import ourrecipe.uib.ourrecipes.ui.home.Categories.dinner.DinnerFragment;
-import ourrecipe.uib.ourrecipes.ui.home.Categories.lunch.LunchFragment;
-
 public class ViewPagerCategoriesNavigationAdapter extends FragmentStateAdapter {
 
     public ViewPagerCategoriesNavigationAdapter(Fragment fragment) {
@@ -22,11 +17,11 @@ public class ViewPagerCategoriesNavigationAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new BreakfastFragment();
+                return new CategoriesBreakfastFragment();
             case 1:
-                return new LunchFragment();
+                return new CategoriesLunchFragment();
             default:
-                return new DinnerFragment();
+                return new CategoriesDinnerFragment();
         }
     }
 }

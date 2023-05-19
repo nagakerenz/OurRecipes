@@ -24,7 +24,7 @@ public class FavoritePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_favorite_page);
+        setContentView(R.layout.p_activity_profile_favorite_page);
 
         menu = (ImageButton) findViewById(R.id.imageButton);
         menu1 = (ImageButton) findViewById(R.id.imageButton1);
