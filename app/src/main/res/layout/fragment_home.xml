@@ -75,8 +75,7 @@
                     android:backgroundTint="#05F9E5A1"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/food_categories_breakfast"
-                    android:contentDescription="Breakfast"
-                    />
+                    android:contentDescription="Breakfast" />
 
                 <ImageButton
                     android:id="@+id/lunch"

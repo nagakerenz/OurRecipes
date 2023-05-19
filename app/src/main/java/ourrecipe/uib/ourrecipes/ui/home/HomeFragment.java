@@ -20,10 +20,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.ui.home.Categories.DinnerPage;
-import ourrecipe.uib.ourrecipes.ui.home.Categories.DrinkPage;
-import ourrecipe.uib.ourrecipes.ui.home.Categories.FiberPage;
-import ourrecipe.uib.ourrecipes.ui.home.Categories.LunchPage;
 import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.FragmentHomeBinding;
@@ -102,33 +98,39 @@ public class HomeFragment extends Fragment {
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openBreakfastPage();
+                Bundle args = new Bundle();
+                args.putString("category", "breakfast");
+                Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_navigation_breakfast, args);
             }
         });
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLunchPage();
+                Bundle args = new Bundle();
+                args.putString("category", "lunch");
+                Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_navigation_lunch, args);
             }
         });
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDinnerPage();
+                Bundle args = new Bundle();
+                args.putString("category", "dinner");
+                Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_navigation_dinner, args);
             }
         });
-        fiber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFiberPage();
-            }
-        });
-        drink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDrinkPage();
-            }
-        });
+//        fiber.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openFiberPage();
+//            }
+//        });
+//        drink.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openDrinkPage();
+//            }
+//        });
 
 //        reels = (Button) root.findViewById(R.id.reels);
 //        reels.setOnClickListener(new View.OnClickListener() {
@@ -230,32 +232,6 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-
-    public void openBreakfastPage() {
-        Intent breakfast = new Intent(HomeFragment.this.getActivity(), Categoriess.class);
-        startActivity(breakfast);
-    }
-
-    public void openLunchPage(){
-        Intent lunch = new Intent(HomeFragment.this.getActivity(), LunchPage.class);
-        startActivity(lunch);
-    }
-
-    public void openDinnerPage(){
-        Intent dinner = new Intent(HomeFragment.this.getActivity(), DinnerPage.class);
-        startActivity(dinner);
-    }
-
-    public void openFiberPage(){
-        Intent fiber = new Intent(HomeFragment.this.getActivity(), FiberPage.class);
-        startActivity(fiber);
-    }
-
-    public void openDrinkPage() {
-        Intent drink = new Intent(HomeFragment.this.getActivity(), DrinkPage.class);
-        startActivity(drink);
-    }
-
 
     public void openMenuPage() {
         Intent menu = new Intent(HomeFragment.this.getActivity(), FoodRecipes.class);
