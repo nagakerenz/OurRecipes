@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.Categories.lunch.LunchFragment"
+    tools:context=".ui.home.Categories.dinner.DinnerFragment"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -63,7 +64,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LUNCH"
+        android:text="DINNER"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
@@ -90,7 +91,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/lunch_chickenkatsu" />
+                app:srcCompat="@drawable/food_icon_dinner_spicyramen" />
 
             <CheckBox
                 android:id="@+id/loveButton"
@@ -112,7 +113,7 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="0"
-                app:srcCompat="@drawable/lunch_creamsoup" />
+                app:srcCompat="@drawable/food_icon_dinner_shinramyun" />
 
             <CheckBox
                 android:id="@+id/loveButton1"
@@ -132,9 +133,10 @@
                 android:layout_height="160dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
+                android:layout_marginTop="4dp"
                 app:layout_column="0"
                 app:layout_row="0"
-                app:srcCompat="@drawable/lunch_kebab" />
+                app:srcCompat="@drawable/food_icon_dinner_bimbimbap" />
 
             <CheckBox
                 android:id="@+id/loveButton2"
@@ -143,7 +145,7 @@
                 android:layout_row="1"
                 android:layout_column="0"
                 android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="13dp"
                 android:button="@drawable/food_icon_favorite_red_to_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:useMaterialThemeColors="false" />
@@ -156,7 +158,8 @@
                 android:scaleType="fitCenter"
                 app:layout_column="1"
                 app:layout_row="1"
-                app:srcCompat="@drawable/lunch_pasta" />
+                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/food_icon_dinner_tteokbokki" />
 
             <CheckBox
                 android:id="@+id/loveButton3"
@@ -165,7 +168,7 @@
                 android:layout_row="1"
                 android:layout_column="1"
                 android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="13dp"
                 android:button="@drawable/food_icon_favorite_red_to_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:useMaterialThemeColors="false" />
@@ -173,7 +176,3 @@
         </GridLayout>
     </ScrollView>
 </LinearLayout>
-
-
-
-

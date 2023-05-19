@@ -5,14 +5,27 @@
     android:id="@+id/categories_navigation">
 
     <fragment
+        android:id="@+id/navigation_categories"
+        android:name="ourrecipe.uib.ourrecipes.ui.home.Categories.CategoriesNavigationFragment"
+        android:label="categories_navigation"
+        tools:layout="@layout/fragment_categories_navigation" />
+
+    <fragment
         android:id="@+id/navigation_breakfast"
         android:name="ourrecipe.uib.ourrecipes.ui.home.Categories.breakfast.BreakfastFragment"
         android:label="breakfast"
         tools:layout="@layout/fragment_categories_breakfast" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_lunch"
         android:name="ourrecipe.uib.ourrecipes.ui.home.Categories.lunch.LunchFragment"
-        android:label="@string/title_notifications"
+        android:label="lunch"
         tools:layout="@layout/fragment_categories_lunch" />
+
+    <fragment
+        android:id="@+id/navigation_dinner"
+        android:name="ourrecipe.uib.ourrecipes.ui.home.Categories.dinner.DinnerFragment"
+        android:label="dinner"
+        tools:layout="@layout/fragment_categories_dinner" />
+
 </navigation>
