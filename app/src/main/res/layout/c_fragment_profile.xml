@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:orientation="vertical"
     android:background="#FBF4D1"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.profile.CProfileFragment">
 
         <TextView
             android:id="@+id/text_profile"

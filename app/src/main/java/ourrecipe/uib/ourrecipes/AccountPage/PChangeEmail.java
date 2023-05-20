@@ -2,7 +2,6 @@ package ourrecipe.uib.ourrecipes.AccountPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -14,40 +13,17 @@ import android.widget.Toast;
 
 import ourrecipe.uib.ourrecipes.R;
 
-public class ChangePassword extends AppCompatActivity {
+public class PChangeEmail extends AppCompatActivity {
     Button save;
+    EditText password, confirmPassword;
 
-    EditText oldPassword ,password, confirmPassword;
-
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.p_activity_accountpage_change_password);
+        setContentView(R.layout.p_activity_accountpage_change_email);
 
-        oldPassword = findViewById(R.id.oldPassword);
-        password = findViewById(R.id.password);
-        confirmPassword = findViewById(R.id.confirmPassword);
+
         save = (Button) findViewById(R.id.save);
-
-
-        oldPassword.setOnTouchListener((v, event) -> {
-            final int DRAWABLE_RIGHT = 2;
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (oldPassword.getRight() - oldPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    if (oldPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
-                        oldPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        oldPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_24, 0);
-                    } else {
-                        oldPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        oldPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_visibility_off_24, 0);
-                    }
-                    oldPassword.setSelection(oldPassword.getText().length());
-                    return true;
-                }
-            }
-            return false;
-        });
 
         password.setOnTouchListener((v, event) -> {
             final int DRAWABLE_RIGHT = 2;
@@ -85,13 +61,10 @@ public class ChangePassword extends AppCompatActivity {
             return false;
         });
 
-
-
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ChangePassword.this, "Saved Changes!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PChangeEmail.this, "Saved Changes!", Toast.LENGTH_SHORT).show();
             }
         });
     }

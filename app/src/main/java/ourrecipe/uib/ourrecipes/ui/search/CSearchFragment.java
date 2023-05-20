@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ourrecipe.uib.ourrecipes.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
-import ourrecipe.uib.ourrecipes.databinding.FragmentSearchBinding;
+import ourrecipe.uib.ourrecipes.databinding.CFragmentSearchBinding;
 
-public class SearchFragment extends Fragment {
+public class CSearchFragment extends Fragment {
 //    kalo crash hapus ini
     SearchView searchView;
     ImageButton menu;
@@ -25,13 +25,13 @@ public class SearchFragment extends Fragment {
     ImageButton menu3;
     ImageButton menu4;
     ImageButton menu5;
-    private FragmentSearchBinding binding;
+    private CFragmentSearchBinding binding;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         SearchViewModel searchViewModel =
                 new ViewModelProvider(this).get(SearchViewModel.class);
 
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        binding = CFragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 //kalo crash hapus ini
         searchView = (SearchView) root.findViewById(R.id.search1);
@@ -91,13 +91,13 @@ public class SearchFragment extends Fragment {
     }
 //    dan ini
     public void openResult(){
-        Intent result = new Intent(SearchFragment.this.getActivity(), SearchResult.class);
+        Intent result = new Intent(CSearchFragment.this.getActivity(), SearchResult.class);
         startActivity(result);
     }
 //    sampai sini
 
     public void openMenuPage() {
-        Intent menu = new Intent(SearchFragment.this.getActivity(), FoodRecipes.class);
+        Intent menu = new Intent(CSearchFragment.this.getActivity(), FoodRecipes.class);
         startActivity(menu);
     }
 

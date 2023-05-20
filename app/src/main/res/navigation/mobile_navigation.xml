@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ourrecipe.uib.ourrecipes.ui.home.HomeFragment"
+        android:name="ourrecipe.uib.ourrecipes.ui.home.CHomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/c_fragment_home" >
 
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="ourrecipe.uib.ourrecipes.ui.search.SearchFragment"
+        android:name="ourrecipe.uib.ourrecipes.ui.search.CSearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/c_fragment_search" >
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/navigation_reels"
-        android:name="ourrecipe.uib.ourrecipes.ui.reels.ReelsFragment"
+        android:name="ourrecipe.uib.ourrecipes.ui.reels.CReelsFragment"
         android:label="@string/title_reels"
         tools:layout="@layout/c_fragment_reels" >
         <action
@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="ourrecipe.uib.ourrecipes.ui.profile.ProfileFragment"
+        android:name="ourrecipe.uib.ourrecipes.ui.profile.CProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/c_fragment_profile" />
 

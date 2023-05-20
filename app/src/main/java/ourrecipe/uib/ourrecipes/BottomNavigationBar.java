@@ -2,26 +2,20 @@ package ourrecipe.uib.ourrecipes;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.annotation.NonNull;
-import android.view.MenuItem;
 
-import ourrecipe.uib.ourrecipes.databinding.ActivityBottomNavigationBarBinding;
-import ourrecipe.uib.ourrecipes.ui.home.HomeFragment;
+import ourrecipe.uib.ourrecipes.databinding.CActivityBottomNavigationBarBinding;
 
 public class BottomNavigationBar extends AppCompatActivity {
-    private ActivityBottomNavigationBarBinding binding;
+    private CActivityBottomNavigationBarBinding binding;
     private boolean isBackPressedOnce = false;
     private String inputTextName;
 
@@ -30,7 +24,7 @@ public class BottomNavigationBar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityBottomNavigationBarBinding.inflate(getLayoutInflater());
+        binding = CActivityBottomNavigationBarBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

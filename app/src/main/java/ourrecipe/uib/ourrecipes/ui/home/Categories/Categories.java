@@ -24,7 +24,14 @@ public class Categories extends AppCompatActivity {
         getSupportActionBar().hide();
 
         viewPager2 = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+
+        // Retrieve selected fragment from the intent
+        String categoriesBreakfastFragment = getIntent().getStringExtra("categoriesBreakfast");
+        String categoriesLunchFragment = getIntent().getStringExtra("categoriesLunch");
+        String categoriesDinnerFragment = getIntent().getStringExtra("categoriesDinner");
+        String categoriesDrinkFragment = getIntent().getStringExtra("categoriesDrink");
+        String categoriesFiberFragment = getIntent().getStringExtra("categoriesFiber");
 
         viewPager2.setAdapter(new CategoriesAdapter(this));
 
@@ -35,46 +42,67 @@ public class Categories extends AppCompatActivity {
                 switch (position) {
                     case 0: {
                         tab.setText("Breakfast");
-                        tab.setIcon(getResources().getDrawable(R.drawable.d_categories_breakfast));
+                        tab.setIcon(getResources().getDrawable(R.drawable.icon_facebook)); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.purple_200));
+                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
                         break;
                     }
                     case 1: {
                         tab.setText("Lunch");
-                        tab.setIcon(getResources().getDrawable(R.drawable.d_categories_lunch));
+                        tab.setIcon(getResources().getDrawable(R.drawable.icon_facebook)); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.purple_200));
+                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
                         break;
                     }
                     case 2: {
                         tab.setText("Dinner");
-                        tab.setIcon(getResources().getDrawable(R.drawable.d_categories_dinner));
+                        tab.setIcon(getResources().getDrawable(R.drawable.icon_facebook)); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.purple_200));
+                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
                         break;
                     }
                     case 3: {
                         tab.setText("Drink");
-                        tab.setIcon(getResources().getDrawable(R.drawable.food_categories_drink));
+                        tab.setIcon(R.drawable.icon_facebook); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.purple_200));
+                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
                         break;
                     }
                     case 4: {
                         tab.setText("Fiber");
-                        tab.setIcon(getResources().getDrawable(R.drawable.food_categories_fiber));
+                        tab.setIcon(R.drawable.icon_facebook); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.purple_200));
+                        badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
                         break;
                     }
                 }
+
+                tab.removeBadge(); // Remove the badge for each tab
+
             }
         }); tabLayoutMediator.attach();
+
+        // Set the current item based on the selected fragment
+        if (categoriesBreakfastFragment != null && categoriesBreakfastFragment.equals("breakfast")) {
+            viewPager2.setCurrentItem(0);
+        } else if (categoriesLunchFragment != null && categoriesLunchFragment.equals("lunch")) {
+            viewPager2.setCurrentItem(1);
+        } else if (categoriesDinnerFragment != null && categoriesDinnerFragment.equals("dinner")) {
+            viewPager2.setCurrentItem(2);
+        } else if (categoriesDrinkFragment != null && categoriesDrinkFragment.equals("drink")) {
+            viewPager2.setCurrentItem(3);
+        } else if (categoriesFiberFragment != null && categoriesFiberFragment.equals("fiber")) {
+            viewPager2.setCurrentItem(4);
+        }
+
+//        to fit a lot of categories enable this to make it scrollable
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+
     }
 }
