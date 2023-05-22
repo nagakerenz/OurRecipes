@@ -32,7 +32,7 @@ public class CategoriesBreakfastFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<FoodRecipesIconDataClass> dataList;
     FoodRecyclerItemAdapter adapter;
-    final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes").child("breakfast");
+    final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes").child("Breakfast");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,15 +50,24 @@ public class CategoriesBreakfastFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                dataList.clear(); // Clear the existing data before adding new items
+                dataList.clear(); // Clear the existing data before adding new items
 
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    String id = dataSnapshot.getKey(); // Get the ID of the data
+
+                    // Retrieve the properties from the snapshot and convert them into a FoodRecipesIconDataClass object
+                    String id = dataSnapshot.getKey();
+                    String foodImage = dataSnapshot.child("imageURL").getValue(String.class);
+                    String foodName = dataSnapshot.child("name").getValue(String.class);
+                    Long foodRating = dataSnapshot.child("rating").getValue(Long.class);
+                    String foodTime = dataSnapshot.child("minutes").getValue(String.class);
+                    boolean favorite = dataSnapshot.child("favorite").getValue(Boolean.class);
+
+                    FoodRecipesIconDataClass foodRecipe = new FoodRecipesIconDataClass(id, foodImage, foodName, foodRating, foodTime, favorite);
+
                     FoodRecipesIconDataClass dataClass = dataSnapshot.getValue(FoodRecipesIconDataClass.class);
                     dataClass.setId(id); // Set the ID for the data
-                    dataList.add(dataClass);
+                    dataList.add(foodRecipe);
                 }
-                Log.d(TAG, "Data: " + snapshot.getValue());
                 Toast.makeText(CategoriesBreakfastFragment.this.getActivity(), "Data", Toast.LENGTH_SHORT).show();
 
                 adapter.notifyDataSetChanged();
@@ -72,5 +81,4 @@ public class CategoriesBreakfastFragment extends Fragment {
 
         return view;
     }
-
 }

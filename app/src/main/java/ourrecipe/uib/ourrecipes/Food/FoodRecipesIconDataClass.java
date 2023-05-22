@@ -5,7 +5,7 @@ public class FoodRecipesIconDataClass {
     private String id;
     private String foodImage;
     private String foodName;
-    private String foodRating;
+    private Long foodRating;
     private String foodTime;
     private boolean favorite;
 
@@ -15,7 +15,7 @@ public class FoodRecipesIconDataClass {
         // Default constructor required for Firebase
     }
     // Constructor
-    public FoodRecipesIconDataClass(String id, String foodImage, String foodName, String foodRating, String foodTime, boolean favorite) {
+    public FoodRecipesIconDataClass(String id, String foodImage, String foodName, Long foodRating, String foodTime, boolean favorite) {
         this.id = id;
         this.foodImage = foodImage;
         this.foodName = foodName;
@@ -50,11 +50,11 @@ public class FoodRecipesIconDataClass {
         this.foodName = foodName;
     }
 
-    public String getFoodRating() {
+    public Long getFoodRating() {
         return foodRating;
     }
 
-    public void setFoodRating(String foodRating) {
+    public void setFoodRating(Long foodRating) {
         this.foodRating = foodRating;
     }
 

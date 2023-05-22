@@ -42,7 +42,7 @@ public class Categories extends AppCompatActivity {
                 switch (position) {
                     case 0: {
                         tab.setText("Breakfast");
-                        tab.setIcon(R.drawable.food_categories_breakfast);
+                        tab.setIcon(R.drawable.food_categories_breakfast_icon1);
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);

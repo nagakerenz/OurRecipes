@@ -37,7 +37,7 @@ public class FoodRecyclerItemAdapter extends RecyclerView.Adapter<FoodRecyclerIt
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Glide.with(context).load(dataList.get(position).getFoodImage()).into(holder.foodImage);
         holder.foodName.setText(dataList.get(position).getFoodName());
-        holder.foodRating.setText(dataList.get(position).getFoodRating());
+        holder.foodRating.setText(String.valueOf(dataList.get(position).getFoodRating()));
         holder.foodTime.setText(dataList.get(position).getFoodTime());
     }
 

@@ -24,39 +24,39 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/foodImage"
                     android:layout_width="match_parent"
                     android:layout_height="330dp"
-                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/food_menu" />
 
                 <CheckBox
-                android:id="@+id/loveButton"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="right"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintBottom_toTopOf="@+id/sendButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/white"/>
+                    android:id="@+id/loveButton"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="right"
+                    android:button="@drawable/food_icon_favorite_red_to_white"
+                    android:background="@color/white" />
 
-            <TextView
-                android:id="@+id/foodCategories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Snacks"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="35dp"
-                android:layout_marginLeft="15dp"
-                android:background="#FDF8E3"/>
+                <TextView
+                    android:id="@+id/foodCategories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Snacks"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="bottom"
+                    android:padding="8dp"
+                    android:background="#FDF8E3"/>
+
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -75,9 +75,10 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/foodDetails1"
-                    android:layout_width="97dp"
-                    android:layout_height="130dp"
+                    android:id="@+id/foodRecipesTime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -88,23 +89,26 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/food_details" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/f_food_recipes_details_time" />
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Loading..." />
+                            android:text="Loading..."
+                            android:textSize="12sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/foodDetails2"
-                    android:layout_width="97dp"
-                    android:layout_height="130dp"
+                    android:id="@+id/foodRecipesDetailsCalorie"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -115,23 +119,26 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/food_details" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/f_food_recipes_details_calorie" />
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Loading..." />
+                            android:text="Loading..."
+                            android:textSize="12sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/foodDetails3"
-                    android:layout_width="97dp"
-                    android:layout_height="130dp"
+                    android:id="@+id/foodRecipesDetailsRating"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -142,23 +149,26 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/food_details" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/f_food_recipes_details_rating" />
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Loading..." />
+                            android:text="Loading..."
+                            android:textSize="12sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/foodDetails4"
-                    android:layout_width="97dp"
-                    android:layout_height="130dp"
+                    android:id="@+id/foodRecipesDetailsServing"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -169,15 +179,17 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="110dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/food_details" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/f_food_recipes_details_serving" />
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Loading..." />
+                            android:text="Loading..."
+                            android:textSize="12sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
