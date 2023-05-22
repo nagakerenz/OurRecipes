@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import ourrecipe.uib.ourrecipes.FoodRecipes;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentSearchBinding;
 

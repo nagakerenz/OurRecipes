@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.FoodRecipes;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
 public class FiberPage extends AppCompatActivity {

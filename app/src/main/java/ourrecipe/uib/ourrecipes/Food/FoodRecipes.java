@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.Food;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import ourrecipe.uib.ourrecipes.R;
 
 public class FoodRecipes extends AppCompatActivity {
 

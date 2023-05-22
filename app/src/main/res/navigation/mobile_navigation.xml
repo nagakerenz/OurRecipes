@@ -5,8 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
-    <include app:graph="@navigation/categories_navigation" />
-
     <fragment
         android:id="@+id/navigation_home"
         android:name="ourrecipe.uib.ourrecipes.ui.home.CHomeFragment"
@@ -17,17 +15,6 @@
             android:id="@+id/action_navigation_home_to_navigation_search"
             app:destination="@id/navigation_search" />
 
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_breakfast"
-            app:destination="@id/navigation_breakfast" />
-
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_lunch"
-            app:destination="@id/navigation_lunch" />
-
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_dinner"
-            app:destination="@id/navigation_dinner" />
     </fragment>
 
     <fragment
@@ -62,10 +49,5 @@
         app:popUpTo="@id/navigation_home"
         app:popUpToInclusive="true"/>
 
-    <fragment
-        android:id="@+id/navigation_breakfast"
-        android:name="ourrecipe.uib.ourrecipes.ui.home.Categories.breakfast.BreakfastFragment"
-        android:label="breakfast"
-        tools:layout="@layout/fragment_categories_breakfast" />
 
 </navigation>

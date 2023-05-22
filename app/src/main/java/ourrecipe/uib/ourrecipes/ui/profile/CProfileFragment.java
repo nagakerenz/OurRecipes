@@ -28,9 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import ourrecipe.uib.ourrecipes.AccountPage.User;
-import ourrecipe.uib.ourrecipes.Profile.AccountPage;
-import ourrecipe.uib.ourrecipes.Profile.FavoritePage;
-import ourrecipe.uib.ourrecipes.Profile.NotificationPage;
+import ourrecipe.uib.ourrecipes.ui.profile.Profile.AccountPage;
+import ourrecipe.uib.ourrecipes.ui.profile.Profile.FavoritePage;
+import ourrecipe.uib.ourrecipes.ui.profile.Profile.NotificationPage;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentProfileBinding;
 

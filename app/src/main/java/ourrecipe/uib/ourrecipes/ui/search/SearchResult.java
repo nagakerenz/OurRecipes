@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ourrecipe.uib.ourrecipes.FoodRecipes;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
 public class SearchResult extends AppCompatActivity {

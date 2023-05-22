@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.Food;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import ourrecipe.uib.ourrecipes.ui.home.Categories.CategoriesBreakfastFragment;
+import ourrecipe.uib.ourrecipes.R;
 
 public class FoodRecyclerItemAdapter extends RecyclerView.Adapter<FoodRecyclerItemAdapter.MyViewHolder> {
 

@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.Profile;
+package ourrecipe.uib.ourrecipes.ui.profile.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 

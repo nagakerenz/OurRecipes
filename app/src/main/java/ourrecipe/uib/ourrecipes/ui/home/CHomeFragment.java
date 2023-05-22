@@ -20,7 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.FoodRecipes;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentHomeBinding;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.Categories;

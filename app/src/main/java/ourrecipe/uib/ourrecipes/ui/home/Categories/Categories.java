@@ -42,7 +42,7 @@ public class Categories extends AppCompatActivity {
                 switch (position) {
                     case 0: {
                         tab.setText("Breakfast");
-                        tab.setIcon(getResources().getDrawable(R.drawable.icon_facebook)); // Set the icon resource directly
+                        tab.setIcon(R.drawable.food_categories_breakfast);
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);

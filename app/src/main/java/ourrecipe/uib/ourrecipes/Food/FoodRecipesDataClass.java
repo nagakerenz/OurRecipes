@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes;
+package ourrecipe.uib.ourrecipes.Food;
 
 import java.util.List;
 

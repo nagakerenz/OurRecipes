@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.Profile;
+package ourrecipe.uib.ourrecipes.ui.profile.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import ourrecipe.uib.ourrecipes.FoodRecipes;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
 public class FavoritePage extends AppCompatActivity {

@@ -23,10 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import ourrecipe.uib.ourrecipes.FoodRecipesIconDataClass;
-import ourrecipe.uib.ourrecipes.FoodRecyclerItemAdapter;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipesIconDataClass;
+import ourrecipe.uib.ourrecipes.Food.FoodRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
-import ourrecipe.uib.ourrecipes.ui.profile.CProfileFragment;
 
 public class CategoriesBreakfastFragment extends Fragment {
 

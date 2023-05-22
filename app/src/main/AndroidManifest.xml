@@ -92,7 +92,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FoodRecipes"
+            android:name=".Food.FoodRecipes"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -100,7 +100,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Profile.NotificationPage"
+            android:name=".ui.profile.Profile.NotificationPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -108,7 +108,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Profile.AccountPage"
+            android:name=".ui.profile.Profile.AccountPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
@@ -151,7 +151,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Profile.FavoritePage"
+            android:name=".ui.profile.Profile.FavoritePage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data
