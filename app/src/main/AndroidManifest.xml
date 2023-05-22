@@ -20,14 +20,14 @@
             android:name=".ui.home.Categories.CategoriesFoodIcon"
             android:exported="false" />
         <activity
-            android:name=".AccountPage.ChangeEmail"
+            android:name=".AccountPage.PChangeEmail"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AccountPage.ChangePassword"
+            android:name=".AccountPage.PChangePassword"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -69,7 +69,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.search.SearchFragment"
+            android:name=".ui.search.CSearchFragment"
             android:exported="false"
             android:label="@string/title_activity_search_page"
             android:theme="@style/Theme.OurRecipes.NoActionBar">
@@ -115,6 +115,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".ui.home.Categories.Categories"
+            android:label="Categories" />
         <activity
             android:name=".ui.home.Categories.DrinkPage"
             android:exported="false"

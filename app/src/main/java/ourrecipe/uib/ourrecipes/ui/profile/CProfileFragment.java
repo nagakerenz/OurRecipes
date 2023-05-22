@@ -32,9 +32,9 @@ import ourrecipe.uib.ourrecipes.Profile.AccountPage;
 import ourrecipe.uib.ourrecipes.Profile.FavoritePage;
 import ourrecipe.uib.ourrecipes.Profile.NotificationPage;
 import ourrecipe.uib.ourrecipes.R;
-import ourrecipe.uib.ourrecipes.databinding.FragmentProfileBinding;
+import ourrecipe.uib.ourrecipes.databinding.CFragmentProfileBinding;
 
-public class ProfileFragment extends Fragment {
+public class CProfileFragment extends Fragment {
     ImageView profilePicture;
     TextView displayName;
     Button favorites, notification, account;
@@ -46,14 +46,14 @@ public class ProfileFragment extends Fragment {
 
     private boolean hasShownToast = false;
 
-    private FragmentProfileBinding binding;
+    private CFragmentProfileBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ProfileViewModel profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
 
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = CFragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         profilePicture = (ImageView) root.findViewById(R.id.displayPicture);
@@ -76,24 +76,24 @@ public class ProfileFragment extends Fragment {
 
                     // Load the profile picture using Glide
                     if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
-                        Glide.with(ProfileFragment.this.getActivity())
+                        Glide.with(CProfileFragment.this.getActivity())
                                 .load(profilePicUrl)
                                 .placeholder(R.drawable.profile_picture) // Placeholder image while loading
                                 .error(R.drawable.profile_picture) // Error image if loading fails
                                 .into(profilePicture); // ImageView where you want to load the profile picture
                     } else {
-                        Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CProfileFragment.this.getActivity(), "Failed to Retrieve Picture", Toast.LENGTH_SHORT).show();
                         hasShownToast = true;
                     }
                 } else {
-                    Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture Cause There are no data in the database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CProfileFragment.this.getActivity(), "Failed to Retrieve Picture Cause There are no data in the database", Toast.LENGTH_SHORT).show();
                     hasShownToast = true;
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(ProfileFragment.this.getActivity(), "Failed to Retrieve Picture Because Database Error" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CProfileFragment.this.getActivity(), "Failed to Retrieve Picture Because Database Error" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -143,7 +143,7 @@ public class ProfileFragment extends Fragment {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(ProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CProfileFragment.this.getActivity(), "Failed to read value.", Toast.LENGTH_SHORT).show();
                 }
             };
             databaseReference.addListenerForSingleValueEvent(eventListener);
@@ -174,17 +174,17 @@ public class ProfileFragment extends Fragment {
     }
 
     public void openFavoritesPage() {
-        Intent favorites = new Intent(ProfileFragment.this.getActivity(), FavoritePage.class);
+        Intent favorites = new Intent(CProfileFragment.this.getActivity(), FavoritePage.class);
         startActivity(favorites);
     }
 
     public void openNotificationPage() {
-        Intent notification = new Intent(ProfileFragment.this.getActivity(), NotificationPage.class);
+        Intent notification = new Intent(CProfileFragment.this.getActivity(), NotificationPage.class);
         startActivity(notification);
     }
 
     public void openAccountPage() {
-        Intent account = new Intent(ProfileFragment.this.getActivity(), AccountPage.class);
+        Intent account = new Intent(CProfileFragment.this.getActivity(), AccountPage.class);
         startActivity(account);
     }
 

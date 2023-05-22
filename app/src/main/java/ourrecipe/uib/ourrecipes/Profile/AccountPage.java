@@ -22,8 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import ourrecipe.uib.ourrecipes.AccountPage.ChangeEmail;
-import ourrecipe.uib.ourrecipes.AccountPage.ChangePassword;
+import ourrecipe.uib.ourrecipes.AccountPage.PChangeEmail;
+import ourrecipe.uib.ourrecipes.AccountPage.PChangePassword;
 import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.R;
 
@@ -222,12 +222,12 @@ public class AccountPage extends AppCompatActivity {
 //    }
 //
     public void openEmailPage() {
-        Intent email = new Intent(this, ChangeEmail.class);
+        Intent email = new Intent(this, PChangeEmail.class);
         startActivity(email);
     }
 
     public void openPasswordPage() {
-        Intent password = new Intent(this, ChangePassword.class);
+        Intent password = new Intent(this, PChangePassword.class);
         startActivity(password);
     }
 }

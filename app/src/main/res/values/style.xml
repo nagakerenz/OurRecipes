@@ -9,4 +9,9 @@
         <item name="chipBackgroundColor">@color/chip_background</item>
         <item name="android:textColor">@color/text_color</item>
     </style>
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item> <!-- Set the desired text size -->
+        <item name="android:textColor">@color/black</item> <!-- Reference the selector -->
+    </style>
+
 </resources>

@@ -1,17 +1,11 @@
 package ourrecipe.uib.ourrecipes.ui.reels;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -20,25 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.R;
-import ourrecipe.uib.ourrecipes.databinding.FragmentReelsBinding;
+import ourrecipe.uib.ourrecipes.databinding.CFragmentReelsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ReelsFragment extends Fragment {
+public class CReelsFragment extends Fragment {
     private ViewPager2 viewPager2;
     private List<Video> videoList;
     private VideoAdapter adapter;
 
-    private FragmentReelsBinding binding;
+    private CFragmentReelsBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ReelsViewModel reelsViewModel = new ViewModelProvider(this).get(ReelsViewModel.class);
 
-        binding = FragmentReelsBinding.inflate(inflater, container, false);
+        binding = CFragmentReelsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         videoList = new ArrayList<>();
@@ -99,14 +93,14 @@ public class ReelsFragment extends Fragment {
                     }
                 } else {
                     // Handle API error
-                    Toast.makeText(ReelsFragment.this.getContext(), "Failed to fetch videos: " + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CReelsFragment.this.getContext(), "Failed to fetch videos: " + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<VideoResponse>> call, Throwable t) {
                 // Handle API call failure
-                Toast.makeText(ReelsFragment.this.getContext(), "Failed to fetch videos: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CReelsFragment.this.getContext(), "Failed to fetch videos: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

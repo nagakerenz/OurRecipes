@@ -18,6 +18,7 @@
     <color name="highlightColor">#CBAA80</color>
     <color name="backgroundPage">#FBF4D1</color>
     <color name="colorDivider">#ECECEC</color>
+    <color name="orange">#E28800</color>
 
 
 </resources>
