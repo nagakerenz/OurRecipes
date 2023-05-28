@@ -42,7 +42,7 @@
                     android:layout_height="34dp"
                     android:layout_margin="10dp"
                     android:layout_gravity="right"
-                    android:button="@drawable/food_icon_favorite_red_to_white"
+                    android:button="@drawable/f_food_recipe_icon_favorite_red_to_white"
                     android:background="@color/white" />
 
                 <TextView
@@ -230,22 +230,23 @@
                     android:layout_gravity="bottom"
                     app:layout_column="0"
                     app:layout_row="0"
-                    android:src="@drawable/food_ingredients_food_chicken" />
+                    android:src="@drawable/d_food_categories_dinner" />
+
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="130dp"
                     android:layout_gravity="bottom"
-
                     app:layout_column="1"
                     app:layout_row="0"
-                    android:src="@drawable/food_ingredients_food_oil" />
+                    android:src="@drawable/lunch_chickenkatsu" />
+
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="130dp"
                     android:layout_gravity="bottom"
                     app:layout_column="2"
                     app:layout_row="0"
-                    android:src="@drawable/food_ingredients_food_onion" />
+                    android:src="@drawable/d_food_categories_drink" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

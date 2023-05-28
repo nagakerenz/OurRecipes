@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="158dp"
+    android:layout_height="201dp"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp" >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="157dp"
+        android:layout_height="200dp"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/foodRecipeIcon">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bookmarkImage"
+                android:layout_width="27dp"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/f_food_recipe_icon_bookmark" />
+
+                <CheckBox
+                    android:id="@+id/loveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/f_food_recipe_icon_favorite_red_to_white"
+                    app:useMaterialThemeColors="false" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/foodLikedTotal"
+                android:layout_width="45dp"
+                android:layout_height="14dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                app:cardUseCompatPadding="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/likedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/f_food_recipe_icon_liked" />
+
+                <ImageView
+                    android:id="@+id/likedImageLove"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:src="@drawable/f_food_recipe_icon_favorite_button_white"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/foodLiked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="0.7dp"
+                    android:layout_toEndOf="@+id/likedImageLove"
+                    android:layout_centerVertical="true"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/foodImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ellipsize="end"
+                android:gravity="bottom|center_horizontal"
+                android:maxLines="2"
+                android:text="foodName"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:layout_below="@id/foodImage"
+                android:layout_centerHorizontal="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:id="@+id/foodRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rating"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        app:drawableLeftCompat="@drawable/f_food_recipe_icon_star" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="#000000" />
+
+                    <TextView
+                        android:id="@+id/foodtimes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Times"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        app:drawableLeftCompat="@drawable/f_food_recipe_icon_time" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

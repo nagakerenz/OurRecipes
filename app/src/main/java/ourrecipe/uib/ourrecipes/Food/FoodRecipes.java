@@ -43,11 +43,11 @@ public class FoodRecipes extends AppCompatActivity {
         // Retrieve the recipe ID and category from the intent
         Intent intent = getIntent();
         String recipeId = intent.getStringExtra("recipeId");
-        String category = intent.getStringExtra("category");
+        String parentKey = intent.getStringExtra("parentKey");
 
-
-        // Create a reference to the "Food Recipes" node in the database for the specified recipe ID
-        DatabaseReference recipeRef = FirebaseDatabase.getInstance().getReference("Food Recipes").child(recipeId);
+        // Create a reference to the "Food Recipes" node in the database for the specified recipe ID and parent key
+        DatabaseReference recipeRef = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                .child(parentKey).child(recipeId);
 
         // Attach a ValueEventListener to fetch the category for the recipe ID
         ValueEventListener categoryListener = new ValueEventListener() {
@@ -111,6 +111,8 @@ public class FoodRecipes extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // Remove the ValueEventListener when the activity is destroyed
-        foodRecipesRef.removeEventListener(foodRecipesListener);
+        if (foodRecipesRef != null && foodRecipesListener != null) {
+            foodRecipesRef.removeEventListener(foodRecipesListener);
+        }
     }
 }

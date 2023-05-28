@@ -9,18 +9,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipesIconDataClass;
+import ourrecipe.uib.ourrecipes.Food.FoodRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentHomeBinding;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.Categories;
@@ -28,22 +40,30 @@ import ourrecipe.uib.ourrecipes.ui.reels.Video;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class CHomeFragment extends Fragment {
-//    MaterialButton reels;
+
+
+
+    //ViewPager
+    Button reels;
+    private ViewPager2 viewPagerImage, viewPagerReels;
+    ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
+    private List<Video> videoList;
+    private VideoAdapter videoAdapter;
+
+    //Categories
     CardView cardView;
     ImageButton breakfast;
     ImageButton lunch;
     ImageButton dinner;
     ImageButton fiber;
     ImageButton drink;
-    ImageButton menu;
-    ImageButton menu1;
-    ImageButton menu2;
-    ImageButton menu3;
-    Button reels;
-    private ViewPager2 viewPagerImage, viewPagerReels;
-    ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
-    private List<Video> videoList;
-    private VideoAdapter adapter;
+
+    //Recommended Food Recommendation
+    private RecyclerView recyclerView;
+    private FoodRecyclerItemAdapter adapter;
+    private DatabaseReference recipesRef;
+    private ValueEventListener valueEventListener;
+
     public CHomeFragment(){
 
     }
@@ -58,22 +78,25 @@ public class CHomeFragment extends Fragment {
         binding = CFragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+        // Initialize the RecyclerView
+        recyclerView = root.findViewById(R.id.recyclerViewHome);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+
+        //Categories Image Button
         cardView = root.findViewById(R.id.cardViewImageSlider);
         breakfast = (ImageButton) root.findViewById(R.id.breakfast);
         lunch = (ImageButton) root.findViewById(R.id.lunch);
         dinner = (ImageButton) root.findViewById(R.id.dinner);
         fiber = (ImageButton) root.findViewById(R.id.fiber);
         drink = (ImageButton) root.findViewById(R.id.drink);
-        menu = (ImageButton) root.findViewById(R.id.imageButton);
-        menu1 = (ImageButton) root.findViewById(R.id.imageButton1);
-        menu2 = (ImageButton) root.findViewById(R.id.imageButton2);
-        menu3 = (ImageButton) root.findViewById(R.id.imageButton3);
         viewPagerImage = root.findViewById(R.id.viewPager2Image);
 
         cardView.setCardBackgroundColor(Color.TRANSPARENT);
 
         //THIS IS FOR HANDLING SLIDER ON FEATURED DISH
-        int[] images = { R.drawable.c_slide_learntocook, R.drawable.c_slide_areyouondiet, R.drawable.c_slide_carvingforsteak};
+        int[] images = { R.drawable.c_home_slide_areyouondiet, R.drawable.c_home_slide_learntocook, R.drawable.c_home_slide_carvingforsteak};
         //TO Implement Strings
 //        String[] heading = {"Breakfast, Lunch, Dinner, Dessert, Drinks"};
 //        String[] desc = {
@@ -190,16 +213,16 @@ public class CHomeFragment extends Fragment {
 
         videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
 
-        adapter = new VideoAdapter(videoList);
-        viewPagerReels.setAdapter(adapter);
+        videoAdapter = new VideoAdapter(videoList);
+        viewPagerReels.setAdapter(videoAdapter);
 
         videoList = new ArrayList<>();
         viewPagerReels = root.findViewById(R.id.viewPagerReels1);
 
         videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Eating", "Seafood is the best."));
 
-        adapter = new VideoAdapter(videoList);
-        viewPagerReels.setAdapter(adapter);
+        videoAdapter = new VideoAdapter(videoList);
+        viewPagerReels.setAdapter(videoAdapter);
 
         CardView reelsCardView = root.findViewById(R.id.reelsCardView);
         reelsCardView.setOnClickListener(new View.OnClickListener() {
@@ -209,38 +232,70 @@ public class CHomeFragment extends Fragment {
             }
         });
 
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openMenuPage();
-            }
-        });
-        menu1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openMenuPage();
-            }
-        });
 
-        menu2.setOnClickListener(new View.OnClickListener() {
+
+        //Food Recomendation Recipes
+        // Create an empty list for the data
+        List<FoodRecipesIconDataClass> data = new ArrayList<>();
+
+        // Create and set the adapter for the RecyclerView
+        adapter = new FoodRecyclerItemAdapter(data);
+        recyclerView.setAdapter(adapter);
+
+        // Retrieve data from the Firebase Realtimes Database
+        recipesRef = FirebaseDatabase.getInstance().getReference().child("Food Recipes").child("Breakfast");
+        valueEventListener = new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                openMenuPage();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Clear the existing data before adding new items
+//                data.clear();
+
+                // Iterate through the database snapshots
+//                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
+//                    String category = categorySnapshot.getKey();
+//
+//                    for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
+
+                //the code to just trying to fetch from breakfast
+                for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
+                    // Get the recipe details
+                    String id = recipeSnapshot.child("id").getValue(String.class);
+                    String name = recipeSnapshot.child("name").getValue(String.class);
+                    String rating = recipeSnapshot.child("rating").getValue(String.class);
+                    Long times = recipeSnapshot.child("times").getValue(Long.class);
+                    String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
+
+                    // Add additional text to the "times" value
+                    String timesText = times + " Minutes"; // Add " minutes" to the times value
+
+
+                    // Create a Recipe object with the retrieved values
+                    FoodRecipesIconDataClass recipe = new FoodRecipesIconDataClass(id, name, rating, times, imageURL);
+
+                    // Add the recipe to the list
+                    data.add(recipe);
+                }
+                // Notify the adapter about the data change
+                adapter.notifyDataSetChanged();
             }
-        });
-        menu3.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
-                openMenuPage();
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle the error, if any
             }
-        });
+        };
+        recipesRef.addValueEventListener(valueEventListener);
 
         return root;
     }
 
-    public void openMenuPage() {
-        Intent menu = new Intent(CHomeFragment.this.getActivity(), FoodRecipes.class);
-        startActivity(menu);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Remove the ValueEventListener when the fragment is destroyed
+        if (recipesRef != null && valueEventListener != null) {
+            recipesRef.removeEventListener(valueEventListener);
+        }
     }
 
     @Override

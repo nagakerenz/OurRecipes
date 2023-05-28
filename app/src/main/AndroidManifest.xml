@@ -119,47 +119,7 @@
             android:name=".ui.home.Categories.Categories"
             android:label="Categories" />
         <activity
-            android:name=".ui.home.Categories.DrinkPage"
-            android:exported="false"
-            android:parentActivityName=".BottomNavigationBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.home.Categories.FiberPage"
-            android:exported="false"
-            android:parentActivityName=".BottomNavigationBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.home.Categories.DinnerPage"
-            android:exported="false"
-            android:parentActivityName=".BottomNavigationBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.home.Categories.LunchPage"
-            android:exported="false"
-            android:parentActivityName=".BottomNavigationBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.profile.Profile.FavoritePage"
-            android:exported="false"
-            android:parentActivityName=".BottomNavigationBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.home.Categories.BreakfastPage"
             android:exported="false"
             android:parentActivityName=".BottomNavigationBar">
             <meta-data

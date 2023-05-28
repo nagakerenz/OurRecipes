@@ -6,238 +6,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.search.CSearchFragment"
-    android:background="#FBF4D1"
-    android:orientation="vertical">
+    android:background="@color/backgroundPage"
+    android:padding="16dp">
 
-    <RelativeLayout
-        android:id="@+id/textviewutama"
-        android:layout_width="wrap_content"
-        android:layout_height="150px"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp">
-
-        <TextView
-            android:id="@+id/textview1"
-            android:layout_width="206px"
-            android:layout_height="47px"
-            android:gravity="top"
-            android:text="Looking For"
-            android:textColor="@color/black"
-            android:textSize="39px" />
-
-        <TextView
-            android:id="@+id/textview2"
-            android:layout_width="505px"
-            android:layout_height="69px"
-            android:layout_below="@id/textview1"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="8dp"
-            android:gravity="top"
-            android:text="Easy to Cook"
-            android:textColor="@color/black"
-            android:textSize="59px"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/searchBar"
+    <TextView
+        android:id="@+id/textview_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:layout_below="@+id/textviewutama"
-        android:layout_marginTop="0dp"
-        android:paddingLeft="25dp">
+        android:layout_marginTop="16dp"
+        android:text="Looking For"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
-        <SearchView
-            android:id="@+id/search1"
-            android:layout_width="355dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:background="#FAEDB9"
-            android:drawableLeft="@drawable/ic_baseline_search_24"
-            android:ems="10"
-            android:queryHint="Search for Food" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/textview_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_title"
+        android:text="Easy to Cook"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
-<RelativeLayout
-    android:id="@+id/scrollBar"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/searchBar"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp">
-    <ScrollView
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadeScrollbars="false"
-        android:fillViewport="true">
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_sub_title"
+        android:background="#FAEDB9"
+        android:queryHint="Search for Food"
+        app:searchIcon="@drawable/c_search_ic_baseline_search_24"
+        app:closeIcon="@drawable/c_search_baseline_clear_24"
+        app:iconifiedByDefault="false" />
+
+    <LinearLayout
+        android:id="@+id/textview_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/search1"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+
+
+    <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BREAKFAST"
-                android:layout_marginTop="20dp"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:fontFamily="arial"/>
+            android:text="RESULT"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <HorizontalScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageButton
-                            android:id="@+id/imageButton"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/food_icon_breakfast_eggcereal" />
-                        <CheckBox
-                            android:id="@+id/loveButton"
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:layout_marginLeft="118.5dp"
-                            android:layout_marginTop="4dp"
-                            android:button="@drawable/food_icon_favorite_red_to_white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:useMaterialThemeColors="false" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageButton
-                            android:id="@+id/imageButton1"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/food_icon_breakfast_burito" />
-                        <CheckBox
-                            android:id="@+id/loveButton1"
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:layout_marginLeft="118.5dp"
-                            android:layout_marginTop="4dp"
-                            android:button="@drawable/food_icon_favorite_red_to_white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:useMaterialThemeColors="false" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageButton
-                            android:id="@+id/imageButton2"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/food_icon_breakfast_eggtoast" />
-                        <CheckBox
-                            android:id="@+id/loveButton2"
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:layout_marginLeft="118.5dp"
-                            android:layout_marginTop="4dp"
-                            android:button="@drawable/food_icon_favorite_red_to_white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:useMaterialThemeColors="false" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="10dp"
+            android:background="#000000" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MOST FAVORITE DISH"
-                android:layout_marginTop="20dp"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:fontFamily="arial"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/c_search_arrow_right"/>
 
-            <HorizontalScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+    </LinearLayout>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageButton
-                            android:id="@+id/imageButton4"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/food_icon_dinner_spicyramen" />
-                        <CheckBox
-                            android:id="@+id/loveButton4"
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:layout_marginLeft="118.5dp"
-                            android:layout_marginTop="4dp"
-                            android:button="@drawable/food_icon_favorite_red_to_white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:useMaterialThemeColors="false" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageButton
-                            android:id="@+id/imageButton5"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/lunch_kebab" />
-                        <CheckBox
-                            android:id="@+id/loveButton5"
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:layout_marginLeft="118.5dp"
-                            android:layout_marginTop="4dp"
-                            android:button="@drawable/food_icon_favorite_red_to_white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:useMaterialThemeColors="false" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageButton
-                            android:id="@+id/imageButton6"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/lunch_chickenkatsu" />
-                        <CheckBox
-                            android:id="@+id/loveButton6"
-                            android:layout_width="21dp"
-                            android:layout_height="21dp"
-                            android:layout_marginLeft="118.5dp"
-                            android:layout_marginTop="4dp"
-                            android:button="@drawable/food_icon_favorite_red_to_white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:useMaterialThemeColors="false" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearched"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_result"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/textview_favorite_dish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/recyclerViewSearched"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOST FAVORITE DISH"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="10dp"
+            android:background="#000000" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/c_search_arrow_right"/>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMostFavoriteDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_favorite_dish"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal" />
+
 </RelativeLayout>

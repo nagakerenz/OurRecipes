@@ -9,7 +9,8 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".ui.home.CHomeFragment">
+    tools:context=".ui.home.CHomeFragment"
+    android:backgroundTint="@color/backgroundPage">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,24 +22,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             android:layout_gravity="center">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewImageSlider"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:padding="12dp"
+                app:cardElevation="0dp">
 
-                <TextView
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Featured Topics"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="12dp"/>
 
                 <androidx.viewpager2.widget.ViewPager2
@@ -63,64 +66,77 @@
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="#33F9E5A1">
+                app:cardBackgroundColor="#9CD9FF"
+                android:padding="12dp">
 
-                <ImageButton
-                    android:id="@+id/breakfast"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:backgroundTint="#05F9E5A1"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/food_categories_breakfast"
-                    android:onClick="categoriesBreakfast"
-                    android:contentDescription="Breakfast" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
 
-                <ImageButton
-                    android:id="@+id/lunch"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="64dp"
-                    android:backgroundTint="#05F8D5A7"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/food_categories_lunch"
-                    android:onClick="categoriesLunch"
-                    android:contentDescription="Lunch"/>
+                    <ImageButton
+                        android:id="@+id/breakfast"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#05F9E5A1"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/c_food_categories_breakfast"
+                        android:onClick="categoriesBreakfast"
+                        android:contentDescription="Breakfast" />
 
-                <ImageButton
-                    android:id="@+id/dinner"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="128dp"
-                    android:backgroundTint="#05F9E5A1"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/food_categories_dinner"
-                    android:onClick="categoriesDinner"
-                    android:contentDescription="Dinner"/>
+                    <ImageButton
+                        android:id="@+id/lunch"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="4dp"
+                        android:backgroundTint="#05F8D5A7"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/c_food_categories_lunch"
+                        android:onClick="categoriesLunch"
+                        android:contentDescription="Lunch"/>
 
-                <ImageButton
-                    android:id="@+id/drink"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="192dp"
-                    android:backgroundTint="#05F8D5A7"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/food_categories_drink"
-                    android:onClick="categoriesDrink"
-                    android:contentDescription="Drink" />
+                    <ImageButton
+                        android:id="@+id/dinner"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="4dp"
+                        android:backgroundTint="#05F9E5A1"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/c_food_categories_dinner"
+                        android:onClick="categoriesDinner"
+                        android:contentDescription="Dinner"/>
 
-                <ImageButton
-                    android:id="@+id/fiber"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="256dp"
-                    android:backgroundTint="#05F8D5A7"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/food_categories_fiber"
-                    android:onClick="categoriesFiber"
-                    android:contentDescription="Fiber"/>
+                    <ImageButton
+                        android:id="@+id/drink"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="4dp"
+                        android:backgroundTint="#05F8D5A7"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/c_food_categories_drink"
+                        android:onClick="categoriesDrink"
+                        android:contentDescription="Drink" />
+
+                    <ImageButton
+                        android:id="@+id/fiber"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="4dp"
+                        android:backgroundTint="#05F8D5A7"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/c_food_categories_fiber"
+                        android:onClick="categoriesFiber"
+                        android:contentDescription="Fiber"/>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -135,168 +151,85 @@
                 android:textStyle="bold" />
 
             <HorizontalScrollView
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal">
 
                 <LinearLayout
                     android:id="@+id/reelsFrame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@null">
+                    android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/reelsCardView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewPagerReels"
                         android:layout_width="160dp"
                         android:layout_height="230dp"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginRight="12dp">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPagerReels"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" />
+
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/reelsCardView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp">
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewPagerReels1"
                         android:layout_width="160dp"
                         android:layout_height="230dp"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginRight="12dp">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPagerReels1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" />
+
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/search1"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:text="Watching K-Drama?"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:gravity="center_vertical">
 
-            <GridLayout
-                android:layout_width="320dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Watching K-Drama?"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c_search_arrow_right"/>
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewHome"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="60dp"
-                android:columnCount="2">
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal" />
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    app:layout_column="0"
-                    app:layout_row="0"
-                    app:srcCompat="@drawable/food_icon_breakfast_eggcereal"
-                    android:contentDescription="breakfast eggcereal"
-                    />
-
-                <CheckBox
-                    android:id="@+id/loveButton"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_marginLeft="118.5dp"
-                    android:layout_marginTop="4dp"
-                    android:button="@drawable/food_icon_favorite_red_to_white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:useMaterialThemeColors="false"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <ImageButton
-                    android:id="@+id/imageButton1"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    app:layout_column="1"
-                    app:layout_row="0"
-                    app:srcCompat="@drawable/food_icon_breakfast_eggtoast"
-                    android:contentDescription="Breakfast Eggtoast"
-                    />
-
-                <CheckBox
-                    android:id="@+id/loveButton1"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:layout_marginLeft="118.5dp"
-                    android:layout_marginTop="4dp"
-                    android:button="@drawable/food_icon_favorite_red_to_white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:useMaterialThemeColors="false"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    android:layout_marginTop="10dp"
-                    app:layout_column="0"
-                    app:layout_row="1"
-                    app:srcCompat="@drawable/food_icon_dinner_spicyramen" />
-
-                <CheckBox
-                    android:id="@+id/loveButton2"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_row="1"
-                    android:layout_column="0"
-                    android:layout_marginLeft="118.5dp"
-                    android:layout_marginTop="14dp"
-                    android:button="@drawable/food_icon_favorite_red_to_white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:useMaterialThemeColors="false"/>
-
-                <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    android:layout_marginTop="10dp"
-                    app:layout_column="1"
-                    app:layout_row="1"
-                    app:srcCompat="@drawable/food_icon_dinner_tteokbokki" />
-
-                <CheckBox
-                    android:id="@+id/loveButton3"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:layout_marginLeft="118.5dp"
-                    android:layout_marginTop="17dp"
-                    android:button="@drawable/food_icon_favorite_red_to_white"
-                    app:layout_constraintBottom_toTopOf="@+id/sendButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:useMaterialThemeColors="false"/>
-            </GridLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

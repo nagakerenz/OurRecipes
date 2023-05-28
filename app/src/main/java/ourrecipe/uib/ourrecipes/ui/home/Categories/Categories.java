@@ -101,7 +101,7 @@ public class Categories extends AppCompatActivity {
         }
 
 //        to fit a lot of categories enable this to make it scrollable
-//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
     }

@@ -1,30 +1,23 @@
 package ourrecipe.uib.ourrecipes.Food;
 
 public class FoodRecipesIconDataClass {
-
     private String id;
-    private String foodImage;
-    private String foodName;
-    private Long foodRating;
-    private String foodTime;
-    private boolean favorite;
+    private String title;
+    private String rating;
+    private Long times;
+    private String imageURL;
 
-
-    // Add a no-argument constructor
     public FoodRecipesIconDataClass() {
-        // Default constructor required for Firebase
-    }
-    // Constructor
-    public FoodRecipesIconDataClass(String id, String foodImage, String foodName, Long foodRating, String foodTime, boolean favorite) {
-        this.id = id;
-        this.foodImage = foodImage;
-        this.foodName = foodName;
-        this.foodRating = foodRating;
-        this.foodTime = foodTime;
-        this.favorite = favorite;
+        // Default constructor (required for Firebase)
     }
 
-    // Getters and Setters
+    public FoodRecipesIconDataClass(String id, String title, String rating, Long times, String imageURL) {
+        this.id = id;
+        this.title = title;
+        this.rating = rating;
+        this.times = times;
+        this.imageURL = imageURL;
+    }
 
     public String getId() {
         return id;
@@ -33,44 +26,39 @@ public class FoodRecipesIconDataClass {
     public void setId(String id) {
         this.id = id;
     }
-
-    public String getFoodImage() {
-        return foodImage;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFoodImage(String foodImage) {
-        this.foodImage = foodImage;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public String getRating() {
+        return rating;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
-    public Long getFoodRating() {
-        return foodRating;
+    public Long gettimes() {
+        return times;
     }
 
-    public void setFoodRating(Long foodRating) {
-        this.foodRating = foodRating;
+    public void settimes(Long times) {
+        this.times = times;
     }
 
-    public String getFoodTime() {
-        return foodTime;
+    public String getTimesText() {
+        return times + " Minutes";
     }
 
-    public void setFoodTime(String foodTime) {
-        this.foodTime = foodTime;
+    public String getimageURL() {
+        return imageURL;
     }
 
-    public boolean isFavorite() {
-        return favorite;
-    }
-
-    public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
+    public void setimageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

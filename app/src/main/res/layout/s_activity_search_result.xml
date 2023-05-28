@@ -36,16 +36,17 @@
         android:layout_below="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <SearchView
+        <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FAEDB9"
-            android:queryHint="Search For Food"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
+            android:queryHint="Search for Food"
+            app:searchIcon="@drawable/c_search_ic_baseline_search_24"
+            app:closeIcon="@drawable/c_search_baseline_clear_24"
+            app:iconifiedByDefault="false" />
+
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/searchResult"
@@ -63,144 +64,14 @@
             android:text="Search Result"
             android:textStyle="bold"
             android:textSize="16dp"/>
-        <GridLayout
-            android:layout_width="320dp"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearched"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:layout_marginTop="35dp"
-            android:layout_gravity="center_horizontal">
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_column="0"
-                app:layout_row="0"
-                app:srcCompat="@drawable/food_icon_breakfast_eggcereal" />
-
-            <CheckBox
-                android:id="@+id/loveButton"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_column="0"
-                android:layout_row="0"
-                android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:useMaterialThemeColors="false" />
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_column="1"
-                app:layout_row="0"
-                app:srcCompat="@drawable/food_icon_breakfast_eggtoast" />
-
-            <CheckBox
-                android:id="@+id/loveButton1"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_column="1"
-                android:layout_row="0"
-                android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:useMaterialThemeColors="false" />
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_column="0"
-                app:layout_row="1"
-                app:srcCompat="@drawable/food_icon_dinner_tteokbokki" />
-
-            <CheckBox
-                android:id="@+id/loveButton2"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_column="0"
-                android:layout_row="1"
-                android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:useMaterialThemeColors="false" />
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_column="1"
-                app:layout_row="1"
-                app:srcCompat="@drawable/food_icon_dinner_bimbimbap" />
-
-            <CheckBox
-                android:id="@+id/loveButton3"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_column="1"
-                android:layout_row="1"
-                android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:useMaterialThemeColors="false" />
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_row="2"
-                app:layout_column="0"
-                app:srcCompat="@drawable/lunch_pasta" />
-
-            <CheckBox
-                android:id="@+id/loveButton4"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_row="2"
-                android:layout_column="0"
-                android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:useMaterialThemeColors="false" />
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_row="2"
-                app:layout_column="1"
-                app:srcCompat="@drawable/lunch_creamsoup" />
-
-            <CheckBox
-                android:id="@+id/loveButton5"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:layout_row="2"
-                android:layout_column="1"
-                android:layout_marginLeft="118.5dp"
-                android:layout_marginTop="4dp"
-                android:button="@drawable/food_icon_favorite_red_to_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:useMaterialThemeColors="false" />
-        </GridLayout>
+            android:layout_below="@id/textSearchResult"
+            android:layout_marginTop="5dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"/>
     </RelativeLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
