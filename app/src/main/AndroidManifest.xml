@@ -16,9 +16,7 @@
         android:theme="@style/Theme.OurRecipes"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.home.Categories.CategoriesFoodIcon"
-            android:exported="false" />
+
         <activity
             android:name=".AccountPage.PChangeEmail"
             android:exported="false">

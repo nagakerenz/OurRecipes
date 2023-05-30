@@ -4,85 +4,99 @@ import java.util.List;
 
 public class FoodRecipesDataClass {
 
-    private String id;
-    private String foodImage;
-    private String foodName;
-    private int foodRating;
-    private int foodTime;
-    private boolean favorite;
+    private String parentCategoryKey;
+    private String parentKey;
+    private String imageURL;
+    private String name;
+    private Long times;
+    private List<String> nutrition;
+    private String rating;
+    private String servingSize;
     private String description;
     private List<String> ingredients;
+    private List<String> ingredientPictures;
     private List<String> steps;
-    private List<String> tags;
 
-
-    // Add a no-argument constructor
-    public FoodRecipesDataClass() {
-        // Default constructor required for Firebase
-    }
     // Constructor
-    public FoodRecipesDataClass(String id, String foodImage, String foodName, int foodRating, int foodTime, boolean favorite,
-                                String description, List<String> ingredients, List<String> steps, List<String> tags) {
-        this.id = id;
-        this.foodImage = foodImage;
-        this.foodName = foodName;
-        this.foodRating = foodRating;
-        this.foodTime = foodTime;
-        this.favorite = favorite;
+    public FoodRecipesDataClass(String parentCategoryKey, String parentKey, String imageURL, String name, Long times,
+                                List<String> nutrition, String rating, String servingSize, String description,
+                                List<String> ingredients, List<String> ingredientPictures, List<String> steps) {
+        this.parentCategoryKey = parentCategoryKey;
+        this.parentKey = parentKey;
+        this.imageURL = imageURL;
+        this.name = name;
+        this.times = times;
+        this.nutrition = nutrition;
+        this.rating = rating;
+        this.servingSize = servingSize;
         this.description = description;
         this.ingredients = ingredients;
+        this.ingredientPictures = ingredientPictures;
         this.steps = steps;
-        this.tags = tags;
     }
 
-    // Getters and Setters
-
-    public String getId() {
-        return id;
+    // Getter and Setter methods
+    public String getParentCategoryKey() {
+        return parentCategoryKey;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setParentCategoryKey(String parentCategoryKey) {
+        this.parentCategoryKey = parentCategoryKey;
     }
 
-    public String getFoodImage() {
-        return foodImage;
+    public String getParentKey() {
+        return parentKey;
     }
 
-    public void setFoodImage(String foodImage) {
-        this.foodImage = foodImage;
+    public void setParentKey(String parentKey) {
+        this.parentKey = parentKey;
+    }
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public String getName() {
+        return name;
     }
 
-    public int getFoodRating() {
-        return foodRating;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setFoodRating(int foodRating) {
-        this.foodRating = foodRating;
+    public Long getTimes() {
+        return times;
     }
 
-    public int getFoodTime() {
-        return foodTime;
+    public void setTimes(Long times) {
+        this.times = times;
     }
 
-    public void setFoodTime(int foodTime) {
-        this.foodTime = foodTime;
+    public List<String> getNutrition() {
+        return nutrition;
     }
 
-    public boolean isFavorite() {
-        return favorite;
+    public void setNutrition(List<String> nutrition) {
+        this.nutrition = nutrition;
     }
 
-    public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getServingSize() {
+        return servingSize;
+    }
+
+    public void setServingSize(String servingSize) {
+        this.servingSize = servingSize;
     }
 
     public String getDescription() {
@@ -101,19 +115,19 @@ public class FoodRecipesDataClass {
         this.ingredients = ingredients;
     }
 
+    public List<String> getIngredientPictures() {
+        return ingredientPictures;
+    }
+
+    public void setIngredientPictures(List<String> ingredientPictures) {
+        this.ingredientPictures = ingredientPictures;
+    }
+
     public List<String> getSteps() {
         return steps;
     }
 
     public void setSteps(List<String> steps) {
         this.steps = steps;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 }

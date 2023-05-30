@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +19,8 @@ import ourrecipe.uib.ourrecipes.R;
 public class FoodRecipes extends AppCompatActivity {
 
     private ImageView foodImageView;
-    private TextView categoriesTextView, nameTextView, timeTextView, calorieTextView, ratingTextView, servingSizeTextView, descriptionTextView, ingredientsTextView, stepsTextView;
+    private TextView categoriesTextView, nameTextView, timeTextView, calorieTextView, ratingTextView,
+            servingSizeTextView, descriptionTextView, ingredientsTextView, stepsTextView;
 
     private DatabaseReference foodRecipesRef;
     private ValueEventListener foodRecipesListener;
@@ -32,68 +34,53 @@ public class FoodRecipes extends AppCompatActivity {
         categoriesTextView = findViewById(R.id.foodCategories);
         foodImageView = findViewById(R.id.foodImage);
         nameTextView = findViewById(R.id.foodName);
-//        timeTextView = findViewById(R.id.timeTextView);
-//        calorieTextView = findViewById(R.id.calorieTextView);
-//        ratingTextView = findViewById(R.id.ratingTextView);
-//        servingSizeTextView = findViewById(R.id.servingSizeTextView);
+        timeTextView = findViewById(R.id.timeTextView);
+        calorieTextView = findViewById(R.id.calorieTextView);
+        ratingTextView = findViewById(R.id.ratingTextView);
+        servingSizeTextView = findViewById(R.id.servingSizeTextView);
         descriptionTextView = findViewById(R.id.foodDescription);
 //        ingredientsTextView = findViewById(R.id.ingredientsTextView);
         stepsTextView = findViewById(R.id.foodSteps);
 
-        // Retrieve the recipe ID and category from the intent
+        // Retrieve the parent category key and parent key from the intent
         Intent intent = getIntent();
-        String recipeId = intent.getStringExtra("recipeId");
+        String parentCategoryKey = intent.getStringExtra("parentCategoryKey");
         String parentKey = intent.getStringExtra("parentKey");
 
-        // Create a reference to the "Food Recipes" node in the database for the specified recipe ID and parent key
+        // Create a reference to the "Food Recipes" node in the database for the specified parent category key and parent key
         DatabaseReference recipeRef = FirebaseDatabase.getInstance().getReference("Food Recipes")
-                .child(parentKey).child(recipeId);
+                .child(parentCategoryKey).child(parentKey);
 
-        // Attach a ValueEventListener to fetch the category for the recipe ID
-        ValueEventListener categoryListener = new ValueEventListener() {
+        // Attach a ValueEventListener to fetch the food recipe data
+        foodRecipesListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Retrieve the category for the recipe ID from the database
-                String category = dataSnapshot.child("category").getValue(String.class);
+                // Retrieve the food recipe data from the database
+                String imageURL = dataSnapshot.child("imageURL").getValue(String.class);
+                String name = dataSnapshot.child("name").getValue(String.class);
+                Long times = dataSnapshot.child("times").getValue(Long.class);
+                String rating = dataSnapshot.child("rating").getValue(String.class);
+                String servingSize = dataSnapshot.child("servingSize").getValue(String.class);
+                String description = dataSnapshot.child("description").getValue(String.class);
+//                String ingredients = dataSnapshot.child("ingredients").getValue(String.class);
+                String steps = dataSnapshot.child("steps").getValue(String.class);
 
-                // Create a reference to the "Food Recipes" node in the database for the retrieved category and recipe ID
-                foodRecipesRef = FirebaseDatabase.getInstance().getReference("Food Recipes").child(category).child(recipeId);
+                // Update the corresponding views in your layout with the retrieved data
+                categoriesTextView.setText(parentCategoryKey);
+                nameTextView.setText(name);
+                timeTextView.setText(String.valueOf(times));
+                ratingTextView.setText(rating);
+                servingSizeTextView.setText(servingSize);
+                descriptionTextView.setText(description);
+//                ingredientsTextView.setText(ingredients);
+                stepsTextView.setText(steps);
 
-                // Attach a ValueEventListener to fetch the food recipe data
-                foodRecipesListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Retrieve the food recipe data from the database
-                        String categories = dataSnapshot.child("category").getValue(String.class);
-                        String name = dataSnapshot.child("name").getValue(String.class);
-                        String time = dataSnapshot.child("minutes").getValue(String.class);
-                        String calorie = dataSnapshot.child("nutrition").child("calorie").getValue(String.class);
-                        String rating = dataSnapshot.child("nutrition").child("rating").getValue(String.class);
-                        String servingSize = dataSnapshot.child("nutrition").child("serving_size").getValue(String.class);
-                        String description = dataSnapshot.child("description").getValue(String.class);
-                        String ingredients = dataSnapshot.child("ingredients").getValue(String.class);
-                        String steps = dataSnapshot.child("steps").getValue(String.class);
-
-                        // Update the corresponding views in your layout with the retrieved data
-                        categoriesTextView.setText(categories);
-                        nameTextView.setText(name);
-                        timeTextView.setText(time);
-                        calorieTextView.setText(calorie);
-                        ratingTextView.setText(rating);
-                        servingSizeTextView.setText(servingSize);
-                        descriptionTextView.setText(description);
-                        ingredientsTextView.setText(ingredients);
-                        stepsTextView.setText(steps);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // Handle any errors that occur during data retrieval
-                    }
-                };
-
-                // Add the ValueEventListener to the food recipes reference
-                foodRecipesRef.addListenerForSingleValueEvent(foodRecipesListener);
+                // Load the image into the ImageView using an image loading library like Glide or Picasso
+                // Use Glide library to load the image into the ImageButton
+                Glide.with(FoodRecipes.this)
+                        .load(imageURL)
+                        .centerCrop()
+                        .into(foodImageView);
             }
 
             @Override
@@ -103,7 +90,7 @@ public class FoodRecipes extends AppCompatActivity {
         };
 
         // Add the ValueEventListener to the recipe reference
-        recipeRef.addListenerForSingleValueEvent(categoryListener);
+        recipeRef.addListenerForSingleValueEvent(foodRecipesListener);
 
     }
 

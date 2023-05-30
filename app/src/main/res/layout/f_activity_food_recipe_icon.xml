@@ -8,10 +8,10 @@
     android:layout_marginTop="10dp" >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/foodRecipeIcon"
         android:layout_width="157dp"
         android:layout_height="200dp"
-        app:cardCornerRadius="15dp"
-        android:id="@+id/foodRecipeIcon">
+        app:cardCornerRadius="15dp">
 
 
         <RelativeLayout

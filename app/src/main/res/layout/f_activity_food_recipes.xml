@@ -95,6 +95,7 @@
                             android:src="@drawable/f_food_recipes_details_time" />
 
                         <TextView
+                            android:id="@+id/timeTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -125,6 +126,7 @@
                             android:src="@drawable/f_food_recipes_details_calorie" />
 
                         <TextView
+                            android:id="@+id/calorieTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -155,6 +157,7 @@
                             android:src="@drawable/f_food_recipes_details_rating" />
 
                         <TextView
+                            android:id="@+id/ratingTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -185,6 +188,7 @@
                             android:src="@drawable/f_food_recipes_details_serving" />
 
                         <TextView
+                            android:id="@+id/servingSizeTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -223,30 +227,13 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center_horizontal">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal" />
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="0"
-                    app:layout_row="0"
-                    android:src="@drawable/d_food_categories_dinner" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="1"
-                    app:layout_row="0"
-                    android:src="@drawable/lunch_chickenkatsu" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="bottom"
-                    app:layout_column="2"
-                    app:layout_row="0"
-                    android:src="@drawable/d_food_categories_drink" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

@@ -19,8 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.Food.FoodRecipesIconDataClass;
-import ourrecipe.uib.ourrecipes.Food.FoodRecyclerItemAdapter;
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,11 +31,11 @@ public class CSearchFragment extends Fragment {
 
     private SearchView searchView;
     private RecyclerView recyclerView;
-    private FoodRecyclerItemAdapter adapter;
+    private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
     private ValueEventListener valueEventListener;
-    private List<FoodRecipesIconDataClass> allData;
-    private List<FoodRecipesIconDataClass> filteredData;
+    private List<FoodIconRecipesDataClass> allData;
+    private List<FoodIconRecipesDataClass> filteredData;
     private String currentQuery = ""; // Store the current search query
     private CFragmentSearchBinding binding;
 
@@ -51,29 +51,42 @@ public class CSearchFragment extends Fragment {
 
         allData = new ArrayList<>();
         filteredData = new ArrayList<>();
-        adapter = new FoodRecyclerItemAdapter(filteredData);
+        adapter = new FoodIconRecyclerItemAdapter(filteredData);
         recyclerView.setAdapter(adapter);
 
         recipesRef = FirebaseDatabase.getInstance().getReference().child("Food Recipes");
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Clear the existing data before adding new items
                 allData.clear();
                 filteredData.clear();
 
+                // Iterate through the recipe snapshots
                 for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
-                        String id = recipeSnapshot.child("id").getValue(String.class);
-                        String title = recipeSnapshot.child("title").getValue(String.class);
+                        // Get the recipe details
+                        String name = recipeSnapshot.child("name").getValue(String.class);
                         String rating = recipeSnapshot.child("rating").getValue(String.class);
                         Long times = recipeSnapshot.child("times").getValue(Long.class);
                         String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
 
-                        FoodRecipesIconDataClass recipe = new FoodRecipesIconDataClass(id, title, rating, times, imageURL);
+                        // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
+                        String parentKey = recipeSnapshot.getRef().getParent().getKey();
+                        String parentCategoryKey = recipeSnapshot.getRef().getParent().getParent().getKey();
+
+                        // Add additional text to the "times" value
+                        String timesText = times + " Minutes"; // Add " minutes" to the times value
+
+                        // Create a Recipe object with the retrieved values
+                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey);
+
+                        // Add the recipe to the list
                         allData.add(recipe);
                     }
                 }
 
+                // Notify the adapter about the data change
                 filterData(currentQuery); // Apply the filter again when data is updated
             }
 
@@ -107,7 +120,7 @@ public class CSearchFragment extends Fragment {
         if (query.isEmpty()) {
             filteredData.addAll(allData);
         } else {
-            for (FoodRecipesIconDataClass dataClass : allData) {
+            for (FoodIconRecipesDataClass dataClass : allData) {
                 if (dataClass.getTitle().toLowerCase().contains(query.toLowerCase())) {
                     filteredData.add(dataClass);
                 }

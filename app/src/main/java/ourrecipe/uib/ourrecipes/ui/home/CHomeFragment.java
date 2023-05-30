@@ -9,14 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -30,9 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
-import ourrecipe.uib.ourrecipes.Food.FoodRecipesIconDataClass;
-import ourrecipe.uib.ourrecipes.Food.FoodRecyclerItemAdapter;
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentHomeBinding;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.Categories;
@@ -60,7 +57,7 @@ public class CHomeFragment extends Fragment {
 
     //Recommended Food Recommendation
     private RecyclerView recyclerView;
-    private FoodRecyclerItemAdapter adapter;
+    private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
     private ValueEventListener valueEventListener;
 
@@ -236,10 +233,10 @@ public class CHomeFragment extends Fragment {
 
         //Food Recomendation Recipes
         // Create an empty list for the data
-        List<FoodRecipesIconDataClass> data = new ArrayList<>();
+        List<FoodIconRecipesDataClass> data = new ArrayList<>();
 
         // Create and set the adapter for the RecyclerView
-        adapter = new FoodRecyclerItemAdapter(data);
+        adapter = new FoodIconRecyclerItemAdapter(data);
         recyclerView.setAdapter(adapter);
 
         // Retrieve data from the Firebase Realtimes Database
@@ -248,37 +245,33 @@ public class CHomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Clear the existing data before adding new items
-//                data.clear();
+                data.clear();
 
-                // Iterate through the database snapshots
-//                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
-//                    String category = categorySnapshot.getKey();
-//
-//                    for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
-
-                //the code to just trying to fetch from breakfast
+                // Iterate through the recipe snapshots
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     // Get the recipe details
-                    String id = recipeSnapshot.child("id").getValue(String.class);
                     String name = recipeSnapshot.child("name").getValue(String.class);
                     String rating = recipeSnapshot.child("rating").getValue(String.class);
                     Long times = recipeSnapshot.child("times").getValue(Long.class);
                     String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
 
+                    // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
+                    String parentKey = recipeSnapshot.getRef().getParent().getKey();
+                    String parentCategoryKey = recipeSnapshot.getRef().getParent().getParent().getKey();
+
                     // Add additional text to the "times" value
                     String timesText = times + " Minutes"; // Add " minutes" to the times value
 
-
                     // Create a Recipe object with the retrieved values
-                    FoodRecipesIconDataClass recipe = new FoodRecipesIconDataClass(id, name, rating, times, imageURL);
+                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey);
 
                     // Add the recipe to the list
                     data.add(recipe);
                 }
+
                 // Notify the adapter about the data change
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle the error, if any
