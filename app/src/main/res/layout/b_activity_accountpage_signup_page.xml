@@ -83,7 +83,7 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:hint="Date of Birth"
-                    android:drawableRight="@drawable/baseline_calendar_month_24"
+                    android:drawableRight="@drawable/b_baseline_calendar_month_24"
                     android:inputType="date"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"

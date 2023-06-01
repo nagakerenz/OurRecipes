@@ -80,7 +80,6 @@ public class CHomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerViewHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
-
         //Categories Image Button
         cardView = root.findViewById(R.id.cardViewImageSlider);
         breakfast = (ImageButton) root.findViewById(R.id.breakfast);

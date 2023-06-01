@@ -99,7 +99,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:drawableRight="@drawable/edit_default_profile_picture"
+                android:drawableRight="@drawable/p_edit_default_profile_picture"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editPass" />
 

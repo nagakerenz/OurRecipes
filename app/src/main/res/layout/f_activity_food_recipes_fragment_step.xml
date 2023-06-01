@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Food.viewPager2.StepFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/foodSteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nate the chicken, season with salt and pepper. Refrigerate 20 minutes."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:lineSpacingExtra="8dp"
+        android:paddingHorizontal="16dp" />
+
+</FrameLayout>

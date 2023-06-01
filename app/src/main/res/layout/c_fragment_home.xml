@@ -14,7 +14,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fadeScrollbars="false"
         android:scrollbars="none"
         android:fillViewport="true">
@@ -221,11 +222,10 @@
 
             </LinearLayout>
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewHome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="201dp"
                 android:layout_weight="1"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal" />

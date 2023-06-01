@@ -8,7 +8,7 @@
     tools:context=".Food.FoodRecipes"
     android:orientation="vertical"
     android:padding="10dp"
-    android:layout_marginBottom="60dp">
+    android:background="@color/backgroundPage">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:layout_margin="10dp"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:button="@drawable/f_food_recipe_icon_favorite_red_to_white"
                     android:background="@color/white" />
 
@@ -52,10 +52,10 @@
                     android:text="Snacks"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_gravity="bottom"
                     android:padding="8dp"
-                    android:background="#FDF8E3"/>
+                    android:background="#FF9D9D"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -67,40 +67,52 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:textColor="@color/black"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:paddingHorizontal="16dp" />
+
+            <TextView
+                android:id="@+id/foodDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is a snack that is easy to prepare. Also, the best companion for this snack is beer."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:orientation="horizontal">
+                android:layout_height="65dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/backgroundPage">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/foodRecipesTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    android:backgroundTint="@color/backgroundPage">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/f_food_recipes_details_time" />
 
                         <TextView
                             android:id="@+id/timeTextView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -110,28 +122,27 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    android:backgroundTint="@color/backgroundPage">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/f_food_recipes_details_calorie" />
 
                         <TextView
                             android:id="@+id/calorieTextView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -141,28 +152,27 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    android:backgroundTint="@color/backgroundPage">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/f_food_recipes_details_rating" />
 
                         <TextView
                             android:id="@+id/ratingTextView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -172,95 +182,100 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    android:backgroundTint="@color/backgroundPage">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/f_food_recipes_details_serving" />
 
                         <TextView
                             android:id="@+id/servingSizeTextView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                app:tabMode="fixed"
+                app:tabIndicatorGravity="stretch"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="#636363"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicator="@drawable/f_food_recipe_selector"
+                android:backgroundTint="#F7F7F7"/>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/viewPager2StepAndIngredient" />
 
             <TextView
-                android:id="@+id/foodDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is a snack that is easy to prepare. Also the best companion for this snack is beer."
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/ingredientsss"
+                android:id="@+id/ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="10dp"
                 android:text="Ingredients"
                 android:textColor="@color/black"
-                android:textSize="24dp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:textAlignment="center"/>
+                android:textAlignment="center" />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="24dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/ingredients"
+                app:layout_constraintBottom_toTopOf="@id/steps"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintVertical_bias="0.0" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewIngredients"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal" />
-
-            </LinearLayout>
-            <LinearLayout
+            <TextView
+                android:id="@+id/steps"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp">
+                android:layout_height="wrap_content"
+                android:text="Steps"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp" />
 
-                <TextView
-                    android:id="@+id/steps"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Steps"
-                    android:textColor="@color/black"
-                    android:textSize="24dp"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="10dp"/>
-
-                <TextView
-                    android:id="@+id/foodSteps"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1. Wash the chicken, cut according to taste, dry with oil-absorbing tissue or clean cloth. Then marinate the chicken, season with salt and pepper. Refrigerate 20 minutes."
-                    android:textColor="@color/black"
-                    android:textSize="16dp"/>
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/foodSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Wash the chicken, cut according to taste, dry with oil-absorbing tissue or clean cloth. Then marinate the chicken, season with salt and pepper. Refrigerate 20 minutes."
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:lineSpacingExtra="8dp"
+                android:paddingHorizontal="16dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

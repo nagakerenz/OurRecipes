@@ -91,8 +91,7 @@
         </activity>
         <activity
             android:name=".Food.FoodRecipes"
-            android:exported="false"
-            android:parentActivityName=".BottomNavigationBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

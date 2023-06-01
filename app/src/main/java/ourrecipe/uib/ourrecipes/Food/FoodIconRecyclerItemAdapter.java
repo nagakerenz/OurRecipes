@@ -25,7 +25,8 @@ import ourrecipe.uib.ourrecipes.R;
 
 public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRecyclerItemAdapter.MyViewHolder> {
 
-    private List<FoodIconRecipesDataClass> data;
+    private static List<FoodIconRecipesDataClass> data;
+
 
     public FoodIconRecyclerItemAdapter(List<FoodIconRecipesDataClass> data) {
         this.data = data;
@@ -34,7 +35,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.f_activity_food_recipe_icon, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.f_activity_food_recipes_icon, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -57,40 +58,20 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
             @Override
             public void onClick(View v) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes");
-                int itemId = itemPosition; // Assuming the position in the RecyclerView represents the ID value
-                String itemIdString = String.valueOf(itemId);
 
-                DatabaseReference itemReference = databaseReference.child(itemIdString);
-
+                DatabaseReference itemReference = databaseReference.child(item.getParentKey()).child(String.valueOf(itemPosition));
                 ValueEventListener valueEventListener = new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            // Parent node data is available
-                            // You can access the parent node key using dataSnapshot.getKey() (e.g., "Breakfast", "Lunch", "Dinner")
-                            String parentNodeKey = dataSnapshot.getKey();
+                            String parentKey = item.getParentKey();
+                            String childKey = String.valueOf(itemPosition);
 
-                            // Pass the parentNodeKey to FoodRecipes activity
                             Intent intent = new Intent(holder.itemView.getContext(), FoodRecipes.class);
-                            intent.putExtra("parentKey", parentNodeKey);
+                            intent.putExtra("parentKey", parentKey);
+                            intent.putExtra("childKey", childKey);
 
-                            // Retrieve the parent category key ("Breakfast", "Lunch", "Dinner") using the parent reference
-                            DatabaseReference parentReference = dataSnapshot.getRef().getParent();
-                            parentReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot parentDataSnapshot) {
-                                    if (parentDataSnapshot.exists()) {
-                                        String parentCategoryKey = parentDataSnapshot.getKey();
-                                        intent.putExtra("parentCategoryKey", parentCategoryKey);
-                                        holder.itemView.getContext().startActivity(intent);
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    // Handle any errors that occur during data retrieval
-                                }
-                            });
+                            holder.itemView.getContext().startActivity(intent);
                         }
                     }
 
@@ -130,6 +111,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
             foodName = itemView.findViewById(R.id.foodName);
             foodRating = itemView.findViewById(R.id.foodRating);
             foodTimes = itemView.findViewById(R.id.foodTimes);
+
 
         }
     }
