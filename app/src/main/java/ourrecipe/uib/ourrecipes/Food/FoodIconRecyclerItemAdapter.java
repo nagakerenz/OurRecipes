@@ -40,10 +40,12 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        final int itemPosition = position; // Create a final variable and assign the value of position
+
         FoodIconRecipesDataClass item = data.get(position);
         holder.foodName.setText(item.getTitle());
         holder.foodRating.setText(item.getRating());
-        holder.foodtimes.setText(String.valueOf(item.getTimesText())); // Convert Long to String
+        holder.foodTimes.setText(String.valueOf(item.getTimesText())); // Convert Long to String
 
         // Use Glide library to load the image into the ImageButton
         Glide.with(holder.itemView.getContext())
@@ -55,7 +57,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
             @Override
             public void onClick(View v) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes");
-                int itemId = position; // Assuming the position in the RecyclerView represents the ID value
+                int itemId = itemPosition; // Assuming the position in the RecyclerView represents the ID value
                 String itemIdString = String.valueOf(itemId);
 
                 DatabaseReference itemReference = databaseReference.child(itemIdString);
@@ -119,7 +121,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
         public ImageView foodImage;
         public TextView foodName;
         public TextView foodRating;
-        public TextView foodtimes;
+        public TextView foodTimes;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -127,7 +129,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
             foodImage = itemView.findViewById(R.id.foodImage);
             foodName = itemView.findViewById(R.id.foodName);
             foodRating = itemView.findViewById(R.id.foodRating);
-            foodtimes = itemView.findViewById(R.id.foodtimes);
+            foodTimes = itemView.findViewById(R.id.foodTimes);
 
         }
     }
