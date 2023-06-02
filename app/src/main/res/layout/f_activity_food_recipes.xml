@@ -67,8 +67,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:textColor="@color/black"
-                android:layout_marginTop="15dp"
-                android:paddingHorizontal="16dp" />
+                android:layout_marginTop="15dp"/>
 
             <TextView
                 android:id="@+id/foodDescription"
@@ -77,8 +76,7 @@
                 android:text="This is a snack that is easy to prepare. Also, the best companion for this snack is beer."
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:paddingHorizontal="16dp" />
+                android:layout_marginTop="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,6 +110,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
+                            android:textColor="@color/black"
                             android:textSize="10sp" />
 
                     </LinearLayout>
@@ -142,6 +141,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
+                            android:textColor="@color/black"
                             android:textSize="10sp" />
 
                     </LinearLayout>
@@ -172,6 +172,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Loading..."
+                            android:textColor="@color/black"
                             android:textSize="10sp" />
 
                     </LinearLayout>
@@ -201,6 +202,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:textColor="@color/black"
                             android:text="Loading..."
                             android:textSize="10sp" />
 
@@ -218,64 +220,15 @@
                 app:tabSelectedTextColor="@color/black"
                 app:tabTextColor="#636363"
                 app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicator="@drawable/f_food_recipe_selector"
-                android:backgroundTint="#F7F7F7"/>
+                app:tabIndicator="@drawable/f_food_recipe_ingredient_and_step_selected_color"
+                android:background="@drawable/f_food_recipe_ingredient_and_step_background"/>
 
             <androidx.viewpager2.widget.ViewPager2
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/viewPager2StepAndIngredient" />
 
-            <TextView
-                android:id="@+id/ingredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="10dp"
-                android:text="Ingredients"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="24dp"
-                android:clipToPadding="false"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/ingredients"
-                app:layout_constraintBottom_toTopOf="@id/steps"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/steps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Steps"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:id="@+id/foodSteps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1. Wash the chicken, cut according to taste, dry with oil-absorbing tissue or clean cloth. Then marinate the chicken, season with salt and pepper. Refrigerate 20 minutes."
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:lineSpacingExtra="8dp"
-                android:paddingHorizontal="16dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

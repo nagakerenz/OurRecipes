@@ -49,44 +49,41 @@ public class FoodRecipes extends AppCompatActivity {
         servingSizeTextView = findViewById(R.id.servingSizeTextView);
         descriptionTextView = findViewById(R.id.foodDescription);
 //        ingredientsTextView = findViewById(R.id.ingredientsTextView);
-        stepsTextView = findViewById(R.id.foodSteps);
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager2 = findViewById(R.id.viewPager2StepAndIngredient);
+            stepsTextView = findViewById(R.id.foodSteps);
+            tabLayout = findViewById(R.id.tabLayout);
+            viewPager2 = findViewById(R.id.viewPager2StepAndIngredient);
 
-        //This is for Handling the Steps and Ingredients
-        tabLayout.addTab(tabLayout.newTab().setText("Ingredients"));
-        tabLayout.addTab(tabLayout.newTab().setText("Steps"));
+            //This is for Handling the Steps and Ingredients
+            tabLayout.addTab(tabLayout.newTab().setText("Ingredients"));
+            tabLayout.addTab(tabLayout.newTab().setText("Steps"));
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        adapter = new IngredientAndStepAdapter(fragmentManager, getLifecycle());
-        viewPager2.setAdapter(adapter);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            adapter = new IngredientAndStepAdapter(fragmentManager, getLifecycle());
+            viewPager2.setAdapter(adapter);
 
-        // Set the custom selected color for the TabLayout
-//        tabLayout.setTabTextColors(getResources().getColorStateList(R.color.tab_selected_text_color));
-//        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.tab_selected_background_color));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
+            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    viewPager2.setCurrentItem(tab.getPosition());
+                }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
+                }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
+                }
+            });
 
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(position));
-            }
-        });
+            viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageSelected(int position) {
+                    tabLayout.selectTab(tabLayout.getTabAt(position));
+                }
+            });
 
         //THIS IS FOR HANDLING THE DISPLAYING DATA AND RETREIVING DATA
         // Retrieve the parent category key and parent key from the intent
