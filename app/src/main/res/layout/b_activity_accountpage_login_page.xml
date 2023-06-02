@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="-45dp"
             android:alpha="100"
-            app:srcCompat="@drawable/rectangle1" />
+            app:srcCompat="@drawable/b_rectangle" />
 
         <ImageView
             android:id="@+id/logo3"
@@ -93,7 +93,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="50dp"
                     android:drawableLeft="@drawable/ic_baseline_lock_24"
-                    android:drawableRight="@drawable/password_toggle"
+                    android:drawableRight="@drawable/b_password_toggle"
                     android:hint="@string/prompt_password"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionDone"
@@ -144,7 +144,7 @@
                 android:layout_marginLeft="110dp"
                 android:layout_marginTop="110dp"
                 android:background="@null"
-                android:src="@drawable/icon_facebook"
+                android:src="@drawable/b_icon_facebook"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
@@ -155,7 +155,7 @@
                 android:layout_marginLeft="200dp"
                 android:layout_marginTop="110dp"
                 android:background="@null"
-                android:src="@drawable/icon_google"
+                android:src="@drawable/b_icon_google"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <RelativeLayout

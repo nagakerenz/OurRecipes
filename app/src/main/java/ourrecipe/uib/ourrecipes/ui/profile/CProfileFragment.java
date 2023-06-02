@@ -78,8 +78,8 @@ public class CProfileFragment extends Fragment {
                     if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
                         Glide.with(CProfileFragment.this.getActivity())
                                 .load(profilePicUrl)
-                                .placeholder(R.drawable.profile_picture) // Placeholder image while loading
-                                .error(R.drawable.profile_picture) // Error image if loading fails
+                                .placeholder(R.drawable.c_fragment_profile_picture) // Placeholder image while loading
+                                .error(R.drawable.c_fragment_profile_picture) // Error image if loading fails
                                 .into(profilePicture); // ImageView where you want to load the profile picture
                     } else {
                         Toast.makeText(CProfileFragment.this.getActivity(), "Failed to Retrieve Picture", Toast.LENGTH_SHORT).show();

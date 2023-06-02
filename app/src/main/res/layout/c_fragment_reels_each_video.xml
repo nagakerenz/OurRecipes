@@ -37,7 +37,7 @@
         android:layout_weight="1"
         android:layout_marginEnd="16dp"
         android:background="@null"
-        android:src="@drawable/reels_comment"
+        android:src="@drawable/c_fragment_reels_comment"
         app:tint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/sendButton"
         app:layout_constraintEnd_toEndOf="parent" />
