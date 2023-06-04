@@ -12,11 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientAndStepAdapter extends FragmentStateAdapter {
+    private List<IngredientFragmentDataClass> ingredientsList;
     private List<String> steps;
 
-
-    public IngredientAndStepAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<String> steps) {
+    public IngredientAndStepAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<IngredientFragmentDataClass> ingredientsList, List<String> steps) {
         super(fragmentManager, lifecycle);
+        this.ingredientsList = ingredientsList;
         this.steps = steps;
     }
 
@@ -24,13 +25,10 @@ public class IngredientAndStepAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 0) {
-            return new IngredientFragment();
+            return new IngredientFragment(ingredientsList);
         } else {
-            StepFragment stepFragment = new StepFragment();
-            Bundle bundle = new Bundle();
-            bundle.putStringArrayList("steps", new ArrayList<>(steps));
-            stepFragment.setArguments(bundle);
-            return stepFragment;
+            return new StepFragment(steps);
+
         }
     }
     @Override

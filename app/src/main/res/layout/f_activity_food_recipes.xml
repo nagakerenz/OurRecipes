@@ -210,6 +210,53 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredients"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"/>
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/c_search_arrow_right"/>
+
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steps"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="15dp"/>
+
             <TextView
                 android:id="@+id/foodSteps"
                 android:layout_width="match_parent"
@@ -218,28 +265,29 @@
                 android:text="Loading..."
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:lineSpacingExtra="8dp"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"/>
+                android:lineSpacingExtra="4dp"
+                android:paddingVertical="4dp"/>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                app:tabMode="fixed"
-                app:tabIndicatorGravity="stretch"
-                app:tabSelectedTextColor="@color/black"
-                app:tabTextColor="#636363"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicator="@drawable/f_food_recipe_ingredient_and_step_selected_color"
-                android:background="@drawable/f_food_recipe_ingredient_and_step_background"/>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewPager2StepAndIngredient" />
+
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tabLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                app:tabMode="fixed"-->
+<!--                app:tabIndicatorGravity="stretch"-->
+<!--                app:tabSelectedTextColor="@color/black"-->
+<!--                app:tabTextColor="#636363"-->
+<!--                app:tabIndicatorAnimationMode="elastic"-->
+<!--                app:tabIndicator="@drawable/f_food_recipe_ingredient_and_step_selected_color"-->
+<!--                android:background="@drawable/f_food_recipe_ingredient_and_step_background"/>-->
+
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/viewPager2StepAndIngredient" />-->
 
         </LinearLayout>
     </ScrollView>

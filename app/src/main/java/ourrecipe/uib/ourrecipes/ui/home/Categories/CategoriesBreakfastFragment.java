@@ -74,11 +74,12 @@ public class CategoriesBreakfastFragment extends Fragment {
                     String parentKey = recipeSnapshot.getRef().getParent().getKey();
                     String parentCategoryKey = recipeSnapshot.getRef().getParent().getParent().getKey();
 
+
                     // Add additional text to the "times" value
                     String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                     // Create a Recipe object with the retrieved values
-                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked);
+                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, isFavorite);
 
                     // Add the recipe to the list
                     data.add(recipe);

@@ -74,7 +74,7 @@ public class CategoriesFiberFragment extends Fragment {
                     String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                     // Create a Recipe object with the retrieved values
-                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked);
+                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, isFavorite);
 
                     // Add the recipe to the list
                     data.add(recipe);

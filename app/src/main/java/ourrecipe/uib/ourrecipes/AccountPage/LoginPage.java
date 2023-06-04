@@ -55,9 +55,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import ourrecipe.uib.ourrecipes.BottomNavigationBar;
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.PreferencePage;
 import ourrecipe.uib.ourrecipes.R;
 
@@ -235,6 +238,7 @@ public class LoginPage extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    List<FoodIconRecyclerItemAdapter> favoriteRecipes = new ArrayList<>();
 
     //THIS IS FOR HANDLING GOOGLE AND FACEBOOK SIGN IN
     @Override
@@ -306,7 +310,13 @@ public class LoginPage extends AppCompatActivity {
 
                                                                 // Save the Google user's information under the "GoogleUser" node in the Realtime Database
                                                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                                                databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
+                                                                databaseReference.child("User Profile").child("GoogleUser").child(userId).child("userInfo").setValue(googleUser);
+
+                                                                // Save the Google user's favorite recipes under the "favoriteRecipes" node in the Realtime Database
+                                                                DatabaseReference favoriteRecipesRef = databaseReference.child("User Profile").child("GoogleUser").child(userId).child("favoriteRecipes");
+                                                                for (FoodIconRecyclerItemAdapter favoriteRecipe : favoriteRecipes) {
+                                                                    favoriteRecipesRef.push().setValue(favoriteRecipe);
+                                                                }
                                                             }).addOnFailureListener(e -> {
                                                                 // Handle failure to get download URL
                                                                 dialog.dismiss();
@@ -326,7 +336,13 @@ public class LoginPage extends AppCompatActivity {
 
                                     // Save the Google user's information under the "GoogleUser" node in the Realtime Database
                                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                    databaseReference.child("User Profile").child("GoogleUser").child(userId).setValue(googleUser);
+                                    databaseReference.child("User Profile").child("GoogleUser").child(userId).child("userInfo").setValue(googleUser);
+
+                                    // Save the Google user's favorite recipes under the "favoriteRecipes" node in the Realtime Database
+                                    DatabaseReference favoriteRecipesRef = databaseReference.child("User Profile").child("GoogleUser").child(userId).child("favoriteRecipes");
+                                    for (FoodIconRecyclerItemAdapter favoriteRecipe : favoriteRecipes) {
+                                        favoriteRecipesRef.push().setValue(favoriteRecipe);
+                                    }
                                 }
 
                                 // After successful login, check if this is the user's first time logging in

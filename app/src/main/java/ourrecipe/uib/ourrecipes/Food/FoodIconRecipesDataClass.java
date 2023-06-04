@@ -8,12 +8,14 @@ public class FoodIconRecipesDataClass {
     private String parentKey;
     private String childKey;
     private Long liked;
+    private boolean isFavorite;
+
 
     public FoodIconRecipesDataClass() {
         // Default constructor (required for Firebase)
     }
 
-    public FoodIconRecipesDataClass(String title, Double rating, Long times, String imageURL, String parentKey, String childKey, Long liked) {
+    public FoodIconRecipesDataClass(String title, Double rating, Long times, String imageURL, String parentKey, String childKey, Long liked, boolean isFavorite) {
         this.title = title;
         this.rating = rating;
         this.times = times;
@@ -21,6 +23,8 @@ public class FoodIconRecipesDataClass {
         this.parentKey = parentKey;
         this.childKey = childKey;
         this.liked = liked;
+        this.isFavorite = isFavorite;
+
     }
 
     public String getTitle() {
@@ -81,5 +85,13 @@ public class FoodIconRecipesDataClass {
 
     public void setLiked(Long liked) {
         this.liked = liked;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 }

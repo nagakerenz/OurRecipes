@@ -3,24 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
     tools:context=".Food.FoodRecipes"
     android:orientation="vertical"
-    android:padding="10dp"
     android:background="@color/backgroundPage">
 
     <LinearLayout
         android:layout_width="108dp"
         android:layout_height="151dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:backgroundTint="@color/backgroundPage">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+
             android:backgroundTint="@color/backgroundPage">
 
             <LinearLayout
@@ -33,7 +33,7 @@
                     android:id="@+id/foodRecipesIngredientsImage"
                     android:layout_width="match_parent"
                     android:layout_height="113dp"
-                    android:scaleType="centerInside"/>
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/foodRecipesIngredientsName"
@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Loading..."
+                    android:textColor="@color/black"
                     android:textSize="10sp" />
 
             </LinearLayout>

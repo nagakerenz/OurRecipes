@@ -30,7 +30,7 @@ import ourrecipe.uib.ourrecipes.databinding.CFragmentSearchBinding;
 public class CSearchFragment extends Fragment {
 
     private SearchView searchView;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView, recyclerViewMostFavoriteDish;
     private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
     private ValueEventListener valueEventListener;
@@ -47,6 +47,7 @@ public class CSearchFragment extends Fragment {
 
         searchView = root.findViewById(R.id.search1);
         recyclerView = root.findViewById(R.id.recyclerViewSearched);
+        recyclerViewMostFavoriteDish = root.findViewById(R.id.recyclerViewMostFavoriteDish);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         allData = new ArrayList<>();
@@ -81,7 +82,7 @@ public class CSearchFragment extends Fragment {
                         String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                         // Create a Recipe object with the retrieved values
-                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked);
+                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, isFavorite);
 
                         // Add the recipe to the list
                         allData.add(recipe);

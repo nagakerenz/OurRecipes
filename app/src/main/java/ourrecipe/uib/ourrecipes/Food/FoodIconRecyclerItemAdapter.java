@@ -57,73 +57,10 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 .centerCrop()
                 .into(holder.foodImage);
 
-        DatabaseReference itemReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
-                .child(item.getParentKey())
-                .child(String.valueOf(itemPosition));
-
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String parentKey = item.getParentKey();
-                    String childKey = String.valueOf(itemPosition);
-
-                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                    String userId = currentUser.getUid();
-                    String provider = "";
-
-                    for (UserInfo userInfo : currentUser.getProviderData()) {
-                        if (userInfo.getProviderId().equals("facebook.com")) {
-                            provider = "FacebookUser";
-                            break;
-                        } else if (userInfo.getProviderId().equals("google.com")) {
-                            provider = "GoogleUser";
-                            break;
-                        }
-                    }
-
-                    if (provider.isEmpty()) {
-                        provider = "User";
-                    }
-
-                    DatabaseReference userProfileReference = FirebaseDatabase.getInstance().getReference("User Profile")
-                            .child(provider)
-                            .child(currentUser.getUid())
-                            .child("favoriteRecipes");
-
-                    userProfileReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            boolean isFavorite = false;
-
-                            for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
-                                String favoriteCategory = recipeSnapshot.child("Category").getValue(String.class);
-                                String favoriteId = String.valueOf(recipeSnapshot.child("ID").getValue(Long.class));
-
-                                if (parentKey.equals(favoriteCategory) && childKey.equals(favoriteId)) {
-                                    isFavorite = true;
-                                    break;
-                                }
-                            }
-
-                            holder.likeButton.setSelected(isFavorite);
-                            int likeButtonImageResource = isFavorite ? R.drawable.f_food_recipe_icon_favorite_button_red : R.drawable.f_food_recipe_icon_favorite_button_white;
-                            holder.likeButton.setImageResource(likeButtonImageResource);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            // Handle any errors that occur during data retrieval
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any errors that occur during data retrieval
-            }
-        };
+        // Retrieve and set the state of the likeButton
+        boolean isLiked = item.isFavorite();
+        int likeButtonImageResource = isLiked ? R.drawable.f_food_recipe_icon_favorite_button_red : R.drawable.f_food_recipe_icon_favorite_button_white;
+        holder.likeButton.setImageResource(likeButtonImageResource);
 
         holder.likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,30 +94,71 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         .child(String.valueOf(itemPosition))
                         .child("liked");
 
+                DatabaseReference likedUserReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                        .child(item.getParentKey())
+                        .child(String.valueOf(itemPosition))
+                        .child("likedUser");
+
                 DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("User Profile")
                         .child(provider)
                         .child(userId)
                         .child("favoriteRecipes")
                         .child(String.valueOf(itemPosition));
 
+
                 if (view.isSelected()) {
                     long newLiked = item.getLiked() + 1;
                     item.setLiked(newLiked);
+                    item.setFavorite(true); // Set isFavorite to true
                     databaseReference.setValue(newLiked);
+
+                    // Generate a new unique ID for likedUser starting from 0
+                    likedUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            long count = snapshot.getChildrenCount(); // Get the current child count
+                            likedUserReference.child(String.valueOf(count)).setValue(userId);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle error
+                        }
+                    });
 
                     userReference.child("Category").setValue(item.getParentKey());
                     userReference.child("ID").setValue(itemPosition);
-                    userReference.child("isFavorite").setValue(true); // Add isFavorite field and set its value to true
                 } else {
                     long newLiked = item.getLiked() - 1;
                     item.setLiked(newLiked);
+                    item.setFavorite(false); // Set isFavorite to false
                     databaseReference.setValue(newLiked);
 
                     userReference.removeValue();
+
+                    // Remove the likedUser entry with the specific userID
+                    likedUserReference.orderByValue().equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                childSnapshot.getRef().removeValue();
+                                break;
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle error
+                        }
+                    });
+
                 }
             }
         });
 
+        DatabaseReference itemReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                .child(item.getParentKey())
+                .child(String.valueOf(itemPosition));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
