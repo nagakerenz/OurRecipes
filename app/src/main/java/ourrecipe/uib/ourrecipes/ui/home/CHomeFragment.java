@@ -1,6 +1,8 @@
 package ourrecipe.uib.ourrecipes.ui.home;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
@@ -37,25 +39,17 @@ import ourrecipe.uib.ourrecipes.ui.reels.Video;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class CHomeFragment extends Fragment {
-
-
-
-    //ViewPager
+    // ViewPager
     Button reels;
     private ViewPager2 viewPagerImage, viewPagerReels;
     ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
     private List<Video> videoList;
     private VideoAdapter videoAdapter;
 
-    //Categories
-    CardView cardView;
-    ImageButton breakfast;
-    ImageButton lunch;
-    ImageButton dinner;
-    ImageButton fiber;
-    ImageButton drink;
+    // Categories
+    CardView cardView, breakfast, lunch, dinner, fiber, drink;
 
-    //Recommended Food Recommendation
+    // Recommended Food Recommendation
     private RecyclerView recyclerView;
     private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
@@ -82,11 +76,11 @@ public class CHomeFragment extends Fragment {
 
         //Categories Image Button
         cardView = root.findViewById(R.id.cardViewImageSlider);
-        breakfast = (ImageButton) root.findViewById(R.id.breakfast);
-        lunch = (ImageButton) root.findViewById(R.id.lunch);
-        dinner = (ImageButton) root.findViewById(R.id.dinner);
-        fiber = (ImageButton) root.findViewById(R.id.fiber);
-        drink = (ImageButton) root.findViewById(R.id.drink);
+        breakfast = root.findViewById(R.id.breakfast);
+        lunch = root.findViewById(R.id.lunch);
+        dinner = root.findViewById(R.id.dinner);
+        fiber = root.findViewById(R.id.fiber);
+        drink = root.findViewById(R.id.drink);
         viewPagerImage = root.findViewById(R.id.viewPager2Image);
 
         cardView.setCardBackgroundColor(Color.TRANSPARENT);
@@ -228,9 +222,7 @@ public class CHomeFragment extends Fragment {
             }
         });
 
-
-
-        //Food Recomendation Recipes
+        //Food Recommendation Recipes
         // Create an empty list for the data
         List<FoodIconRecipesDataClass> data = new ArrayList<>();
 
@@ -250,9 +242,11 @@ public class CHomeFragment extends Fragment {
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     // Get the recipe details
                     String name = recipeSnapshot.child("name").getValue(String.class);
-                    String rating = recipeSnapshot.child("rating").getValue(String.class);
+                    Double rating = recipeSnapshot.child("rating").getValue(Double.class);
                     Long times = recipeSnapshot.child("times").getValue(Long.class);
                     String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
+                    Long liked = recipeSnapshot.child("liked").getValue(Long.class);
+                    Boolean isFavorite = recipeSnapshot.child("isFavorite").getValue(Boolean.class);
 
                     // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
                     String parentKey = recipeSnapshot.getRef().getParent().getKey();
@@ -262,7 +256,7 @@ public class CHomeFragment extends Fragment {
                     String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                     // Create a Recipe object with the retrieved values
-                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey);
+                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked);
 
                     // Add the recipe to the list
                     data.add(recipe);

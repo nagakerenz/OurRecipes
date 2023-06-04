@@ -210,6 +210,18 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/foodSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Loading..."
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:lineSpacingExtra="8dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"/>
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
@@ -226,7 +238,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/viewPager2StepAndIngredient" />
 
         </LinearLayout>

@@ -67,9 +67,11 @@ public class CSearchFragment extends Fragment {
                     for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
                         // Get the recipe details
                         String name = recipeSnapshot.child("name").getValue(String.class);
-                        String rating = recipeSnapshot.child("rating").getValue(String.class);
+                        Double rating = recipeSnapshot.child("rating").getValue(Double.class);
                         Long times = recipeSnapshot.child("times").getValue(Long.class);
                         String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
+                        Long liked = recipeSnapshot.child("liked").getValue(Long.class);
+                        Boolean isFavorite = recipeSnapshot.child("isFavorite").getValue(Boolean.class);
 
                         // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
                         String parentKey = recipeSnapshot.getRef().getParent().getKey();
@@ -79,7 +81,7 @@ public class CSearchFragment extends Fragment {
                         String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                         // Create a Recipe object with the retrieved values
-                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey);
+                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked);
 
                         // Add the recipe to the list
                         allData.add(recipe);

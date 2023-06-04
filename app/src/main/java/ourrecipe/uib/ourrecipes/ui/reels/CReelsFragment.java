@@ -66,7 +66,7 @@ public class CReelsFragment extends Fragment {
     private void fetchVideos() {
         // Create an instance of Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.example.com/")  // Replace with your API base URL
+                .baseUrl("https://api.giphy.com/")  // Replace with your API base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -1,5 +1,7 @@
 package ourrecipe.uib.ourrecipes.ui.home.Categories;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
 import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
@@ -60,9 +64,11 @@ public class CategoriesBreakfastFragment extends Fragment {
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     // Get the recipe details
                     String name = recipeSnapshot.child("name").getValue(String.class);
-                    String rating = recipeSnapshot.child("rating").getValue(String.class);
+                    Double rating = recipeSnapshot.child("rating").getValue(Double.class);
                     Long times = recipeSnapshot.child("times").getValue(Long.class);
                     String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
+                    Long liked = recipeSnapshot.child("liked").getValue(Long.class);
+                    Boolean isFavorite = recipeSnapshot.child("isFavorite").getValue(Boolean.class);
 
                     // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
                     String parentKey = recipeSnapshot.getRef().getParent().getKey();
@@ -72,7 +78,7 @@ public class CategoriesBreakfastFragment extends Fragment {
                     String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                     // Create a Recipe object with the retrieved values
-                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey);
+                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked);
 
                     // Add the recipe to the list
                     data.add(recipe);
@@ -91,6 +97,7 @@ public class CategoriesBreakfastFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -18,7 +18,6 @@
         android:backgroundTint="@color/backgroundPage">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/foodRecipesTime"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,12 +30,23 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/foodRecipesIngredientsImage"
                     android:layout_width="match_parent"
-                    android:layout_height="133dp"
+                    android:layout_height="113dp"
                     android:scaleType="centerInside"/>
 
                 <TextView
-                    android:id="@+id/timeTextView"
+                    android:id="@+id/foodRecipesIngredientsName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Loading..."
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/foodRecipesIngredientsPortion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

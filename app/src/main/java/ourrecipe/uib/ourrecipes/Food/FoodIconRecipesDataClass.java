@@ -2,23 +2,25 @@ package ourrecipe.uib.ourrecipes.Food;
 
 public class FoodIconRecipesDataClass {
     private String title;
-    private String rating;
+    private Double rating;
     private Long times;
     private String imageURL;
     private String parentKey;
     private String childKey;
+    private Long liked;
 
     public FoodIconRecipesDataClass() {
         // Default constructor (required for Firebase)
     }
 
-    public FoodIconRecipesDataClass(String title, String rating, Long times, String imageURL, String parentKey, String childKey) {
+    public FoodIconRecipesDataClass(String title, Double rating, Long times, String imageURL, String parentKey, String childKey, Long liked) {
         this.title = title;
         this.rating = rating;
         this.times = times;
         this.imageURL = imageURL;
         this.parentKey = parentKey;
         this.childKey = childKey;
+        this.liked = liked;
     }
 
     public String getTitle() {
@@ -29,11 +31,11 @@ public class FoodIconRecipesDataClass {
         this.title = title;
     }
 
-    public String getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -71,5 +73,13 @@ public class FoodIconRecipesDataClass {
 
     public void setChildKey(String childKey) {
         this.childKey = childKey;
+    }
+
+    public Long getLiked() {
+        return liked;
+    }
+
+    public void setLiked(Long liked) {
+        this.liked = liked;
     }
 }

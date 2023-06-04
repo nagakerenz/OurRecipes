@@ -5,13 +5,14 @@
     android:layout_height="201dp"
     android:orientation="vertical"
     android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp" >
+    android:layout_marginTop="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/foodRecipeIcon"
         android:layout_width="157dp"
         android:layout_height="200dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,66 +25,66 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#A6D094">
 
-                <ImageView
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/f_food_recipe_icon_bookmark" />-->
+
+                <ImageButton
+                    android:id="@+id/likeButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/f_food_recipe_icon_bookmark" />
-
-                <CheckBox
-                    android:id="@+id/loveButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/f_food_recipe_icon_favorite_red_to_white"
-                    app:useMaterialThemeColors="false" />
+                    android:background="@null"
+                    android:src="@drawable/f_food_recipe_icon_favorite_button_selector"
+                    android:stateListAnimator="@null" />
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/foodLikedTotal"
-                android:layout_width="45dp"
-                android:layout_height="14dp"
+                android:layout_width="55dp"
+                android:layout_height="18dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                app:cardUseCompatPadding="false">
+                android:layout_marginTop="5dp"
+                app:cardBackgroundColor="#00000000"
+                app:cardUseCompatPadding="false"
+                app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
-                <ImageView
-                    android:id="@+id/likedImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/f_food_recipe_icon_liked" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/f_food_recipe_icon_liked"
+                        android:scaleType="fitXY" />
 
-                <ImageView
-                    android:id="@+id/likedImageLove"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginLeft="4dp"
-                    android:src="@drawable/f_food_recipe_icon_favorite_button_white"
-                    android:layout_centerVertical="true" />
+                    <ImageView
+                        android:id="@+id/likedImageLove"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:src="@drawable/f_food_recipe_icon_favorite_button_white"
+                        android:layout_centerVertical="true" />
 
-                <TextView
-                    android:id="@+id/foodLiked"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="0.7dp"
-                    android:layout_toEndOf="@+id/likedImageLove"
-                    android:layout_centerVertical="true"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="8sp" />
+                    <TextView
+                        android:id="@+id/foodLiked"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_toEndOf="@+id/likedImageLove"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -91,7 +92,7 @@
 
             <ImageView
                 android:id="@+id/foodImage"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="30dp"
                 android:layout_centerHorizontal="true"
