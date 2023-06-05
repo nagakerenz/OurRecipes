@@ -18,7 +18,11 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="arial"/>
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDrink"
         android:layout_width="match_parent"

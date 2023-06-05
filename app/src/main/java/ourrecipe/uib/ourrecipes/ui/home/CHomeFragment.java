@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -41,6 +42,8 @@ import ourrecipe.uib.ourrecipes.ui.reels.Video;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class CHomeFragment extends Fragment {
+    private ProgressBar progressBar;
+
     // ViewPager
     Button reels;
     private ViewPager2 viewPagerImage, viewPagerReels;
@@ -71,7 +74,7 @@ public class CHomeFragment extends Fragment {
         binding = CFragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
+        progressBar = root.findViewById(R.id.progressBar);
         // Initialize the RecyclerView
         recyclerView = root.findViewById(R.id.recyclerViewHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -239,6 +242,7 @@ public class CHomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Clear the existing data before adding new items
                 data.clear();
+                progressBar.setVisibility(View.VISIBLE);
 
                 // Iterate through the recipe snapshots
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
@@ -274,10 +278,12 @@ public class CHomeFragment extends Fragment {
 
                 // Notify the adapter about the data change
                 adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the error, if any
+                progressBar.setVisibility(View.GONE);
             }
         };
         recipesRef.addValueEventListener(valueEventListener);

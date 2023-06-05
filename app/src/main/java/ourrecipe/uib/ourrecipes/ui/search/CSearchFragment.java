@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,7 @@ import androidx.lifecycle.ViewModelProvider;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentSearchBinding;
 
 public class CSearchFragment extends Fragment {
+    private ProgressBar progressBar, progressBar1;
 
     //DISPLAYING ONLY
     private RecyclerView recyclerViewMostFavoriteDish;
@@ -55,6 +57,8 @@ public class CSearchFragment extends Fragment {
 
         binding = CFragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        progressBar = root.findViewById(R.id.progressBar);
+        progressBar1 = root.findViewById(R.id.progressBar1);
 
         //FOR SEARCHING
         searchView = root.findViewById(R.id.search1);
@@ -73,6 +77,7 @@ public class CSearchFragment extends Fragment {
                 // Clear the existing data before adding new items
                 allData.clear();
                 filteredData.clear();
+                progressBar.setVisibility(View.VISIBLE);
 
                 // Iterate through the recipe snapshots
                 for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
@@ -110,11 +115,13 @@ public class CSearchFragment extends Fragment {
 
                 // Notify the adapter about the data change
                 filterData(currentQuery); // Apply the filter again when data is updated
+                progressBar.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the error, if any
+                progressBar.setVisibility(View.GONE);
             }
         };
         recipesRef.addValueEventListener(valueEventListener);
@@ -147,7 +154,7 @@ public class CSearchFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 favoriteDishData.clear();
-                // Iterate through the recipe snapshots
+                progressBar1.setVisibility(View.VISIBLE);
                 // Iterate through the recipe snapshots
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     // Get the recipe details
@@ -181,11 +188,13 @@ public class CSearchFragment extends Fragment {
                 }
 
                 favoriteDishAdapter.notifyDataSetChanged();
+                progressBar1.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the error, if any
+                progressBar1.setVisibility(View.GONE);
             }
         };
         favoriteDishRef.addValueEventListener(favoriteDishValueEventListener);

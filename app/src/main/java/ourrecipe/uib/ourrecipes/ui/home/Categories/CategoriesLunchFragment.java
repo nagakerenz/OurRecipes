@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +28,7 @@ import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 
 public class CategoriesLunchFragment extends Fragment {
+    private ProgressBar progressBar;
 
     private RecyclerView recyclerView;
     private FoodIconRecyclerItemAdapter adapter;
@@ -38,6 +40,7 @@ public class CategoriesLunchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.d_fragment_categories_lunch, container, false);
+        progressBar = view.findViewById(R.id.progressBar);
 
         // Initialize the RecyclerView
         recyclerView = view.findViewById(R.id.recyclerViewLunch);
@@ -57,6 +60,7 @@ public class CategoriesLunchFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Clear the existing data before adding new items
                 data.clear();
+                progressBar.setVisibility(View.VISIBLE);
 
                 // Iterate through the recipe snapshots
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
@@ -92,11 +96,13 @@ public class CategoriesLunchFragment extends Fragment {
 
                 // Notify the adapter about the data change
                 adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle the error, if any
+                progressBar.setVisibility(View.GONE);
             }
         };
         recipesRef.addValueEventListener(valueEventListener);

@@ -71,6 +71,13 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@id/textview_result"
+        android:layout_gravity="center" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearched"
         android:layout_width="match_parent"
@@ -109,7 +116,12 @@
 
     </LinearLayout>
 
-
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/textview_favorite_dish"
+        android:layout_gravity="center" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMostFavoriteDish"
         android:layout_width="wrap_content"
