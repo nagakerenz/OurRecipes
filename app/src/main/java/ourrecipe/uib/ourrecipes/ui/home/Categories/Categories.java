@@ -1,10 +1,10 @@
 package ourrecipe.uib.ourrecipes.ui.home.Categories;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.os.Bundle;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
@@ -42,7 +42,7 @@ public class Categories extends AppCompatActivity {
                 switch (position) {
                     case 0: {
                         tab.setText("Breakfast");
-                        tab.setIcon(R.drawable.c_food_categories_breakfast);
+                        tab.setIcon(R.drawable.d_food_categories_breakfast);
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
@@ -50,7 +50,7 @@ public class Categories extends AppCompatActivity {
                     }
                     case 1: {
                         tab.setText("Lunch");
-                        tab.setIcon(getResources().getDrawable(R.drawable.b_icon_facebook)); // Set the icon resource directly
+                        tab.setIcon(getResources().getDrawable(R.drawable.d_food_categories_lunch)); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
@@ -58,7 +58,7 @@ public class Categories extends AppCompatActivity {
                     }
                     case 2: {
                         tab.setText("Dinner");
-                        tab.setIcon(getResources().getDrawable(R.drawable.b_icon_facebook)); // Set the icon resource directly
+                        tab.setIcon(getResources().getDrawable(R.drawable.d_food_categories_dinner)); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
@@ -66,7 +66,7 @@ public class Categories extends AppCompatActivity {
                     }
                     case 3: {
                         tab.setText("Drink");
-                        tab.setIcon(R.drawable.b_icon_facebook); // Set the icon resource directly
+                        tab.setIcon(R.drawable.d_food_categories_drink); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
@@ -74,7 +74,7 @@ public class Categories extends AppCompatActivity {
                     }
                     case 4: {
                         tab.setText("Fiber");
-                        tab.setIcon(R.drawable.b_icon_facebook); // Set the icon resource directly
+                        tab.setIcon(R.drawable.d_food_categories_fiber); // Set the icon resource directly
                         BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
                         badgeDrawable.setBackgroundColor(getResources().getColor(R.color.orange));
                         badgeDrawable.setVisible(true);
