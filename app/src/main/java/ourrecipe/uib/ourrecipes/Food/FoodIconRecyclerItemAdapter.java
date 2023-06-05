@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -57,11 +58,19 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 .centerCrop()
                 .into(holder.foodImage);
 
-        // Retrieve and set the state of the likeButton
-        boolean isLiked = item.isFavorite();
-        int likeButtonImageResource = isLiked ? R.drawable.f_food_recipe_icon_favorite_button_red : R.drawable.f_food_recipe_icon_favorite_button_white;
-        holder.likeButton.setImageResource(likeButtonImageResource);
+        // Check if the current user's ID exists in the likedUser list
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = currentUser.getUid();
+        boolean isLiked = item.isLiked();
 
+        // Update the state and image resource of the likeButton
+        if (isLiked) {
+            holder.likeButton.setSelected(true);
+            holder.likeButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_red);
+        } else {
+            holder.likeButton.setSelected(false);
+            holder.likeButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_white);
+        }
         holder.likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +118,6 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 if (view.isSelected()) {
                     long newLiked = item.getLiked() + 1;
                     item.setLiked(newLiked);
-                    item.setFavorite(true); // Set isFavorite to true
                     databaseReference.setValue(newLiked);
 
                     // Generate a new unique ID for likedUser starting from 0
@@ -131,7 +139,6 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 } else {
                     long newLiked = item.getLiked() - 1;
                     item.setLiked(newLiked);
-                    item.setFavorite(false); // Set isFavorite to false
                     databaseReference.setValue(newLiked);
 
                     userReference.removeValue();

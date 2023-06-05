@@ -1,5 +1,8 @@
 package ourrecipe.uib.ourrecipes.Food;
 
+import java.util.List;
+import java.util.Map;
+
 public class FoodIconRecipesDataClass {
     private String title;
     private Double rating;
@@ -8,14 +11,16 @@ public class FoodIconRecipesDataClass {
     private String parentKey;
     private String childKey;
     private Long liked;
-    private boolean isFavorite;
-
+    private List<String> likedUser;
+    private boolean isLiked;
 
     public FoodIconRecipesDataClass() {
         // Default constructor (required for Firebase)
     }
 
-    public FoodIconRecipesDataClass(String title, Double rating, Long times, String imageURL, String parentKey, String childKey, Long liked, boolean isFavorite) {
+    public FoodIconRecipesDataClass(String title, Double rating, Long times,
+                                    String imageURL, String parentKey, String childKey,
+                                    Long liked, List<String> likedUser, boolean isLiked) {
         this.title = title;
         this.rating = rating;
         this.times = times;
@@ -23,7 +28,8 @@ public class FoodIconRecipesDataClass {
         this.parentKey = parentKey;
         this.childKey = childKey;
         this.liked = liked;
-        this.isFavorite = isFavorite;
+        this.likedUser = likedUser;
+        this.isLiked = isLiked;
 
     }
 
@@ -82,16 +88,24 @@ public class FoodIconRecipesDataClass {
     public Long getLiked() {
         return liked;
     }
-
     public void setLiked(Long liked) {
         this.liked = liked;
     }
 
-    public boolean isFavorite() {
-        return isFavorite;
+    public List<String> getLikedUser() {
+        return likedUser;
     }
 
-    public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
+    public void setLikedUser(List<String> likedUser) {
+        this.likedUser = likedUser;
     }
+
+    public boolean isLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(boolean liked) {
+        isLiked = liked;
+    }
+
 }

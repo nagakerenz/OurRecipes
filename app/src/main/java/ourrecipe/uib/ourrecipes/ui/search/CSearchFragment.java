@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,8 +32,16 @@ import ourrecipe.uib.ourrecipes.databinding.CFragmentSearchBinding;
 
 public class CSearchFragment extends Fragment {
 
+    //DISPLAYING ONLY
+    private RecyclerView recyclerViewMostFavoriteDish;
+    private FoodIconRecyclerItemAdapter favoriteDishAdapter;
+    private DatabaseReference favoriteDishRef;
+    private ValueEventListener favoriteDishValueEventListener;
+    private List<FoodIconRecipesDataClass> favoriteDishData;
+
+    //SEARCH ONE
     private SearchView searchView;
-    private RecyclerView recyclerView, recyclerViewMostFavoriteDish;
+    private RecyclerView recyclerView;
     private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
     private ValueEventListener valueEventListener;
@@ -45,9 +56,9 @@ public class CSearchFragment extends Fragment {
         binding = CFragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //FOR SEARCHING
         searchView = root.findViewById(R.id.search1);
         recyclerView = root.findViewById(R.id.recyclerViewSearched);
-        recyclerViewMostFavoriteDish = root.findViewById(R.id.recyclerViewMostFavoriteDish);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         allData = new ArrayList<>();
@@ -72,7 +83,15 @@ public class CSearchFragment extends Fragment {
                         Long times = recipeSnapshot.child("times").getValue(Long.class);
                         String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
                         Long liked = recipeSnapshot.child("liked").getValue(Long.class);
-                        Boolean isFavorite = recipeSnapshot.child("isFavorite").getValue(Boolean.class);
+                        List<String> likedUser = new ArrayList<>();
+                        for (DataSnapshot likedUserSnapshot : recipeSnapshot.child("likedUser").getChildren()) {
+                            likedUser.add(likedUserSnapshot.getValue(String.class));
+                        }
+                        // Retrieve the current user's ID
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        String userId = currentUser.getUid();
+                        // Check if the current user's ID exists in the likedUser list
+                        boolean isLiked = likedUser.contains(userId);
 
                         // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
                         String parentKey = recipeSnapshot.getRef().getParent().getKey();
@@ -82,7 +101,7 @@ public class CSearchFragment extends Fragment {
                         String timesText = times + " Minutes"; // Add " minutes" to the times value
 
                         // Create a Recipe object with the retrieved values
-                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, isFavorite);
+                        FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, likedUser, isLiked);
 
                         // Add the recipe to the list
                         allData.add(recipe);
@@ -113,6 +132,64 @@ public class CSearchFragment extends Fragment {
                 return true;
             }
         });
+
+        //FOR DISPLAYING FAVORITE DISH
+        recyclerViewMostFavoriteDish = root.findViewById(R.id.recyclerViewMostFavoriteDish);
+        recyclerViewMostFavoriteDish.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+        favoriteDishData = new ArrayList<>();
+        favoriteDishAdapter = new FoodIconRecyclerItemAdapter(favoriteDishData);
+        recyclerViewMostFavoriteDish.setAdapter(favoriteDishAdapter);
+
+        // Retrieve data for favorite dishes from the Firebase Realtime Database
+        favoriteDishRef = FirebaseDatabase.getInstance().getReference().child("Food Recipes").child("Favorite");
+        favoriteDishValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                favoriteDishData.clear();
+                // Iterate through the recipe snapshots
+                // Iterate through the recipe snapshots
+                for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
+                    // Get the recipe details
+                    String name = recipeSnapshot.child("name").getValue(String.class);
+                    Double rating = recipeSnapshot.child("rating").getValue(Double.class);
+                    Long times = recipeSnapshot.child("times").getValue(Long.class);
+                    String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
+                    Long liked = recipeSnapshot.child("liked").getValue(Long.class);
+                    List<String> likedUser = new ArrayList<>();
+                    for (DataSnapshot likedUserSnapshot : recipeSnapshot.child("likedUser").getChildren()) {
+                        likedUser.add(likedUserSnapshot.getValue(String.class));
+                    }
+                    // Retrieve the current user's ID
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    String userId = currentUser.getUid();
+                    // Check if the current user's ID exists in the likedUser list
+                    boolean isLiked = likedUser.contains(userId);
+
+                    // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
+                    String parentKey = recipeSnapshot.getRef().getParent().getKey();
+                    String parentCategoryKey = recipeSnapshot.getRef().getParent().getParent().getKey();
+
+                    // Add additional text to the "times" value
+                    String timesText = times + " Minutes"; // Add " minutes" to the times value
+
+                    // Create a Recipe object with the retrieved values
+                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, likedUser, isLiked);
+
+                    // Add the recipe to the list
+                    favoriteDishData.add(recipe);
+                }
+
+                favoriteDishAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle the error, if any
+            }
+        };
+        favoriteDishRef.addValueEventListener(favoriteDishValueEventListener);
+
 
         return root;
     }

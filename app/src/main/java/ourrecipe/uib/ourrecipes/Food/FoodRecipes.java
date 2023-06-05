@@ -1,5 +1,6 @@
 package ourrecipe.uib.ourrecipes.Food;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,17 +11,24 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -37,7 +45,8 @@ import ourrecipe.uib.ourrecipes.R;
 public class FoodRecipes extends AppCompatActivity {
 
     private ImageView foodImageView;
-    private TextView categoriesTextView, nameTextView, timeTextView, calorieTextView, ratingTextView,
+    private ImageButton likeImageButton;
+    private TextView likedTextView, categoriesTextView, nameTextView, timeTextView, calorieTextView, ratingTextView,
             servingSizeTextView, descriptionTextView, ingredientsTextView, stepsTextView;
 
     private DatabaseReference foodRecipesRef;
@@ -55,6 +64,8 @@ public class FoodRecipes extends AppCompatActivity {
         setContentView(R.layout.f_activity_food_recipes);
 
         // Initialize views
+        likedTextView = findViewById(R.id.foodLiked);
+        likeImageButton = findViewById(R.id.likeButton);
         categoriesTextView = findViewById(R.id.foodCategories);
         foodImageView = findViewById(R.id.foodImage);
         nameTextView = findViewById(R.id.foodName);
@@ -101,16 +112,11 @@ public class FoodRecipes extends AppCompatActivity {
         String parentKey = intent.getStringExtra("parentKey");
         String childKey = intent.getStringExtra("childKey");
 
-        // Show the received ID in a Toast message
-        Toast.makeText(this, "parentKey: " + parentKey, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "childKey: " + childKey, Toast.LENGTH_SHORT).show();
-
         // Create a reference to the "Food Recipes" node in the database for the specified parent category key and parent key
         DatabaseReference recipeRef = FirebaseDatabase.getInstance().getReference("Food Recipes")
                 .child(parentKey).child(childKey);
 
         // Attach a ValueEventListener to fetch the food recipe data
-
         foodRecipesListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -124,6 +130,158 @@ public class FoodRecipes extends AppCompatActivity {
                     Double calorie = dataSnapshot.child("calories").getValue(Double.class);
                     Double rating = dataSnapshot.child("rating").getValue(Double.class);
                     Long servingSize = dataSnapshot.child("servingSize").getValue(Long.class);
+
+                    //Handling the Like button
+                    Long liked = dataSnapshot.child("liked").getValue(Long.class);
+                    List<String> likedUser = new ArrayList<>();
+                    for (DataSnapshot likedUserSnapshot : dataSnapshot.child("likedUser").getChildren()) {
+                        likedUser.add(likedUserSnapshot.getValue(String.class));
+                    }
+                    // DatabaseReference for the "liked" value
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    String userId = currentUser.getUid();
+                    DatabaseReference likedReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                            .child(parentKey)
+                            .child(childKey)
+                            .child("liked");
+
+                    // ValueEventListener to update the "liked" display
+                    likedReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Long liked = dataSnapshot.getValue(Long.class);
+                            if (liked != null) {
+                                likedTextView.setText(String.valueOf(liked));
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle error
+                        }
+                    });
+
+                    // Check if the current user's ID exists in the likedUser list
+                    boolean isLiked = likedUser.contains(userId);
+                    // Update the state and image resource of the likeButton
+                    if (isLiked) {
+                        likeImageButton.setSelected(true);
+                        likeImageButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_red);
+                    } else {
+                        likeImageButton.setSelected(false);
+                        likeImageButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_white);
+                    }
+
+                    //HANDLING THE LIKE BUTTON
+                    likeImageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String provider = "";
+
+                            for (UserInfo userInfo : currentUser.getProviderData()) {
+                                if (userInfo.getProviderId().equals("facebook.com")) {
+                                    provider = "FacebookUser";
+                                    break;
+                                } else if (userInfo.getProviderId().equals("google.com")) {
+                                    provider = "GoogleUser";
+                                    break;
+                                }
+                            }
+
+                            if (provider.isEmpty()) {
+                                provider = "User";
+                            }
+
+                            // Update the state and image resource of the likeButton
+                            boolean isChecked = !likeImageButton.isSelected();
+                            likeImageButton.setSelected(isChecked);
+                            int likeButtonImageResource = isChecked ? R.drawable.f_food_recipe_icon_favorite_button_red : R.drawable.f_food_recipe_icon_favorite_button_white;
+                            likeImageButton.setImageResource(likeButtonImageResource);
+
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                                    .child(parentKey)
+                                    .child(childKey)
+                                    .child("liked");
+
+                            DatabaseReference likedUserReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                                    .child(parentKey)
+                                    .child(childKey)
+                                    .child("likedUser");
+
+                            DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("User Profile")
+                                    .child(provider)
+                                    .child(userId)
+                                    .child("favoriteRecipes")
+                                    .child(childKey);
+
+                            likedReference.runTransaction(new Transaction.Handler() {
+                                @Override
+                                public Transaction.Result doTransaction(MutableData mutableData) {
+                                    Long currentLiked = mutableData.getValue(Long.class);
+                                    if (currentLiked == null) {
+                                        currentLiked = 0L;
+                                    }
+                                    // Adjust the liked count based on the state of the likeButton
+                                    if (isChecked) {
+                                        currentLiked++;
+                                    } else {
+                                        currentLiked--;
+                                    }
+                                    mutableData.setValue(currentLiked);
+                                    return Transaction.success(mutableData);
+                                }
+
+                                @Override
+                                public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+                                    // Transaction completed
+                                    if (!committed) {
+                                        // Handle transaction error
+                                        // You can show an error message or perform appropriate actions
+                                    } else {
+                                        DatabaseReference likedUserReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                                                .child(parentKey)
+                                                .child(childKey)
+                                                .child("likedUser");
+
+                                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        if (isChecked) {
+                                            likedUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    long count = snapshot.getChildrenCount(); // Get the current child count
+                                                    likedUserReference.child(String.valueOf(count)).setValue(userId);
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    // Handle error
+                                                }
+                                            });
+                                        } else {
+                                            likedUserReference.orderByValue().equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                        childSnapshot.getRef().removeValue();
+                                                        break;
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    // Handle error
+                                                }
+                                            });
+                                        }
+                                        // Update the likedTextView if needed
+                                        likedTextView.setText(String.valueOf(dataSnapshot.getValue(Long.class)));
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+                    //Handling Steps and Ingredients
                     List<String> steps = dataSnapshot.child("steps").getValue(new GenericTypeIndicator<List<String>>() {});
                     ingredientsList = new ArrayList<>();
                     DataSnapshot ingredientsSnapshot = dataSnapshot.child("ingredients");
@@ -137,6 +295,7 @@ public class FoodRecipes extends AppCompatActivity {
 
                     // Update the corresponding views in your layout with the retrieved data
                     categoriesTextView.setText(parentKey);
+                    likedTextView.setText(String.valueOf(liked)); // Append " minutes" after the value
                     nameTextView.setText(name);
                     descriptionTextView.setText(description);
                     timeTextView.setText(String.valueOf(times) + " Minutes"); // Append " minutes" after the value
@@ -178,17 +337,10 @@ public class FoodRecipes extends AppCompatActivity {
                 // Handle any errors that occur during data retrieval
             }
         };
-
         // Add the ValueEventListener to the recipe reference
         recipeRef.addListenerForSingleValueEvent(foodRecipesListener);
 
         getSupportActionBar().hide();
-
-
-    }
-
-    public List<IngredientFragmentDataClass> getIngredientsList() {
-        return ingredientsList;
     }
 
     @Override

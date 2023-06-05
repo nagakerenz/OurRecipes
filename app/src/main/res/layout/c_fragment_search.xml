@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview_sub_title"
         android:background="#FAEDB9"
+        android:textColor="@color/black"
         android:queryHint="Search for Food"
         app:searchIcon="@drawable/c_search_ic_baseline_search_24"
         app:closeIcon="@drawable/c_search_baseline_clear_24"
