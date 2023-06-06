@@ -4,6 +4,7 @@
     android:layout_width="160dp"
     android:layout_height="230dp"
     android:id="@+id/cardViewReelsHome"
+    android:layout_marginRight="10dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 

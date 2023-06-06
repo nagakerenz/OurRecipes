@@ -62,7 +62,6 @@ public class CProfileFragment extends Fragment {
         notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
 
-
         // This is for handling Display Picture
         // Retrieve the user's profile picture URL from Realtime Database
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();

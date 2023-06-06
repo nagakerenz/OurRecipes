@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 
 public class SignUpPage extends AppCompatActivity {
@@ -144,7 +145,7 @@ public class SignUpPage extends AppCompatActivity {
                                 return;
                             }
 
-                            FirebaseDatabase.getInstance().getReference("User Profile").child("User").child(userId)
+                            FirebaseDatabase.getInstance().getReference("User Profile").child("User").child(userId).child("userInfo")
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

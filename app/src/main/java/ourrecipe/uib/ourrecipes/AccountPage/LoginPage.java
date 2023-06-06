@@ -454,8 +454,15 @@ public class LoginPage extends AppCompatActivity {
 //                                        }
 //                                    });
 
-                            // Save the Facebook user's information to Realtime Database
-                            database.getReference().child("User Profile").child("FacebookUser").child(user.getUid()).setValue(facebookUser);
+                            // Save the Google user's information under the "GoogleUser" node in the Realtime Database
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                            databaseReference.child("User Profile").child("FacebookUser").child(user.getUid()).child("userInfo").setValue(facebookUser);
+
+                            // Save the Google user's favorite recipes under the "favoriteRecipes" node in the Realtime Database
+                            DatabaseReference favoriteRecipesRef = databaseReference.child("User Profile").child("FacebookUser").child(user.getUid()).child("favoriteRecipes");
+                            for (FoodIconRecyclerItemAdapter favoriteRecipe : favoriteRecipes) {
+                                favoriteRecipesRef.push().setValue(favoriteRecipe);
+                            }
 
                             // After successful login, check if this is the user's first time logging in
                             boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();

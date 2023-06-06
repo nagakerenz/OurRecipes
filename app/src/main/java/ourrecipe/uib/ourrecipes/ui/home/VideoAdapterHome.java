@@ -3,6 +3,7 @@ package ourrecipe.uib.ourrecipes.ui.home;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,16 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.ui.reels.CReelsFragment;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoDataClass;
 
@@ -55,6 +60,19 @@ public class VideoAdapterHome extends RecyclerView.Adapter<VideoAdapterHome.Vide
                 holder.mediaPlayer.setVolume(0f, 0f); // Set volume to mute
             }
         }
+        // Set OnClickListener for the CardView
+        holder.cardViewReelsHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event here
+                // For example, change the fragment to CReelsFragment
+                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new CReelsFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
 
@@ -129,4 +147,5 @@ public class VideoAdapterHome extends RecyclerView.Adapter<VideoAdapterHome.Vide
 
         }
     }
+
 }
