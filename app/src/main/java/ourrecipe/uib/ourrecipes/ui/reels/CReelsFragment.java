@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -23,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CReelsFragment extends Fragment {
     private ViewPager2 viewPager2;
-    private List<Video> videoList;
+    private List<VideoDataClass> videoDataClassList;
     private VideoAdapter adapter;
 
     private CFragmentReelsBinding binding;
@@ -35,23 +36,15 @@ public class CReelsFragment extends Fragment {
         binding = CFragmentReelsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        videoList = new ArrayList<>();
+        videoDataClassList = new ArrayList<>();
         viewPager2 = root.findViewById(R.id.viewPager2);
 
-        // Fetch videos from the API
-        fetchVideos();
+        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
+        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
+        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
 
-
-//
-//        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.meat, "Meat", "GRILL All you can eat."));
-//        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
-//        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.steak, "Steak", "Medium Rare."));
-//        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.cook, "Cooking", "Spicy."));
-//        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Octopus", "Seafood is the best."));
-//
-//
-//        adapter = new VideoAdapter(videoList);
-//        viewPager2.setAdapter(adapter);
+        adapter = new VideoAdapter(videoDataClassList);
+        viewPager2.setAdapter(adapter);
 
         return root;
     }
@@ -61,48 +54,6 @@ public class CReelsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    private void fetchVideos() {
-        // Create an instance of Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.giphy.com/")  // Replace with your API base URL
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // Create an instance of the API service
-        VideoApiService apiService = retrofit.create(VideoApiService.class);
-
-        // Make the API call
-        Call<List<VideoResponse>> call = apiService.getVideos();
-        call.enqueue(new Callback<List<VideoResponse>>() {
-            @Override
-            public void onResponse(Call<List<VideoResponse>> call, Response<List<VideoResponse>> response) {
-                if (response.isSuccessful()) {
-                    List<VideoResponse> videoResponses = response.body();
-                    if (videoResponses != null) {
-                        // Convert VideoResponse objects to Video objects
-                        for (VideoResponse videoResponse : videoResponses) {
-                            Video video = new Video(videoResponse.getVideoUrl(), videoResponse.getTitle(), videoResponse.getDescription());
-                            videoList.add(video);
-                        }
-
-                        // Update the adapter with the new video data
-                        adapter = new VideoAdapter(videoList);
-                        viewPager2.setAdapter(adapter);
-                    }
-                } else {
-                    // Handle API error
-                    Toast.makeText(CReelsFragment.this.getContext(), "Failed to fetch videos: " + response.message(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<VideoResponse>> call, Throwable t) {
-                // Handle API call failure
-                Toast.makeText(CReelsFragment.this.getContext(), "Failed to fetch videos: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }

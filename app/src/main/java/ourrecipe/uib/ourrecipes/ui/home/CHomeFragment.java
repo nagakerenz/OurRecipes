@@ -1,8 +1,6 @@
 package ourrecipe.uib.ourrecipes.ui.home;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
@@ -10,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -38,7 +35,7 @@ import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 import ourrecipe.uib.ourrecipes.databinding.CFragmentHomeBinding;
 import ourrecipe.uib.ourrecipes.ui.home.Categories.Categories;
-import ourrecipe.uib.ourrecipes.ui.reels.Video;
+import ourrecipe.uib.ourrecipes.ui.reels.VideoDataClass;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 
 public class CHomeFragment extends Fragment {
@@ -48,7 +45,7 @@ public class CHomeFragment extends Fragment {
     Button reels;
     private ViewPager2 viewPagerImage, viewPagerReels;
     ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
-    private List<Video> videoList;
+    private List<VideoDataClass> videoDataClassList;
     private VideoAdapter videoAdapter;
 
     // Categories
@@ -203,20 +200,20 @@ public class CHomeFragment extends Fragment {
 //            }
 //        });
 
-        videoList = new ArrayList<>();
+        videoDataClassList = new ArrayList<>();
         viewPagerReels = root.findViewById(R.id.viewPagerReels);
 
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
+        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
 
-        videoAdapter = new VideoAdapter(videoList);
+        videoAdapter = new VideoAdapter(videoDataClassList);
         viewPagerReels.setAdapter(videoAdapter);
 
-        videoList = new ArrayList<>();
+        videoDataClassList = new ArrayList<>();
         viewPagerReels = root.findViewById(R.id.viewPagerReels1);
 
-        videoList.add(new Video("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Eating", "Seafood is the best."));
+        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Eating", "Seafood is the best."));
 
-        videoAdapter = new VideoAdapter(videoList);
+        videoAdapter = new VideoAdapter(videoDataClassList);
         viewPagerReels.setAdapter(videoAdapter);
 
         CardView reelsCardView = root.findViewById(R.id.reelsCardView);
