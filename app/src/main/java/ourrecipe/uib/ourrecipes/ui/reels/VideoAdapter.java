@@ -22,13 +22,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     private Context context;
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
-    private boolean showTitleAndDescription; // Flag to indicate whether to display title and description or not
 
-    public VideoAdapter(List<VideoDataClass> videoList, Context context, boolean showTitleAndDescription    ) {
+    public VideoAdapter(List<VideoDataClass> videoList, Context context) {
         this.videoList = videoList;
         this.context = context;
-        this.showTitleAndDescription = showTitleAndDescription;
-
     }
 
     @NonNull
@@ -40,33 +37,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
-//        VideoDataClass videoData = videoList.get(position);
-//        String videoURL = videoData.getVideoURL();
-//
-//        holder.videoTitleTextView.setText(videoData.getVideoTitle());
-//        holder.videoDescTextView.setText(videoData.getVideoDescription());
-//        playVideo(holder, videoData);
-
         VideoDataClass videoData = videoList.get(position);
-        String videoURL = videoData.getVideoURL();
+        holder.videoTitleTextView.setText(videoData.getVideoTitle());
+        holder.videoDescTextView.setText(videoData.getVideoDescription());
 
-//        playVideo(holder, videoURL);
-
-        playVideo(holder, videoData);
-
-        // Set title and description visibility based on the flag
-        if (showTitleAndDescription) {
-            holder.videoTitleTextView.setVisibility(View.VISIBLE);
-            holder.videoDescTextView.setVisibility(View.VISIBLE);
-            holder.videoTitleTextView.setText(videoData.getVideoTitle());
-            holder.videoDescTextView.setText(videoData.getVideoDescription());
-        } else {
-            holder.videoTitleTextView.setVisibility(View.GONE);
-            holder.videoDescTextView.setVisibility(View.GONE);
-        }
-
+        // Show progress bar
         holder.progressBar.setVisibility(View.VISIBLE);
 
+        playVideo(holder, videoData);
     }
 
     private void playVideo(final VideoViewHolder holder, VideoDataClass videoData) {
@@ -79,8 +57,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                 mediaPlayer.start();
                 isPlaying = true;
 
+                // Hide progress bar
                 holder.progressBar.setVisibility(View.GONE);
-
             }
         });
         holder.videoView.start();
@@ -112,7 +90,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
-            videoView = itemView.findViewById(R.id.videoTiktok);
+            videoView = itemView.findViewById(R.id.videoView);
             videoTitleTextView = itemView.findViewById(R.id.video_title);
             videoDescTextView = itemView.findViewById(R.id.video_desc);
             progressBar = itemView.findViewById(R.id.progressBar); // Add ProgressBar reference

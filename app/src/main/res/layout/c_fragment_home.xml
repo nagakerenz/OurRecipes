@@ -248,7 +248,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewReels"
-                android:layout_width="160dp"
+                android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"

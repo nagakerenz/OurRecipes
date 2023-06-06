@@ -11,83 +11,78 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoDataClass;
 
-public class VideoAdapterHome extends RecyclerView.Adapter<ourrecipe.uib.ourrecipes.ui.home.VideoViewHolder> {
+public class VideoAdapterHome extends RecyclerView.Adapter<VideoAdapterHome.VideoViewHolder> {
     private List<VideoDataClass> videoList;
     private Context context;
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
-    private boolean showTitleAndDescription; // Flag to indicate whether to display title and description or not
+    private boolean isSoundEnabled = true;
 
-    public VideoAdapter(List<VideoDataClass> videoList, Context context, boolean showTitleAndDescription    ) {
+    public VideoAdapterHome(List<VideoDataClass> videoList, Context context) {
         this.videoList = videoList;
         this.context = context;
-        this.showTitleAndDescription = showTitleAndDescription;
-
     }
 
     @NonNull
     @Override
-    public ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.c_fragment_reels_each_video, parent, false);
-        return new ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder(view);
+    public VideoAdapterHome.VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.c_fragment_home_each_video, parent, false);
+        return new VideoAdapterHome.VideoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder holder, int position) {
-//        VideoDataClass videoData = videoList.get(position);
-//        String videoURL = videoData.getVideoURL();
-//
-//        holder.videoTitleTextView.setText(videoData.getVideoTitle());
-//        holder.videoDescTextView.setText(videoData.getVideoDescription());
-//        playVideo(holder, videoData);
-
+    public void onBindViewHolder(@NonNull VideoAdapterHome.VideoViewHolder holder, int position) {
         VideoDataClass videoData = videoList.get(position);
-        String videoURL = videoData.getVideoURL();
 
-//        playVideo(holder, videoURL);
+        // Show progress bar
+        holder.progressBar.setVisibility(View.VISIBLE);
 
         playVideo(holder, videoData);
 
-        // Set title and description visibility based on the flag
-        if (showTitleAndDescription) {
-            holder.videoTitleTextView.setVisibility(View.VISIBLE);
-            holder.videoDescTextView.setVisibility(View.VISIBLE);
-            holder.videoTitleTextView.setText(videoData.getVideoTitle());
-            holder.videoDescTextView.setText(videoData.getVideoDescription());
-        } else {
-            holder.videoTitleTextView.setVisibility(View.GONE);
-            holder.videoDescTextView.setVisibility(View.GONE);
+        if (holder.mediaPlayer != null) {
+            if (isSoundEnabled) {
+                holder.mediaPlayer.setVolume(1f, 1f); // Set volume to full
+            } else {
+                holder.mediaPlayer.setVolume(0f, 0f); // Set volume to mute
+            }
         }
-
-        holder.progressBar.setVisibility(View.VISIBLE);
-
     }
 
-    private void playVideo(final ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder holder, VideoDataClass videoData) {
+
+
+    private void playVideo(final VideoAdapterHome.VideoViewHolder holder, VideoDataClass videoData) {
         holder.videoView.setVideoURI(Uri.parse(videoData.getVideoURL()));
         holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mediaPlayer = mp;
                 mediaPlayer.setLooping(true);
+                if (isSoundEnabled) {
+                    mediaPlayer.setVolume(1f, 1f); // Set volume to full
+                } else {
+                    mediaPlayer.setVolume(0f, 0f); // Set volume to mute
+                }
+
                 mediaPlayer.start();
                 isPlaying = true;
 
+                // Hide progress bar
                 holder.progressBar.setVisibility(View.GONE);
-
             }
         });
         holder.videoView.start();
     }
 
-    private void pauseVideo(final ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder holder) {
+    private void pauseVideo(final VideoAdapterHome.VideoViewHolder holder) {
         holder.videoView.pause();
         mediaPlayer.stop();
         mediaPlayer.release();
@@ -95,6 +90,20 @@ public class VideoAdapterHome extends RecyclerView.Adapter<ourrecipe.uib.ourreci
         isPlaying = false;
     }
 
+    public void setSoundEnabled(boolean enbaled) {
+        isSoundEnabled = enbaled;
+        if (mediaPlayer != null) {
+            if (isSoundEnabled) {
+                mediaPlayer.setVolume(1f, 1f); // Set volume to full
+            } else {
+                mediaPlayer.setVolume(0f, 0f); // Set volume to mute
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+        }
+        notifyDataSetChanged();
+    }
     public void updateVideoList(List<VideoDataClass> videoList) {
         this.videoList = videoList;
         notifyDataSetChanged();
@@ -107,16 +116,16 @@ public class VideoAdapterHome extends RecyclerView.Adapter<ourrecipe.uib.ourreci
 
     static class VideoViewHolder extends RecyclerView.ViewHolder {
         VideoView videoView;
-        TextView videoTitleTextView;
-        TextView videoDescTextView;
+        MediaPlayer mediaPlayer;
         ProgressBar progressBar;
+        CardView cardViewReelsHome;
 
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
-            videoView = itemView.findViewById(R.id.videoTiktok);
-            videoTitleTextView = itemView.findViewById(R.id.video_title);
-            videoDescTextView = itemView.findViewById(R.id.video_desc);
+            videoView = itemView.findViewById(R.id.videoView);
             progressBar = itemView.findViewById(R.id.progressBar); // Add ProgressBar reference
+            mediaPlayer = new MediaPlayer();
+            cardViewReelsHome = itemView.findViewById(R.id.cardViewReelsHome);
 
         }
     }

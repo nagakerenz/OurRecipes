@@ -49,7 +49,7 @@ public class CReelsFragment extends Fragment {
         progressBar = root.findViewById(R.id.progressBar); // Initialize ProgressBar
 
         // Create an empty adapter and set it on the ViewPager2
-        videoAdapter = new VideoAdapter(new ArrayList<>(), CReelsFragment.this.getActivity(), true);
+        videoAdapter = new VideoAdapter(new ArrayList<>(), CReelsFragment.this.getActivity());
         viewPager2.setAdapter(videoAdapter);
 
         progressBar.setVisibility(View.VISIBLE);
@@ -69,7 +69,7 @@ public class CReelsFragment extends Fragment {
                     }
 
                     // Create the adapter and pass the video data to it
-                    videoAdapter = new VideoAdapter(videoList, CReelsFragment.this.getActivity(), true);
+                    videoAdapter = new VideoAdapter(videoList, CReelsFragment.this.getActivity());
 
                     // Update the adapter with the video data
                     videoAdapter.updateVideoList(videoList);

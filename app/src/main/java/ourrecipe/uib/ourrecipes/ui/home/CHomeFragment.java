@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -47,6 +48,7 @@ public class CHomeFragment extends Fragment {
     ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
     private List<VideoDataClass> videoDataClassList;
     private VideoAdapter videoAdapter;
+    private VideoAdapterHome videoAdapterHome;
 
     // Categories
     CardView cardView, breakfast, lunch, dinner, fiber, drink;
@@ -56,6 +58,7 @@ public class CHomeFragment extends Fragment {
     private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
     private ValueEventListener valueEventListener;
+    private boolean isSoundEnabled = false;
 
     public CHomeFragment(){
 
@@ -156,12 +159,10 @@ public class CHomeFragment extends Fragment {
         recyclerViewReels.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         // Create and set the adapter for the RecyclerView
-        videoAdapter = new VideoAdapter(new ArrayList<>(), CHomeFragment.this.getActivity(), false);
-        recyclerViewReels.setAdapter(videoAdapter);
+        videoAdapterHome = new VideoAdapterHome(new ArrayList<>(), getActivity());
+        recyclerViewReels.setAdapter(videoAdapterHome);
 
-        // Disable the sound for the videos
-        videoAdapter.setSoundEnabled(false);
-
+        videoAdapterHome.setSoundEnabled(false); // Disable sound
         // Retrieve video data from the Firebase database
         FirebaseDatabase.getInstance().getReference("Food Video")
         .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -177,7 +178,7 @@ public class CHomeFragment extends Fragment {
                 }
 
                 // Update the adapter with the video data
-                videoAdapter.updateVideoList(videoList);
+                videoAdapterHome.updateVideoList(videoList);
             }
 
             @Override
@@ -250,6 +251,7 @@ public class CHomeFragment extends Fragment {
 
         return root;
     }
+
 
     @Override
     public void onDestroy() {
