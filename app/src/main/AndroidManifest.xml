@@ -83,13 +83,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.reels.EachVideo"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Food.FoodRecipes"
             android:exported="false">
             <meta-data
