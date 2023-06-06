@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.ui.reels;
+package ourrecipe.uib.ourrecipes.ui.home;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-import java.util.List;
-import ourrecipe.uib.ourrecipes.R;
 
-public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
+import java.util.List;
+
+import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.ui.reels.VideoDataClass;
+
+public class VideoAdapterHome extends RecyclerView.Adapter<ourrecipe.uib.ourrecipes.ui.home.VideoViewHolder> {
     private List<VideoDataClass> videoList;
     private Context context;
     private MediaPlayer mediaPlayer;
@@ -33,13 +34,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     @NonNull
     @Override
-    public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.c_fragment_reels_each_video, parent, false);
-        return new VideoViewHolder(view);
+        return new ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder holder, int position) {
 //        VideoDataClass videoData = videoList.get(position);
 //        String videoURL = videoData.getVideoURL();
 //
@@ -69,7 +70,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     }
 
-    private void playVideo(final VideoViewHolder holder, VideoDataClass videoData) {
+    private void playVideo(final ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder holder, VideoDataClass videoData) {
         holder.videoView.setVideoURI(Uri.parse(videoData.getVideoURL()));
         holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -86,7 +87,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         holder.videoView.start();
     }
 
-    private void pauseVideo(final VideoViewHolder holder) {
+    private void pauseVideo(final ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter.VideoViewHolder holder) {
         holder.videoView.pause();
         mediaPlayer.stop();
         mediaPlayer.release();

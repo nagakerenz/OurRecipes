@@ -159,6 +159,9 @@ public class CHomeFragment extends Fragment {
         videoAdapter = new VideoAdapter(new ArrayList<>(), CHomeFragment.this.getActivity(), false);
         recyclerViewReels.setAdapter(videoAdapter);
 
+        // Disable the sound for the videos
+        videoAdapter.setSoundEnabled(false);
+
         // Retrieve video data from the Firebase database
         FirebaseDatabase.getInstance().getReference("Food Video")
         .addListenerForSingleValueEvent(new ValueEventListener() {
