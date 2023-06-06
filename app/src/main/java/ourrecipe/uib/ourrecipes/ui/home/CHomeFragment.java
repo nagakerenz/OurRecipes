@@ -197,7 +197,7 @@ public class CHomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // Retrieve data from the Firebase Realtimes Database
-        recipesRef = FirebaseDatabase.getInstance().getReference().child("Food Recipes").child("Breakfast");
+        recipesRef = FirebaseDatabase.getInstance().getReference().child("Food Recipes").child("Drama");
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

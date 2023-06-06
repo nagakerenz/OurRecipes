@@ -61,18 +61,18 @@ public class VideoAdapterHome extends RecyclerView.Adapter<VideoAdapterHome.Vide
             }
         }
         // Set OnClickListener for the CardView
-        holder.cardViewReelsHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle the click event here
-                // For example, change the fragment to CReelsFragment
-                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new CReelsFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+//        holder.cardViewReelsHome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Handle the click event here
+//                // For example, change the fragment to CReelsFragment
+//                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, new CReelsFragment());
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//            }
+//        });
     }
 
 

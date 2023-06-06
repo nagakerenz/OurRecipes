@@ -77,7 +77,6 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 String userId = currentUser.getUid();
                 String provider = "";
-
                 for (UserInfo userInfo : currentUser.getProviderData()) {
                     if (userInfo.getProviderId().equals("facebook.com")) {
                         provider = "FacebookUser";
@@ -87,7 +86,6 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         break;
                     }
                 }
-
                 if (provider.isEmpty()) {
                     provider = "User";
                 }

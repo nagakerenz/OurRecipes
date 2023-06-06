@@ -89,6 +89,12 @@ public class FavoritePage extends AppCompatActivity {
                 data.clear();
                 progressBar.setVisibility(View.VISIBLE);
 
+//                // Iterate through the recipe snapshots
+//                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
+//                    for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
+//                        // Check if the likedUser node exists and if the current user's ID exists in it
+//                        if (recipeSnapshot.child("likedUser").exists() && recipeSnapshot.child("likedUser").hasChild(userId)) {
+
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                         // Get the category and ID of the favorite recipe
