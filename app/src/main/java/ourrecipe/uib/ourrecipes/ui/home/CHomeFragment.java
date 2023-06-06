@@ -52,7 +52,7 @@ public class CHomeFragment extends Fragment {
     CardView cardView, breakfast, lunch, dinner, fiber, drink;
 
     // Recommended Food Recommendation
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView, recyclerViewReels;
     private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference recipesRef;
     private ValueEventListener valueEventListener;
@@ -152,77 +152,37 @@ public class CHomeFragment extends Fragment {
             }
         });
 
-//        reels = (Button) root.findViewById(R.id.reels);
-//        reels.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                FragmentTransaction fragmentTransaction = getView().getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.reelsFrame, new ReelsFragment());
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-//                getActivity().getFragmentManager().beginTransaction().replace(R.id.container, HomeFragment()).commit();
+        recyclerViewReels = root.findViewById(R.id.recyclerViewReels);
+        recyclerViewReels.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
-//                FragmentTransaction fragmentTransaction = .beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new ReelsFragment());
-//                fragmentTransaction.commit();
-//
-//                Fragment fragment = new ReelsFragment();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.reels, fragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-//
-//                Fragment homeFragment = new ReelsFragment();
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.container, homeFragment);
-//                transaction.commit();
-//            }
-//        });
+        // Create and set the adapter for the RecyclerView
+        videoAdapter = new VideoAdapter(new ArrayList<>(), CHomeFragment.this.getActivity(), false);
+        recyclerViewReels.setAdapter(videoAdapter);
 
-//        return binding.getRoot();
-//        binding.reels.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                HomeFragment homeFragment = new HomeFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.,homeFragment);
-//                transaction.commit();
-//            }
-//        });
-//        reels = myView.findViewById(R.id.goReels);
-//        reels.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ReelsFragment reelsFragment = new ReelsFragment();
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, reelsFragment).commit();
-//            }
-//        });
-
-        videoDataClassList = new ArrayList<>();
-        viewPagerReels = root.findViewById(R.id.viewPagerReels);
-
-        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.eat, "Eating", "This Looks Delicious."));
-
-        videoAdapter = new VideoAdapter(videoDataClassList);
-        viewPagerReels.setAdapter(videoAdapter);
-
-        videoDataClassList = new ArrayList<>();
-        viewPagerReels = root.findViewById(R.id.viewPagerReels1);
-
-        videoDataClassList.add(new VideoDataClass("android.resource://" + getContext().getPackageName() + "/" + R.raw.octo, "Eating", "Seafood is the best."));
-
-        videoAdapter = new VideoAdapter(videoDataClassList);
-        viewPagerReels.setAdapter(videoAdapter);
-
-        CardView reelsCardView = root.findViewById(R.id.reelsCardView);
-        reelsCardView.setOnClickListener(new View.OnClickListener() {
+        // Retrieve video data from the Firebase database
+        FirebaseDatabase.getInstance().getReference("Food Video")
+        .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_HomeFragment_to_ReelsFragment);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<VideoDataClass> videoList = new ArrayList<>();
+
+                for (DataSnapshot videoSnapshot : dataSnapshot.getChildren()) {
+                    VideoDataClass videoData = videoSnapshot.getValue(VideoDataClass.class);
+                    String videoURL = videoSnapshot.child("videoURL").getValue(String.class);
+                    videoData.setVideoURL(videoURL);
+                    videoList.add(videoData);
+                }
+
+                // Update the adapter with the video data
+                videoAdapter.updateVideoList(videoList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle database error
             }
         });
+
 
         //Food Recommendation Recipes
         // Create an empty list for the data

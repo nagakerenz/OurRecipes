@@ -14,10 +14,12 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -33,8 +35,9 @@ public class FavoritePage extends AppCompatActivity {
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private FoodIconRecyclerItemAdapter adapter;
-    private DatabaseReference recipesRef;
+    private DatabaseReference userReference;
     private ValueEventListener valueEventListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +56,32 @@ public class FavoritePage extends AppCompatActivity {
         adapter = new FoodIconRecyclerItemAdapter(data);
         recyclerView.setAdapter(adapter);
 
-        // Retrieve data from the Firebase Realtimes Database
-        recipesRef = FirebaseDatabase.getInstance().getReference().child("Food Recipes");
+        // Retrieve the current user's ID and provider
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = currentUser.getUid();
+        String provider = "";
+
+        for (UserInfo userInfo : currentUser.getProviderData()) {
+            if (userInfo.getProviderId().equals("facebook.com")) {
+                provider = "FacebookUser";
+                break;
+            } else if (userInfo.getProviderId().equals("google.com")) {
+                provider = "GoogleUser";
+                break;
+            }
+        }
+
+        if (provider.isEmpty()) {
+            provider = "User";
+        }
+
+        // Retrieve the user's favoriteRecipes data
+        userReference = FirebaseDatabase.getInstance().getReference("User Profile")
+                .child(provider)
+                .child(userId)
+                .child("favoriteRecipes");
+
+        // Retrieve data from the Firebase Realtime Database
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -62,56 +89,66 @@ public class FavoritePage extends AppCompatActivity {
                 data.clear();
                 progressBar.setVisibility(View.VISIBLE);
 
-                // Retrieve the current user's ID
-                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                String userId = currentUser.getUid();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
+                        // Get the category and ID of the favorite recipe
+                        String category = recipeSnapshot.child("category").getValue(String.class);
+                        String id = recipeSnapshot.child("id").getValue(String.class);
 
-                // Iterate through the recipe snapshots
-                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
-                    for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
-                        // Check if the likedUser node exists and if the current user's ID exists in it
-                        if (recipeSnapshot.child("likedUser").exists()) {
-//                            if (recipeSnapshot.child("likedUser").exists() && recipeSnapshot.child("likedUser").hasChild(userId)) {
-                                // Get the recipe details
-                            String name = recipeSnapshot.child("name").getValue(String.class);
-                            Double rating = recipeSnapshot.child("rating").getValue(Double.class);
-                            Long times = recipeSnapshot.child("times").getValue(Long.class);
-                            String imageURL = recipeSnapshot.child("imageURL").getValue(String.class);
-                            Long liked = recipeSnapshot.child("liked").getValue(Long.class);
-                            List<String> likedUser = new ArrayList<>();
-                            for (DataSnapshot likedUserSnapshot : recipeSnapshot.child("likedUser").getChildren()) {
-                                likedUser.add(likedUserSnapshot.getValue(String.class));
+                        // Retrieve the specific recipe data from "Food Recipes"
+                        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                                .child(category)
+                                .child(id);
+
+                        recipeReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    // Get the recipe details
+                                    String name = snapshot.child("name").getValue(String.class);
+                                    Double rating = snapshot.child("rating").getValue(Double.class);
+                                    Long times = snapshot.child("n_steps").getValue(Long.class);
+                                    String imageURL = snapshot.child("imageURL").getValue(String.class);
+                                    Long liked = snapshot.child("liked").getValue(Long.class);
+                                    List<String> likedUser = new ArrayList<>();
+                                    for (DataSnapshot likedUserSnapshot : snapshot.child("likedUser").getChildren()) {
+                                        likedUser.add(likedUserSnapshot.getValue(String.class));
+                                    }
+                                    boolean isLiked = likedUser.contains(userId);
+
+                                    // Create a Recipe object with the retrieved values
+                                    FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, id, category, liked, likedUser, isLiked);
+
+                                    // Add the recipe to the list
+                                    data.add(recipe);
+                                }
+
+                                // Notify the adapter about the data change
+                                adapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
                             }
-                            // Check if the current user's ID exists in the likedUser list
-                            boolean isLiked = likedUser.contains(userId);
 
-                            // Retrieve the parentKey and parentCategoryKey from the snapshot's reference
-                            String parentKey = recipeSnapshot.getRef().getParent().getKey();
-                            String parentCategoryKey = recipeSnapshot.getRef().getParent().getParent().getKey();
-
-                            // Add additional text to the "times" value
-                            String timesText = times + " Minutes"; // Add " minutes" to the times value
-
-                            // Create a Recipe object with the retrieved values
-                            FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, parentKey, parentCategoryKey, liked, likedUser, isLiked);
-
-                            // Add the recipe to the list
-                            data.add(recipe);
-                        }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(FavoritePage.this, "Failed to retrieve favorite recipes.", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        });
                     }
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(FavoritePage.this, "Failed to retrieve favorite recipes.", Toast.LENGTH_SHORT).show();
                 }
-                // Notify the adapter about the data change
-                adapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
-
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 progressBar.setVisibility(View.GONE);
+                Toast.makeText(FavoritePage.this, "Failed to retrieve favorite recipes.", Toast.LENGTH_SHORT).show();
             }
         };
-        recipesRef.addListenerForSingleValueEvent(valueEventListener);
+
+        userReference.addValueEventListener(valueEventListener);
 
         getSupportActionBar().hide();
     }
@@ -119,9 +156,9 @@ public class FavoritePage extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // Remove the ValueEventListener when the fragment is destroyed
-        if (recipesRef != null && valueEventListener != null) {
-            recipesRef.removeEventListener(valueEventListener);
+        // Remove the ValueEventListener when the activity is destroyed
+        if (userReference != null && valueEventListener != null) {
+            userReference.removeEventListener(valueEventListener);
         }
     }
 }

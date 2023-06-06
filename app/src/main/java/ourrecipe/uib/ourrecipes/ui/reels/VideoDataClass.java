@@ -1,25 +1,35 @@
 package ourrecipe.uib.ourrecipes.ui.reels;
 
 public class VideoDataClass {
-    private String videoUrl;
-    private String title;
-    private String description;
+    private String videoURL;
+    private String videoTitle;
+    private String videoDescription;
 
-    public VideoDataClass(String videoUrl, String title, String description) {
-        this.videoUrl = videoUrl;
-
-        this.title = title;
-        this.description = description;
+    public VideoDataClass() {
+        // Default constructor required for Firebase deserialization
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-    public String getTitle() {
-        return title;
+    public String getVideoURL() {
+        return videoURL;
     }
 
-    public String getDescription() {
-        return description;
+    public void setVideoURL(String videoURL) {
+        this.videoURL = videoURL;
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
+    }
+
+    public void setVideoTitle(String videoTitle) {
+        this.videoTitle = videoTitle;
+    }
+
+    public String getVideoDescription() {
+        return videoDescription;
+    }
+
+    public void setVideoDescription(String videoDescription) {
+        this.videoDescription = videoDescription;
     }
 }

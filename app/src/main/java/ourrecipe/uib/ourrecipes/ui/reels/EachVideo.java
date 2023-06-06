@@ -17,19 +17,19 @@ public class EachVideo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.c_fragment_reels_each_video);
 
-        cbLove= (CheckBox) findViewById(R.id.cbLove);
-        cbLove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (cbLove.isChecked()) {
-                    String getCBData = cbLove.getText().toString();
-                    Toast.makeText(EachVideo.this, "Added to Your Favourite! " + getCBData, Toast.LENGTH_SHORT).show();
-                }
-                else if (!cbLove.isChecked()) {
-                    String uncheckdata = cbLove.getText().toString();
-                    Toast.makeText(EachVideo.this, "Removed from Your Favourite! " + uncheckdata, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        cbLove= (CheckBox) findViewById(R.id.cbLove);
+//        cbLove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (cbLove.isChecked()) {
+//                    String getCBData = cbLove.getText().toString();
+//                    Toast.makeText(EachVideo.this, "Added to Your Favourite! " + getCBData, Toast.LENGTH_SHORT).show();
+//                }
+//                else if (!cbLove.isChecked()) {
+//                    String uncheckdata = cbLove.getText().toString();
+//                    Toast.makeText(EachVideo.this, "Removed from Your Favourite! " + uncheckdata, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 }
