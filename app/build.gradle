@@ -76,5 +76,4 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.7'
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.7' // Optional, for DASH support
-    implementation 'com.squareup.picasso:picasso:2.71828'
 }

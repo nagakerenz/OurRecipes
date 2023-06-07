@@ -1,6 +1,7 @@
 package ourrecipe.uib.ourrecipes.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,11 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.R;
+import ourrecipe.uib.ourrecipes.ui.home.Categories.Categories;
 import ourrecipe.uib.ourrecipes.ui.reels.CReelsFragment;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoAdapter;
 import ourrecipe.uib.ourrecipes.ui.reels.VideoDataClass;
@@ -60,19 +64,18 @@ public class VideoAdapterHome extends RecyclerView.Adapter<VideoAdapterHome.Vide
                 holder.mediaPlayer.setVolume(0f, 0f); // Set volume to mute
             }
         }
-        // Set OnClickListener for the CardView
-//        holder.cardViewReelsHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle the click event here
-//                // For example, change the fragment to CReelsFragment
-//                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragment_container, new CReelsFragment());
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-//            }
-//        });
+//       Set OnClickListener for the CardView
+        holder.cardViewReelsHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(), Categories.class);
+//                v.getContext().startActivity(intent);
+                NavController navController = Navigation.findNavController(v);
+                if (navController.getCurrentDestination().getId() != R.id.navigation_reels) {
+                    navController.navigate(R.id.action_navigation_home_to_navigation_reels);
+                }
+            }
+        });
     }
 
 

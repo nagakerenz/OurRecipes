@@ -9,13 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -45,7 +43,7 @@ public class CHomeFragment extends Fragment {
     // ViewPager
     Button reels;
     private ViewPager2 viewPagerImage, viewPagerReels;
-    ArrayList<ViewPagerImageSlider> viewPagerImageSliderArrayList;
+    ArrayList<ViewPagerImageSliderDataClass> viewPagerImageSliderDataClassArrayList;
     private List<VideoDataClass> videoDataClassList;
     private VideoAdapter videoAdapter;
     private VideoAdapterHome videoAdapterHome;
@@ -87,32 +85,48 @@ public class CHomeFragment extends Fragment {
         fiber = root.findViewById(R.id.fiber);
         drink = root.findViewById(R.id.drink);
         viewPagerImage = root.findViewById(R.id.viewPager2Image);
-
         cardView.setCardBackgroundColor(Color.TRANSPARENT);
 
         //THIS IS FOR HANDLING SLIDER ON FEATURED DISH
-        int[] images = { R.drawable.c_home_slide_areyouondiet, R.drawable.c_home_slide_learntocook, R.drawable.c_home_slide_carvingforsteak};
+//        int[] images = { R.drawable.c_home_slide_areyouondiet, R.drawable.c_home_slide_learntocook, R.drawable.c_home_slide_carvingforsteak};
         //TO Implement Strings
 //        String[] heading = {"Breakfast, Lunch, Dinner, Dessert, Drinks"};
 //        String[] desc = {
 //                getString(R.string.YOURSTING)
 //        };
 
-        viewPagerImageSliderArrayList = new ArrayList<>();
+        //HANDLING THE DISPLAY OF THE HOME SLIDER
+        DatabaseReference sliderReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                .child("Food Image Slider");
+        sliderReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Create an empty list for the data
+                    viewPagerImageSliderDataClassArrayList = new ArrayList<>();
 
-        for (int i = 0; i < images.length ; i++) {
+                    // Retrieve the images from the snapshot and add them to the list
+                    for (DataSnapshot imageSnapshot : dataSnapshot.getChildren()) {
+                        String imageUrl = imageSnapshot.getValue(String.class);
+                        ViewPagerImageSliderDataClass viewPagerImageSliderDataClass = new ViewPagerImageSliderDataClass(imageUrl);
+                        viewPagerImageSliderDataClassArrayList.add(viewPagerImageSliderDataClass);
+                    }
 
-            ViewPagerImageSlider viewPagerImageSlider = new ViewPagerImageSlider(images[i]); //, heading[i], desc[i]
-            viewPagerImageSliderArrayList.add(viewPagerImageSlider);
-        }
+                    // Create and set the adapter for the ViewPager
+                    ViewPagerImageSliderAdapter viewPagerImageSliderAdapter = new ViewPagerImageSliderAdapter(viewPagerImageSliderDataClassArrayList);
+                    viewPagerImage.setAdapter(viewPagerImageSliderAdapter);
+                    viewPagerImage.setClipToPadding(false);
+                    viewPagerImage.setClipChildren(false);
+                    viewPagerImage.setOffscreenPageLimit(2);
+                    viewPagerImage.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+                }
+            }
 
-        ViewPagerImageSliderAdapter viewPagerImageSliderAdapter = new ViewPagerImageSliderAdapter(viewPagerImageSliderArrayList);
-
-        viewPagerImage.setAdapter(viewPagerImageSliderAdapter);
-        viewPagerImage.setClipToPadding(false);
-        viewPagerImage.setClipChildren(false);
-        viewPagerImage.setOffscreenPageLimit(2);
-        viewPagerImage.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle the error
+            }
+        });
 
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +169,7 @@ public class CHomeFragment extends Fragment {
             }
         });
 
+        //HANDLING THE REELS
         recyclerViewReels = root.findViewById(R.id.recyclerViewReels);
         recyclerViewReels.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
@@ -188,8 +203,7 @@ public class CHomeFragment extends Fragment {
         });
 
 
-        //Food Recommendation Recipes
-        // Create an empty list for the data
+        //HANDLING THE FOOD RECIPES
         List<FoodIconRecipesDataClass> data = new ArrayList<>();
 
         // Create and set the adapter for the RecyclerView

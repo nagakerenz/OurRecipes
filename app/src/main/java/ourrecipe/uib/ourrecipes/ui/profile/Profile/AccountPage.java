@@ -62,7 +62,7 @@ public class AccountPage extends AppCompatActivity {
         changeEmail = findViewById(R.id.changeEmail);
         changePassword = findViewById(R.id.changePassword);
         logout = findViewById(R.id.logOut);
-        delete = findViewById(R.id.deleteAccount);
+//        delete = findViewById(R.id.deleteAccount);
 
         mAuth = FirebaseAuth.getInstance();
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -182,12 +182,13 @@ public class AccountPage extends AppCompatActivity {
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(AccountPage.this, "Account Deleted!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(AccountPage.this, "Account Deleted!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        getSupportActionBar().hide();
     }
 
     //Currently this uses a button to save it into the firebase currently im trying to use another way

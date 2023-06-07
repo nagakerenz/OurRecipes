@@ -75,7 +75,7 @@ public class FavoritePage extends AppCompatActivity {
             provider = "User";
         }
 
-        // Retrieve the user's favoriteRecipes data
+// Retrieve the user's favoriteRecipes data
         userReference = FirebaseDatabase.getInstance().getReference("User Profile")
                 .child(provider)
                 .child(userId)
@@ -89,23 +89,20 @@ public class FavoritePage extends AppCompatActivity {
                 data.clear();
                 progressBar.setVisibility(View.VISIBLE);
 
-//                // Iterate through the recipe snapshots
-//                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
-//                    for (DataSnapshot recipeSnapshot : categorySnapshot.getChildren()) {
-//                        // Check if the likedUser node exists and if the current user's ID exists in it
-//                        if (recipeSnapshot.child("likedUser").exists() && recipeSnapshot.child("likedUser").hasChild(userId)) {
-
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
+
+                        String indexKey = recipeSnapshot.getKey();
+
                         // Get the category and ID of the favorite recipe
-                        String category = recipeSnapshot.child("category").getValue(String.class);
-                        String id = recipeSnapshot.child("id").getValue(String.class);
+                        String category = recipeSnapshot.child("Category").getValue(String.class);
+                        String id = recipeSnapshot.child("ID").getValue(String.class);
+
 
                         // Retrieve the specific recipe data from "Food Recipes"
                         DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
                                 .child(category)
                                 .child(id);
-
                         recipeReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -125,8 +122,13 @@ public class FavoritePage extends AppCompatActivity {
                                     // Create a Recipe object with the retrieved values
                                     FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, id, category, liked, likedUser, isLiked);
 
-                                    // Add the recipe to the list
-                                    data.add(recipe);
+                                    // Add the recipe to the list at the correct index
+                                    int recipeIndex = Integer.parseInt(indexKey);
+                                    if (recipeIndex >= 0 && recipeIndex < data.size()) {
+                                        data.add(recipeIndex, recipe);
+                                    } else {
+                                        data.add(recipe);
+                                    }
                                 }
 
                                 // Notify the adapter about the data change
@@ -143,14 +145,14 @@ public class FavoritePage extends AppCompatActivity {
                     }
                 } else {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(FavoritePage.this, "Failed to retrieve favorite recipes.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FavoritePage.this, "Go Like Something.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                progressBar.setVisibility(View.GONE);
                 Toast.makeText(FavoritePage.this, "Failed to retrieve favorite recipes.", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
             }
         };
 

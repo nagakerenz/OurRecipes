@@ -3,6 +3,7 @@ package ourrecipe.uib.ourrecipes.ui.reels;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,6 @@ import android.widget.TextView;
 import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import java.util.List;
 import ourrecipe.uib.ourrecipes.R;
 

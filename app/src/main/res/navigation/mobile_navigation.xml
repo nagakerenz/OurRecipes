@@ -15,7 +15,13 @@
             android:id="@+id/action_navigation_home_to_navigation_search"
             app:destination="@id/navigation_search" />
 
-    </fragment>
+
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_reels"
+            app:destination="@id/navigation_reels"
+            app:popUpTo="@+id/navigation_home"
+            app:popUpToInclusive="true" />    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_search"
