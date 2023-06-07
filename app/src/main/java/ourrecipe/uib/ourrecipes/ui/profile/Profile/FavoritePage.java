@@ -1,16 +1,14 @@
 package ourrecipe.uib.ourrecipes.ui.profile.Profile;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,22 +17,19 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
-import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
-import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
 public class FavoritePage extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
-    private FoodIconRecyclerItemAdapter adapter;
+    private FavoritePageFoodIconRecyclerItemAdapter adapter;
     private DatabaseReference userReference;
     private ValueEventListener valueEventListener;
 
@@ -53,7 +48,7 @@ public class FavoritePage extends AppCompatActivity {
         List<FoodIconRecipesDataClass> data = new ArrayList<>();
 
         // Create and set the adapter for the RecyclerView
-        adapter = new FoodIconRecyclerItemAdapter(data);
+        adapter = new FavoritePageFoodIconRecyclerItemAdapter(data);
         recyclerView.setAdapter(adapter);
 
         // Retrieve the current user's ID and provider
@@ -75,7 +70,7 @@ public class FavoritePage extends AppCompatActivity {
             provider = "User";
         }
 
-// Retrieve the user's favoriteRecipes data
+        // Retrieve the user's favoriteRecipes data
         userReference = FirebaseDatabase.getInstance().getReference("User Profile")
                 .child(provider)
                 .child(userId)
@@ -98,12 +93,17 @@ public class FavoritePage extends AppCompatActivity {
                         String category = recipeSnapshot.child("Category").getValue(String.class);
                         String id = recipeSnapshot.child("ID").getValue(String.class);
 
-
                         // Retrieve the specific recipe data from "Food Recipes"
                         DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
                                 .child(category)
                                 .child(id);
-                        recipeReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                        // Retrieve the specific recipe data from "Food Recipes"
+                        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                                .child(category)
+                                .orderByChild("ID")
+                                .equalTo(id);
+                        recipeReference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.exists()) {
