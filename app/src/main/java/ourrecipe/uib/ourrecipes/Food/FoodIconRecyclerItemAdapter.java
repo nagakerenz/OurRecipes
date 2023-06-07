@@ -97,6 +97,11 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 int likeButtonImageResource = view.isSelected() ? R.drawable.f_food_recipe_icon_favorite_button_red : R.drawable.f_food_recipe_icon_favorite_button_white;
                 holder.likeButton.setImageResource(likeButtonImageResource);
 
+                DatabaseReference databaseReferenceId = FirebaseDatabase.getInstance().getReference("Food Recipes")
+                        .child(item.getParentKey())
+                        .child(String.valueOf(itemPosition))
+                        .child("ID");
+
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
                         .child(item.getParentKey())
                         .child(String.valueOf(itemPosition))
@@ -130,7 +135,19 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                             int newIndex = favoriteRecipeList.size();
                             DatabaseReference newFavoriteRef = userReference.child(String.valueOf(newIndex));
                             newFavoriteRef.child("Category").setValue(item.getParentKey());
-                            newFavoriteRef.child("ID").setValue(String.valueOf(itemPosition));
+//                            newFavoriteRef.child("ID").setValue(String.valueOf(itemPosition));
+                            databaseReferenceId.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    String foodId = dataSnapshot.getValue(String.class);
+                                    newFavoriteRef.child("FoodID").setValue(foodId);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    // Handle error
+                                }
+                            });
 
                             likedUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
