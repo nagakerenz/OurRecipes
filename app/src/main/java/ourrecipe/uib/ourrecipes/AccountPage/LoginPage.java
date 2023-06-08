@@ -260,15 +260,17 @@ public class LoginPage extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
                 FirebaseAuth.getInstance().signInWithCredential(credential)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+                            if (task.isCanceled()) {
                                 dialog.dismiss();
+                                Toast.makeText(LoginPage.this, "Google sign-in cancelled", Toast.LENGTH_SHORT).show();
+                            } else if (task.isSuccessful()) {
                                 Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
 
                                 // Get user information
                                 String userId, name, email;
@@ -295,42 +297,43 @@ public class LoginPage extends AppCompatActivity {
                                             .into(new SimpleTarget<Bitmap>() {
                                                 @Override
                                                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                                    resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                                                    byte[] data = baos.toByteArray();
+                                                resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                                                byte[] data = baos.toByteArray();
 
-                                                    // Upload the byte array to Firebase Storage
-                                                    UploadTask uploadTask = profilePicRef.putBytes(data);
-                                                    uploadTask.addOnCompleteListener(task -> {
-                                                        if (task.isSuccessful()) {
-                                                            // Get the download URL of the uploaded profile picture
-                                                            profilePicRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                                                                String profilePicUrl = uri.toString();
+                                                // Upload the byte array to Firebase Storage
+                                                UploadTask uploadTask = profilePicRef.putBytes(data);
+                                                uploadTask.addOnCompleteListener(task -> {
+                                                    if (task.isSuccessful()) {
+                                                        // Get the download URL of the uploaded profile picture
+                                                        profilePicRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                                            String profilePicUrl = uri.toString();
 
-                                                                User googleUser = new User(userId, name, email, null, profilePicUrl); // Update User object with profile picture URL
+                                                            User googleUser = new User(userId, name, email, null, profilePicUrl); // Update User object with profile picture URL
 
-                                                                // Save the Google user's information under the "GoogleUser" node in the Realtime Database
-                                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                                                databaseReference.child("User Profile").child("GoogleUser").child(userId).child("userInfo").setValue(googleUser);
+                                                            // Save the Google user's information under the "GoogleUser" node in the Realtime Database
+                                                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                                            databaseReference.child("User Profile").child("GoogleUser").child(userId).child("userInfo").setValue(googleUser);
 
-                                                                // Save the Google user's favorite recipes under the "favoriteRecipes" node in the Realtime Database
-                                                                DatabaseReference favoriteRecipesRef = databaseReference.child("User Profile").child("GoogleUser").child(userId).child("favoriteRecipes");
-                                                                for (FoodIconRecyclerItemAdapter favoriteRecipe : favoriteRecipes) {
-                                                                    favoriteRecipesRef.push().setValue(favoriteRecipe);
-                                                                }
-                                                            }).addOnFailureListener(e -> {
-                                                                // Handle failure to get download URL
-                                                                dialog.dismiss();
-                                                                Toast.makeText(LoginPage.this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
-                                                            });
-                                                        } else {
-                                                            // Handle failure to upload profile picture
+                                                            // Save the Google user's favorite recipes under the "favoriteRecipes" node in the Realtime Database
+                                                            DatabaseReference favoriteRecipesRef = databaseReference.child("User Profile").child("GoogleUser").child(userId).child("favoriteRecipes");
+                                                            for (FoodIconRecyclerItemAdapter favoriteRecipe : favoriteRecipes) {
+                                                                favoriteRecipesRef.push().setValue(favoriteRecipe);
+                                                            }
+                                                        }).addOnFailureListener(e -> {
+                                                            // Handle failure to get download URL
                                                             dialog.dismiss();
                                                             Toast.makeText(LoginPage.this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    } else {
+                                                        // Handle failure to upload profile picture
+                                                        dialog.dismiss();
+                                                        Toast.makeText(LoginPage.this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
                                                 }
                                             });
                                 } else {
+                                    dialog.dismiss();
                                     // If profile picture URL is null, save User object without profile picture URL
                                     User googleUser = new User(userId, name, email, null, null); // Update User object without profile picture URL
 
@@ -362,17 +365,22 @@ public class LoginPage extends AppCompatActivity {
                                 SharedPreferences.Editor editor = displayNamePreferences.edit();
                                 editor.putString(userId, name); // use the user's ID as the key
                                 editor.apply();
+                                dialog.dismiss();
 
                                 finish(); // prevent the user from returning to the login activity via the back button
                             } else {
                                 dialog.dismiss();
                                 Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
+                            dialog.dismiss();
                         }
                     });
             } catch (ApiException e) {
                 e.printStackTrace();
+                dialog.dismiss(); // Dismiss the dialog in case of exception
             }
+        }else {
+            dialog.dismiss(); // Dismiss the dialog for other request codes
         }
     }
 

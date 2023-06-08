@@ -98,11 +98,11 @@ public class FavoritePage extends AppCompatActivity {
                                 .child(category)
                                 .child(id);
 
-                        // Retrieve the specific recipe data from "Food Recipes"
-                        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
-                                .child(category)
-                                .orderByChild("ID")
-                                .equalTo(id);
+//                        // Retrieve the specific recipe data from "Food Recipes"
+//                        DatabaseReference recipeReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
+//                                .child(category)
+//                                .orderByChild("ID")
+//                                .equalTo(id);
                         recipeReference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
