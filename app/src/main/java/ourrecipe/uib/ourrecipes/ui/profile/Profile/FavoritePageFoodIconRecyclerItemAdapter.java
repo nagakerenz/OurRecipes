@@ -1,4 +1,4 @@
-package ourrecipe.uib.ourrecipes.Food;
+package ourrecipe.uib.ourrecipes.ui.profile.Profile;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -24,13 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
+import ourrecipe.uib.ourrecipes.Food.FoodRecipes;
 import ourrecipe.uib.ourrecipes.R;
 
-public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRecyclerItemAdapter.MyViewHolder> {
+public class FavoritePageFoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FavoritePageFoodIconRecyclerItemAdapter.MyViewHolder> {
 
     private List<FoodIconRecipesDataClass> data;
 
-    public FoodIconRecyclerItemAdapter(List<FoodIconRecipesDataClass> data) {
+    public FavoritePageFoodIconRecyclerItemAdapter(List<FoodIconRecipesDataClass> data) {
         this.data = data;
     }
 
@@ -59,16 +61,10 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
         // Check if the current user's ID exists in the likedUser list
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String userId = currentUser.getUid();
-        boolean isLiked = item.isLiked();
-
         // Update the state and image resource of the likeButton
-        if (isLiked) {
-            holder.likeButton.setSelected(true);
-            holder.likeButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_red);
-        } else {
-            holder.likeButton.setSelected(false);
-            holder.likeButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_white);
-        }
+        holder.likeButton.setSelected(true);
+        holder.likeButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_red);
+
         holder.likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,11 +84,8 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                     provider = "User";
                 }
 
-                boolean isChecked = view.isSelected();
-                view.setSelected(!isChecked);
-
-                int likeButtonImageResource = view.isSelected() ? R.drawable.f_food_recipe_icon_favorite_button_red : R.drawable.f_food_recipe_icon_favorite_button_white;
-                holder.likeButton.setImageResource(likeButtonImageResource);
+                holder.likeButton.setSelected(false);
+                holder.likeButton.setImageResource(R.drawable.f_food_recipe_icon_favorite_button_white);
 
                 DatabaseReference databaseReferenceId = FirebaseDatabase.getInstance().getReference("Food Recipes")
                         .child(item.getParentKey())
@@ -114,98 +107,46 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         .child(userId)
                         .child("favoriteRecipes");
 
+                long newLiked = item.getLiked() - 1;
+                item.setLiked(newLiked);
+                databaseReference.setValue(newLiked);
 
-                if (view.isSelected()) {
-                    long newLiked = item.getLiked() + 1;
-                    item.setLiked(newLiked);
-                    databaseReference.setValue(newLiked);
+                // Find the favorite recipe with the specific category and ID, and remove it
+                userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                            String category = childSnapshot.child("Category").getValue(String.class);
+                            String foodId = childSnapshot.child("ID").getValue(String.class);
 
-                    // Generate a new unique ID for likedUser starting from 0
-                    // Retrieve the "ID" value from "Food Recipes"
-                    databaseReferenceId.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String foodId = dataSnapshot.getValue(String.class);
-                            if (foodId != null) {
-                                // Store the "ID" value under the user's favoriteRecipes
-                                DatabaseReference newFavoriteRef = userReference.child(foodId);
-                                newFavoriteRef.child("Category").setValue(item.getParentKey());
-                                newFavoriteRef.child("ID").setValue(foodId);
-                            }
-                        }
-
-//                            int newIndex = favoriteRecipeList.size();
-//                            DatabaseReference newFavoriteRef = userReference.child(String.valueOf(newIndex));
-//                            newFavoriteRef.child("Category").setValue(item.getParentKey());
-//                            newFavoriteRef.child("FoodID").setValue(String.valueOf(itemPosition));
-//                            databaseReferenceId.addListenerForSingleValueEvent(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    String foodId = dataSnapshot.getValue(String.class);
-//                                    newFavoriteRef.child("FoodID").setValue(itemPosition);
-//                                }
-//
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle error
-                            }
-                        });
-
-                        likedUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                long likedUserCount = snapshot.getChildrenCount();
-                                likedUserReference.child(String.valueOf(likedUserCount)).setValue(userId);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                                // Handle error
-                            }
-                        });
-
-                } else {
-                    long newLiked = item.getLiked() - 1;
-                    item.setLiked(newLiked);
-                    databaseReference.setValue(newLiked);
-
-                    // Find the favorite recipe with the specific category and ID, and remove it
-                    userReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                String category = childSnapshot.child("Category").getValue(String.class);
-                                String foodId = childSnapshot.child("ID").getValue(String.class);
-
-                                if (category != null && category.equals(item.getParentKey()) && foodId != null && foodId.equals(String.valueOf(itemPosition))) {
-                                    childSnapshot.getRef().removeValue(); // Remove the favorite recipe
-                                    break;
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            // Handle error
-                        }
-                    });
-
-                    // Remove the likedUser entry with the specific userID
-                    likedUserReference.orderByValue().equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                                childSnapshot.getRef().removeValue();
+                            if (category != null && category.equals(item.getParentKey()) && foodId != null && foodId.equals(String.valueOf(itemPosition))) {
+                                childSnapshot.getRef().removeValue(); // Remove the favorite recipe
                                 break;
                             }
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            // Handle error
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle error
+                    }
+                });
+
+                // Remove the likedUser entry with the specific userID
+                likedUserReference.orderByValue().equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                            childSnapshot.getRef().removeValue();
+                            break;
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // Handle error
+                    }
+                });
             }
         });
 
