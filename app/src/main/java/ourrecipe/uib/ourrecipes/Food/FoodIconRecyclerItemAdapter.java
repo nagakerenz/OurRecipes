@@ -130,7 +130,8 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                                 // Store the "ID" value under the user's favoriteRecipes
                                 DatabaseReference newFavoriteRef = userReference.child(foodId);
                                 newFavoriteRef.child("Category").setValue(item.getParentKey());
-                                newFavoriteRef.child("ID").setValue(foodId);
+                                newFavoriteRef.child("ID").setValue(String.valueOf(itemPosition));
+                                newFavoriteRef.child("FoodID").setValue(foodId);
                             }
                         }
 

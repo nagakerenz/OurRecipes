@@ -66,7 +66,6 @@ public class CategoriesBreakfastFragment extends Fragment {
                 data.clear();
                 progressBar.setVisibility(View.VISIBLE);
 
-
                 // Iterate through the recipe snapshots
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     // Get the recipe details
