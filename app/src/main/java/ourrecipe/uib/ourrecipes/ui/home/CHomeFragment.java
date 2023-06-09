@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ourrecipe.uib.ourrecipes.AccountPage.LoginPage;
 import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
 import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
@@ -233,7 +234,8 @@ public class CHomeFragment extends Fragment {
                     }
                     // Retrieve the current user's ID
                     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                    String userId = currentUser.getUid();
+                    if (currentUser != null) {
+                        String userId = currentUser.getUid();
                     // Check if the current user's ID exists in the likedUser list
                     boolean isLiked = likedUser.contains(userId);
 
@@ -249,6 +251,11 @@ public class CHomeFragment extends Fragment {
 
                     // Add the recipe to the list
                     data.add(recipe);
+                    } else {
+                        // If there is no user logged in, redirect to another activity
+                        Intent intent = new Intent(CHomeFragment.this.getActivity(), LoginPage.class);
+                        startActivity(intent);
+                    }
                 }
 
                 // Notify the adapter about the data change

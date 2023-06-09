@@ -23,13 +23,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ourrecipe.uib.ourrecipes.Food.FoodIconRecipesDataClass;
+import ourrecipe.uib.ourrecipes.Food.FoodIconRecyclerItemAdapter;
 import ourrecipe.uib.ourrecipes.R;
 
 public class FavoritePage extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
-    private FavoritePageFoodIconRecyclerItemAdapter adapter;
+    private FoodIconRecyclerItemAdapter adapter;
     private DatabaseReference userReference;
     private ValueEventListener valueEventListener;
 
@@ -48,7 +49,7 @@ public class FavoritePage extends AppCompatActivity {
         List<FoodIconRecipesDataClass> data = new ArrayList<>();
 
         // Create and set the adapter for the RecyclerView
-        adapter = new FavoritePageFoodIconRecyclerItemAdapter(data);
+        adapter = new FoodIconRecyclerItemAdapter(data);
         recyclerView.setAdapter(adapter);
 
         // Retrieve the current user's ID and provider
@@ -122,13 +123,15 @@ public class FavoritePage extends AppCompatActivity {
                                     // Create a Recipe object with the retrieved values
                                     FoodIconRecipesDataClass recipe = new FoodIconRecipesDataClass(name, rating, times, imageURL, id, category, liked, likedUser, isLiked);
 
-                                    // Add the recipe to the list at the correct index
-                                    int recipeIndex = Integer.parseInt(indexKey);
-                                    if (recipeIndex >= 0 && recipeIndex < data.size()) {
-                                        data.add(recipeIndex, recipe);
-                                    } else {
-                                        data.add(recipe);
-                                    }
+                                    data.add(recipe);
+
+//                                    // Add the recipe to the list at the correct index
+//                                    int recipeIndex = Integer.parseInt(indexKey);
+//                                    if (recipeIndex >= 0 && recipeIndex < data.size()) {
+//                                        data.add(recipeIndex, recipe);
+//                                    } else {
+//                                        data.add(recipe);
+//                                    }
                                 }
 
                                 // Notify the adapter about the data change
