@@ -75,6 +75,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 String userId = currentUser.getUid();
                 String provider = "";
+
                 for (UserInfo userInfo : currentUser.getProviderData()) {
                     if (userInfo.getProviderId().equals("facebook.com")) {
                         provider = "FacebookUser";
@@ -84,6 +85,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         break;
                     }
                 }
+
                 if (provider.isEmpty()) {
                     provider = "User";
                 }
@@ -97,7 +99,7 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                 DatabaseReference databaseReferenceId = FirebaseDatabase.getInstance().getReference("Food Recipes")
                         .child(item.getParentKey())
                         .child(String.valueOf(itemPosition))
-                        .child("ID");
+                        .child("id");
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food Recipes")
                         .child(item.getParentKey())
@@ -114,13 +116,26 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         .child(userId)
                         .child("favoriteRecipes");
 
-
                 if (view.isSelected()) {
                     long newLiked = item.getLiked() + 1;
                     item.setLiked(newLiked);
                     databaseReference.setValue(newLiked);
 
+
                     // Generate a new unique ID for likedUser starting from 0
+                    likedUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            long count = snapshot.getChildrenCount(); // Get the current child count
+                            likedUserReference.child(String.valueOf(count)).setValue(userId);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle error
+                        }
+                    });
+
                     // Retrieve the "ID" value from "Food Recipes"
                     databaseReferenceId.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -129,41 +144,19 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                             if (foodId != null) {
                                 // Store the "ID" value under the user's favoriteRecipes
                                 DatabaseReference newFavoriteRef = userReference.child(foodId);
-                                newFavoriteRef.child("Category").setValue(item.getParentKey());
-                                newFavoriteRef.child("ID").setValue(String.valueOf(itemPosition));
-                                newFavoriteRef.child("FoodID").setValue(foodId);
+                                newFavoriteRef.child("category").setValue(item.getParentKey());
+                                newFavoriteRef.child("position").setValue(String.valueOf(itemPosition));
+                                newFavoriteRef.child("id").setValue(foodId);
+
                             }
                         }
 
-//                            int newIndex = favoriteRecipeList.size();
-//                            DatabaseReference newFavoriteRef = userReference.child(String.valueOf(newIndex));
-//                            newFavoriteRef.child("Category").setValue(item.getParentKey());
-//                            newFavoriteRef.child("FoodID").setValue(String.valueOf(itemPosition));
-//                            databaseReferenceId.addListenerForSingleValueEvent(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    String foodId = dataSnapshot.getValue(String.class);
-//                                    newFavoriteRef.child("FoodID").setValue(itemPosition);
-//                                }
-//
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle error
-                            }
-                        });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle error
+                        }
+                    });
 
-                        likedUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                long likedUserCount = snapshot.getChildrenCount();
-                                likedUserReference.child(String.valueOf(likedUserCount)).setValue(userId);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                                // Handle error
-                            }
-                        });
 
                 } else {
                     long newLiked = item.getLiked() - 1;
@@ -175,10 +168,10 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                String category = childSnapshot.child("Category").getValue(String.class);
-                                String foodId = childSnapshot.child("ID").getValue(String.class);
+                                String category = childSnapshot.child("category").getValue(String.class);
+                                String position = childSnapshot.child("position").getValue(String.class);
 
-                                if (category != null && category.equals(item.getParentKey()) && foodId != null && foodId.equals(String.valueOf(itemPosition))) {
+                                if (category != null && category.equals(item.getParentKey()) && position != null && position.equals(String.valueOf(itemPosition))) {
                                     childSnapshot.getRef().removeValue(); // Remove the favorite recipe
                                     break;
                                 }
@@ -206,6 +199,8 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                             // Handle error
                         }
                     });
+                notifyItemRemoved(itemPosition);
+                notifyItemRangeChanged(itemPosition, data.size());
                 }
             }
         });
@@ -222,10 +217,12 @@ public class FoodIconRecyclerItemAdapter extends RecyclerView.Adapter<FoodIconRe
                         if (dataSnapshot.exists()) {
                             String parentKey = item.getParentKey();
                             String childKey = String.valueOf(itemPosition);
+                            String id = dataSnapshot.child("id").getValue(String.class); // Retrieve the "id" data
 
                             Intent intent = new Intent(holder.itemView.getContext(), FoodRecipes.class);
                             intent.putExtra("parentKey", parentKey);
                             intent.putExtra("childKey", childKey);
+                            intent.putExtra("id", id); // Pass the "id" data to the next activity
 
                             holder.itemView.getContext().startActivity(intent);
                         }

@@ -210,7 +210,8 @@ public class CSearchFragment extends Fragment {
             filteredData.addAll(allData);
         } else {
             for (FoodIconRecipesDataClass dataClass : allData) {
-                if (dataClass.getTitle().toLowerCase().contains(query.toLowerCase())) {
+                String title = dataClass.getTitle();
+                if (title != null && title.toLowerCase().contains(query.toLowerCase())) {
                     filteredData.add(dataClass);
                 }
             }

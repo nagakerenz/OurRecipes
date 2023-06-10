@@ -130,14 +130,14 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="#FBF4D1">
 
-        <Button
-            android:id="@+id/favorites"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:backgroundTint="@color/white"
-            android:text="Favorites"
-            android:textAlignment="textStart"
-            android:textColor="@color/black" />
+<!--        <Button-->
+<!--            android:id="@+id/favorites"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:backgroundTint="@color/white"-->
+<!--            android:text="Favorites"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="@color/black" />-->
 
 <!--        <Button-->
 <!--            android:id="@+id/notification"-->

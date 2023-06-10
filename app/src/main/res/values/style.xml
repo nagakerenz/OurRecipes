@@ -13,5 +13,7 @@
         <item name="android:textSize">12sp</item> <!-- Set the desired text size -->
         <item name="android:textColor">@color/black</item> <!-- Reference the selector -->
     </style>
-
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

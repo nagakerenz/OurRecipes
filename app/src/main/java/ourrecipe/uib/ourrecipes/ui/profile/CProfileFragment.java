@@ -78,7 +78,7 @@ public class CProfileFragment extends Fragment {
         editName = root.findViewById(R.id.editName);
         upload = root.findViewById(R.id.upload);
         save = root.findViewById(R.id.save);
-        favorites = (Button) root.findViewById(R.id.favorites);
+//        favorites = (Button) root.findViewById(R.id.favorites);
 //        notification = (Button) root.findViewById(R.id.notification);
         account = (Button) root.findViewById(R.id.account);
         progressBar = root.findViewById(R.id.progressBar);
@@ -246,12 +246,12 @@ public class CProfileFragment extends Fragment {
             }
         });
 
-        favorites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFavoritesPage();
-            }
-        });
+//        favorites.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openFavoritesPage();
+//            }
+//        });
 
 //        notification.setOnClickListener(new View.OnClickListener() {
 //            @Override
