@@ -67,15 +67,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.search.CSearchFragment"
-            android:exported="false"
-            android:label="@string/title_activity_search_page"
-            android:theme="@style/Theme.OurRecipes.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".AccountPage.LoginPage"
             android:exported="false">
             <meta-data

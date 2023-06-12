@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- f_food_recipe_icon_bookmark -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/f_food_recipe_icon_favorite_button_red" android:state_checked="true" />
+    <item android:drawable="@drawable/f_food_recipe_icon_favorite_button_white" />
+</selector>
